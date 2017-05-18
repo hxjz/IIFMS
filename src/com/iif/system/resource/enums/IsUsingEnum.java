@@ -6,6 +6,9 @@ import com.iif.common.util.RedisUtil;
 
 /**
  * （启用、禁用）下拉列表类
+ * @author LiuM
+ * @date 2017
+ * @version V0.1
  */
 /***使用Demo： HttpTool.setAttribute("xxList", InitSelect.getSelectList(XX.class.toString())); ***/
 public class IsUsingEnum {
