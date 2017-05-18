@@ -19,6 +19,14 @@
 		<property name="enumName" type="string">
 			<column name="fenumname" length="100"/>
 		</property>
+		
+		<property name="index" type="integer">
+			<column name="findex" length="3"/>
+		</property>
+		
+		<property name="parentId" type="string">
+			<column name="fparentid" length="50"/>
+		</property>
 
 		<property name="isDel" type="integer">
 			<column name="fisdel" length="1" />
