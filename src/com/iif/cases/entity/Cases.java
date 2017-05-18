@@ -1,6 +1,5 @@
 package com.iif.cases.entity;
 
-import java.util.Date;
 import java.util.List;
 
 import com.hxjz.common.core.orm.BaseEntity;
