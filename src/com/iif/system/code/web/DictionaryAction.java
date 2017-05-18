@@ -15,8 +15,15 @@ import com.hxjz.common.utils.Page;
 import com.iif.common.util.TemplateUtil;
 import com.iif.system.code.entity.Dictionary;
 import com.iif.system.code.service.IDictionaryService;
+
+/**
+  * 数据字典 Action
+  * @Author LiuM
+  * @Date 2017
+  * @Version V0.1
+ */
 @Controller
-@RequestMapping("/system/dictionary.action")
+@RequestMapping("/system/*")
 public class DictionaryAction extends BaseAction{
 	@Autowired
 	private IDictionaryService dictionaryService;
@@ -27,7 +34,7 @@ public class DictionaryAction extends BaseAction{
 	 * 跳转列表页面
 	 * @return
 	 */
-	@RequestMapping(params="method=tolistDictionary")
+	@RequestMapping("tolistDictionary.action")
 	public String tolistDictionary() {
 		return "/jsp/system/dictionary/listDictionary";
 	}
@@ -37,7 +44,7 @@ public class DictionaryAction extends BaseAction{
 	 * @return
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping(params="method=showDictionary")
+	@RequestMapping("showDictionary.action")
 	@ResponseBody
 	public Map showDictionary(){
 		// 分页
@@ -52,14 +59,14 @@ public class DictionaryAction extends BaseAction{
 		List<Dictionary> dic = dictionaryService.findByPage(page, searchMap);
 		
 		return TemplateUtil.toDatagridMap(page, dic);
-	}
+	}	
 	
 	/**
 	 * 添加枚举信息
 	 * @param dic Dictionary实体
 	 * @return 提示信息
 	 */
-	@RequestMapping(params="method=addDictionary")
+	@RequestMapping("addDictionary.action")
 	public void addDictionary(Dictionary dic){
 		dic.setCreateTime(new Date());
 		dic.setUpdateTime(new Date());
