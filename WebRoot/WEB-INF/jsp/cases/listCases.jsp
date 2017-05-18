@@ -66,19 +66,12 @@
 								<td>&nbsp;</td>
 							</tr>
 							<tr>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>
+								<td colspan="10" align="right">
 									<input type="hidden" name="order_updateTime_T" value="desc"/>
-									<input class="t_btnsty01" id="find" name="select" type="button" value="查询" />
+									<input class="t_btnsty01" id="find" name="select" type="button" value="查询"/>
+									<input class="t_btnsty01" type="reset" value="重置"/>&nbsp;&nbsp;&nbsp;
+									
 								</td>
-								<td><input class="t_btnsty01" type="reset" value="重置" /></td>
 							</tr>
 						</table>
 					</div>
