@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+  <add-on id="spring.persistence"/>
+  <add-on id="hibernate.emanager"/>
+  <add-on id="spring.web"/>
+  <add-on id="spring.test"/>
+  <container path="com.genuitec.runtime.library/com.genuitec.hibernate_3.3">
+    <forced-facet id="jpt.jpa" version="2.0"/>
+  </container>
+  <container path="com.genuitec.runtime.library/com.genuitec.spring_3.1">
+    <disable name="me.hibernate_4.1" type="facet"/>
+    <disable name="commons-beanutils-1.7.0.jar" type="jar"/>
+  </container>
+</project>

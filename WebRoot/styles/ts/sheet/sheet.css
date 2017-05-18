@@ -1,0 +1,43 @@
+body .x-panel {
+    margin-bottom:20px;
+}
+.grid-title {
+	font-family: 宋体;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.grid-title img{
+	vertical-align: middle;
+}
+.icon-grid {
+    background-image:url(../../../images/ts/ext/grid.png) !important;
+    vertical-align: middle;
+}
+#button-grid .x-panel-body {
+    border:0px solid #99bbe8;
+    border-top:0 none;
+}
+
+.add{
+	background-image:url(../../../images/ts/ext/add.gif) !important;	
+}
+.info {
+    background-image:url(../../../images/ts/sheet/infoDetails.png) !important;
+}
+.reply {
+    background-image:url(../../../images/ts/sheet/reply.png) !important;
+}
+.accept {
+    background-image:url(../../../images/ts/sheet/accept.png) !important;
+}
+.dispatch {
+    background-image:url(../../../images/ts/sheet/dispatch.png) !important;
+}
+.back {
+    background-image:url(../../../images/ts/sheet/back.png) !important;
+}
+
+.x-grid-record-red table{   
+    color: #FF0000;   
+}

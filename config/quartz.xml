@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- ==================== 客户信息同步start======================== -->
+	<!-- <bean id="synNetCustomerService"
+		class="com.iif.xxx.sync.service.impl.SynNetCustomerServiceImpl"></bean>
+		
+	<bean id="syncNetCustomerJob"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="synNetCustomerService" />
+		<property name="targetMethod" value="syncNetCustomer" />
+	</bean>
+
+	<bean id="syncNetCustomerTrrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="syncNetCustomerJob" />
+		</property>
+		<property name="cronExpression" value="0 0/30 * * * ?"></property>
+	</bean> -->
+	<!-- ==================== 客户信息同步派单end======================== -->
+
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+	<bean id="startQuertz" lazy-init="true" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<!-- <ref bean="syncNetCustomerTrrigger" /> -->
+			</list>
+		</property>
+	</bean>
+
+</beans>

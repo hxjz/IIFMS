@@ -1,0 +1,90 @@
+body,ul,li,p{ margin: 0 auto; padding:0;}
+
+li{ list-style: none;}
+.hide{ display: none}
+.fl{ float: left}
+.tc{ text-align: center}
+.tl{ text-align: left}
+.qy_ts{ font-size: 12px; color: #ff0000; text-align: left; height: 25px; margin: 10px 0 0 5px}
+.qy_jd{ width: 98%; margin: 20px auto; height: 36px; margin-left: 2%}
+.qy_jd ul li{  position: relative; width: 20%;background: #ff9900; float: left; height: 36px; background: #d7d7d7; line-height: 36px; vertical-align: middle;  color: #333; text-indent: 40px; font-size: 14px; z-index: 1}
+.qy_jd ul li span{ display: block; width:51px ;height:49px; position: absolute; z-index: 2; background: url(images/jd_default.png) no-repeat; text-align: center; line-height: 49px; vertical-align: middle; left:-18px; top:-10px;text-indent:0; font-size: 16px; font-weight: bold}
+.qy_jd .active{ background: #648da2;color: #fff; }
+.qy_jd .active span{background: url(images/jd_active.png) no-repeat;}
+.qy_base,.qy_jd_box{ width: 98%; margin-left: 1%}
+.qy_base td{ height: 45px; vertical-align: middle; color: #333; font-size: 14px;}
+/* .qy_base span{ color: #f00; padding-left: 5px} */
+.qy_base .tr{ text-align: right; padding-right: 10px; width: 100px}
+.qy_sdjg .tr{ width: 120px}
+.qy_base{ border: 1px solid #d7d7d7}
+.qy_base .bx,.qy_base .bd,.qy_base .bd2{border: 1px solid #a9a9a9; color: #000; height: 23px;}
+.qy_base .bx{ width: 90%;}
+.qy_base .bd{ width: 95%}
+.qy_base .bd2{ width: 70%}
+.qy_baseBut .add,.qy_baseBut .next,.qy_base .add{vertical-align: middle; text-align: center; float: left; margin-top: 5px}
+.qy_baseBut .add,.qy_base .add{ border: 1px solid #999; width: 86px; height: 23px; line-height: 21px; background: #f6db5f; margin-left: 10px;}
+.confirmBtn,.qy_baseBut .next{ width: 168px; height: 38px; border: 0; font-size: 16px; cursor:pointer; font-weight: bold;background: #f6db5f; line-height: 38px; margin-left: 37%;}
+.qy_houseInfo{ border-top:1px solid #999;border-left:1px solid #999; border-bottom:1px solid #999}
+.qy_houseInfo .tit td{border-bottom:1px solid #999; text-indent: 10px; font-weight: bold}
+.qy_houseInfo .Wdate{ width: 100px}
+.qy_houseInfo .tr{ width: 100px}
+.qy_zlq p{ width: 100%; margin: 5px 0}
+.qy_zlq p img{margin:0 5px 0 0; float: left}
+.qy_zlq .tc{ vertical-align: top}
+.qy_houseInfo .bx{ width: 10%}
+
+/**/
+.qy_baseBut2{overflow:hidden;margin-top:15px;margin-bottom:20px;}
+.qy_baseBut .pre{ background: #f6db5f;}
+.qy_baseBut2 .next{margin-left:23%;}
+/*表格样式*/
+.odd{background:#fff;}
+.even{background:#f2f2f2;}
+.tbSty{border-collapse:collapse;}
+.tbSty tr:hover td{background:#fcf2fb;}
+.tbSty td{border:1px solid #b7b4b3;text-align:center;font-size:14px;color:#190902;height:30px;}
+/*水电交割*/
+.qy_jd_3 .qy_base .tr{width:115px;}
+.fileSty_bor{ position:relative;}
+.fileSty{height:25px;width:51px;position:absolute;left:0;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;vertical-align:middle;z-index:3;*top:0;}
+.lookBtn{background:#f0f1f1;border-right:1px solid #a9a9a9;border-top:1px solid #a9a9a9;border-bottom:1px solid #a9a9a9;color: #2e0a01;display: block;height:25px;right:56px; line-height: 23px;position: absolute;text-align: center;top:9px; width:51px;}
+.fileSty_bor .bx{width:81%;*width:88%;}
+.fileSty_bor .bx2{width:80%; height:23px}
+/* .fileSty_bor span {padding-left:25px;*padding-left:25px;} */
+.t_tab .lookBtn{right:43px;}
+.t_tab2 .lookBtn{right:61px;}
+/*费用支付*/
+.payBtn,.secBtn{background:#ff6600;height:30px;line-height:30px;color:#fff;font-size:14px;font-weight:bold;border:none;width:100px;}
+/*合同打印*/
+.rf{float:right;}
+.ht_tit{color:#ff0000;width:97%;text-align:right;margin-bottom:20px;margin-top:10px;}
+.ht{width:94%;overflow-y:scroll;height:300px;border:1px solid #8c908f;padding:2%;}
+.ht h4{font-size:14px;color:#642307}
+.ht p{line-height:30px;font-size:12px;overflow:hidden;color:#4b1a05}
+.ht p span{margin-right:30px;}
+.ht p a{color:#ff0000;margin-right:20px;}
+.menus{ letter-spacing:34px;font-size:24px;height:30px;line-height:30px;margin-top:30px;margin-bottom:20px;font-weight:bold;color:#642307;}
+.menuInfo{width:98%;margin-left:1%;}
+.menuInfo td{line-height:30px;width:12%;}
+.menuInfo thead td{font-size:13px;font-weight:bold;color:#642307;background:#e4e4e4;}
+.msg{color:red;width:98%;margin-left:1%;font-size:12px;height:35px;line-height:35px;}
+/*可用房源管理*/
+.pages{width:98%;margin-left:1%;margin-top:25px;}
+.pages a{ text-decoration:none;font-size:14px;}
+.pages span{font-size:14px;}
+.huoseInfo{width:98%;margin-left:1%;}
+.huoseInfo thead td{font-size:13px;font-weight:bold;color:#642307;background:#e4e4e4;}
+.huoseInfo tbody td{width:9.8%;height:30px;line-height:30px;color:#0dad05;font-size:12px;}
+#add_base{background: #fff; width:98%; height: auto; overflow: hidden; padding-bottom: 20px}
+#add_base .next{ margin-left: 42%}
+/*企业客户信息*/
+.base_button{ width:60px; height:29px; text-align:center}
+.qy_jd_8 .qy_base .tr { width: 115px;}
+.t_tab{margin-top:20px;}
+.word_rf{ text-align:auto;}
+.boxy-wrapper{position:absolute;}
+.boxy-wrapper.fixed{position:fixed;}
+.boxy-modal-blackout{position:absolute; background-color:black; left:0; top:0; opacity:0.5; filter:alpha(opacity=50);} 
+.boxy-wrapper .title-bar{ background:#fff}
+.boxy-wrapper .top, .boxy-wrapper .bottom,.boxy-wrapper .left, .boxy-wrapper .right{ width:0; background:none}
+.boxy-wrapper .top-left, .boxy-wrapper .top-right, .boxy-wrapper .bottom-right, .boxy-wrapper .bottom-left{ background:none}

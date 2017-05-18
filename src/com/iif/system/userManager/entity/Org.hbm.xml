@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name = "com.iif.system.userManager.entity.Org" table="um_org">
+
+		<id name="id" column="id">
+			<generator class="uuid"/>
+		</id>
+
+		<property name="code" type="java.lang.String">
+			<column name="code" />
+		</property>
+
+		<property name="name" type="java.lang.String">
+			<column name="name" />
+		</property>
+
+		<property name="isLeaf" type="java.lang.Integer">
+			<column name="is_leaf" />
+		</property>
+
+		<property name="isDel" type="java.lang.Integer">
+			<column name="is_del" />
+		</property>
+
+		<property name="parentId" type="java.lang.Long">
+			<column name="parent_id" />
+		</property>
+		
+		<property name="parentPath" type="java.lang.String">
+			<column name="parent_path" />
+		</property>
+		 
+		<property name="orderCode" type="java.lang.Integer">
+			<column name="order_code" />
+		</property>
+		
+		<many-to-one name="parent" class="com.iif.system.userManager.entity.Org"
+			fetch="select" insert="false" update="false">
+			<column name="parent_id" />
+		</many-to-one>
+		
+		<!-- ======================合并过来的============================= -->
+		<property name="setid" type="java.lang.String">
+                <column name="setid"/>
+            </property>
+            <property name="deptid" type="java.lang.String">
+                <column name="deptid"/>
+            </property>
+            <property name="descrshort" type="java.lang.String">
+                <column name="descrshort" />
+            </property>
+            <property name="descr" type="java.lang.String">
+                <column name="descr"  />
+            </property>
+            <property name="effdt" type="java.util.Date">
+                <column name="effdt" />
+            </property>
+            <property name="effStatus" type="java.lang.String">
+                <column name="eff_status" />
+            </property>
+            <property name="hlDeptGra" type="java.lang.String">
+                <column name="hl_dept_gra"  />
+            </property>
+            <property name="setidLocation" type="java.lang.String">
+                <column name="setid_location"  />
+            </property>
+            <property name="location" type="java.lang.String">
+                <column name="location"  />
+            </property>
+            <property name="company" type="java.lang.String">
+                <column name="company"  />
+            </property>
+            <property name="managerId" type="java.lang.String">
+                <column name="manager_id"  />
+            </property>
+            <property name="hlTreelevel" type="java.lang.Long">
+                <column name="hl_treelevel"  />
+            </property>
+            <property name="hlTreepath" type="java.lang.String">
+                <column name="hl_treepath"  />
+            </property>
+            <property name="hlOutDt" type="java.util.Date">
+                <column name="hl_out_dt" />
+            </property>
+            <property name="hlGlsFlag" type="java.lang.String">
+                <column name="hl_gls_flag"  />
+            </property>
+	</class>
+</hibernate-mapping>

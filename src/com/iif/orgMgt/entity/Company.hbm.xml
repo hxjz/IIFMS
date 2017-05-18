@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iif.orgMgt.entity.Company" table="TCompany">
+
+		<id name="id" column="FID">
+			<generator class="uuid" />
+		</id>
+
+		<property name="name" type="string">
+			<column name="FNAME" length="100" />
+		</property>
+
+		<property name="nameAb" type="string">
+			<column name="FNAMEAB" length="100" />
+		</property>
+
+		<property name="hint" type="string">
+			<column name="FHINT" length="10" />
+		</property>
+
+		<property name="linkman" type="string">
+			<column name="FLINKMAN" length="30" />
+		</property>
+
+		<property name="telNo" type="string">
+			<column name="FTELNO" length="30" />
+		</property>
+
+		<property name="faxNo" type="string">
+			<column name="FFAXNO" length="30" />
+		</property>
+
+		<property name="address_DL" type="string" column="FADDRESS"
+			length="100" />
+
+		<property name="zipCode" type="string">
+			<column name="FZIPCODE" length="6" />
+		</property>
+
+		<property name="httpAddress" type="string">
+			<column name="FHTTPADDRESS" length="50" />
+		</property>
+
+		<property name="email" type="string">
+			<column name="FEMAIL" length="50" />
+		</property>
+
+		<property name="logo">
+			<column name="FLOGO" sql-type="blob" />
+		</property>
+
+		<property name="valid" type="boolean">
+			<column name="FVALID" length="255" />
+		</property>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.iif.system.log.entity.LoginLog" table="sys_login_log">
+		<id name="id" column="id">
+			<generator class="uuid"/>
+		</id>
+
+		<property name="userName" type="java.lang.String">
+			<column name="user_name" length="100" />
+		</property>
+
+		<property name="loginIp" type="java.lang.String">
+			<column name="login_ip" length="100" />
+		</property>
+
+		<property name="orgName" type="java.lang.String">
+			<column name="org_name" length="100" />
+		</property>
+
+		<property name="loginTime" type="java.util.Date">
+			<column name="login_time" length="10" />
+		</property>
+
+		<property name="logoutTime" type="java.util.Date">
+			<column name="logout_time" length="10" />
+		</property>
+	</class>
+</hibernate-mapping>

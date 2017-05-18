@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iif.cases.entity.Cases" table="TCases">
+
+		<id name="id" column="fid" >
+			<generator class="uuid" />
+		</id>
+
+		<property name="caseName" type="string">
+			<column name="fcasename" length="255" />
+		</property>
+
+		<property name="caseType" type="integer">
+			<column name="fcaseType" length="3" />
+		</property>
+
+		<property name="isMurder" type="integer">
+			<column name="fismurder" length="1" />
+		</property>
+
+		<property name="caseNum" type="string">
+			<column name="fcasenum" length="100" />
+		</property>
+
+		<property name="casePlace" type="string">
+			<column name="fcaseplace" length="255" />
+		</property>
+
+		<property name="caseDesc" type="string">
+			<column name="fcasedesc" length="255" />
+		</property>
+
+		<property name="caseTimeStart" type="string">
+			<column name="fcasetimestart" length="20" />
+		</property>
+
+		<property name="caseTimeEnd" type="string">
+			<column name="fcasetimeend" length="20" />
+		</property>
+
+		<property name="siteNum" type="string">
+			<column name="fsitenum" length="50" />
+		</property>
+
+		<property name="inspectionPerson" type="string">
+			<column name="finspectionperson" length="50" />
+		</property>
+
+		<property name="inspectionTimeStart" type="string">
+			<column name="finspectiontimestart" length="20" />
+		</property>
+
+		<property name="inspectionTimeEnd" type="string">
+			<column name="finspectiontimeend" length="20" />
+		</property>
+
+		<property name="jurisdiction" type="string">
+			<column name="fjurisdiction" length="50" />
+		</property>
+
+		<property name="isDel" type="integer">
+			<column name="fisdel" length="1" />
+		</property>
+
+		<property name="creator" type="string">
+			<column name="fcreator" length="50" />
+		</property>
+
+		<property name="createTime" type="timestamp">
+			<column name="fcreatetime" length="14" />
+		</property>
+		
+		<property name="updater" type="string">
+			<column name="fupdater" length="20" />
+		</property>
+		
+		<property name="updateTime" type="timestamp">
+			<column name="fupdatetime" length="14" />
+		</property>
+
+	</class>
+</hibernate-mapping>

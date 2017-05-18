@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iif.orgMgt.entity.Department" table="TDepartment">
+
+		<id name="id" column="FID">
+			<generator class="uuid" />
+		</id>
+
+		<property name="address" type="string">
+			<column name="FADDRESS" length="100" />
+		</property>
+
+		<property name="company" type="string">
+			<column name="FCOMPANYID" length="50" />
+		</property>
+
+		<property name="hint" type="string">
+			<column name="FHINT" length="10" />
+		</property>
+
+		<property name="name" type="string">
+			<column name="FNAME" length="30" />
+		</property>
+
+		<property name="responsibility" type="string">
+			<column name="FRESPONSIBILITY" length="300" />
+		</property>
+
+		<property name="telNo" type="string">
+			<column name="FTELNO" length="50" />
+		</property>
+
+		<property name="valid" type="boolean">
+			<column name="FVALID" length="255" />
+		</property>
+
+		<many-to-one name="mainPost" column="MAINPOSTID"
+			class="com.iif.orgMgt.entity.Post" cascade="none">
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.iif.system.resource.entity.Resource" table="tsysresource">
+
+		<id name="id" type="java.lang.Long" column="fid">
+			<generator class="increment"/>
+		 </id>
+
+		<property name="name" type="java.lang.String">
+			<column name="fname" />
+		</property>
+
+		<property name="parentId" type="java.lang.Long">
+			<column name="parentid" />
+		</property>
+
+		<property name="type" type="java.lang.Integer">
+			<column name="ftype" />
+		</property>
+
+		<property name="isLeaf" type="java.lang.Integer">
+			<column name="fisleaf" />
+		</property>
+
+		<property name="url" type="java.lang.String">
+			<column name="furl" />
+		</property>
+		<property name="orderCode" type="java.lang.Integer">
+			<column name="fordercode" />
+		</property>
+		
+		<property name="isButton" type="java.lang.Integer">
+			<column name="fisbutton" />
+		</property>
+		
+		<property name="isEnable" type="java.lang.Integer">
+			<column name="fvalid" />
+		</property>
+		
+		<property name="isDel" type="java.lang.Integer">
+			<column name="fisdel" />
+		</property>
+
+		<property name="iconCls" type="java.lang.String">
+			<column name="ficoncls" />
+		</property>
+		
+		<property name="isLine" type="java.lang.Integer">
+			<column name="fisline" />
+		</property>
+		<property name="levelNum" type="java.lang.Integer">
+			<column name="flevelnum" />
+		</property>
+
+		<bag name="children" cascade="all-delete-orphan" order-by="fordercode asc"  lazy="false">
+			 <key column="parentid"/>
+			 <one-to-many class="com.iif.system.resource.entity.Resource" not-found="ignore"/>
+  	  	 </bag>
+	</class>
+</hibernate-mapping>

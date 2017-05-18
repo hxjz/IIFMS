@@ -1,0 +1,77 @@
+/* CSS Document */
+
+#dNavBar {
+}
+#dNavBar LI {
+	DISPLAY: block;
+	FONT-SIZE: 12px;
+	CURSOR: pointer;
+	COLOR: #666666;
+	LINE-HEIGHT: 23px;
+	LIST-STYLE-TYPE: none;
+	TEXT-ALIGN: center;
+	border: 0;
+	float: right;
+	height: 23px;
+	width: 72px;
+	background-image: url(../images/menu_02.gif);
+	background-repeat: no-repeat;
+	background-position: bottom;
+	
+}
+/*
+#subMenu {
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	WIDTH: 100%;
+	COLOR: #fff;
+	LINE-HEIGHT: 17px;
+	HEIGHT: 17px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-right-style: solid;
+	border-left-style: solid;
+	background-repeat: repeat-x;
+	display: block;
+	text-align: left;
+	position: relative;
+	vertical-align: baseline;
+}*/
+
+#dNavBar A:link {
+	COLOR: #a8a8a8;
+	TEXT-DECORATION: none;
+	
+}
+#dNavBar A:hover {
+	COLOR: #ffcb00;
+	TEXT-DECORATION: none;
+}
+
+#dNavBar A:active {
+	COLOR: #ffcb00;
+	TEXT-DECORATION: none;
+	
+}
+
+#dNavBar A:visited {
+	COLOR: #392800; TEXT-DECORATION: none
+}
+
+.search_button{
+    border:0px;
+	background-image:url(../images/search_button.gif);
+	background-repeat:no-repeat;
+	background-color:transparent;
+	text-align:center;
+	color:#575757;
+	width:67px;
+	height:21px;
+	padding-top:4px;
+	cursor:hand;
+	margin-right:3px;
+	margin-left:3px;
+
+}

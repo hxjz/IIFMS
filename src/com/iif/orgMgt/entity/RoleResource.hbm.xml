@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name = "com.iif.orgMgt.entity.RoleResource" table="TRESOURCE">
+
+		<id name="id" column="FID">
+			<generator class="uuid"/>
+		</id>
+
+		<many-to-one name="role" column="ROLEID"
+		      class="com.iif.orgMgt.entity.IffRole" cascade="none" >
+		</many-to-one>
+
+		<many-to-one name="resource" column="RESOURCEID"
+		      class="com.iif.system.resource.entity.Resource" cascade="none" >
+		</many-to-one>
+
+		<many-to-one name="parent" column="PARENTID"
+		      class="com.iif.orgMgt.entity.RoleResource" cascade="none" >
+		</many-to-one>
+
+		<bag name="children" cascade="all-delete-orphan" order-by="FID ASC">
+			 <key column="PARENTID"/>
+			 <one-to-many class="com.iif.orgMgt.entity.RoleResource" not-found="ignore"/>
+  	   </bag>
+
+		<property name="isMenu" type="integer">
+			<column name="FISMENU" />
+		</property>
+
+		<property name="name" type="string" length="255">
+			<column name="FNAME" />
+		</property>
+
+	</class>
+</hibernate-mapping>

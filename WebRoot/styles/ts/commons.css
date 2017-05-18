@@ -1,0 +1,20 @@
+.treenode {
+	font-family: 宋体;
+	font-size: 12px;
+    border:1px solid #fff;
+}
+.treenode img{
+	vertical-align:middle;
+}
+.add {background-image:url(../../images/ts/ext/add.gif) !important;}
+.refer {background-image:url(../../images/ts/ext/application_go.png) !important;}
+.edit {background-image:url(../../images/ts/ext/cog.png) !important;}
+.delete {background-image:url(../../images/ts/ext/delete.gif) !important;}
+#headerPanel{
+	background:white url(../../styles/default/images/background.gif);
+	weight:100%;
+	height:100%;
+}
+.app-header{
+	background:url(../../styles/default/images/header-bg.gif) repeat-x;
+}

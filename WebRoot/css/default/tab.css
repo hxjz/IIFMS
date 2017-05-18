@@ -1,0 +1,11 @@
+/* ==================== Tabs Pannel ==================== */
+.tabsview01 .tabs_sty{height:23px; border-bottom:1px solid #c5d5dc;}
+.tabsview01 .tabs_sty ul{float:left;    }/*Download by http://www.codefans.net*/
+.tabsview01 .tabs_sty li{float:left;display:inline;height:22px;  margin-right:5px; text-align:center;  font-size:12px;  line-height:22px;overflow:hidden;color:#336699; background:url(../../images/default/tab/tab_libg01.png) repeat-x; cursor:pointer; color:#4b6c7e; border:1px solid #c5d5dc; border-bottom:0px; padding:0px 10px;  }
+.tabsview01 .tabs_sty li.current{ background:url(../../images/default/tab/tab_libged01.png) repeat-x;  border-bottom:1px solid #fff;color:#4b6c7e ; font-weight:bold; }
+.tabsview01 .tabscontnet{  border:0px solid #d5d5d5; background:#fff; padding:0px; }
+.tabsview01 .tabs_sty li span.span01{ color:#ff6600; font-size:12px; font-weight:normal;}
+.tabsview01 .info{ min-height:180px;height:auto !important;height:180px;    }
+.tabsview01 .hide{display:none;}
+/* ==================== Tabs Pannel ==================== */
+

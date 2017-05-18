@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name = "com.iif.system.userManager.entity.UserRole" table="tuserrole">
+
+		<id name="id" column="id">
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="userId" type="java.lang.Long">
+			<column name="userid" />
+		</property>
+
+		<property name="roleId" type="java.lang.Long">
+			<column name="roleid" />
+		</property>
+
+		<many-to-one name = "role" class="com.iif.system.userManager.entity.Role" fetch="select"
+			insert="false" update="false">
+			<column name="roleid" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

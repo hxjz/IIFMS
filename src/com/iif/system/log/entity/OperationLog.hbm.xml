@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.iif.system.log.entity.OperationLog" table="sys_operation_log">
+		<id name="id" column="id">
+			<generator class="uuid"/>
+		</id>
+
+		<many-to-one name="loginLog" class="com.iif.system.log.entity.LoginLog"
+			update="false" insert="false" fetch="select">
+			<column name="login_log_id" precision="20" scale="0" not-null="true"
+				unique="true" />
+		</many-to-one>
+
+		<property name="loginLogId" type="java.lang.Long">
+			<column name="login_log_id" precision="20" scale="0" />
+		</property>
+
+		<property name="userName" type="java.lang.String">
+			<column name="user_name" length="100" />
+		</property>
+
+		<property name="businessName" type="java.lang.String">
+			<column name="business_name" length="50" />
+		</property>
+
+		<property name="operationName" type="java.lang.String">
+			<column name="operation_name" length="50" />
+		</property>
+
+		<property name="orgName" type="java.lang.String">
+			<column name="org_name" length="100" />
+		</property>
+
+		<property name="operationTime" type="java.util.Date">
+			<column name="operation_time" length="10" />
+		</property>
+
+		<property name="isSuccess" type="java.lang.Integer">
+			<column name="is_success" precision="1" scale="0" />
+		</property>
+
+		<property name="tableName" type="java.lang.String">
+			<column name="table_name" />
+		</property>
+
+		<property name="operationTypeCode" type="java.lang.String">
+			<column name="operation_type_code" />
+		</property>
+
+		<property name="entityName" type="java.lang.String">
+			<column name="entity_name" />
+		</property>
+
+		<property name="idName" type="java.lang.String">
+			<column name="id_name" />
+		</property>
+
+		<property name="idValue" type="java.lang.String">
+			<column name="id_value" />
+		</property>
+	</class>
+</hibernate-mapping>

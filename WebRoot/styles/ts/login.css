@@ -1,0 +1,85 @@
+/* CSS Document */
+
+body{
+    margin:0;
+	padding:0;
+	background-image: url(../images/login_bg.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+	color:#666666;
+	background-color:#d7d7d7;
+}
+.logo{
+	background-image: url(../images/logo.jpg);
+	background-repeat: no-repeat;
+	height:106px;
+}
+
+.bg_foot{
+	background-image: url(../images/login_pic_foot.jpg);
+	background-repeat: no-repeat;
+	height:211px;
+}
+.input_bg{
+	background-image: url(../images/login_pic_08.jpg);
+	background-repeat: no-repeat;
+	width:952px;
+	height:221px;
+}
+
+#mune{
+	width:200px;
+	padding-top:5px;
+	padding-bottom:5px;
+	position: relative;
+	left:380px;
+	top:42px;
+	 }
+	 
+#mune input{
+	width:269px;
+	height:25px;
+	line-height:25px;
+	border:0;
+	margin:4px;
+	color:#666666;
+	background-color: transparent;
+	background-image: url(../images/input_bg.jpg);
+}	 
+
+.text_white{
+    font-family : "Lucida Grande", Verdana, Lucida, Arial, Helvetica, 宋体,sans-serif; 
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+#btn {
+	position: relative;
+	left:500px;
+	top:50px;
+	width:300px;
+}
+
+#btn li{
+    float:left; 
+    margin:0 5px;
+
+}
+
+#btn_enter{
+	background-image: url(../images/btn_enter.gif);
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 101px;
+	cursor: hand;
+}
+
+#btn_cz{
+	background-image: url(../images/btn_cz.gif);
+	background-repeat: no-repeat;
+	height: 32px;
+	width: 101px;
+	cursor: hand;
+}
+

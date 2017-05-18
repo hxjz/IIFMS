@@ -1,0 +1,579 @@
+@charset "utf-8";
+
+html,body {
+	background-color: #F6F7FB;
+	width: auto;
+	height: auto;
+	margin:0;
+    padding: 0;
+    background: white url(default/images/background1.gif) top left repeat-x;
+    
+	
+}
+
+html,body,div,form,p,th,td {
+	top: 0;
+	left: 0;
+	font: normal 12px tahoma, arial, helvetica, sans-serif;
+}
+
+.add_button {
+	background-image:url(../images/add_button.gif); 
+	border:none; 
+    width:50;height:23; 
+	
+}
+
+/*两个字的Button*/
+.button {
+	BORDER-RIGHT: #7b9ebd 1px solid;
+	PADDING-RIGHT: 2px;
+	BORDER-TOP: #7b9ebd 1px solid;
+	PADDING-LEFT: 2px;
+	FONT-SIZE: 12px;
+	FILTER:progid:DXImageTransform.Microsoft.Gradient(GradientType = 0,StartColorStr=#ffffff,EndColorStr=#cecfde);
+	BORDER-LEFT: #7b9ebd 1px solid;
+	CURSOR: hand;
+	COLOR: black;
+	PADDING-TOP: 2px;
+	BORDER-BOTTOM: #7b9ebd 1px solid;
+	margin-left:2px;
+}
+
+/*四个字的Button*/
+.button4 {
+	BORDER-RIGHT: #7b9ebd 1px solid;
+	PADDING-RIGHT: 2px;
+	BORDER-TOP: #7b9ebd 1px solid;
+	PADDING-LEFT: 2px;
+	FONT-SIZE: 12px;
+	FILTER:progid:DXImageTransform.Microsoft.Gradient(GradientType = 0,StartColorStr=#ffffff,EndColorStr=#cecfde);
+	BORDER-LEFT: #7b9ebd 1px solid;
+	CURSOR: hand;
+	COLOR: black;
+	PADDING-TOP: 2px;
+	BORDER-BOTTOM: #7b9ebd 1px solid;
+	margin-left:2px
+}
+
+/*四个字的Button*/
+.button6 {
+	BORDER-RIGHT: #7b9ebd 1px solid;
+	PADDING-RIGHT: 2px;
+	BORDER-TOP: #7b9ebd 1px solid;
+	PADDING-LEFT: 2px;
+	FONT-SIZE: 12px;
+	FILTER:progid:DXImageTransform.Microsoft.Gradient(GradientType = 0,StartColorStr=#ffffff,EndColorStr=#cecfde);
+	BORDER-LEFT: #7b9ebd 1px solid;
+	CURSOR: hand;
+	COLOR: black;
+	PADDING-TOP: 2px;
+	BORDER-BOTTOM: #7b9ebd 1px solid;
+	margin-left:2px
+}
+
+
+.type_title{
+	padding-left:5%;
+	font-weight: bolder;
+}
+
+.back {
+	width: 50%;
+	text-align: right;
+}
+
+.dividing_line{
+	
+}
+
+/*查询*/
+.search_form table {
+	width: 100%;
+	padding: 5px 5px 5px 5px;
+	margin: 2px 0px 0px 0px;
+	float: left;
+}
+
+.search_form  {
+	margin: 0px 0px 0px 0px;
+}
+
+.search_form tr {
+	background-color: #ADD3DE;
+	color: #000666;
+	letter-spacing: 2px;
+	text-align: left;
+}
+
+.search_form td {
+	border-right: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-left: 1px solid #C1DAD7;
+	background: #fff;
+}
+
+.search_form td select {
+	margin-left: 0px
+}
+
+.search_form  label {
+	width: 100%;
+	text-align: right;
+}
+
+/*页面内容部分*/
+.content {
+	padding: 5px 5px 5px 5px;
+	margin: 2px 0px 0px 0px;
+	width: auto;
+	background:#ffffff;
+	border:1px solid #cfe9e7;
+}
+
+
+/*显示列表操作及分页部分部分*/
+.handle-table {
+	border-spacing: 1px;
+	border: 0px;
+	width: 100%;
+	margin: 0px, 0px, 0px, 0px;
+}
+
+/*操作显示TD*/
+.handle-td {
+	text-align: right;
+	width: 55%;
+}
+
+/*操作显示TD*/
+.all-handle-td {
+	width: 100%;
+}
+
+/*分页显示TD*/
+.page-td {
+	text-align: left;
+	width: 35%;
+}
+
+.grid-table {
+	width: 100%;
+	padding: 0;
+	margin: 0px, 0px, 0px, 0px;
+	border-top: 1px solid #C1DAD7;
+	border-left: 1px solid #C1DAD7;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+
+.roomsInfo_table {
+	width: 100%;
+	padding: 0;
+	margin: 0px, 0px, 0px, 0px;
+	border : 1px ;
+	border-color : #000000 ;
+	font-size: 12px;	
+}
+
+.roomsInfo_table td {
+	font-size: 12px;
+	color: #0a0101;
+	font-family: "宋体", Verdana;
+	line-height: 24px;
+	border : 1px ;
+	border-color: #000000 ;
+}
+
+.roomsInfo_table th {
+    font: bold;
+	color: #4f6b72;
+	border: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 3px 3px 3px 12px;
+	background:url(../images/bg_header.jpg) repeat-x;
+}
+
+.grid-table th {
+    font: bold;
+	color: #4f6b72;
+	border: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 3px 3px 3px 12px;
+	background:url(../images/bg_header.jpg) repeat-x;
+}
+
+.grid-table td {
+	font-size: 12px;
+	color: #666666;
+	font-family: "宋体", Verdana;
+	text-align:center;
+	line-height: 24px;
+	border-bottom:1px solid #cfe9e7;
+	border-right:1px solid #cfe9e7;
+}
+
+.grid-table tr.td_jg td {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+/*表单部分*/
+.form {
+	padding: 0px;
+	width: 100%;
+	margin: 0px;
+}
+
+.form table {
+	width: 100%;
+	float:left;
+}
+
+.form tr {
+	color: #000000;
+	letter-spacing: 2px;
+	text-align: left;
+}
+
+.form td {
+	border: 1px solid #C1DAD7;
+}
+
+.form td select {
+	margin-left: 0px
+}
+
+.form  label {
+	width: 100%;
+	text-align: right;
+	white-space: nowrap;
+}
+
+
+
+/*详细页面部分*/
+.detailTable {
+	width: 100%;
+	background: #ebf4fb;
+}
+
+.detailTable tr {
+	color: #000666;
+	letter-spacing: 2px;
+	text-align: left;
+}
+
+.detailTable td {
+	border-right: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-left: 1px solid #C1DAD7;
+	height: 20px;
+}
+
+.detailTable  label {
+	width: 100%;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.sfModule {
+	background-image: url(../images/sf.gif) !important;
+}
+
+.kcModule {
+	background-image: url(../images/kc.gif) !important;
+}
+
+.pzModule {
+	background-image: url(../images/pz.gif) !important;
+}
+
+.cfModule {
+	background-image: url(../images/cf.gif) !important;
+}
+
+.lvModule {
+	background-image: url(../images/lv.gif) !important;
+}
+
+.jsModule {
+	background-image: url(../images/js.gif) !important;
+}
+
+.jxModule {
+	background-image: url(../images/jx.gif) !important;
+}
+
+.jcsjModule {
+	background-image: url(../images/jcsj.gif) !important;
+}
+
+.bmModule {
+	background-image: url(../images/bm.gif) !important;
+}
+
+.xtModule {
+	background-image: url(../images/xt.gif) !important;
+}
+
+.leafMenuIcon {
+	background-image: url(../images/leafMenuIcon.gif) !important;
+}
+
+.star {
+	font-weight: bolder;
+	color: red;
+}
+
+.wdateIcon {
+	vertical-align: middle;
+	height: 15px;
+	width: 15px;
+	background: url(../images/datePicker.gif) left no-repeat;
+}
+
+.grid-table a:link {
+	color: #c75f3e;
+	text-decoration: underline;
+}
+
+.grid-table a:hover {
+	color: #c75f3e;
+	text-decoration: ;
+}
+
+.grid-table a:visited {
+	color: #c75f3e;
+}
+
+.companyModuleIcon {
+	background-image: url(../images/companyModuleIcon.gif) !important;
+}
+
+.companyIcon {
+	float: left;
+	text-align: center;
+	text-decoration: none;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+
+.menu {
+	color: #0069B3;
+	cursor: auto;
+	display: block;
+	float: left;
+	font-weight: bold;
+	height: 40px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 3px;
+	margin-top: 0px;
+	text-align: center;
+	text-decoration: none;
+	width: 60px;
+}
+
+.menu img {
+	border-bottom-style: solid;
+	border-bottom-width: 0px;
+	border-left-style: solid;
+	border-left-width: 0px;
+	border-right-style: solid;
+	border-right-width: 0px;
+	border-top-style: solid;
+	border-top-width: 0px;
+	color: #0069B3;
+	cursor: auto;
+	display: inline;
+	float: none;
+	height: 45px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	text-align: center;
+	text-decoration: none;
+	width: 45px;
+}
+
+.menu span {
+	color: #0069B3;
+	cursor: auto;
+	display: block;
+	float: none;
+	font-size: 12px;
+	font-weight: bold;
+	height: 12px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: -5px;
+	text-align: center;
+	text-decoration: none;
+	width: 70px;
+	white-space: nowrap;
+}
+label {
+	width: 100%;
+	text-align: right;
+}
+
+.navigation{
+	float:left;
+	width:99%;
+	padding:0px 0 0 5px;
+	margin-top:0;
+	margin-bottom:-2px;
+}
+
+.navigation-img{
+	float:left;
+	width:16px;
+	height:16px;
+	padding:3px 5px 0 0;	
+}
+.navigation-font{
+	font-family:"宋体";
+	font-size:12px;
+	line-height:25px;
+	color:#666666;
+}
+
+.navigation-end {
+	color: #FF3300;
+	font-weight: bold;
+}
+
+.leafMenuIcon {
+	background-image: url(../images/leafMenuIcon.gif) !important;
+}
+
+
+.portal-table {
+	width: 100%;
+	padding: 0px;
+	margin: 0px, 0px, 0px, 0px;
+	border-top: 1px solid #C1DAD7;
+	border-left: 1px solid #C1DAD7;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+
+.portal-table th {
+	 font: bold;
+	color: #4f6b72;
+	border: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 3px 3px 3px 12px;
+	background:url(../images/bg_header.jpg) repeat-x;
+}
+
+.portal-table td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #ffffff;
+	text-align: center;
+	color: #4f6b72;
+	padding: 2px;
+}
+
+.portal-table tr {
+	border-right: 1px solid #C1DAD7;
+	color: #4f6b72;
+}
+
+.portal-table tr.td_jg td {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+.tab_audit{
+	 background-image:url( ../images/audit.gif) !important;
+}
+
+#tabs{
+	float:left;
+}
+
+/**页面的层容器**/
+#container{width:960px; background:#FFFFFF; background:url(../images/longhu3.jpg) top no-repeat; height:768px; position:relative;}
+
+
+#container {margin:0 auto;}
+
+.logo09{
+	width:303px;
+	position:absolute;
+	left:593px;
+	bottom:646px;
+	height: 93px;
+}
+
+.login09{ background:url(../images/LoginBoxes02_zc.png) top no-repeat; width:310px; height:258px; float:right; margin:140px 60px 0 0;}
+
+.table_box{ font-size:14px; margin:30px 0 0 30px;color:#FFF;}
+.table_box td{padding:10px 0px;}
+.table_box input{ width:160px; margin-left:10px; border:#FFF solid 1px;height:18px;}
+.identifying_code input {width:70px;border:#FFF solid 1px;height:18px;}
+.table_box a{ font-size:11px; color:#FFF; padding-left:70px;}
+.forget_code{padding:1px;}
+.botton09{ text-align:right; cursor:pointer;}
+
+.login_pk{
+	position:absolute;
+	top:453px;
+	left:35px;
+	height: 282px;
+	color:#000;
+	font-size:14px;
+	line-height:18px;
+	width: 608px;
+}
+
+.button{
+	height:23px;
+	line-height:23px;
+	padding:0px;
+	border:1px #9CC5BF solid;
+	background-image:url(../images/btn_bg.png);
+	FILTER:none;
+}
+.handle-td{
+	padding:5px 0;
+}
+.page-td span{
+	padding:5px 3px;
+}
+.tr_title{
+	background:url(../images/bg_header.jpg) repeat-x scroll 0 0 transparent;
+}
+.grid-table th.sort{
+	background: url(../images/sort_bg.png) no-repeat scroll right center ;
+    cursor: pointer;
+    padding-right:15px;
+}
+.grid-table th.asc {
+    background: url(../images/asc.png) no-repeat scroll right center;
+    cursor: pointer;
+    padding-right:15px;
+}
+.grid-table th.desc {
+    background: url(../images/desc.png) no-repeat scroll right center;
+    cursor: pointer;
+    padding-right:15px;
+}
+iframe{
+	border:0;
+}

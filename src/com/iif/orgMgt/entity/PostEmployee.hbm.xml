@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iif.orgMgt.entity.PostEmployee" table="TPostEmployee">
+		
+		  <id name="id" column="FID">
+			<generator class="uuid"/>
+		  </id>
+		
+		<many-to-one lazy="false" name="company" 
+				column="COMPANYID"
+		      class="com.iif.orgMgt.entity.Company"
+		      cascade="none">
+		</many-to-one>
+	
+		<many-to-one lazy="false" name="department" 
+				column="DEPARTMENTID"
+		      class="com.iif.orgMgt.entity.Department"
+		      cascade="none">
+		</many-to-one>
+	  
+	
+		<many-to-one lazy="false" name="post" 
+				column="POSTID"
+		      class="com.iif.orgMgt.entity.Post"
+		      cascade="none">
+		</many-to-one>
+	  
+	
+		<many-to-one lazy="false" name="employee" 
+				column="EMPLOYEEID"
+		      class="com.iif.orgMgt.entity.Employee"
+		      cascade="none">
+		</many-to-one>
+	  
+	
+		   <property name="deftPost" type="boolean">
+<column name="FDEFTPOST" length="255"/></property>
+		
+	  
+	
+		   <property name="valid" type="boolean">
+<column name="FVALID" length="255"/></property>
+		
+	  
+	
+	</class>
+</hibernate-mapping>

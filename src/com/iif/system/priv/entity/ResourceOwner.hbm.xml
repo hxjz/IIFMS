@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.iif.system.priv.entity.ResourceOwner" table="um_resource_owner">
+
+		<id name="id" column="id">
+			<generator class="uuid"/>
+		</id>
+
+		<property name="resourceId" type="java.lang.Long">
+			<column name="resource_id" />
+		</property>
+
+		<property name="ownerId" type="java.lang.String">
+			<column name="owner_id" />
+		</property>
+		<property name="assignType" type="java.lang.Integer">
+			<column name="assign_type" />
+		</property>
+		<property name="creator" type="java.lang.String">
+			<column name="creator_id" />
+		</property>
+		<property name="createTime" type="java.util.Date">
+			<column name="create_time" />
+		</property>
+		<property name="isDeleted" type="java.lang.Integer">
+			<column name="is_deleted" />
+		</property>
+
+	</class>
+</hibernate-mapping>

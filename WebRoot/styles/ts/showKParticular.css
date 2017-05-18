@@ -1,0 +1,27 @@
+.sec1 {
+	BORDER-RIGHT: gray 1px solid;
+	BORDER-TOP: #ffffff 1px solid;
+	BORDER-LEFT: #ffffff 1px solid;
+	CURSOR: hand;
+	COLOR: #000000;
+	BORDER-BOTTOM: #ffffff 1px solid;
+	BACKGROUND-COLOR: #D3DCEF
+}
+
+.sec2 {
+	BORDER-RIGHT: gray 1px solid;
+	BORDER-TOP: #ffffff 1px solid;
+	FONT-WEIGHT: bold;
+	BORDER-LEFT: #ffffff 1px solid;
+	CURSOR: hand;
+	COLOR: #000000;
+	BACKGROUND-COLOR: #eaeaea
+}
+
+.main_tab {
+	BORDER-RIGHT: gray 1px solid;
+	BORDER-LEFT: #ffffff 1px solid;
+	COLOR: #000000;
+	BORDER-BOTTOM: gray 1px solid;
+	BACKGROUND-COLOR: #eaeaea
+}

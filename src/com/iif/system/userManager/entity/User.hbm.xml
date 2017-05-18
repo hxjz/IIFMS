@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.iif.system.userManager.entity.User" table="um_user">
+
+		<id name="id" column="id">
+			<generator class="uuid"/>
+		</id>
+
+		<property name="username" type="java.lang.String">
+			<column name="username" />
+		</property>
+
+		<property name="name" type="java.lang.String">
+			<column name="name" />
+		</property>
+
+		<property name="password" type="java.lang.String">
+			<column name="password" />
+		</property>
+
+		<property name="userType" type="java.lang.Integer">
+			<column name="user_type" />
+		</property>
+
+		<property name="type" type="java.lang.String">
+			<column name="type" />
+		</property>
+
+		<property name="isEnable" type="java.lang.Integer">
+			<column name="is_enable" />
+		</property>
+
+		<property name="orgId" type="java.lang.Long">
+			<column name="org_id" />
+		</property>
+
+		<many-to-one name="org" class="com.iif.system.userManager.entity.Org"
+			fetch="select" insert="false" update="false">
+			<column name="org_id" />
+		</many-to-one>
+
+		<property name="orgName" type="java.lang.String">
+			<column name="org_name" />
+		</property>
+
+		<property name="groupId" type="java.lang.Long">
+			<column name="group_id" />
+		</property>
+
+		<property name="groupName" type="java.lang.String">
+			<column name="group_name" />
+		</property>
+
+		<property name="roleNames" type="java.lang.String">
+			<column name="role_names" />
+		</property>
+
+		<property name="isDel" type="java.lang.Integer">
+			<column name="is_del" />
+		</property>
+
+
+		<!-- ================合并过来的======================= -->
+
+		<property name="emplid" type="java.lang.String">
+			<column name="emplid" length="11" />
+		</property>
+		<property name="emplRcd" type="java.lang.Long">
+			<column name="empl_rcd" precision="4" scale="0" />
+		</property>
+		<property name="effdt" type="java.util.Date">
+			<column name="effdt" length="19" />
+		</property>
+		<property name="effseq" type="java.lang.Long">
+			<column name="effseq" precision="3" scale="0" />
+		</property>
+		<property name="hlStatus" type="java.lang.String">
+			<column name="hl_status" length="1" />
+		</property>
+		<property name="name1" type="java.lang.String">
+			<column name="name1" length="50" />
+		</property>
+		<property name="lastName" type="java.lang.String">
+			<column name="last_name" length="30" />
+		</property>
+		<property name="firstName" type="java.lang.String">
+			<column name="first_name" length="30" />
+		</property>
+		<property name="nameAc" type="java.lang.String">
+			<column name="name_ac" length="30" />
+		</property>
+		<property name="country" type="java.lang.String">
+			<column name="country" length="3" />
+		</property>
+		<property name="hlAddress" type="java.lang.String">
+			<column name="hl_address" />
+		</property>
+		<property name="city" type="java.lang.String">
+			<column name="city" length="30" />
+		</property>
+		<property name="county" type="java.lang.String">
+			<column name="county" length="30" />
+		</property>
+		<property name="state" type="java.lang.String">
+			<column name="state" length="6" />
+		</property>
+		<property name="postal" type="java.lang.String">
+			<column name="postal" length="12" />
+		</property>
+		<property name="sex" type="java.lang.String">
+			<column name="sex" length="1" />
+		</property>
+		<property name="marStatus" type="java.lang.String">
+			<column name="mar_status" length="1" />
+		</property>
+		<property name="marStatusDt" type="java.util.Date">
+			<column name="mar_status_dt" length="19" />
+		</property>
+		<property name="birthdate" type="java.util.Date">
+			<column name="birthdate" length="19" />
+		</property>
+		<property name="birthcountry" type="java.lang.String">
+			<column name="birthcountry" length="3" />
+		</property>
+		<property name="birthstate" type="java.lang.String">
+			<column name="birthstate" length="6" />
+		</property>
+		<property name="countryCode" type="java.lang.String">
+			<column name="country_code" length="3" />
+		</property>
+		<property name="phoneMobile" type="java.lang.String">
+			<column name="phone_mobile" length="24" />
+		</property>
+		<property name="phoneCompany" type="java.lang.String">
+			<column name="phone_company" length="24" />
+		</property>
+		<property name="phoneHome" type="java.lang.String">
+			<column name="phone_home" length="24" />
+		</property>
+		<property name="hlUser" type="java.lang.String">
+			<column name="hl_user" length="10" />
+		</property>
+		<property name="emailAddr" type="java.lang.String">
+			<column name="email_addr" length="70" />
+		</property>
+		<property name="phoneFax" type="java.lang.String">
+			<column name="phone_fax" length="24" />
+		</property>
+		<property name="action" type="java.lang.String">
+			<column name="action" length="3" />
+		</property>
+		<property name="actionReason" type="java.lang.String">
+			<column name="action_reason" length="3" />
+		</property>
+		<property name="setidDept" type="java.lang.String">
+			<column name="setid_dept" length="5" />
+		</property>
+		<property name="setidJobcode" type="java.lang.String">
+			<column name="setid_jobcode" length="5" />
+		</property>
+		<property name="setidLocation" type="java.lang.String">
+			<column name="setid_location" length="5" />
+		</property>
+		<property name="deptid" type="java.lang.String">
+			<column name="deptid" length="10" />
+		</property>
+		<property name="hlTreepath" type="java.lang.String">
+			<column name="hl_treepath" length="200" />
+		</property>
+		<property name="jobcode" type="java.lang.String">
+			<column name="jobcode" length="6" />
+		</property>
+		<property name="supervisorId" type="java.lang.String">
+			<column name="supervisor_id" length="11" />
+		</property>
+		<property name="emplStatus" type="java.lang.String">
+			<column name="empl_status" length="1" />
+		</property>
+		<property name="location" type="java.lang.String">
+			<column name="location" length="10" />
+		</property>
+		<property name="company" type="java.lang.String">
+			<column name="company" length="3" />
+		</property>
+		<property name="hlAppCheck" type="java.lang.String">
+			<column name="hl_app_check" length="1" />
+		</property>
+		<property name="hlTemClose" type="java.lang.String">
+			<column name="hl_tem_close" length="1" />
+		</property>
+		<property name="effdtFrom" type="java.util.Date">
+			<column name="effdt_from" length="19" />
+		</property>
+		<property name="hlOutDt" type="java.util.Date">
+			<column name="hl_out_dt" length="19" />
+		</property>
+		<property name="hlGlsFlag" type="java.lang.String">
+			<column name="hl_gls_flag" length="1" />
+		</property>
+		
+		<property name="createTime" type = "java.util.Date">
+			<column name="create_date"></column>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,67 @@
+/** INDEX.JSP **/
+#header{
+	background-color:#277eb8;
+	padding:0;
+	font-size:12px;color:white;
+}
+#loading{
+	position:absolute;
+	left:45%;
+	top:40%;
+	border:1px solid #6593cf;
+	padding:2px;
+	background:#c3daf9;
+	width:180px;
+	text-align:center;
+	z-index:20001;
+}
+
+.loading-indicator {
+	border:1px solid #a3bad9;
+    background-image:url('../../resources/images/grid/loading.gif');
+    background-repeat: no-repeat;
+    background-position:20px;
+	color:#003366;
+	font-size: 12px;
+	padding:10px;
+	margin:0;
+}
+#logo{
+    background-image:url('/ts/images/sheet/header_bg.gif');
+    background-repeat: no-repeat;
+	background-position:bottom right;
+	height:35px;
+	border-bottom:1px solid #1f74b7;
+}
+#logo-image{
+    background-image:url('/ts/images/sheet/logo1.gif');
+    background-repeat: no-repeat;
+	background-position:bottom left;
+	float:left;
+	height:35px;
+	width:350px;
+}
+#functions{
+	text-align:right;
+	padding:10px 20px;
+	float:right;
+	width:350px;
+}
+#functions a{
+	color:#fff;
+}
+#functions a:visited{
+	color:#fff;
+	text-decoration: none;
+}
+#functions a:hover{
+	color:#fff;
+	text-decoration: underline;
+}
+#menubar{
+	display:inline;
+	float:left;
+	width:600px;
+	height:30px;
+	width:80%;
+}

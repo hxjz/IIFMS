@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	<!-- 
+	日志模板映射文件
+-->
+<hibernate-mapping>
+	<class name="com.iif.system.logTemplate.entity.LogTemplate" table="tdealtemplate">
+		
+		<id name="id" column="FID">
+			<generator class="uuid"/>
+		</id>
+
+		<property name="dataType" type="java.lang.Integer">
+			<column name="FDATATYPE" />
+		</property>
+		
+		<property name="dealType" type="java.lang.Integer">
+			<column name="FDEALTYPE" />
+		</property>
+
+		<property name="isDel" type="java.lang.Integer">
+			<column name="is_del" />
+		</property>
+		
+		<property name="isOpen" type="java.lang.Integer">
+			<column name="is_open" />
+		</property>
+		
+		<property name="template" type="java.lang.String">
+			<column name="FTEMPLATE" />
+		</property>
+		
+        
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATE_TIME" length="7" />
+        </property>
+        
+        <property name="modifyTime" type="java.util.Date">
+            <column name="MODIFY_TIME" length="7" />
+        </property>
+
+	</class>
+</hibernate-mapping>

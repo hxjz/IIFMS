@@ -1,0 +1,38 @@
+body,html{height:100%;}
+#bodyBg{width:100%; height:100%; z-index:1;}
+
+
+
+body{font-family:"宋体",Arial,Verdana; font-size:12px; color:#505050; overflow:hidden;}
+html,body,form,p,ol,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,input{margin:0; padding:0;}
+img{border:0;}
+dl,dt,dd,ol,ul,li{list-style:none;}
+select, input, img {vertical-align:middle; border:0;}
+table {border-collapse:collapse;}
+.cB{clear:both; font-size:0;}	.cF{zoom:0;}	.cF:after{content:"."; display:block; height:0; clear:both; visibility:hidden;}
+a{ color:#505050; text-decoration:none;}
+a:hover{ color: #FF0000; text-decoration:underline;}
+
+.box{ width:960px; margin:0 auto; position:absolute; z-index:2; left:50%; top:0px; margin-left:-480px; position:absolute;}
+.logo{ width:486px; height:111px; _background:none; margin-left:120px;  position:relative;top: 260px; }
+.login{ position:relative;  width:250px; height:300px;  right: -695px; top:202px; }
+.loginbg{ position:absolute;filter: Alpha(opacity=40); -moz-opacity:0.5; opacity:0.5; width:100%; height:400px; }
+.logintext{ position:absolute; width:220px; padding:15px; height:220px; }
+.logintext h1{ font-size:24px; font-family:'微软雅黑',Verdana, Geneva, sans-serif; height:30px; line-height:30px; margin-bottom:15px;}
+.logintext .inputli{ padding:10px 20px; height:25px; line-height:25px; position:relative;  background:#fff; width:180px; margin-bottom:15px;z-index:10;}
+.logintext .inputli .dlzh{ position:absolute; font-size:18px; }
+.logintext .inputli .dlzh02{ color:#fff; position:absolute;}
+
+.logintext .inputli .input01{  position:absolute; width:180px; line-height:25px; height:25px; font-size:18px; left:15px; background:url(../../images/index_img/empty.png) repeat;_background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/index_img/empty.png " ,sizingMethod="crop"); }
+.logintext .inputli02{ margin-bottom:10px;}
+.logintext .inputli02 .input02{ width:66px; height:22px; line-height:22px; background:#fff; border:1px solid #362922; padding:3px ;}
+.logintext .inputli02 a{ text-decoration:underline; color:#8E4011;}
+.logintext .inputli03{ text-align:right;}
+.logintext .inputli03 .input03{ background:url(../../images/index_img/dl.png) no-repeat; _background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/index_img/dl.png " ,sizingMethod="crop"); width:98px; height:42px; cursor:pointer; }
+
+.txlan{ background:url(../../images/index_img/txbj.gif) repeat; width:810px; padding:10px 20px 20px; position:absolute; top: 325px; right:20px; }
+.close{ background:url(../../images/index_img/03083512.gif) no-repeat;  display: inline-block; left: 780px !important;left: 840px;  position: relative; top: 0;height: 18px;  width: 18px;}
+.txtext{background:url(../../images/index_img/txl02.png) no-repeat; _background:none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/index_img/txl02.png " ,sizingMethod="crop");padding-left:60px; width:810px; }
+.txtext dl{ font-size:14px; line-height:20px;float:left; margin-right:10px; width:350px; line-height:25px; }
+.txtext dl dt{ float:left; font-weight:bold;}
+.txtext dl dd{ float:left; margin-bottom:10px;  }

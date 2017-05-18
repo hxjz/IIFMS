@@ -1,0 +1,71 @@
+body {
+	background-repeat: repeat-x;
+	margin: 0px;
+	padding: 0px;
+	background-color: #E1EFFF;
+	background-image: url(../../images/exception/beijing.jpg);
+	background-position: left top;
+}
+.box {
+	padding-top: 120px;
+	width: 980px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 280px;
+}
+.box_txt h3 {
+	text-align: center;
+}
+
+.box_txt {
+	background-color: #FFFFFF;
+	width: 790px;
+	height: 270px;
+	float: left;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	padding-left: 190px;
+	background-repeat: no-repeat;
+	background-position: left top;
+	border: 1px solid #A2D0FF;
+}
+.box_txt_1 {
+	background-image: url(../../images/exception/icon_2.png);
+	background-repeat: no-repeat;
+	background-position: 130px -13px;
+	float: left;
+	height: 70px;
+	width: 680px;
+	padding-top: 40px;
+	margin-bottom: 25px;
+}
+.box_txt_2 {
+	float: left;
+	width: 680px;
+	height: 30px;
+	margin-bottom: 5px;
+}
+.box_txt_3 {
+	float: left;
+	width: 680px;
+	padding-top: 10px;
+
+}
+.bottom{
+	float: left;
+	width: 960px;
+	padding-right: 10px;
+	padding-left: 10px;
+
+
+}
+.bigbig_box{
+	width: 980px;
+	padding-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+
+}
+clear {
+	float: none;
+}

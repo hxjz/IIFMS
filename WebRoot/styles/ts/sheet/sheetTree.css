@@ -1,0 +1,54 @@
+.x-tree {
+    background:#fff !important;
+}
+.x-border-layout-ct {
+    background:transparent;
+}
+body.x-border-layout-ct {
+    background:#c3d5ed url(bg.gif) repeat-x left top !important;
+}
+.x-layout-split {
+    background-color:transparent !important;
+}
+
+.x-tree-node div.forum-ct{
+    background:#eee url(../../../images/ts/sheet/cmp-bg.gif) repeat-x;
+    margin-top:1px;
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ccc;
+    padding-top:2px;
+    padding-bottom:1px;
+}
+.forum-ct .x-tree-node-icon {
+    display:none;
+}
+.forum-ct a span {
+	font-family: 宋体;
+	font-size: 12px;
+    font-weight:bold;
+    color:#222;
+}
+.forum {
+	font-family: 宋体;
+	font-size: 12px;
+    border:1px solid #fff;
+}
+
+.forum img{
+	vertical-align: middle;
+}
+.forum .x-tree-ec-icon {
+    display:none;
+}
+.icon-forum {
+    background-image:url(../../../images/ts/sheet/treeview.png) !important;
+}	
+.x-tree-selected {
+    border:1px dotted #a3bae9;
+    background:#DFE8F6;
+}
+.x-tree-node .x-tree-selected a span{
+	background:transparent;
+	color:#15428b;
+    font-weight:500;
+}

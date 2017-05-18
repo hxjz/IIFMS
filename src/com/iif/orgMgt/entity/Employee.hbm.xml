@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iif.orgMgt.entity.Employee" table="Temployee">
+
+		<id name="id" column="FID">
+			<generator class="uuid" />
+		</id>
+
+		<property name="code" type="string">
+			<column name="FCODE" length="10" />
+		</property>
+
+		<property name="name" type="string">
+			<column name="FNAME" length="50" />
+		</property>
+
+		<property name="sex" type="integer">
+			<column name="FSEX" length="1" />
+		</property>
+
+		<property name="idCardNo" type="string">
+			<column name="FIDCARDNO" length="18" />
+		</property>
+
+		<property name="birthday" type="timestamp">
+			<column name="FBIRTHDAY" length="255" />
+		</property>
+
+		<property name="email" type="string">
+			<column name="FEMAIL" length="30" />
+		</property>
+
+		<property name="mobile" type="string">
+			<column name="FMOBILE" length="15" />
+		</property>
+
+		<property name="telNo" type="string">
+			<column name="FTELNO" length="20" />
+		</property>
+
+		<property name="faxNo" type="string">
+			<column name="FFAXNO" length="20" />
+		</property>
+
+		<property name="qqNo" type="string">
+			<column name="FQQNO" length="15" />
+		</property>
+
+		<property name="msnNo" type="string">
+			<column name="FMSNNO" length="30" />
+		</property>
+
+		<property name="address_DL" type="string" column="FADDRESS"
+			length="100" />
+
+		<property name="zipCode" type="string">
+			<column name="FZIPCODE" length="6" />
+		</property>
+
+		<property name="memo" type="string">
+			<column name="FMEMO" length="100" />
+		</property>
+
+		<property name="valid" type="boolean">
+			<column name="FVALID" length="255" />
+		</property>
+
+		<property name="csrType" type="integer">
+			<column name="FCSRTYPE" length="255" />
+		</property>
+
+		<property name="cicUserId" type="string">
+			<column name="FCICUSERID" length="255" />
+		</property>
+
+		<property name="cicPwd" type="string">
+			<column name="FCICPWD" length="255" />
+		</property>
+
+		<many-to-one name="department" column="DEPARTMENTID"
+			class="com.iif.orgMgt.entity.Department" cascade="none" not-found="ignore">
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

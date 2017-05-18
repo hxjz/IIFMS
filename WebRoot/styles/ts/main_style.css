@@ -1,0 +1,371 @@
+/*页面通用的样式*/
+
+/*整个页面通用*/
+body {
+	font-size:9pt;
+	line-height: 130%;
+	overflow:auto;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	margin: 0px;
+	padding: 0px;
+	background-attachment: fixed;
+	background-image: url(../images/bg_2.jpg);
+	background-repeat: repeat-x;
+	border: 0px;
+}
+.left_body {
+	overflow:auto;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	margin: 3px;
+	padding: 3px;
+	background-attachment: fixed;
+	background-image: url(../images/tree.jpg);
+	background-repeat: repeat;
+	border: 0px;
+	z-index: auto;
+	align:center;
+	width: 100%;
+	
+}
+.left_body_1 {
+	overflow:auto;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	margin: 3px;
+	padding: 3px;
+	background-attachment: fixed;
+	background-color: #6581C8;
+	background-repeat: repeat;
+	border: 0px;
+	z-index: auto;
+	align:center;
+	width: 100%;
+	
+}
+.main_body {
+	font-size:9pt;
+	line-height: 150%;
+	SCROLLBAR-FACE-COLOR: #D1D3E6;
+	SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+	SCROLLBAR-SHADOW-COLOR: #ffffff;
+	SCROLLBAR-3DLIGHT-COLOR: #ffffff;
+	SCROLLBAR-ARROW-COLOR: #0063B5;
+	SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+	SCROLLBAR-BASE-COLOR: #ff0000;
+	overflow:auto;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	margin: 0px;
+	padding: 0px;
+	background-image: url(../images/body_bg_1.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+	background-color: #FFFFFF;
+}
+.main_body_1 {
+	font-size:9pt;
+	line-height: 150%;
+	SCROLLBAR-FACE-COLOR: #D1D3E6;
+	SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+	SCROLLBAR-SHADOW-COLOR: #ffffff;
+	SCROLLBAR-3DLIGHT-COLOR: #ffffff;
+	SCROLLBAR-ARROW-COLOR: #0063B5;
+	SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+	SCROLLBAR-BASE-COLOR: #ff0000;
+	overflow:auto;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	margin: 0px;
+	padding: 0px;
+	background-repeat: repeat-x;
+	background-position: left top;
+	background-color: #eaeaea;
+}
+.botton_red {
+	color: #660000;
+	background-color: #FEE0E1;
+	height: 18px;
+	margin: 0px;
+	padding: 0px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #FFFFFF;
+	border-right-color: #333333;
+	border-bottom-color: #666666;
+	border-left-color: #FFFFFF;
+	font-size: 12px;
+}
+/*用于布满全屏的表格的样式*/
+.index_table {
+	height: 100%;
+	width: 100%;
+}
+
+.top_letter_1 {
+	color: #FFFFFF;
+}
+.letter_search {
+	font-size: 9pt;
+	color: #0033CC;
+	font-weight: bold;
+}
+.letter_2 {
+	font-weight: bold;
+	text-decoration: underline;
+}
+.letter_3 {
+	color: #4F4F4F;
+}
+.letter_4 {
+	color: #666666;
+}
+
+.line_1 {
+	background-color: #666666;
+	height: 1px;
+}
+.botton {
+	color: #000066;
+	background-color: #D3DCEF;
+	height: 18px;
+	margin: 0px;
+	padding: 0px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #FFFFFF;
+	border-right-color: #333333;
+	border-bottom-color: #666666;
+	border-left-color: #FFFFFF;
+	font-size: 12px;
+}
+.botton_red {
+	color: #660000;
+	background-color: #FEE0E1;
+	height: 18px;
+	margin: 0px;
+	padding: 0px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #FFFFFF;
+	border-right-color: #333333;
+	border-bottom-color: #666666;
+	border-left-color: #FFFFFF;
+	font-size: 12px;
+}
+
+.line_2 {
+	background-color: #FFFFFF;
+	height: 1px;
+}
+.line_3 {
+	background-color: #E6E6E6;
+	height: 3px;
+}
+
+
+/*应用的最多的样式，作用在于固定表格的宽度随页面大小比较放缩，整个页面很多地方应用，不可改*/
+.common_table {
+	width: 100%;
+}
+
+
+td {
+	font-size: 9pt;
+	line-height: 180%;
+
+}
+select textarea{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+/*文字链接*/
+a:link { font-size: 9pt; color: #000099; text-decoration: none}
+
+
+a:visited { font-size: 9pt; color: #000099; text-decoration: none}
+a:hover { font-size: 9pt; color: red; text-decoration: underline; }
+a:active { font-size: 9pt; color: #0990000; text-decoration: none}
+
+.menu {
+	font-size: 9pt;
+    text-decoration: none 
+    cursor:hand;	
+	width: 85px;
+	cursor: hand;
+	height: 31px;
+	text-align:center;
+	font-weight:bold;
+	color: #FFFFFF;
+}
+.menu1:link { font-size: 9pt; color: #FFFFFF;text-decoration: none}
+.menu1:visited { font-size: 9pt; color: #FFFFFF; text-decoration: none}
+.menu1:hover { font-size: 9pt; color: red; text-decoration: underline}
+.menu1:active {
+	font-size: 9pt;
+	color: #FFFFFF;
+	text-decoration: none;
+	}
+.menu_click{
+	
+	color:#000000;	
+	font-weight:normal;	
+	cursor:hand;
+	width: 85px;
+	background-image: url(../images/pic_3.gif);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	height: 31px;
+	text-align:center;
+	}
+/*输入框样式*/
+.input_login {
+	border: 1px solid #003366;
+	height: 18px;
+}
+.top_letter_link {
+	background-image: url(../images/bg_1.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	height: 26px;
+
+
+}
+.top_bg_1 {
+	background-image: url(../images/pic_1.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.left_td_1 {
+	background-image: url(../images/tb_bg_1.gif);
+	background-repeat: repeat;
+	height: 26px;
+}
+.left_td_2 {
+	color: #FFFFFF;
+	background-color: #6581C8;
+}
+.left_td_3 {
+	background-color: #DFE8FD;
+}
+.right_td_1 {	
+	background-image: url(../images/D-5.gif);
+}
+.left_letter_1 {
+	color: #FFFFFF;
+}
+.main_td_1 {
+	background-image: url(../images/tb_2.gif);
+	background-repeat: repeat;
+	height: 26px;
+}
+.date {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
+	font-style: italic;
+	color: #3C66A6;
+}
+
+.main_td_2 {
+	background-color: #E8F4FF;
+}
+.main_td_3 {
+	background-color: #F0F0F0;
+}
+.main_td_4 {
+	background-color: #E3E3E3;
+}
+.main_td_5 {
+	background-color: #FFFFFF;
+}
+.main_td_6 {
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #3C66A6;
+}
+.main_td_7 {
+	color: #000099;
+	background-image: url(../images/tb_3_3_bg.gif);
+	background-repeat: repeat-x;
+}
+.main_little {
+	color: #003399;
+	text-decoration: underline;
+}
+.top_td_bottom {
+	background-color: D6D3CE;
+	height: 20px;
+}
+.br {
+	height: 10px;
+}
+.line_4 {
+	background-color: #999999;
+	color: #FFFFFF;
+	text-align:center;
+}
+
+.line_5 {
+	background-color: #DFE8FD;
+	color: #FFFFFF;
+	text-align:center;
+}
+.headerTable {
+	BORDER-RIGHT: threedlightshadow 1px solid; TABLE-LAYOUT: fixed; BORDER-TOP: buttonshadow 1px solid; BACKGROUND: threeddarkshadow; BORDER-LEFT: buttonshadow 1px solid; WIDTH: 100%
+}
+.headerTable TD {
+	BORDER-RIGHT: buttonshadow 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: buttonhighlight 1px solid; PADDING-LEFT: 5px; BACKGROUND: buttonface; BORDER-LEFT: buttonhighlight 1px solid; BORDER-BOTTOM: buttonshadow 1px solid
+}
+.bg_1 {
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.red {
+	background-color: #CC0000;
+	height: 12px;
+		font-family: Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	line-height: 10px;
+	color: #FFFFFF;
+	text-align:center;
+}
+.green {
+	background-color: #006633;
+	height: 12px;
+		font-family: Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	line-height: 10px;
+	color: #FFFFFF;
+	text-align:center;
+}
+

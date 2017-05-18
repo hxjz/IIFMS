@@ -1,0 +1,44 @@
+/*
+ * Ext JS Library 2.2
+ * Copyright(c) 2006-2008, Ext JS, LLC.
+ * licensing@extjs.com
+ * 
+ * http://extjs.com/license
+ */
+.x-tree-node div.forum-ct{
+    background:#eee url(cmp-bg.gif) repeat-x;
+    margin-top:1px;
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ccc;
+    padding-top:2px;
+    padding-bottom:1px;
+    font-family:宋体;
+    font-size:12px;
+}
+.forum-ct .x-tree-node-icon {
+    display:none;
+}
+.forum-ct a span {
+    font-weight:bold;
+    color:#222;
+}
+.forum-ct img{
+	vertical-align:middle;
+}
+.forum {
+    border:1px solid #fff;
+}
+.forum .x-tree-ec-icon {
+    display:none;
+}
+.icon-forum {
+    background-image:url(forum.gif) !important;
+}
+.post-date {
+    font-weight:bold;
+    color:#333;
+}
+.x-grid3-row-body p {
+    margin:5px 20px 10px 25px !important;
+    color:#555;
+}

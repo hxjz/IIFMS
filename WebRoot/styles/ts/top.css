@@ -1,0 +1,103 @@
+/* CSS Document */
+
+INPUT,CHECKBOX,BUTTON,SELECT,TD,TEXTAREA,OPTION,DIV {font-size:12px;}
+iframe { border:0px; margin:0px; padding:0px;}
+form {margin: 0px;}
+body {
+	font-size:10pt;
+	line-height: 150%;
+    overflow:auto;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	margin:0px;
+	padding: 0px;
+    color: #666666;
+	background-color: #dfe6f6;
+	font-family:verdana, sans-serif; 
+	
+}
+
+a:link {COLOR: #1e4071;TEXT-DECORATION: none;}
+a:active {COLOR: #1e4071;TEXT-DECORATION: none;}
+a:visited {COLOR: #1e4071;TEXT-DECORATION: none;}
+a:hover {COLOR: #ffffff;text-decoration: none;}
+
+.a01:link {COLOR: #969fab; TEXT-DECORATION: none;}
+.a01:active {COLOR: #969fab;TEXT-DECORATION: none;}
+.a01:visited {COLOR: #969fab;TEXT-DECORATION: none;}
+.a01:hover {COLOR: #ffffff;text-decoration: none;}
+
+.a_mune:link {COLOR: #1e4071;TEXT-DECORATION: none;font-weight: 700;}
+.a_mune:active {COLOR: #1e4071;TEXT-DECORATION: none;font-weight: 700;}
+.a_mune:visited {COLOR: #1e4071;TEXT-DECORATION: none;font-weight: 700;}
+.a_mune:hover {COLOR: #ffffff;text-decoration: none;font-weight: 700;}
+
+.a_search:link {COLOR: #ffffff;TEXT-DECORATION: none;}
+.a_search:active {COLOR: #ffffff;TEXT-DECORATION: none;}
+.a_search:visited {COLOR: #ffffff;TEXT-DECORATION: none;}
+.a_search:hover {COLOR: #0099ff;text-decoration: none;}
+
+.top_bg{
+	background-image: url(../images/top_mid.jpg);
+	background-repeat: repeat-x;
+	height: 130px;
+}
+.top_left{
+	background-image: url(../images/top_left.jpg);
+	background-position: left bottom;
+	height: 130px;
+	width: 977px;	
+}
+.top_right{
+	background-image: url(../images/top_right.jpg);
+	background-position: right bottom;
+	height: 130px;
+	width: 20px;	
+}
+
+.users_div{
+	color: #969fab;
+	position: absolute;
+	left:350px;
+	top: 0px;
+	
+}
+
+.div_mune{
+	color: #1e4071;
+	position: absolute;
+	left:286px;
+	top: 80px;
+	width:715px;
+	z-index:5;
+	
+}
+
+.div_search{
+	color: #1e4071;
+	position: absolute;
+	left:325px;
+	top: 98px;
+	height:32px;
+	width:530px;
+	position:absolute;
+}
+
+.input_search{
+	background-image: url(../images/search_input.jpg);
+	background-repeat: repeat-x;
+	background-position: top;
+	height: 20px;
+	border: 1px solid #b5b5b5;
+	width:300px;
+	line-height: 20px;
+}
+
+.input_top{
+   position:absolute;
+   left:0px;
+   top:0px;
+   z-index:1
+}

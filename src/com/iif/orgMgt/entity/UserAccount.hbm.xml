@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iif.orgMgt.entity.UserAccount" table="TUserAccount">
+
+		<id name="id" column="FID">
+			<generator class="uuid" />
+		</id>
+
+		<property name="userAccount" type="string">
+			<column name="FUSERACCOUNT" length="20" />
+		</property>
+
+		<property name="password" type="string">
+			<column name="FPASSWORD" length="255" />
+		</property>
+
+
+		<property name="isAdmin" type="integer">
+			<column name="FISADMIN" length="1" />
+		</property>
+
+
+		<property name="updPswDate" type="timestamp">
+			<column name="FUPDPSWDATE" length="255" />
+		</property>
+
+		<property name="requireUpdatePw" type="integer">
+			<column name="FREQUIREUPDATEPW" length="255" />
+		</property>
+
+		<property name="lastLoginDate" type="timestamp">
+			<column name="FLASTLOGINDATE" length="255" />
+		</property>
+
+		<property name="dataBelong" type="string">
+			<column name="FDATABELONG" length="255" />
+		</property>
+
+		<property name="lastLoginIP" type="string">
+			<column name="FLASTLOGINIP" length="255" />
+		</property>
+
+		<property name="loginFailTime" type="integer">
+			<column name="FLOGINFAILTIME" length="255" />
+		</property>
+
+		<property name="acctLockTime" type="timestamp">
+			<column name="FACCTLOCKTIME" length="255" />
+		</property>
+
+		<property name="acctStatus" type="integer">
+			<column name="FACCTSTATUS" length="255" />
+		</property>
+
+		<many-to-one name="linkEmployeeId" column="LINKEMPLOYEEID"
+			class="com.iif.orgMgt.entity.Employee" cascade="none" not-found="ignore">
+		</many-to-one>
+
+		<bag name="userRoles" cascade="all-delete-orphan" lazy="false">
+			<key column="USERID" />
+			<one-to-many class="com.iif.orgMgt.entity.IffUserRole"
+				not-found="ignore" />
+		</bag>
+		
+	</class>
+</hibernate-mapping>
