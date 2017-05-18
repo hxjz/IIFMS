@@ -305,8 +305,7 @@ public class RedisUtil {
 		String enumName = enumInstance.getClass().getSimpleName();
 
 		//缓存开关
-		boolean redisOn = Boolean.valueOf(SystemConstant
-				.getSystemConstant("redis_on"));
+		boolean redisOn = Boolean.valueOf(SystemConstant.getSystemConstant("redis_on"));
 		redisOn=false;
 		List<Dictionary> enumList=null;
 		if (redisOn) {
