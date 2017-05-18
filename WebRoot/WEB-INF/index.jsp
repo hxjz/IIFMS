@@ -123,8 +123,13 @@
 								onclick="loadUrl('content_case','${path}/cases/listCases.action','案件维护');" id='left_case' title="案件维护">案件管理</a>
 						</dt>
 					</dl>
+					<dl>
+						<dt>
+							<a href="javascript:void(0)" style="color: #648da2;"
+								onclick="loadUrl('content_dictionary','${path}/system/tolistDictionary.action','数据字典');" id='left_dictionary' title="数据字典">数据字典</a>
+						</dt>
+					</dl>
 					<!-- Temp -->
-					
 				</div>
 			</div>
 		</div>
