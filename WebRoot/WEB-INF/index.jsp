@@ -126,6 +126,12 @@
 					<dl>
 						<dt>
 							<a href="javascript:void(0)" style="color: #648da2;"
+						   	onclick="loadUrl('content_finance','${path}/finances/listFinances.action','财务管理');" id='left_finance' title="财务管理">财务管理</a>
+						</dt>
+					</dl>
+					<dl>
+						<dt>
+							<a href="javascript:void(0)" style="color: #648da2;"
 								onclick="loadUrl('content_dictionary','${path}/system/tolistDictionary.action','数据字典');" id='left_dictionary' title="数据字典">数据字典</a>
 						</dt>
 					</dl>
