@@ -17,6 +17,8 @@ import com.hxjz.common.utils.Page;
 import com.hxjz.common.utils.ReflectionUtil;
 import com.iif.cases.entity.Cases;
 import com.iif.cases.service.ICasesService;
+import com.iif.common.enums.CaseTypeEnum;
+import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
 
@@ -39,6 +41,9 @@ public class CasesAction extends BaseAction {
 	 */
 	@RequestMapping("listCases.action")
 	public String listCases() {
+		//案件类型下来菜单
+		List<?> caseTypeList = InitSelect.getSelectList(CaseTypeEnum.class);
+		HttpTool.setAttribute("caseTypeList", caseTypeList);
 		return "jsp/cases/listCases";
 	}
 
