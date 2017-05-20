@@ -38,7 +38,7 @@ public class EnumUtil {
 	public static List<Dictionary> getDictionarys(String enumName) {	
 		if (StringUtils.isBlank(enumName))return null;
 		
-		String sql="select d.fid,d.fkey,d.fvalue from tdictionary d where d.fenum_name=? and d.fis_del=0 order by d.findex ";
+		String sql="select d.fid,d.fkey,d.fvalue from tdictionary d where d.fenumname=? and d.fisdel=0 order by d.findex ";
 		Object[] params={enumName};
 		List<Dictionary> list=new ArrayList<Dictionary>();
 		
