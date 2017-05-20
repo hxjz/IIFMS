@@ -17,6 +17,11 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# IDEA compile file
+*.iml
+/.idea/*
+/out/*
+
 # =========================
 # Operating System Files
 # =========================
