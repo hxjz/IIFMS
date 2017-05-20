@@ -30,9 +30,12 @@
 								<td class="tr" width="100"><span class="t_span01">案件类型：</span></td>
 								<td><select name="filter_and_caseType_EQ_I" style="width: 120">
 										<option value="">请选择</option>
-										<option value="1">危害国家安全案</option>
+										<!-- <option value="1">危害国家安全案</option>
 										<option value="2">危害公共安全案</option>
-										<option value="3">其他案件</option>
+										<option value="3">其他案件</option> -->
+										<c:forEach items="${caseTypeList}" var="obj">
+											<option value="${obj.key}">${obj.value}</option>
+										</c:forEach>
 								</select></td>
 							</tr>
 							<tr>
