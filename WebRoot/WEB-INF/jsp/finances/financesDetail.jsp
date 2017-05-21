@@ -1,198 +1,229 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 	<title>财物详情页</title>
-	<%@include file="/WEB-INF/jsp/common/common.jsp"%>
+	<%@include file="/WEB-INF/jsp/common/common.jsp" %>
+	<style type="text/css">
+		.slim_table {
+			border-collapse:collapse;
+			border-spacing:0;
+			border:1px solid #888;
+			/*border-top:1px solid #888;*/
+			width:800px}
+	</style>
 </head>
 <body>
-	<form id="edit" name="editForm" method="post">
-		<input type="button" id="cancel" class="t_btnsty02" onclick="closeCases();" value="取消">
-		<input type="hidden" name="id" id="id" value="${finances.id}">
-		<br>
-	    	<table border="0">
-	          <tr>
-	    		   <td><span class="t_span01">案件名称：</span></td>
-				   <td>
-	               	  <input class="easyui-validatebox t_text w100" data-options="required:true,missingMessage:'请输入案件名称'" name="caseNum" type="text" value="${finances.cases.caseName}" readonly="readonly"/>
-                       <span class="t_span02">*</span>
-                   </td>
-				   <td><input type="submit" class="t_btnsty01" id="selectBtn" value="选择"></td>
-	               <td><span class="t_span01">案件编号：</span></td>
-	               <td >
-	               	  <input class="easyui-validatebox t_text w100"  data-options="" name="caseName" type="text" value="${finances.financeName}"  readonly="readonly"/><span class="t_span02">*</span>
-				   </td>
-				  <td><input type="submit" class="t_btnsty01" id="addBtn" value="添加"></td>
-	          </tr>
-	          <tr>
-				  <td><span class="t_span01">财物名称：</span></td>
-				  <td colspan="2">
-					  <input class="easyui-validatebox t_text w140"  data-options="" name="financeName" type="text" value="${finances.financeName}" /><span class="t_span02">*</span>
-				  </td>
-	          	<td><span class="t_span01">财物种类：</span></td>
-	          	<td colspan="2">
-	          	    <input type="hidden" name="financeTypeHid" id="financeTypeHid" value="${finances.financeType}">
-                 	<select class="w120" name="financeType" id="financeType">
-                 		<option value="">请选择</option>
-                 		<option value="1">手迹痕迹</option>
-                 		<option value="2">足迹痕迹</option>
-                 		<option value="3">……</option>
-                 	</select>
-                 	<span class="t_span02">*</span>
-                 </td>
-	          </tr>
-				<tr>
-					<td><span class="t_span01">财物编号：</span></td>
-					<td>
-						<input class="easyui-validatebox t_text w140"  data-options="" name="financeNum" type="text" value="${finances.financeNum}" />
-					</td>
-                    <td><span class="t_span01">财物来源：</span></td>
-                    <td>
-                        <input type="hidden" name="financeSourceHid" id="financeSourceHid" value="${finances.financeSource}">
-                        <select class="w50" name="financeSource" id="financeSource">
-                            <option value="">请选择</option>
-                            <option value="1">现场勘验</option>
-                            <option value="2">移交</option>
-                            <option value="3">……</option>
-                        </select>
-                    </td>
-                    <td><span class="t_span01">来源单位：</span></td>
-                    <td>
-                        <input type="hidden" name="sourceOfficeHid" id="sourceOfficeHid" value="${finances.sourceOffice}">
-                        <select class="w50" name="sourceOffice" id="sourceOffice">
-                            <option value="">请选择</option>
-                            <option value="1">单位1</option>
-                            <option value="2">单位2</option>
-                            <option value="3">……</option>
-                        </select>
-                    </td>
-				</tr>
-	          <tr>
-                  <td><span class="t_span01">查获人：</span></td>
-                  <td>
-                      <input class="easyui-validatebox t_text w140"  data-options="" name="seizedMan" type="text" value="${finances.seizedMan}" />
-                  </td>
-	               <td><span class="t_span01">查获时间：</span></td>
-	               <td colspan="4">
-	               	  <input type="hidden" name="oldSeizedTimeStart" value="${finances.seizedTimeStart}">
-	               	  <div id="test1">
-	               	  	<input class="easyui-datetimebox w150" data-options="" name="seizedTimeStart" id="seizedTimeStart" type="text" value="${finances.seizedTimeStart}"/><span class="t_span01">起</span><input type="button" class="t_btnsty01" id="changeTimeStart1" value="模糊"/>
-	               	  </div>
-	               	  <div id="test2" hidden="true">
-	               	  	<input class="easyui-datebox w150" data-options="" name="seizedTimeStart" id="seizedTimeStart" type="text" value="${finances.seizedTimeStart}"/><span class="t_span01">起</span><input  type="button" class="t_btnsty01" id="changeTimeStart2" value="精确"/>
-	               	  </div>
-	               	  <input class="easyui-datetimebox w150" data-options="" name="seizedTimeEnd" id="seizedTimeEnd" type="text" value="${finances.seizedTimeEnd}"/><span class="t_span01">止</span>
-	               </td>
-			  </tr>
-	          <tr>
-	          	   <td><span class="t_span01">财物说明：</span></td>
-	               <td colspan="5">
-	               	<input class="easyui-validatebox t_text w420" data-options="" name="financeDesc" type="text" value="${finances.financeDesc}"/>
-	               </td>
-	          </tr>
-                <tr>
-                    <td><span class="t_span01">备注：</span></td>
-                    <td colspan="5">
-                        <input class="easyui-validatebox t_text w420" data-options="" name="financeMemo" type="text" value="${finances.financeMemo}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="t_span01">财物照片：</span></td>
-                    <td colspan="4">
-                        <textarea id="financePicture" name="caseDesc" style="width:370px;height:100px">${finances.imageSign}</textarea>
-                    </td>
-                    <td>
-                        <input type="submit" class="t_btnsty01" id="capturePicture" value="拍照">
-                        <input type="submit" class="t_btnsty01" id="importPicture" value="导入">
-                        <input type="submit" class="t_btnsty01" id="removePicture" value="移除">
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="t_span01">存放位置：</span></td>
-                    <td colspan="4">
-                        <input class="easyui-validatebox t_text w370" data-options="" name="storeLocation" type="text" value="${finances.storeLocation}"/>
-                    </td>
-                     <td>  <input type="submit" class="t_btnsty01" id="chooseLocation" value="选择"></td>
-                </tr>
-                <tr>
-                    <td><span class="t_span01">财物识别码：</span></td>
-                    <td colspan="4">
-                        <input class="easyui-validatebox t_text w370" data-options="" name="financeCode" type="text" value="${finances.financeCode}"/>
-                    </td>
-                    <td>  <input type="submit" class="t_btnsty01" id="print" value="打印"></td>
-                </tr>
-                <tr>
-                    <td><span class="t_span01">电子识别码：</span></td>
-                    <td colspan="4">
-                        <input class="easyui-validatebox t_text w370" data-options="" name="digitalCode" type="text" value="${finances.digitalCode}"/>
-                    </td>
-                    <td>  <input type="submit" class="t_btnsty01" id="write" value="写入"></td>
-                </tr>
+	<input type="button" id="cancel" class="t_btnsty02" onclick="javascript:parent.afterCloseCasesDetail();" value="关闭" >
+	<input type="hidden" name="id" id="id" value="${finances.id}">
+	<br>
+	<table border="0">
+		<tr>
+			<td><span class="t_span01">财物名称：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="caseNum" type="text" value="${finances.financeName}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">财物编号：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="caseName" type="text" value="${finances.financeNum}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">财物类型：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="caseName" type="text" value="${finances.financeType}" readonly="readonly"/>
+			</td>
+			 <td><span class="t_span01">财务状态：</span></td>
+			 <td><span class="t_span02">${finance.financeState} 状态</span></td>
+		</tr>
+		<tr>
+			<td><span class="t_span01">案件名称：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="caseNum" type="text" value="${finances.cases.caseName}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">案件编号：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="caseName" type="text" value="${finances.cases.caseNum}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">案件类型：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="caseName" type="text" value="${finances.cases.caseType}" readonly="readonly"/>
+			</td>
+			<td>
+				<c:if test="${finance.cases.isMurder == 1}">
+					<input type="checkbox" name="isMurder" id="isMurder" checked="checked" disabled="disabled"/>
+				</c:if>
+				<c:if test="${empty finance.cases.isMurder || finance.cases.isMurder == 0 }">
+					<input type="checkbox" name="isMurder" id="isMurder"  disabled="disabled"/>
+				</c:if>
+				<span class="t_span01">命案</span>
+			</td>
+			<td><span class="t_span01">是否出库：根据什么字段判断？</span></td>
+		</tr>
+		<tr>
+			<td><span class="t_span01">案发时间：</span></td>
+			<td>
+				<input class="easyui-datetimebox w150" data-options="" name="caseTimeStart" id="caseTimeStart"
+					   type="text" value="${finances.cases.caseTimeStart}" readonly="readonly"/><span class="t_span01">起</span>
+			</td>
+			<td>&nbsp;</td>
+			<td>
+				<input class="easyui-datetimebox w150" data-options="" name="caseTimeEnd" id="caseTimeEnd"
+					   type="text" value="${finances.cases.caseTimeEnd}" readonly="readonly"/><span class="t_span01">止</span>
+			</td>
+			<td><span class="t_span01">案发地点：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="caseName" type="text" value="${finances.cases.casePlace}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">当前时间：</span></td>
+			<td><input class="easyui-validatebox t_text w140" data-options=""
+					   name="caseName" type="text" value="${finances.cases.casePlace}" readonly="readonly"/></td>
+		</tr>
+		<tr>
+			<td><span class="t_span01">财物来源：</span></td>
+			<td>
+				<input type="hidden" name="financeSourceHid" id="financeSourceHid" value="${finances.financeSource}">
+				<select class="w140" name="financeSource" id="financeSource" disabled="disabled">
+					<option value="0">请选择</option>
+					<option value="1">现场勘验</option>
+					<option value="2">移交</option>
+					<option value="3">……</option>
+				</select>
+			</td>
+			<td><span class="t_span01">来源单位：</span></td>
+			<td>
+				<input type="hidden" name="sourceOfficeHid" id="sourceOfficeHid" value="${finances.sourceOffice}">
+				<select class="w140" name="sourceOffice" id="sourceOffice" disabled="disabled">
+					<option value="0">请选择</option>
+					<option value="1">来源单位1</option>
+					<option value="2">来源单位2</option>
+					<option value="3">……</option>
+				</select>
+			</td>
+			<td><span class="t_span01">保管单位：</span></td>
+			<td>
+				<input type="hidden" name="storeOfficeHid" id="storeOfficeHid" value="${finances.storeOffice}">
+				<select class="w140" name="storeOffice" id="storeOffice" disabled="disabled">
+					<option value="0">请选择</option>
+					<option value="1">现场勘验</option>
+					<option value="2">移交</option>
+					<option value="3">……</option>
+				</select>
+			</td>
+			<td><span class="t_span01">存放位置：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="storeLocation" type="text" value="${finances.storeLocation}" readonly="readonly"/>
+			</td>
+		</tr>
+		<tr>
+			<td><span class="t_span01">登记时间：</span></td>
+			<td>
+				<input class="easyui-datetimebox w150" data-options="" name="entryTime" id="entryTime"
+					   type="text" value="${finances.entryTime}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">首次入库时间：</span></td>
+			<td>
+				<input class="easyui-datetimebox w150" data-options="" name="instockTime" id="instockTime"
+					   type="text" value="${finances.instockTime}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">最终出库时间：</span></td>
+			<td>
+				<input class="easyui-datetimebox w150" data-options="" name="outstockTime" id="outstockTime"
+						type="text" value="${finances.outstockTime}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">财物识别码：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+				name="financeCode" type="text" value="${finances.financeCode}" readonly="readonly"/>
+				<span class="t_span01">打印</span>
+			</td>
+		</tr>
+        <tr>
+			<td><span class="t_span01">登记人：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="entryMan" type="text" value="${finances.entryMan}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">首次入库人：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="instockMan" type="text" value="${finances.instockMan}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">最终出库人：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="outstockMan" type="text" value="${finances.outstockMan}" readonly="readonly"/>
+			</td>
+			<td><span class="t_span01">电子识别码：</span></td>
+			<td>
+				<input class="easyui-validatebox t_text w140" data-options=""
+					   name="digitalCode" type="text" value="${finances.digitalCode}" readonly="readonly"/>
+				<span class="t_span01">写入</span>
+			</td>
+
+        </tr>
+		<tr>
+			<td><span class="t_span01">财物说明：</span></td>
+			<td colspan="5">
+				<input class="easyui-validatebox t_text w650" data-options="" name="financeDesc" type="text"
+					   value="${finances.financeDesc}"/>
+			</td>
+		</tr>
+		<tr>
+			<td><span class="t_span01">备注：</span></td>
+			<td colspan="5">
+				<input class="easyui-validatebox t_text w650" data-options="" name="financeMemo" type="text"
+					   value="${finances.financeMemo}"/>
+			</td>
+		</tr>
+		<tr>
+			<td><span class="t_span01">财物照片：</span></td>
+			<td colspan="5">
+				<textarea id="imageSign" name="caseDesc"
+						  style="width:650px;height:100px">${finances.imageSign}</textarea>
+			</td>
+		</tr>
 	</table>
-	</form>
-	<script type="text/javascript">
-		$(document).ready(function(){
-		   //Temp Start
-		   var caseTypev = $("#caseTypeHid").val();
-		   $("#caseType").val(caseTypev);
-		   //Temp End
+	<span class="t_span03">操作记录</span>
+	<table class="slim_table">
+		<tr>
+			<td><span class="t_span01">财务识别码</span></td>
+			<td><span class="t_span01">操作时间</span></td>
+			<td><span class="t_span01">操作类型</span></td>
+			<td><span class="t_span01">操作人</span></td>
+		</tr>
 
-		   // 初始化第二个隐藏时间控件的值
-		    $("input[textboxname='caseTimeStart']:eq(1)").attr("value","");
-			$("#test2").hide();
-		   	$("#changeTimeStart1").click(function(){
-		   		$("input[textboxname='caseTimeStart']").attr("value","");
-		   		$("input[name='caseTimeStart']").attr("value","");
-		  		$("#test1").hide();
-		  		$("#test2").show();
-		   	});
-		   	$("#changeTimeStart2").click(function(){
-		   		$("input[textboxname='caseTimeStart']").attr("value","");
-		   		$("input[name='caseTimeStart']").attr("value","");
-		  		$("#test2").hide();
-		  		$("#test1").show();
-		   	});
-		});
+	</table>
+	<span class="t_span02">异常记录</span>
+	<table class="slim_table">
+		<tr>
+			<td><span class="t_span01">电子识别码</span></td>
+			<td><span class="t_span01">异常时间</span></td>
+			<td><span class="t_span01">位置</span></td>
+			<td><span class="t_span01">类型</span></td>
+			<td rowspan="5"><span class="t_span01">照片展示区</span></td>
+		</tr>
 
-		//表单提交
-		$('#edit').form({
-		    url:'${path}/finances/saveFinances.action',
-		    onSubmit:function(){
-		        return $(this).form('validate');
-		    },
-		    success:function(returnData){
-		    	data = JSON.parse(returnData); // 转换成json对象
-		    	if(data.status == "success"){
-		    		parent.alertInfo(data.data);
-		    		if($("#id").val() == ''){
-		    			parent.afterCloseAddCases();
-		    		}else{
-		    			parent.afterCloseEditCases();
-		    		}
-		    	} else if(data.status="fail"){
-		    		alertInfo(data.data);
-		    	} else {
-		    		alertInfo("未知错误");
-		    	}
-		    }
-		});
+	</table>
+<script type="text/javascript">
+	$(document).ready(function () {
+		// 财物来源
+		var financeSourceValue = $("#financeSourceHid").val();
+		$("#financeSource").val(financeSourceValue);
+		// 来源单位
+		var sourceOfficeValue = $("#sourceOfficeHid").val();
+		$("#sourceOffice").val(sourceOfficeValue);
+        // 保管单位
+		var storeOfficeValue = $("#storeOfficeHid").val();
+		$("#storeOffice").val(storeOfficeValue);
 
-		function setVal() {
-			if(true==$("#isMurder").is(':checked')) {
-				$("#isMurder").attr("value","1");
-			}else {
-				$("#isMurder").attr("value","0");
-			}
-		}
-
-		//取消新增或修改操作
-		function closeCases(){
-			if($("#id").val() == ''){
-				parent.afterCloseAddCases();
-			}else{
-				parent.afterCloseEditCases();
-			}
-		}
-	</script>
+	});
+</script>
 </body>
 </html>

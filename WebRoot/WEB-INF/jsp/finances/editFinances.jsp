@@ -22,8 +22,8 @@
             <td><input type="submit" class="t_btnsty01" id="selectBtn" value="选择"></td>
             <td><span class="t_span01">案件编号：</span></td>
             <td>
-                <input class="easyui-validatebox t_text w100" data-options="required:true,missingMessage:'请输入案件名称'"
-                       name="caseName" type="text" value="${finances.financeNum}"/><span class="t_span02">*</span>
+                <input class="easyui-validatebox t_text w100" data-options="required:true,missingMessage:'请输入案件编号'"
+                       name="caseName" type="text" value="${finances.cases.caseNum}"/><span class="t_span02">*</span>
             </td>
             <td><input type="submit" class="t_btnsty01" id="addBtn" value="添加"></td>
         </tr>
@@ -37,10 +37,13 @@
             <td colspan="2">
                 <input type="hidden" name="financeTypeHid" id="financeTypeHid" value="${finances.financeType}">
                 <select class="w140" name="financeType" id="financeType">
-                    <option value="">请选择</option>
-                    <option value="1">手迹痕迹</option>
-                    <option value="2">足迹痕迹</option>
-                    <option value="3">……</option>
+                    <c:forEach items="${financeTypeList}" var="object">
+                        <option value="${object.key}">${object.value}</option>
+                    </c:forEach>
+                    <%--<option value="">请选择</option>--%>
+                    <%--<option value="1">手迹痕迹</option>--%>
+                    <%--<option value="2">足迹痕迹</option>--%>
+                    <%--<option value="3">……</option>--%>
                 </select>
                 <span class="t_span02">*</span>
             </td>
@@ -152,10 +155,15 @@
 </form>
 <script type="text/javascript">
     $(document).ready(function () {
-        //Temp Start
-        var caseTypev = $("#caseTypeHid").val();
-        $("#caseType").val(caseTypev);
-        //Temp End
+        // 财物来源
+        var financeSourceValue = $("#financeSourceHid").val();
+        $("#financeSource").val(financeSourceValue);
+        // 来源单位
+        var sourceOfficeValue = $("#sourceOfficeHid").val();
+        $("#sourceOffice").val(sourceOfficeValue);
+        // 财物种类
+        var financeTypeValue = $("#financeTypeHid").val();
+        $("#financeType").val(financeTypeValue);
 
         // 初始化第二个隐藏时间控件的值
         $("input[textboxname='seizedTimeStart']:eq(1)").attr("value", "");

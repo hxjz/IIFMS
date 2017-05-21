@@ -27,18 +27,24 @@
 								<td>
 									<select name="filter_and_financeType_EQ_I" style="width: 120">
 										<option value="">请选择</option>
-										<option value="1">手迹痕迹</option>
-										<option value="2">足迹痕迹</option>
-										<option value="3">其他</option>
+										<%--<option value="1">手迹痕迹</option>--%>
+										<%--<option value="2">足迹痕迹</option>--%>
+										<%--<option value="3">其他</option>--%>
+										<c:forEach items="${financeTypeList}" var="object">
+											<option value="${object.key}">${object.value}</option>
+										</c:forEach>
 									</select>
 								</td>
 								<td class="tr" width="100"><span class="t_span01">财物状态：</span></td>
 								<td>
 									<select name="filter_and_financeState_EQ_I" style="width: 120">
 									<option value="">请选择</option>
-									<option value="1">登记</option>
-									<option value="2">在库</option>
-									<option value="3">出库</option>
+									<%--<option value="1">登记</option>--%>
+									<%--<option value="2">在库</option>--%>
+									<%--<option value="3">出库</option>--%>
+										<c:forEach items="${financeStateList}" var="object">
+											<option value="${object.key}">${object.value}</option>
+										</c:forEach>
 								</select>
 								</td>
 								<td class="tr" width="100"><span class="t_span01">财物识别：</span></td>
@@ -53,7 +59,7 @@
 								<td><input class="t_text w180" name="filter_and_casePlace_LIKE_S" type="text" id="casePlace" /></td>
 								<td class="tr" width="100"><span class="t_span01">现场勘验号：</span></td>
 								<td><input class="t_text w100" name="filter_and_siteNum_LIKE_S" type="text" id="siteNum" /></td>
-								<td class="tr" width="100"><span class="t_span01">电子识别：</span></td>
+								<td class="tr" width="100"><span class="t_span01">电子识别码：</span></td>
 								<td><input class="t_text w100" name="filter_and_digitalCode_LIKE_S" type="text" id="digitalCode" /></td>
 							</tr>
 							<tr>
@@ -67,7 +73,7 @@
 									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeEnd_GE_T" type="text" />
 									<span class="t_span01">至</span>
 									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeEnd_LE_T" type="text" /></td>
-								<td class="tr" width="120"><span class="t_span01">电子识别：</span></td>
+								<td class="tr" width="120"><span class="t_span01">电子识别码：</span></td>
 								<td>
 									<input class="t_text w100" name="filter_and_digitalCode_LIKE_S" type="text" id="digitalCodeNew" />
 									<input type="submit" class="t_btnsty01" id="selectBtn" value="识别">
@@ -144,9 +150,9 @@
 								<th data-options="field:'financeType',width:150" align=" center">财物类型</th>
 								<th data-options="field:'financeState',width:100" align="center">财物状态</th>
 								<th data-options="field:'financeTimeEnd',width:100" align="center">案件编号</th>
-								<th data-options="field:'cases[caseName]',width:80" align="center">案件名称</th>
-								<%--<th data-options="valueField:'cases.caseType',width:100" align="center">案件类型</th>--%>
-								<th data-options="field:'cases_caseName',width:100" align="center">案发时间(起-止)</th>
+								<th data-options="field:'cases',width:80,formatter:formatCategory" align="center">案件名称</th>
+								<th data-options="field:'cases',width:100," align="center">案件类型</th>
+								<th data-options="field:'cases',width:100" align="center">案发时间(起-止)</th>
 								<th data-options="field:'inspectionPerson',width:80" align="center">现场勘验号</th>
 								<th data-options="field:'evidenceNum',width:60" align="center">勘验时间(起-止)</th>
 								<th data-options="field:'storeLocation',width:120" align="center">存放位置</th>
@@ -170,8 +176,8 @@
 		<iframe id="frame_editInfo" width="520" height="430" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	<!-- 详情弹窗 -->
-	<div id="detailInfo" class="easyui-window" title="财物信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 480px; padding: 20px;">
-		<iframe id="frame_detailInfo" width="520" height="404" scrolling="no" src="" frameborder="0"></iframe>
+	<div id="detailInfo" class="easyui-window" title="财物信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 1000px; height: 500px; padding: 20px;">
+		<iframe id="frame_detailInfo" width="1000" height="500" scrolling="no" src="" frameborder="0"></iframe>
 	</div>
 	
 	<script type="text/javascript">
@@ -186,11 +192,6 @@
 			});
 		});
 
-
-		// 案件编号
-		function formatLink() {
-			return value.caseName;
-		}
 
 		// 财物编号
 //		function formatLink(value, row, index) {
@@ -275,6 +276,10 @@
 		function afterCloseEditCases() {
 			$("#editInfo").window('close');
 			reloadgrid('dg1');
+		}
+
+		function formatCategory(value){
+			return value.caseName;
 		}
 
 		//查看详情后返回

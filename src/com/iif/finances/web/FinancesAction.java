@@ -5,6 +5,9 @@ import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
 import com.hxjz.common.utils.ReflectionUtil;
 import com.iif.cases.entity.Cases;
+import com.iif.common.enums.FinanceStateEnum;
+import com.iif.common.enums.FinanceTypeEnum;
+import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
 import com.iif.finances.entity.Finances;
@@ -38,6 +41,12 @@ public class FinancesAction extends BaseAction {
      */
     @RequestMapping("listFinances.action")
     public String listFinances() {
+        // 财物状态下拉列表
+        List<?> financeStateList = InitSelect.getSelectList(FinanceStateEnum.class);
+        HttpTool.setAttribute("financeStateList", financeStateList);
+        // 财物类型下拉列表
+        List<?> financeTypeList = InitSelect.getSelectList(FinanceTypeEnum.class);
+        HttpTool.setAttribute("financeTypeList", financeTypeList);
         return "jsp/finances/listFinances";
     }
 
@@ -70,6 +79,9 @@ public class FinancesAction extends BaseAction {
             Finances finances = (Finances) iFinancesService.findById(financesId);
             HttpTool.setAttribute("finances", finances);
         }
+        // 财物类型下拉列表
+        List<?> financeTypeList = InitSelect.getSelectList(FinanceTypeEnum.class);
+        HttpTool.setAttribute("financeTypeList", financeTypeList);
         return "jsp/finances/editFinances";
     }
 
