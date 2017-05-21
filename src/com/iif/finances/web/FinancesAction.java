@@ -52,14 +52,6 @@ public class FinancesAction extends BaseAction {
 
         List<Finances> financeList = iFinancesService.findByPage(page, searchMap);
 
-        for(int i=0;i<financeList.size();i++){
-            System.out.println(financeList.get(i).toString());
-            if(financeList.get(i).getCases()!=null){
-                System.out.println("------------ahahah-------------");
-                System.out.println("------------ahahah-------------"+financeList.get(i).getCases().toString());
-            }
-            System.out.println();
-        }
         return TemplateUtil.toDatagridMap(page, financeList);
     }
 
