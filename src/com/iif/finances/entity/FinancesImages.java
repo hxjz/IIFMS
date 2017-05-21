@@ -13,7 +13,7 @@ public class FinancesImages extends BaseEntity {
 
     private String id;  // 图片编号
 
-    private String financeId;   // 关联的财务id
+    private String financeId;   // 关联的财物id
 
     private String imageName;  //  图片名称
 

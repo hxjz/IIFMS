@@ -13,23 +13,23 @@ import java.util.List;
 public class Finances extends BaseEntity {
 
     private static final long serialVersionUID = -6178522609856969604L;
-    private String id; // 财务编码 Key
+    private String id; // 财物编码 Key
 
     private Cases cases; // 相关案件
 
-    private String financeName; // 财务名称
+    private String financeName; // 财物名称
 
-    private Integer financeType; // 财务类型
+    private Integer financeType; // 财物类型
 
-    private String financeNum; // 财务编号
+    private String financeNum; // 财物编号
 
-    private Integer financeState; // 财务状态
+    private Integer financeState; // 财物状态
 
-    private Integer financeSource; // 财务来源
+    private Integer financeSource; // 财物来源
 
-    private Integer sourceOffice; // 财务来源单位
+    private Integer sourceOffice; // 财物来源单位
 
-    private String storeOffice;  // 财务保管单位
+    private String storeOffice;  // 财物保管单位
 
     private String seizedMan; // 查获人
 
@@ -37,17 +37,17 @@ public class Finances extends BaseEntity {
 
     private String seizedTimeEnd; // 查获时间段（止）
 
-    private String financeDesc; // 财务说明
+    private String financeDesc; // 财物说明
 
-    private String financeMemo; // 财务备注
+    private String financeMemo; // 财物备注
 
-    transient private List<FinancesImages> FinanceImages; // 财务照片
+    transient private List<FinancesImages> FinanceImages; // 财物照片
 
-    private Integer imageSign; // 是否有财务照片
+    private Integer imageSign; // 是否有财物照片
 
     private String storeLocation; // 存放位置
 
-    private String financeCode; // 财务识别码
+    private String financeCode; // 财物识别码
 
     private String digitalCode; // 电子识别码
 

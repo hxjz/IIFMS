@@ -24,7 +24,7 @@ import java.util.Map;
  * @Author GaoGang
  * @Date 2017年5月15日 下午10:24:07
  * @Version V0.1
- * @Desc 财务管理 action
+ * @Desc 财物管理 action
  */
 @Controller
 @RequestMapping("/finances/*")
@@ -32,7 +32,7 @@ public class FinancesAction extends BaseAction {
     @Autowired
     IFinancesService iFinancesService = null;
     /**
-     * 跳转到财务详情
+     * 跳转到财物详情
      *
      * @return
      */
@@ -64,7 +64,7 @@ public class FinancesAction extends BaseAction {
     }
 
     /**
-     * 跳转到 添加财务页面
+     * 跳转到 添加财物页面
      *
      * @return
      * @throws Exception
@@ -106,7 +106,7 @@ public class FinancesAction extends BaseAction {
             ReflectionUtil.copyPropertiesForHasValueIgnoreSerialVersionUID(saveFinance, finance);
         }else {
             BeanUtils.copyProperties(finance, saveFinance);
-            saveFinance.setFinanceState(0); // 财务默认状态
+            saveFinance.setFinanceState(0); // 财物默认状态
             saveFinance.setCreateTime(new Date());// 创建时间
             saveFinance.setCreator("admin"); // 当前登录人
             saveFinance.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
@@ -131,7 +131,7 @@ public class FinancesAction extends BaseAction {
 
 
     /**
-     * 跳转到财务新增或修改页
+     * 跳转到财物新增或修改页
      * @return
      * @throws Exception
      */
@@ -146,7 +146,7 @@ public class FinancesAction extends BaseAction {
         return "jsp/finances/financesDetail";
     }
     /**
-     * 删除财务信息
+     * 删除财物信息
      * @return
      * @throws Exception
      */
@@ -156,7 +156,7 @@ public class FinancesAction extends BaseAction {
     public Map delFinances(){
         String financesId=HttpTool.getParameter("financesId");
 
-        //财务需不需要关联状态  比如什么状态不能删除 或者 和案件有关联
+        //财物需不需要关联状态  比如什么状态不能删除 或者 和案件有关联
         //boolean existEvidence =
 
         try{

@@ -2,7 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-	<title>新增/修改财务</title>
+	<title>新增/修改财物</title>
 	<%@include file="/WEB-INF/jsp/common/common.jsp"%>
 </head>
 <body>
@@ -26,11 +26,11 @@
 				  <td><input type="submit" class="t_btnsty01" id="addBtn" value="添加"></td>
 	          </tr>
 	          <tr>
-				  <td><span class="t_span01">财务名称：</span></td>
+				  <td><span class="t_span01">财物名称：</span></td>
 				  <td colspan="2">
-					  <input class="easyui-validatebox t_text w140"  data-options="required:true,missingMessage:'请输入财务名称'" name="financeName" type="text" value="${finances.financeName}" /><span class="t_span02">*</span>
+					  <input class="easyui-validatebox t_text w140"  data-options="required:true,missingMessage:'请输入财物名称'" name="financeName" type="text" value="${finances.financeName}" /><span class="t_span02">*</span>
 				  </td>
-	          	<td><span class="t_span01">财务种类：</span></td>
+	          	<td><span class="t_span01">财物种类：</span></td>
 	          	<td colspan="2">
 	          	    <input type="hidden" name="financeTypeHid" id="financeTypeHid" value="${finances.financeType}">
                  	<select class="w120" name="financeType" id="financeType">
@@ -43,11 +43,11 @@
                  </td>
 	          </tr>
 				<tr>
-					<td><span class="t_span01">财务编号：</span></td>
+					<td><span class="t_span01">财物编号：</span></td>
 					<td>
 						<input class="easyui-validatebox t_text w140"  data-options="" name="financeNum" type="text" value="${finances.financeNum}" />
 					</td>
-                    <td><span class="t_span01">财务来源：</span></td>
+                    <td><span class="t_span01">财物来源：</span></td>
                     <td>
                         <input type="hidden" name="financeSourceHid" id="financeSourceHid" value="${finances.financeSource}">
                         <select class="w50" name="financeSource" id="financeSource">
@@ -86,7 +86,7 @@
 	               </td>
 			  </tr>
 	          <tr>
-	          	   <td><span class="t_span01">财务说明：</span></td>
+	          	   <td><span class="t_span01">财物说明：</span></td>
 	               <td colspan="5">
 	               	<input class="easyui-validatebox t_text w420" data-options="" name="financeDesc" type="text" value="${finances.financeDesc}"/>
 	               </td>
@@ -98,7 +98,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><span class="t_span01">财务照片：</span></td>
+                    <td><span class="t_span01">财物照片：</span></td>
                     <td colspan="4">
                         <textarea id="imageSign" name="caseDesc" style="width:370px;height:100px">${finances.imageSign}</textarea>
                     </td>
@@ -116,7 +116,7 @@
                      <td>  <input type="submit" class="t_btnsty01" id="chooseLocation" value="选择"></td>
                 </tr>
                 <tr>
-                    <td><span class="t_span01">财务识别码：</span></td>
+                    <td><span class="t_span01">财物识别码：</span></td>
                     <td colspan="4">
                         <input class="easyui-validatebox t_text w370" data-options="" name="financeCode" type="text" value="${finances.financeCode}"/>
                     </td>

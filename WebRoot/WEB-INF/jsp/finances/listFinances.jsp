@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>涉案财物-财务列表页</title>
+<title>涉案财物-财物列表页</title>
 <%@include file="/WEB-INF/jsp/common/common.jsp"%>
 </head>
 
@@ -11,7 +11,7 @@
 	<div class="t_rightcontainer">
 		<div class="t_oneblock">
 			<div class="t_oneblock_h">
-				<h3>财务信息查询</h3>
+				<h3>财物信息查询</h3>
 			</div>
 			<!-- t_oneblock_h-->
 			<form>
@@ -19,11 +19,11 @@
 					<div class="nobortable pt10 pl10">
 						<table width="100%" border="0">
 							<tr>
-								<td class="tr" width="100"><span class="t_span01">财务编号：</span></td>
+								<td class="tr" width="100"><span class="t_span01">财物编号：</span></td>
 								<td><input class="t_text w100" name="filter_and_financeNum_LIKE_S" type="text" id="financeNum" /></td>
-								<td class="tr" width="100"><span class="t_span01">财务名称：</span></td>
+								<td class="tr" width="100"><span class="t_span01">财物名称：</span></td>
 								<td><input class="t_text w120" name="filter_and_financeName_LIKE_S" type="text" id="financeName" /></td>
-								<td class="tr" width="100"><span class="t_span01">财务类型：</span></td>
+								<td class="tr" width="100"><span class="t_span01">财物类型：</span></td>
 								<td>
 									<select name="filter_and_financeType_EQ_I" style="width: 120">
 										<option value="">请选择</option>
@@ -32,7 +32,7 @@
 										<option value="3">其他</option>
 									</select>
 								</td>
-								<td class="tr" width="100"><span class="t_span01">财务状态：</span></td>
+								<td class="tr" width="100"><span class="t_span01">财物状态：</span></td>
 								<td>
 									<select name="filter_and_financeState_EQ_I" style="width: 120">
 									<option value="">请选择</option>
@@ -41,7 +41,7 @@
 									<option value="3">出库</option>
 								</select>
 								</td>
-								<td class="tr" width="100"><span class="t_span01">财务识别：</span></td>
+								<td class="tr" width="100"><span class="t_span01">财物识别：</span></td>
 								<td><input class="t_text w100" name="filter_and_financeCode_LIKE_S" type="text" id="financeCode" /></td>
 							</tr>
 							<tr>
@@ -85,7 +85,7 @@
 									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_inspectionTimeEnd_LE_T" type="text" />
 								</td>
 								<td class="tr" width="120"><input type="checkbox" id="isDel" name="filter_and_isDel_LE_I" value="0" onclick="setVal()"/></td>
-								<td ><span class="t_span01">包含已删除财务</span></td>
+								<td ><span class="t_span01">包含已删除财物</span></td>
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
@@ -115,7 +115,7 @@
 	<div class="t_rightcontainer">
 		<div class="t_oneblock">
 			<div class="t_oneblock_h">
-				<h3>财务列表</h3>
+				<h3>财物列表</h3>
 			</div>
 			<!-- t_oneblock_h-->
 			<div class="t_oneblock_c pr">
@@ -139,10 +139,10 @@
 						<thead>
 							<tr>
 								<th data-options="field:'id',hidden:true"></th>
-								<th data-options="field:'financeNum',width:80" align="center">财务编号</th>
-								<th data-options="field:'financeName',width:130" align="center">财务名称</th>
-								<th data-options="field:'financeType',width:150" align=" center">财务类型</th>
-								<th data-options="field:'financeState',width:100" align="center">财务状态</th>
+								<th data-options="field:'financeNum',width:80" align="center">财物编号</th>
+								<th data-options="field:'financeName',width:130" align="center">财物名称</th>
+								<th data-options="field:'financeType',width:150" align=" center">财物类型</th>
+								<th data-options="field:'financeState',width:100" align="center">财物状态</th>
 								<th data-options="field:'financeTimeEnd',width:100" align="center">案件编号</th>
 								<th data-options="field:'cases[caseName]',width:80" align="center">案件名称</th>
 								<%--<th data-options="valueField:'cases.caseType',width:100" align="center">案件类型</th>--%>
@@ -162,15 +162,15 @@
 	</div>
 	<!--t_rightcontainer -->
 	<!-- 添加弹窗 -->
-	<div id="addInfo" class="easyui-window" title="新增财务信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
+	<div id="addInfo" class="easyui-window" title="新增财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
 		<iframe id="frame_addInfo" width="520" height="430" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	<!-- 修改弹窗 -->
-	<div id="editInfo" class="easyui-window" title="修改财务信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
+	<div id="editInfo" class="easyui-window" title="修改财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
 		<iframe id="frame_editInfo" width="520" height="430" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	<!-- 详情弹窗 -->
-	<div id="detailInfo" class="easyui-window" title="财务信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 480px; padding: 20px;">
+	<div id="detailInfo" class="easyui-window" title="财物信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 480px; padding: 20px;">
 		<iframe id="frame_detailInfo" width="520" height="404" scrolling="no" src="" frameborder="0"></iframe>
 	</div>
 	
@@ -178,7 +178,7 @@
 		$(function() {
 			createTable('dg1');
 			
-			// 双击行显示财务详细信息
+			// 双击行显示财物详细信息
 			$('#dg1').datagrid({
 				onDblClickRow: function(rowIdex,rowData){
 					toDetailPage();
@@ -192,12 +192,12 @@
 			return value.caseName;
 		}
 
-		// 财务编号
+		// 财物编号
 //		function formatLink(value, row, index) {
 //			return "<a href='javascript:void(0);' onclick='toDetailPage(\"" + row.id + "\")'><u>" + row.financeNum + "</u></a>";
 //		}
 		
-		// 新增财务信息跳转
+		// 新增财物信息跳转
 		function toAddPage() {
 			// 添加iframeSrc
 			$("#frame_addInfo").attr("src", "${path}/finances/toEditFinances.action");
@@ -206,11 +206,11 @@
 			adjustTanboxCenter(); // 弹窗位置居中
 		}
 		
-		// 修改财务信息跳转
+		// 修改财物信息跳转
 		function toEditPage() {
 			var row = $('#dg1').datagrid('getSelected');
 			if (null == row) {
-				alertInfo("请选择要修改的财务！");
+				alertInfo("请选择要修改的财物！");
 			} else {
 				// 添加iframeSrc
 				$("#frame_editInfo").attr("src", "${path}/finances/toEditFinances.action?financesId=" + row.id);
@@ -224,10 +224,10 @@
 		function toDelete() {
 			var row = $('#dg1').datagrid('getSelected');
 			if(null == row) {
-				alertInfo("请选择要删除的财务!");
+				alertInfo("请选择要删除的财物!");
 				return;
 			}
-			$.messager.confirm("确认提示", "确定删除该条财务信息吗？", function(r) {
+			$.messager.confirm("确认提示", "确定删除该条财物信息吗？", function(r) {
 				if (r) {
 					// 提交删除请求
 					$.ajax({
@@ -250,11 +250,11 @@
 			});
 		}
 
-		// 财务信息详情
+		// 财物信息详情
 		function toDetailPage() {
 			var row = $('#dg1').datagrid('getSelected'); 
 			if(null == row) {
-				alertInfo("请选择要查看的财务!");
+				alertInfo("请选择要查看的财物!");
 				return;
 			}
 			// 添加iframeSrc
