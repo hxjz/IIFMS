@@ -37,10 +37,10 @@
             <td colspan="2">
                 <input type="hidden" name="financeTypeHid" id="financeTypeHid" value="${finances.financeType}">
                 <select class="w140" name="financeType" id="financeType">
+                    <option value="">请选择</option>
                     <c:forEach items="${financeTypeList}" var="object">
                         <option value="${object.key}">${object.value}</option>
                     </c:forEach>
-                    <%--<option value="">请选择</option>--%>
                     <%--<option value="1">手迹痕迹</option>--%>
                     <%--<option value="2">足迹痕迹</option>--%>
                     <%--<option value="3">……</option>--%>
@@ -58,10 +58,13 @@
             <td colspan="2">
                 <input type="hidden" name="financeSourceHid" id="financeSourceHid" value="${finances.financeSource}">
                 <select class="w140" name="financeSource" id="financeSource">
-                    <option value="0">请选择</option>
-                    <option value="1">现场勘验</option>
-                    <option value="2">移交</option>
-                    <option value="3">……</option>
+                    <option value="">请选择</option>
+                    <c:forEach items="${financeSourceList}" var="object">
+                        <option value="${object.key}">${object.value}</option>
+                    </c:forEach>
+                    <%--<option value="1">现场勘验</option>--%>
+                    <%--<option value="2">移交</option>--%>
+                    <%--<option value="3">……</option>--%>
                 </select>
             </td>
         </tr>
@@ -75,7 +78,7 @@
             <td colspan="2">
                 <input type="hidden" name="sourceOfficeHid" id="sourceOfficeHid" value="${finances.sourceOffice}">
                 <select class="w140" name="sourceOffice" id="sourceOffice">
-                    <option value="0">请选择</option>
+                    <option value="">请选择</option>
                     <option value="1">单位1</option>
                     <option value="2">单位2</option>
                     <option value="3">……</option>

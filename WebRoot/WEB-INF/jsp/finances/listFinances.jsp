@@ -52,27 +52,27 @@
 							</tr>
 							<tr>
 								<td class="tr" width="100"><span class="t_span01">案件编号：</span></td>
-								<td><input class="t_text w100" name="filter_and_caseNum_LIKE_S" type="text" id="caseNum" /></td>
+								<td><input class="t_text w100" name="filter_and_cases__caseNum_LIKE_S" type="text" id="caseNum" /></td>
 								<td class="tr" width="100"><span class="t_span01">案件名称：</span></td>
-								<td><input class="t_text w120" name="filter_and_caseName_LIKE_S" type="text" id="caseName" /></td>
+								<td><input class="t_text w120" name="filter_and_cases__caseName_LIKE_S" type="text" id="caseName" /></td>
 								<td class="tr" width="100"><span class="t_span01">案发地点：</span></td>
-								<td><input class="t_text w180" name="filter_and_casePlace_LIKE_S" type="text" id="casePlace" /></td>
+								<td><input class="t_text w180" name="filter_and_cases__casePlace_LIKE_S" type="text" id="casePlace" /></td>
 								<td class="tr" width="100"><span class="t_span01">现场勘验号：</span></td>
-								<td><input class="t_text w100" name="filter_and_siteNum_LIKE_S" type="text" id="siteNum" /></td>
+								<td><input class="t_text w100" name="filter_and_cases__siteNum_LIKE_S" type="text" id="siteNum" /></td>
 								<td class="tr" width="100"><span class="t_span01">电子识别码：</span></td>
 								<td><input class="t_text w100" name="filter_and_digitalCode_LIKE_S" type="text" id="digitalCode" /></td>
 							</tr>
 							<tr>
 								<td class="tr" width="120"><span class="t_span01">案发时间(起)：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeStart_GE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeStart_GE_T" type="text" />
 									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeStart_LE_T" type="text" /></td>
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeStart_LE_T" type="text" /></td>
 								<td class="tr" width="120"><span class="t_span01">案发时间(止)：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeEnd_GE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeEnd_GE_T" type="text" />
 									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeEnd_LE_T" type="text" /></td>
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeEnd_LE_T" type="text" /></td>
 								<td class="tr" width="120"><span class="t_span01">电子识别码：</span></td>
 								<td>
 									<input class="t_text w100" name="filter_and_digitalCode_LIKE_S" type="text" id="digitalCodeNew" />
@@ -81,14 +81,14 @@
 							</tr>
 							<tr>
 								<td class="tr"><span class="t_span01">勘验时间(起)：</span></td>
-								<td colspan="3"><input class="easyui-datebox t_text w150" editable="false" name="filter_and_inspectionTimeStart_GE_T" type="text" />
+								<td colspan="3"><input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_GE_T" type="text" />
 								<span class="t_span01">至</span> 
-								<input class="easyui-datebox t_text w150" editable="false" name="filter_and_inspectionTimeStart_LE_T" type="text" /></td>
+								<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_LE_T" type="text" /></td>
 								<td class="tr"><span class="t_span01">勘验时间(止)：</span></td>
 								<td colspan="3">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_inspectionTimeEnd_GE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_GE_T" type="text" />
 									<span class="t_span01">至</span> 
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_inspectionTimeEnd_LE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_LE_T" type="text" />
 								</td>
 								<td class="tr" width="120"><input type="checkbox" id="isDel" name="filter_and_isDel_LE_I" value="0" onclick="setVal()"/></td>
 								<td ><span class="t_span01">包含已删除财物</span></td>
@@ -151,7 +151,7 @@
 								<th data-options="field:'financeState',width:100" align="center">财物状态</th>
 								<th data-options="field:'financeTimeEnd',width:100" align="center">案件编号</th>
 								<th data-options="field:'cases',width:80,formatter:formatCategory" align="center">案件名称</th>
-								<th data-options="field:'cases',width:100," align="center">案件类型</th>
+								<th data-options="field:'cases',width:100,formatter:formatCategory2" align="center">案件类型</th>
 								<th data-options="field:'cases',width:100" align="center">案发时间(起-止)</th>
 								<th data-options="field:'inspectionPerson',width:80" align="center">现场勘验号</th>
 								<th data-options="field:'evidenceNum',width:60" align="center">勘验时间(起-止)</th>
@@ -280,6 +280,10 @@
 
 		function formatCategory(value){
 			return value.caseName;
+		}
+
+		function formatCategory2(value){
+			return value.caseNum;
 		}
 
 		//查看详情后返回

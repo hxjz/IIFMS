@@ -5,6 +5,7 @@ import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
 import com.hxjz.common.utils.ReflectionUtil;
 import com.iif.cases.entity.Cases;
+import com.iif.common.enums.FinanceSourceEnum;
 import com.iif.common.enums.FinanceStateEnum;
 import com.iif.common.enums.FinanceTypeEnum;
 import com.iif.common.util.InitSelect;
@@ -82,6 +83,9 @@ public class FinancesAction extends BaseAction {
         // 财物类型下拉列表
         List<?> financeTypeList = InitSelect.getSelectList(FinanceTypeEnum.class);
         HttpTool.setAttribute("financeTypeList", financeTypeList);
+
+        List<?> financeSourceList = InitSelect.getSelectList(FinanceSourceEnum.class);
+        HttpTool.setAttribute("financeSourceList", financeSourceList);
         return "jsp/finances/editFinances";
     }
 
