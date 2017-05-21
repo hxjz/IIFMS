@@ -126,7 +126,7 @@
 					<dl>
 						<dt>
 							<a href="javascript:void(0)" style="color: #648da2;"
-						   	onclick="loadUrl('content_finance','${path}/finances/listFinances.action','财务管理');" id='left_finance' title="财务管理">财务管理</a>
+						   	onclick="loadUrl('content_finance','${path}/finances/listFinances.action','财物管理');" id='left_finance' title="财物管理">财物管理</a>
 						</dt>
 					</dl>
 					<dl>
