@@ -17,32 +17,28 @@ import com.iif.system.log.entity.LoginLog;
  * <p>@see : </p>
  *
  * <p>@author : LiuM</p>
- * <p>@createDate : 2014-08-28</p>
- * <p>@version : v1.0 </p>
- * <p>All Rights Reserved By Acewill Infomation Technology(Beijing) Co.,Ltd</p>
+ * <p>@createDate : 2017</p>
+ * <p>@version : V0.1 </p>
+ * <p>HXJZ</p>
  */
 @Repository()
 public class LoginLogDaoImpl extends BaseDao implements ILoginLogDao {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public List findByPage(Page page, Map searchMap) {
 		StringBuffer query = new StringBuffer(" from LoginLog where 1=1");
 		List valueList = new ArrayList();
-		OrmConverter.getQuery(query, searchMap, "filter_and_userName_LIKE_S",
-				valueList);
-		OrmConverter.getQuery(query, searchMap, "filter_and_orgName_LIKE_S",
-				valueList);
-		OrmConverter.getQuery(query, searchMap, "filter_and_loginTime_GE_T",
-				valueList);
-		OrmConverter.getQuery(query, searchMap, "filter_and_loginTime_LE_T",
-				valueList);
+		OrmConverter.getQuery(query, searchMap, "filter_and_userName_LIKE_S", valueList);
+		OrmConverter.getQuery(query, searchMap, "filter_and_orgName_LIKE_S", valueList);
+		OrmConverter.getQuery(query, searchMap, "filter_and_loginTime_GE_T", valueList);
+		OrmConverter.getQuery(query, searchMap, "filter_and_loginTime_LE_T", valueList);
 		query.append(" order by loginTime desc");
 		return super.findByHql(page, query, valueList);
 	}
 
 	@Override
 	public synchronized void saveForJdbc(LoginLog loginLog) {
-		long id = this.getJdbcTemplate().queryForLong(
-				"select max(id) from sys_login_log") + 1;
+		long id = this.getJdbcTemplate().queryForLong("select max(id) from sys_login_log") + 1;
 		loginLog.setId(id);
 		String sql = "insert into sys_login_log(id,user_name,login_ip,org_name,login_time)values(?,?,?,?,?)";
 		this.getJdbcTemplate().update(

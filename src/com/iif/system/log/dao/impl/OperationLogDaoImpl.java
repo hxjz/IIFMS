@@ -16,28 +16,24 @@ import com.iif.system.log.dao.IOperationLogDao;
  * <p>@see : </p>
  *
  * <p>@author : LiuM</p>
- * <p>@createDate : 2014-08-28</p>
- * <p>@version : v1.0 </p>
- * <p>All Rights Reserved By Acewill Infomation Technology(Beijing) Co.,Ltd</p>
+ * <p>@createDate : 2017</p>
+ * <p>@version : V0.1 </p>
+ * <p>HXJZ</p>
  */
 
 @Repository()
 public class OperationLogDaoImpl extends BaseDao implements IOperationLogDao {
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public List findByPage(Page page, Map searchMap) {
 		StringBuffer query = new StringBuffer(" from OperationLog where 1=1");
 		List valueList = new ArrayList();
-		OrmConverter.getQuery(query, searchMap, "filter_and_loginLogId_EQ_L",
-				valueList);
-		OrmConverter.getQuery(query, searchMap, "filter_and_userName_LIKE_S",
-				valueList);
-		OrmConverter.getQuery(query, searchMap,
-				"filter_and_operationDate_GE_T", valueList);
-		OrmConverter.getQuery(query, searchMap,
-				"filter_and_operationDate_LE_T", valueList);
-		OrmConverter.getQuery(query, searchMap,
-				"filter_and_businessName_LIKE_S", valueList);
+		OrmConverter.getQuery(query, searchMap, "filter_and_loginLogId_EQ_L", valueList);
+		OrmConverter.getQuery(query, searchMap, "filter_and_userName_LIKE_S", valueList);
+		OrmConverter.getQuery(query, searchMap, "filter_and_operationDate_GE_T", valueList);
+		OrmConverter.getQuery(query, searchMap, "filter_and_operationDate_LE_T", valueList);
+		OrmConverter.getQuery(query, searchMap, "filter_and_businessName_LIKE_S", valueList);
 		query.append(" order by operationTime desc");
 		return super.findByHql(page, query, valueList);
 	}
