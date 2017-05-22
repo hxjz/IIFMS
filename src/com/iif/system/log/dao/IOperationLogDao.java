@@ -14,6 +14,7 @@ public interface IOperationLogDao extends IBaseDao{
 	 * @param searchMap
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public abstract List findByPage(Page page, Map searchMap);
 
 }
