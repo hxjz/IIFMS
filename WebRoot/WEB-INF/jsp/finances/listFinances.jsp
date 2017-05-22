@@ -267,13 +267,13 @@
 
 		
 		// 添加之后返回
-		function afterCloseAddCases() {
+		function afterCloseAddWindow() {
 			$("#addInfo").window('close');
 			reloadgrid('dg1');
 		}
 
 		// 修改之后返回
-		function afterCloseEditCases() {
+		function afterCloseEditWindow() {
 			$("#editInfo").window('close');
 			reloadgrid('dg1');
 		}
@@ -287,7 +287,7 @@
 		}
 
 		//查看详情后返回
-		function afterCloseCasesDetail() {
+		function afterCloseDetailWindow() {
 			$("#detailInfo").window('close');
 			reloadgrid('dg1');
 		}

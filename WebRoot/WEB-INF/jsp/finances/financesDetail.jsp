@@ -14,7 +14,7 @@
 	</style>
 </head>
 <body>
-	<input type="button" id="cancel" class="t_btnsty02" onclick="javascript:parent.afterCloseCasesDetail();" value="关闭" >
+	<input type="button" id="cancel" class="t_btnsty02" onclick="javascript:parent.afterCloseDetailWindow();" value="关闭" >
 	<input type="hidden" name="id" id="id" value="${finances.id}">
 	<br>
 	<table border="0">

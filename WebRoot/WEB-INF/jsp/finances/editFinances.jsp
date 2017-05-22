@@ -8,7 +8,7 @@
 <body>
 <form id="edit" name="editForm" method="post">
     <input type="submit" class="t_btnsty02" id="saveBtn" value="添加">
-    <input type="button" id="cancel" class="t_btnsty02" onclick="closeCases();" value="取消">
+    <input type="button" id="cancel" class="t_btnsty02" onclick="cancelAddOrEdit();" value="取消">
     <input type="hidden" name="id" id="id" value="${finances.id}">
     <br>
     <table border="0">
@@ -16,16 +16,16 @@
             <td><span class="t_span01">案件名称：</span></td>
             <td>
                 <input class="easyui-validatebox t_text w100" data-options="required:true,missingMessage:'请输入案件名称'"
-                       name="caseNum" type="text" value="${finances.cases.caseName}"/>
+                       name="caseName" type="text" value="${finances.cases.caseName}"/>
                 <span class="t_span02">*</span>
             </td>
-            <td><input type="submit" class="t_btnsty01" id="selectBtn" value="选择"></td>
+            <td><input type="submit" class="t_btnsty01" id="toSelectCase" value="选择"></td>
             <td><span class="t_span01">案件编号：</span></td>
             <td>
                 <input class="easyui-validatebox t_text w100" data-options="required:true,missingMessage:'请输入案件编号'"
-                       name="caseName" type="text" value="${finances.cases.caseNum}"/><span class="t_span02">*</span>
+                       name="caseNum" type="text" value="${finances.cases.caseNum}"/><span class="t_span02">*</span>
             </td>
-            <td><input type="submit" class="t_btnsty01" id="addBtn" value="添加"></td>
+            <td><input type="submit" class="t_btnsty01" id="toAddCase" value="添加"></td>
         </tr>
         <tr>
             <td><span class="t_span01">财物名称：</span></td>
@@ -156,6 +156,16 @@
         </tr>
     </table>
 </form>
+
+<%--案件列表--%>
+<div id="selectCase" class="easyui-window" title="新增案件信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 600px; height: 500px; padding: 20px;">
+    <iframe id="frame_selectCase" width="520" height="404" scrolling="no" src="" frameborder="0"> </iframe>
+
+</div>
+<%--添加案件--%>
+<div id="addCase" class="easyui-window" title="新增案件信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 600px; height: 500px; padding: 20px;">
+    <iframe id="frame_addCase" width="520" height="404" scrolling="no" src="" frameborder="0"> </iframe>
+</div>
 <script type="text/javascript">
     $(document).ready(function () {
         // 财物来源
@@ -217,11 +227,11 @@
     }
 
     //取消新增或修改操作
-    function closeCases() {
+    function cancelAddOrEdit() {
         if ($("#id").val() == '') {
-            parent.afterCloseAddCases();
+            parent.afterCloseAddWindow();
         } else {
-            parent.afterCloseEditCases();
+            parent.afterCloseEditWindow();
         }
     }
 </script>

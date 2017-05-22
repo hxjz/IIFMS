@@ -66,6 +66,10 @@ public class Finances extends BaseEntity {
     public Finances() {
     }
 
+    public Finances(Cases cases) {
+        this.cases = cases;
+    }
+
     public String getId() {
         return id;
     }
