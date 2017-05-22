@@ -9,10 +9,12 @@ import com.hxjz.common.core.orm.BaseEntity;
 /**
  * 登录日志
  * 
- * @author thinkpad
- * @data Dec 2, 2009
+ * @author LiuM
+ * @date 2017
  */
 public class LoginLog extends BaseEntity {
+	
+	private static final long serialVersionUID = 6599185557304784270L;
 
 	/**
 	 * id
@@ -52,6 +54,7 @@ public class LoginLog extends BaseEntity {
 	 * 操作日志Set
 	 */
 
+	@SuppressWarnings("rawtypes")
 	private Set operationLogs = new HashSet(0);
 
 	public Long getId() {
@@ -86,10 +89,12 @@ public class LoginLog extends BaseEntity {
 		this.logoutTime = logoutTime;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Set getOperationLogs() {
 		return operationLogs;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void setOperationLogs(Set operationLogs) {
 		this.operationLogs = operationLogs;
 	}

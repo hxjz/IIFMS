@@ -7,8 +7,8 @@ import com.hxjz.common.core.orm.BaseEntity;
 /**
  * 操作日志
  * 
- * @author thinkpad
- * @data Dec 2, 2009
+ * @author LiuM
+ * @date 2017
  */
 public class OperationLog extends BaseEntity {
 
