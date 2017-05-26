@@ -132,6 +132,12 @@
 					<dl>
 						<dt>
 							<a href="javascript:void(0)" style="color: #648da2;"
+							   onclick="loadUrl('content_statistics','${path}/finances/toStatistics.action','财物统计');" id='left_statistics' title="财物统计">财物统计</a>
+						</dt>
+					</dl>
+					<dl>
+						<dt>
+							<a href="javascript:void(0)" style="color: #648da2;"
 								onclick="loadUrl('content_dictionary','${path}/system/tolistDictionary.action','数据字典');" id='left_dictionary' title="数据字典">数据字典</a>
 						</dt>
 					</dl>

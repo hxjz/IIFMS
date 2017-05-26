@@ -1,6 +1,11 @@
 package com.iif.finances.service;
 
 import com.hxjz.common.core.orm.IBaseService;
+import com.hxjz.common.utils.Page;
+
+import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName: FinancesService
@@ -10,4 +15,6 @@ import com.hxjz.common.core.orm.IBaseService;
  * @Version: V1.0
  */
 public interface IFinancesService extends IBaseService {
+
+    List showStatistics(Page page, Map conditions) throws ParseException;  // 显示统计信息
 }
