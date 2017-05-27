@@ -62,7 +62,7 @@ public class FinancesDaoImpl extends BaseDao implements IFinancesDao {
 
     protected static class FinanceStatisticsMapper implements RowMapper<Object> {
         public Object mapRow(ResultSet rs, int arg1) throws SQLException {
-            Map<String, Object> result = new HashMap<>();
+            Map<String, Object> result = new HashMap<String, Object>();
 //            获取财务类型 todo 暂时这么做，看后续怎么优化
 //            List<java.util.Dictionary> financeTypeList = InitSelect.getSelectList(FinanceTypeEnum.class);
 //            Map<Integer, String> typeName = new HashMap<>();
