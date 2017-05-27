@@ -20,9 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.util.*;
 
 /**
  * @Author GaoGang
@@ -180,6 +179,40 @@ public class FinancesAction extends BaseAction {
             e.printStackTrace();
             return TemplateUtil.toSuccessMap("操作失败！");
         }
+    }
+
+    /**
+     * 跳转到财物统计
+     *
+     * @return
+     */
+    @RequestMapping("toStatistics.action")
+    public String toFinancesStatistics() {
+        return "jsp/finances/financeStatistics";
+    }
+
+    /**
+     * 显示财物统计信息
+     *
+     * @return
+     */
+    @RequestMapping("showStatistics.action")
+    @ResponseBody
+    public Map showFinancesStatistics() {
+        int pageNum = HttpTool.getIntegerParameter("page");
+        int size = HttpTool.getIntegerParameter("rows");
+        page = new Page(pageNum, size);
+        Map searchMap = super.buildSearch(); // 组装查询条件
+        // 查询数据
+        List<?> statistics = null;
+        try {
+            statistics = iFinancesService.showStatistics(page, searchMap);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        page.setTotalCount((long) (statistics.size()));
+        return TemplateUtil.toDatagridMap(page, statistics);
     }
 }
 
