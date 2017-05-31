@@ -204,15 +204,34 @@ public class FinancesAction extends BaseAction {
         page = new Page(pageNum, size);
         Map searchMap = super.buildSearch(); // 组装查询条件
         // 查询数据
-        List<?> statistics = null;
+        List<Map<String,Object>> statistics = new ArrayList<>();
         try {
             statistics = iFinancesService.showStatistics(page, searchMap);
+            Map<String,Object> financeTotal=new HashMap<>();
+            financeTotal.put("financeType","合计");
+            financeTotal.put("sum",statistics.size()); // todo 确认总条数
+            statistics.add(financeTotal);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        page.setTotalCount((long) (statistics.size()));
+        page.setTotalCount((long) (statistics.size()-1));
         return TemplateUtil.toDatagridMap(page, statistics);
+    }
+
+    /**
+     * 显示财物统计信息
+     * todo 未完成
+     * @return
+     */
+    @RequestMapping("export.action")
+    public String exportFinancesStatistics() {
+        int pageNum = HttpTool.getIntegerParameter("page");
+        int size = HttpTool.getIntegerParameter("rows");
+        page = new Page(pageNum, size);
+        Map searchMap = super.buildSearch(); // 组装查询条件
+
+        return "url";
     }
 }
 

@@ -77,11 +77,11 @@
         createTable('dg1');
 
         // 双击行显示财物详细信息
-        $('#dg1').datagrid({
-            onDblClickRow: function (rowIdex, rowData) {
-                toDetailPage();
-            }
-        });
+//        $('#dg1').datagrid({
+//            onDblClickRow: function (rowIdex, rowData) {
+//                toDetailPage();
+//            }
+//        });
     });
 
 </script>

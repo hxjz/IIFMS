@@ -38,15 +38,18 @@ public class FinancesDaoImpl extends BaseDao implements IFinancesDao {
         StringBuilder sqlBuffer = new StringBuilder();
         sqlBuffer.append("select ffinanceType,count(fid) as counts from tfinances");
         sqlBuffer.append(" where 1=1");
+        Object []params=new Object[conditions.size()];
+        int i=0;
         if (!conditions.isEmpty()) {
             // 查询条件组装
             for (Object key : conditions.keySet()) {
                 if (key.toString().contains("GE")) {
-                    sqlBuffer.append(" and fupdateTime>=");
+                    sqlBuffer.append(" and fupdateTime>=?");
                 } else {
-                    sqlBuffer.append(" and fupdateTime<=");
+                    sqlBuffer.append(" and fupdateTime<=?");
                 }
-                sqlBuffer.append(DateUtil.convertStringToDate(conditions.get(key).toString()));
+                params[i]=DateUtil.convertStringToDate(conditions.get(key).toString());
+                i++;
             }
         }
 
@@ -54,7 +57,7 @@ public class FinancesDaoImpl extends BaseDao implements IFinancesDao {
         List<Map<String, Object>> statisticList = new ArrayList<Map<String, Object>>();
 
         JdbcDaoSupport dao = (JdbcDaoSupport) SpringTool.getBean("JdbcDaoSupport");
-        List resultList = dao.getJdbcTemplate().query(sqlBuffer.toString(), new FinancesDaoImpl.FinanceStatisticsMapper());
+        List resultList = dao.getJdbcTemplate().query(sqlBuffer.toString(), params,new FinancesDaoImpl.FinanceStatisticsMapper());
 
         statisticList.addAll(resultList);
         return statisticList;
