@@ -260,7 +260,7 @@ public class RedisUtil {
 	}
 
 	/**
-	 * 通过查询条件拼接缓存key add by wgh
+	 * 通过查询条件拼接缓存key
 	 * 
 	 * @param prefix
 	 * @param params
