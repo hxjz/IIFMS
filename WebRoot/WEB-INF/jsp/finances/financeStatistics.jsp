@@ -25,7 +25,7 @@
                                name="filter_and_updateTime_LE_T" type="text"/>
                         &nbsp;<span class="t_span02">止</span>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input class="t_btnsty01" id="find" name="select" type="submit" value="查询" />
+                    <input class="t_btnsty01" id="find" name="select" type="button" value="查询" />
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <input class="t_btnsty04" id="export" name="select" type="button" value="导出财物统计表" />
                 </div>
@@ -57,8 +57,8 @@
 						pageList:[10,30,50]">
                     <thead>
                     <tr>
-                        <th data-options="field:'financeType',width:80" align="center">财物种类</th>
-                        <th data-options="field:'sum',width:80" align="center">在库</th>
+                        <th data-options="field:'typeName',width:80" align="center">财物种类</th>
+                        <th data-options="field:'total',width:80" align="center">在库</th>
                     </tr>
                     </thead>
                 </table>

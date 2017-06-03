@@ -82,12 +82,12 @@
 							<tr>
 								<td class="tr"><span class="t_span01">勘验时间(起)：</span></td>
 								<td colspan="3"><input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_GE_T" type="text" />
-								<span class="t_span01">至</span> 
+								<span class="t_span01">至</span>
 								<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_LE_T" type="text" /></td>
 								<td class="tr"><span class="t_span01">勘验时间(止)：</span></td>
 								<td colspan="3">
 									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_GE_T" type="text" />
-									<span class="t_span01">至</span> 
+									<span class="t_span01">至</span>
 									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_LE_T" type="text" />
 								</td>
 								<td class="tr" width="120"><input type="checkbox" id="isDel" name="filter_and_isDel_LE_I" value="0" onclick="setVal()"/></td>
@@ -179,11 +179,11 @@
 	<div id="detailInfo" class="easyui-window" title="财物信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 1000px; height: 500px; padding: 20px;">
 		<iframe id="frame_detailInfo" width="1000" height="500" scrolling="no" src="" frameborder="0"></iframe>
 	</div>
-	
+
 	<script type="text/javascript">
 		$(function() {
 			createTable('dg1');
-			
+
 			// 双击行显示财物详细信息
 			$('#dg1').datagrid({
 				onDblClickRow: function(rowIdex,rowData){
@@ -193,11 +193,6 @@
 		});
 
 
-		// 财物编号
-//		function formatLink(value, row, index) {
-//			return "<a href='javascript:void(0);' onclick='toDetailPage(\"" + row.id + "\")'><u>" + row.financeNum + "</u></a>";
-//		}
-		
 		// 新增财物信息跳转
 		function toAddPage() {
 			// 添加iframeSrc
@@ -206,7 +201,7 @@
 			$("#addInfo").window('open');
 			adjustTanboxCenter(); // 弹窗位置居中
 		}
-		
+
 		// 修改财物信息跳转
 		function toEditPage() {
 			var row = $('#dg1').datagrid('getSelected');
@@ -253,7 +248,7 @@
 
 		// 财物信息详情
 		function toDetailPage() {
-			var row = $('#dg1').datagrid('getSelected'); 
+			var row = $('#dg1').datagrid('getSelected');
 			if(null == row) {
 				alertInfo("请选择要查看的财物!");
 				return;
@@ -265,7 +260,7 @@
 			adjustTanboxCenter(); // 弹窗位置居中
 		}
 
-		
+
 		// 添加之后返回
 		function afterCloseAddWindow() {
 			$("#addInfo").window('close');
@@ -278,6 +273,25 @@
 			reloadgrid('dg1');
 		}
 
+
+        <%--// 财物状态--%>
+        <%--function formatFinanceType(value,row,index){--%>
+            <%--var  typeList="${financeTypeList}";--%>
+<%--//            alert(typeList);--%>
+            <%--&lt;%&ndash;var  typeList="${financeTypeList}";&ndash;%&gt;--%>
+		    <%--var  values;--%>
+            <%--<c:forEach items="${financeTypeList}" var="object">--%>
+                <%--if("${object.value}"==value){--%>
+                  <%--values="${object.key}";--%>
+                <%--}--%>
+            <%--</c:forEach>--%>
+                <%--&lt;%&ndash;var  typeList="${financeTypeList}";&ndash;%&gt;--%>
+                <%--&lt;%&ndash;typeList=typeList.replace(/=/g, ":");&ndash;%&gt;--%>
+
+            <%--&lt;%&ndash;var  json1 = eval(typeList);&ndash;%&gt;--%>
+            <%--&lt;%&ndash;alert(json1);&ndash;%&gt;--%>
+            <%--return values;--%>
+        <%--}--%>
         // 财物状态
         function formatFinanceState(value,row,index) {
             if(""!=row.financeState && "2"==row.financeState) {
@@ -334,7 +348,7 @@
 			$("#detailInfo").window('close');
 			reloadgrid('dg1');
 		}
-		
+
 		function setVal() {
 			if(true==$("#isDel").is(':checked')) {
 				$("#isDel").attr("value",1);

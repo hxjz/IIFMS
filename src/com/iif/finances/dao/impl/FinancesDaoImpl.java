@@ -1,20 +1,14 @@
 package com.iif.finances.dao.impl;
 
 import com.hxjz.common.core.SpringTool;
+import com.hxjz.common.core.orm.BaseDao;
 import com.hxjz.common.utils.DateUtil;
 import com.hxjz.common.utils.Page;
-import com.iif.common.enums.FinanceType;
-import com.iif.common.enums.FinanceTypeEnum;
-import com.iif.common.util.EnumUtil;
-import com.iif.common.util.InitSelect;
-import com.iif.finances.service.impl.FinancesServiceImpl;
-import com.iif.system.code.entity.Dictionary;
+import com.iif.common.util.SysConstant;
+import com.iif.finances.dao.IFinancesDao;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
-
-import com.hxjz.common.core.orm.BaseDao;
-import com.iif.finances.dao.IFinancesDao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,29 +29,34 @@ public class FinancesDaoImpl extends BaseDao implements IFinancesDao {
 
     @Override
     public List showStatistics(Page page, Map conditions) throws ParseException {
-        StringBuilder sqlBuffer = new StringBuilder();
-        sqlBuffer.append("select ffinanceType,count(fid) as counts from tfinances");
-        sqlBuffer.append(" where 1=1");
-        Object []params=new Object[conditions.size()];
-        int i=0;
+        StringBuilder sqlBuilder = new StringBuilder();
+        sqlBuilder.append("select  tf.ffinanceType as type, td.fvalue as typeName,count(tf.fid) as total ");
+        sqlBuilder.append(" from tfinances tf,tdictionary td");
+        sqlBuilder.append(" where 1=1");
+        Object[] params = new Object[conditions.size()];
+        int i = 0;
         if (!conditions.isEmpty()) {
             // 查询条件组装
             for (Object key : conditions.keySet()) {
                 if (key.toString().contains("GE")) {
-                    sqlBuffer.append(" and fupdateTime>=?");
+                    sqlBuilder.append(" and tf.fupdateTime>=?");
                 } else {
-                    sqlBuffer.append(" and fupdateTime<=?");
+                    sqlBuilder.append(" and tf.fupdateTime<=?");
                 }
-                params[i]=DateUtil.convertStringToDate(conditions.get(key).toString());
+                params[i] = DateUtil.convertStringToDate(conditions.get(key).toString());
                 i++;
             }
         }
-
-        sqlBuffer.append(" and ffinanceState=0 group by ffinanceType");
+        sqlBuilder.append(" and tf.ffinanceType = td.fkey");
+        sqlBuilder.append(" and tf.ffinanceState = " + SysConstant.SYSTEM_CON_ZER);
+//        sqlBuilder.append(" and tf.fisdel = "+ SysConstant.SYSTEM_CON_ZER);
+        sqlBuilder.append(" and td.fenumname = 'FinanceTypeEnum'");
+        sqlBuilder.append(" group by tf.ffinanceType");
+        System.out.println(sqlBuilder.toString());
         List<Map<String, Object>> statisticList = new ArrayList<Map<String, Object>>();
 
         JdbcDaoSupport dao = (JdbcDaoSupport) SpringTool.getBean("JdbcDaoSupport");
-        List resultList = dao.getJdbcTemplate().query(sqlBuffer.toString(), params,new FinancesDaoImpl.FinanceStatisticsMapper());
+        List resultList = dao.getJdbcTemplate().query(sqlBuilder.toString(), params, new FinancesDaoImpl.FinanceStatisticsMapper());
 
         statisticList.addAll(resultList);
         return statisticList;
@@ -66,25 +65,8 @@ public class FinancesDaoImpl extends BaseDao implements IFinancesDao {
     protected static class FinanceStatisticsMapper implements RowMapper<Object> {
         public Object mapRow(ResultSet rs, int arg1) throws SQLException {
             Map<String, Object> result = new HashMap<String, Object>();
-//            获取财务类型 todo 暂时这么做，看后续怎么优化
-//            List<java.util.Dictionary> financeTypeList = InitSelect.getSelectList(FinanceTypeEnum.class);
-//            Map<Integer, String> typeName = new HashMap<>();
-//            for (int i = 0; i < financeTypeList.size(); i++) {
-//                java.util.Dictionary temp = financeTypeList.get(i);
-//                Integer key = temp.get("key") == null ? 0 : Integer.valueOf(temp.get("key").toString());
-//                typeName.put(key, temp.get("value").toString());
-//            }
-            int code=rs.getInt("ffinanceType");
-            String financeTypeName=String.valueOf(code);
-            FinanceType [] types=FinanceType.values();
-            for(int i=0;i<types.length;i++){
-                FinanceType type=types[i];
-                if(type.getTypeCode()==code){
-                    financeTypeName= type.getTypeName();
-                }
-            }
-            result.put("financeType", financeTypeName);
-            result.put("sum", rs.getInt("counts"));
+            result.put("typeName", rs.getString("typeName"));
+            result.put("total", rs.getInt("total"));
             return result;
         }
     }

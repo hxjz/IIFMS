@@ -237,9 +237,13 @@ public class FinancesAction extends BaseAction {
         List<Map<String,Object>> statistics = new ArrayList<>();
         try {
             statistics = iFinancesService.showStatistics(page, searchMap);
+            int  total=0;
+            for(Map statistic:statistics){
+                total+=Integer.valueOf(statistic.get("total").toString());
+            }
             Map<String,Object> financeTotal=new HashMap<>();
-            financeTotal.put("financeType","合计");
-            financeTotal.put("sum",statistics.size()); // todo 确认总条数
+            financeTotal.put("typeName","合计");
+            financeTotal.put("total",total);
             statistics.add(financeTotal);
         } catch (ParseException e) {
             e.printStackTrace();
