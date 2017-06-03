@@ -137,7 +137,10 @@
 		    		parent.alertInfo(data.data);
 		    		
 		    		if(!($("#fromSource").val() == '')) {
-		    			parent.handleAddCaseBack($("input[name='caseName']").val(), $("input[name='caseNum']").val());
+		    			var caseId = $("#id").val();
+		    			var caseName = $("input[name='caseName']").val();
+		    			var caseNum = $("input[name='caseNum']").val();
+		    			parent.handleAddCaseBack(caseId,caseName,caseNum);
 		    			return true;
 		    		}
 		    		
