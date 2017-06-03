@@ -1,5 +1,19 @@
 package com.iif.finances.web;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.hxjz.common.core.web.BaseAction;
 import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
@@ -13,15 +27,6 @@ import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
 import com.iif.finances.entity.Finances;
 import com.iif.finances.service.IFinancesService;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.text.ParseException;
-import java.util.*;
 
 /**
  * @Author GaoGang
@@ -74,6 +79,23 @@ public class FinancesAction extends BaseAction {
     public String toEditFinances() throws Exception {
         String financesId = HttpTool.getParameter("financesId");
         HttpTool.setAttribute("financesId", financesId);
+        
+        /////////////////////////////From 案件列表 情况 Start
+        String caseId = HttpTool.getParameter("caseId");
+        if(!StringUtils.isEmpty(caseId)) {
+        	Cases finCase = new Cases();
+        	finCase.setId(caseId);
+        	String caseName = HttpTool.getParameter("caseName");
+        	finCase.setCaseName(caseName);
+        	String caseNum = HttpTool.getParameter("caseNum");
+        	finCase.setCaseNum(caseNum);
+        	Finances fin = new Finances();
+        	fin.setCases(finCase);
+        	HttpTool.setAttribute("finances", fin);
+        	
+        	HttpTool.setAttribute("fromSource", "listCases");
+        }
+        /////////////////////////////From 案件列表 End
 
         if (!StringUtils.isEmpty(financesId)) {
             Finances finances = (Finances) iFinancesService.findById(financesId);

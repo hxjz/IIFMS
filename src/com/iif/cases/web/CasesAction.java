@@ -135,7 +135,7 @@ public class CasesAction extends BaseAction {
 		
 		try{
 			iCasesService.save(saveCases);
-			return TemplateUtil.toSuccessMap("操作成功！");
+			return TemplateUtil.toSuccessMap("操作成功！" + "," + saveCases.getId());
 		} catch(Exception e) {
 			e.printStackTrace();
 			return TemplateUtil.toSuccessMap("操作失败！");

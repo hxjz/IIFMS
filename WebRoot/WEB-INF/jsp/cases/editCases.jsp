@@ -134,10 +134,13 @@
 		    success:function(returnData){
 		    	data = JSON.parse(returnData); // 转换成json对象
 		    	if(data.status == "success"){
-		    		parent.alertInfo(data.data);
+		    		var vData = data.data;
+		    		var vArr = new Array();
+		    		vArr = vData.split(",");
+		    		parent.alertInfo(vArr[0]);
 		    		
 		    		if(!($("#fromSource").val() == '')) {
-		    			var caseId = $("#id").val();
+		    			var caseId = vArr[1];
 		    			var caseName = $("input[name='caseName']").val();
 		    			var caseNum = $("input[name='caseNum']").val();
 		    			parent.handleAddCaseBack(caseId,caseName,caseNum);

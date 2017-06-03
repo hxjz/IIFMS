@@ -12,8 +12,8 @@ import com.hxjz.common.utils.Page;
 
 /**
  * 返回数据模版工具类
- * @author Tanght
- * 2014-08-18
+ * @author LiuM
+ * 2017
  */
 public class TemplateUtil {
 	/**
@@ -89,7 +89,6 @@ public class TemplateUtil {
 	 * @param objMap data中数据字典对应的map
 	 * @rule map命名规则为:data中的字段名+Map
 	 * @return map结果集
-	 * add by lixp 2014-12-30
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Map toDatagridInfo(Integer num, List data, Map objMap){

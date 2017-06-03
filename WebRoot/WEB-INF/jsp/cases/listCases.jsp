@@ -114,8 +114,6 @@
 						<thead>
 							<tr>
 								<th data-options="field:'id',hidden:true"></th>
-								<!-- <th data-options="field:'handle',width:130,formatter:format01" align="center">操作</th> -->
-								<!-- <th data-options="field:'caseNum',width:80,formatter:formatLink" align="center">案件编号</th> -->
 								<th data-options="field:'caseNum',width:80" align="center">案件编号</th>
 								<th data-options="field:'caseName',width:130" align="center">案件名称</th>
 								<th data-options="field:'casePlace',width:150" align="center">案发地点</th>
@@ -150,6 +148,10 @@
 	<!-- 详情弹窗 -->
 	<div id="detailInfo" class="easyui-window" title="案件信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 480px; padding: 20px;">
 		<iframe id="frame_detailInfo" width="520" height="404" scrolling="no" src="" frameborder="0"></iframe>
+	</div>
+	<!-- 添加财物弹窗 -->
+	<div id="addFinInfo" class="easyui-window" title="新增财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
+		<iframe id="frame_addFinInfo" width="520" height="430" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	
 	<script type="text/javascript">
@@ -243,7 +245,10 @@
 				alertInfo("请选择财物关联的案件!");
 				return;
 			}else {
-				alertInfo("等待财物添加页面!");
+				$("#frame_addFinInfo").attr("src", "${path}/finances/toEditFinances.action?caseId="+row.id+"&caseName="+row.caseName+"&caseNum="+row.caseNum);
+				// 打开弹出框
+				$("#addFinInfo").window('open');
+				adjustTanboxCenter(); // 弹窗位置居中
 			}
 		}
 		
@@ -262,6 +267,12 @@
 		//查看详情后返回
 		function afterCloseCasesDetail() {
 			$("#detailInfo").window('close');
+			reloadgrid('dg1');
+		}
+		
+		//添加财物 返回
+		function afterCloseFinPage() {
+			$("#addFinInfo").window('close');
 			reloadgrid('dg1');
 		}
 		

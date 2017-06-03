@@ -53,6 +53,7 @@
 						pageList:[10,30,50]">
 							<thead>
 								<tr>
+									<th data-options="field:'id',hidden:true"></th>
 									<th field="caseName" width="110" align="center">案件名称</th>
 									<th field="caseNum" width="80" align="center">案件编号</th>
 									<th field="casePlace" width="150" align="center">案发地点</th>
