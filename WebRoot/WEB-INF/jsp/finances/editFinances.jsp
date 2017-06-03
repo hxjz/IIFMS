@@ -11,6 +11,7 @@
     <input type="button" id="cancel" class="t_btnsty02" onclick="cancelAddOrEdit();" value="取消">
     <input type="hidden" name="id" id="id" value="${finances.id}">
     <input type="hidden" name="fromSource" id="fromSource" value="${fromSource}"/>
+    <input type="hidden" name="caseId" id="caseId" value="${finances.cases.id}"/>
     <br>
     <table border="0">
         <tr>
@@ -249,14 +250,16 @@
 	function handleSelectCase(data) {
 		$("input[name='caseName']").attr("value", data.caseName);
 		$("input[name='caseNum']").attr("value", data.caseNum);
-		
+        $("input[name='caseId']").attr("value", data.id);
+
 		afterCloseSelectWindow();
 	}
 	
-	function handleAddCaseBack(caseName, caseNum) {
+	function handleAddCaseBack(caseId,caseName, caseNum) {
 		$("input[name='caseName']").attr("value", caseName);
 		$("input[name='caseNum']").attr("value", caseNum);
-		
+        $("input[name='caseId']").attr("value", caseId);
+
 		afterCloseAddCases();
 	}
 	

@@ -116,6 +116,19 @@ public class FinancesAction extends BaseAction {
         String financesId = HttpTool.getParameter("id");
         HttpTool.setAttribute("financesId", financesId);
 
+        // 财物关联的案件
+        String caseId = HttpTool.getParameter("caseId");
+        if(StringUtils.isNotBlank(caseId)){
+            String caseName=HttpTool.getParameter("caseName");
+            String caseNum=HttpTool.getParameter("caseNum");
+
+            Cases relateCase = new Cases();
+            relateCase.setId(caseId);
+            relateCase.setCaseName(caseName);
+            relateCase.setCaseNum(caseNum);
+            finance.setCases(relateCase);
+        }
+
         Finances saveFinance=new Finances();
         // 更新时候的时间设置
         if(null!=finance&&StringUtils.isNotEmpty(finance.getSeizedTimeStart())){
@@ -143,11 +156,6 @@ public class FinancesAction extends BaseAction {
         }
         saveFinance.setUpdateTime(new Date()); // 更新时间
         saveFinance.setUpdater("admin");// 当前登录人
-
-        // just for test TODO
-        Cases cases=new Cases();
-        cases.setId("dk3h3h3543463lhklh435kln");
-        saveFinance.setCases(cases);
 
         try{
             iFinancesService.save(saveFinance);
