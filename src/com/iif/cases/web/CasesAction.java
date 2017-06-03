@@ -80,6 +80,13 @@ public class CasesAction extends BaseAction {
 		String casesId = HttpTool.getParameter("casesId");
 		HttpTool.setAttribute("casesId", casesId);
 		
+		// 财物添加页面弹出用
+		String fromSource = HttpTool.getParameter("fromSource");
+		if(!StringUtils.isEmpty(fromSource)) {
+			HttpTool.setAttribute("fromSource", fromSource);
+		}
+				
+		
 		if(!StringUtils.isEmpty(casesId)) {
 			Cases casesShow = (Cases)iCasesService.findById(casesId);
 			HttpTool.setAttribute("cases", casesShow);
@@ -181,6 +188,17 @@ public class CasesAction extends BaseAction {
 			e.printStackTrace();
 			return TemplateUtil.toSuccessMap("操作失败！");
 		}
+	}
+	
+	/**
+	 * 跳转到案件选择页面
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("toSelectCase.action")
+	public String toSelectCase() throws Exception {
+		
+		return "jsp/prompt/casesSelect";
 	}
 
 }

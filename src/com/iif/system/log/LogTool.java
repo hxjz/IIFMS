@@ -38,8 +38,7 @@ public class LogTool {
 	 * @param user
 	 */
 	public static Long saveLoginLog(HttpServletRequest request, User user) {
-		LoginLogServiceImpl loginLogService = (LoginLogServiceImpl) SpringTool
-				.getBean(LoginLogServiceImpl.class);
+		LoginLogServiceImpl loginLogService = (LoginLogServiceImpl) SpringTool.getBean(LoginLogServiceImpl.class);
 		LoginLog loginLog = new LoginLog();
 		loginLog.setUserName(user.getName());
 		loginLog.setLoginTime(new Date());
@@ -48,6 +47,7 @@ public class LogTool {
 			loginLog.setOrgName(user.getOrg().getName());
 		}
 		loginLogService.save(loginLog);
+		
 		return loginLog.getId();
 	}
 
@@ -58,11 +58,9 @@ public class LogTool {
 	 * @param methodName
 	 * @param isSuccess
 	 */
-	public static void saveOperationLog(User user, String methodName,
-			Integer isSuccess) {
+	public static void saveOperationLog(User user, String methodName, Integer isSuccess) {
 		
-		Map<String, String> map = (Map) SystemConstant.logProperties
-				.get(methodName);
+		Map<String, String> map = (Map) SystemConstant.logProperties.get(methodName);
 		if (map != null) {
 			if (null == user) {
 				return;

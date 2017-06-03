@@ -7,9 +7,10 @@
 </head>
 <body>
 	<form id="edit" name="editForm" method="post">
-		<input type="submit" class="t_btnsty02" id="saveBtn" value="保存">
-		<input type="button" id="cancel" class="t_btnsty02" onclick="closeCases();" value="关闭">
-		<input type="hidden" name="id" id="id" value="${cases.id}">
+		<input type="submit" class="t_btnsty02" id="saveBtn" value="保存"/>
+		<input type="button" id="cancel" class="t_btnsty02" onclick="closeCases();" value="关闭"/>
+		<input type="hidden" name="id" id="id" value="${cases.id}"/>
+		<input type="hidden" name="fromSource" id="fromSource" value="${fromSource}"/>
 		<br>
 	    	<table border="0">
 	          <tr>
@@ -134,6 +135,12 @@
 		    	data = JSON.parse(returnData); // 转换成json对象
 		    	if(data.status == "success"){
 		    		parent.alertInfo(data.data);
+		    		
+		    		if(!($("#fromSource").val() == '')) {
+		    			parent.handleAddCaseBack($("input[name='caseName']").val(), $("input[name='caseNum']").val());
+		    			return true;
+		    		}
+		    		
 		    		if($("#id").val() == ''){
 		    			parent.afterCloseAddCases();
 		    		}else{

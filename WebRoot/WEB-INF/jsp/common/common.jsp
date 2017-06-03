@@ -23,6 +23,8 @@
 <script type="text/javascript" src="${path }/datepicker/WdatePicker.js"></script>
 <script type="text/javascript" src="${path }/scripts/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="${path }/js/index.js"></script>
+<script type="text/javascript" src="${path }/jsLibs/jquery.validate.js"></script>
+<script type="text/javascript" src="${path}/jsLibs/jquery.metadata.js"></script>
 <script type="text/javascript" >
 if(parent.getCurrentTabId) {
 	tabId = parent.getCurrentTabId();

@@ -11,6 +11,8 @@ import com.hxjz.common.core.orm.BaseEntity;
  * @date 2017
  */
 public class OperationLog extends BaseEntity {
+	
+	private static final long serialVersionUID = 8238177727256229955L;
 
 	private Long id = null;
 

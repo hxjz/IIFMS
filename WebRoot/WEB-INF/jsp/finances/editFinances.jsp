@@ -16,16 +16,16 @@
             <td><span class="t_span01">案件名称：</span></td>
             <td>
                 <input class="easyui-validatebox t_text w100" data-options="required:true,missingMessage:'请输入案件名称'"
-                       name="caseName" type="text" value="${finances.cases.caseName}"/>
+                       name="caseName" type="text" value="${finances.cases.caseName}" readonly="readonly"/>
                 <span class="t_span02">*</span>
             </td>
-            <td><input type="submit" class="t_btnsty01" id="toSelectCase" value="选择"></td>
+            <td><input type="button" class="t_btnsty01" id="toSelectCase" onclick="toSelectCases()" value="选择"></td>
             <td><span class="t_span01">案件编号：</span></td>
             <td>
                 <input class="easyui-validatebox t_text w100" data-options="required:true,missingMessage:'请输入案件编号'"
-                       name="caseNum" type="text" value="${finances.cases.caseNum}"/><span class="t_span02">*</span>
+                       name="caseNum" type="text" value="${finances.cases.caseNum}" readonly="readonly"/><span class="t_span02">*</span>
             </td>
-            <td><input type="submit" class="t_btnsty01" id="toAddCase" value="添加"></td>
+            <td><input type="button" class="t_btnsty01" id="toAddCase" onclick="toAddCases()" value="添加"></td>
         </tr>
         <tr>
             <td><span class="t_span01">财物名称：</span></td>
@@ -41,9 +41,6 @@
                     <c:forEach items="${financeTypeList}" var="object">
                         <option value="${object.key}">${object.value}</option>
                     </c:forEach>
-                    <%--<option value="1">手迹痕迹</option>--%>
-                    <%--<option value="2">足迹痕迹</option>--%>
-                    <%--<option value="3">……</option>--%>
                 </select>
                 <span class="t_span02">*</span>
             </td>
@@ -62,9 +59,6 @@
                     <c:forEach items="${financeSourceList}" var="object">
                         <option value="${object.key}">${object.value}</option>
                     </c:forEach>
-                    <%--<option value="1">现场勘验</option>--%>
-                    <%--<option value="2">移交</option>--%>
-                    <%--<option value="3">……</option>--%>
                 </select>
             </td>
         </tr>
@@ -107,15 +101,13 @@
         <tr>
             <td><span class="t_span01">财物说明：</span></td>
             <td colspan="5">
-                <input class="easyui-validatebox t_text w420" data-options="" name="financeDesc" type="text"
-                       value="${finances.financeDesc}"/>
+                <input class="easyui-validatebox t_text w420" data-options="" name="financeDesc" type="text" value="${finances.financeDesc}"/>
             </td>
         </tr>
         <tr>
             <td><span class="t_span01">备注：</span></td>
             <td colspan="5">
-                <input class="easyui-validatebox t_text w420" data-options="" name="financeMemo" type="text"
-                       value="${finances.financeMemo}"/>
+                <input class="easyui-validatebox t_text w420" data-options="" name="financeMemo" type="text" value="${finances.financeMemo}"/>
             </td>
         </tr>
         <tr>
@@ -158,8 +150,8 @@
 </form>
 
 <%--案件列表--%>
-<div id="selectCase" class="easyui-window" title="新增案件信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 600px; height: 500px; padding: 20px;">
-    <iframe id="frame_selectCase" width="520" height="404" scrolling="no" src="" frameborder="0"> </iframe>
+<div id="selectCase" class="easyui-window" title="案件信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 480px; height: 340px; padding: 20px;">
+    <iframe id="frame_selectCase" width="400" height="270" scrolling="no" src="" frameborder="0"> </iframe>
 
 </div>
 <%--添加案件--%>
@@ -207,9 +199,9 @@
             if (data.status == "success") {
                 parent.alertInfo(data.data);
                 if ($("#id").val() == '') {
-                    parent.afterCloseAddCases();
+                    parent.afterCloseAddWindow();
                 } else {
-                    parent.afterCloseEditCases();
+                    parent.afterCloseEditWindow();
                 }
             } else if (data.status = "fail") {
                 alertInfo(data.data);
@@ -226,7 +218,7 @@
         }
     }
 
-    //取消新增或修改操作
+    // 取消新增或修改操作
     function cancelAddOrEdit() {
         if ($("#id").val() == '') {
             parent.afterCloseAddWindow();
@@ -234,6 +226,48 @@
             parent.afterCloseEditWindow();
         }
     }
+    
+  	// 案件信息
+	function toSelectCases(){
+		// 添加iframeSrc
+		$("#frame_selectCase").attr("src", "${path}/cases/toSelectCase.action");
+		// 打开弹出框
+		$("#selectCase").window('open');
+		adjustTanboxCenter(); // 弹窗位置居中
+	}
+  	
+	function handleSelectCase(data) {
+		$("input[name='caseName']").attr("value", data.caseName);
+		$("input[name='caseNum']").attr("value", data.caseNum);
+		
+		afterCloseSelectWindow();
+	}
+	
+	function handleAddCaseBack(caseName, caseNum) {
+		$("input[name='caseName']").attr("value", caseName);
+		$("input[name='caseNum']").attr("value", caseNum);
+		
+		afterCloseAddCases();
+	}
+	
+	// 修改之后返回
+	function afterCloseSelectWindow() {
+		$("#selectCase").window('close');
+	}
+	
+	// 新增案件信息跳转
+	function toAddCases() {
+		// 添加iframeSrc
+		$("#frame_addCase").attr("src", "${path}/cases/toEditCases.action?fromSource="+"editFinances");
+		// 打开弹出框
+		$("#addCase").window('open');
+		adjustTanboxCenter(); // 弹窗位置居中
+	}
+	
+	// 添加之后返回
+	function afterCloseAddCases() {
+		$("#addCase").window('close');
+	}
 </script>
 </body>
 </html>
