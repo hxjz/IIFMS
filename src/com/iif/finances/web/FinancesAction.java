@@ -28,6 +28,8 @@ import com.iif.common.util.TemplateUtil;
 import com.iif.finances.entity.Finances;
 import com.iif.finances.service.IFinancesService;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Author GaoGang
  * @Date 2017年5月15日 下午10:24:07
@@ -255,17 +257,24 @@ public class FinancesAction extends BaseAction {
 
     /**
      * 显示财物统计信息
-     * todo 未完成
+     * todo  80%
      * @return
      */
     @RequestMapping("export.action")
-    public String exportFinancesStatistics() {
-        int pageNum = HttpTool.getIntegerParameter("page");
-        int size = HttpTool.getIntegerParameter("rows");
-        page = new Page(pageNum, size);
+    @ResponseBody
+    public String exportFinancesStatistics(HttpServletRequest request) {
+        page = new Page(1, 50);
         Map searchMap = super.buildSearch(); // 组装查询条件
-
-        return "url";
+        // 查询数据
+        List<Map<String,Object>> statistics = new ArrayList<>();
+        try {
+            statistics = iFinancesService.showStatistics(page, searchMap);
+            ExportUtil.exportStatistics(request,statistics);
+            return "ok";
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "fail";
     }
 }
 

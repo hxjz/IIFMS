@@ -82,6 +82,31 @@
 //                toDetailPage();
 //            }
 //        });
+
+
+
+        $('#export').click(function(){
+          $.ajax({
+              type: 'POST',
+              url: "${path}/finances/export.action",
+              success:function(returnData){
+                  alert(returnData);
+//                  data = JSON.parse(returnData); // 转换成json对象
+//                  if(data.status == "success"){
+//                      parent.alertInfo(data.data);
+//                      parent.afterCloseInstock();
+//                  } else if(data.status="fail"){
+//                      alertInfo(data.data);
+//                  } else {
+//                      alertInfo("未知错误");
+//                  }
+              },
+              error:function(){
+                  alert("失败");
+              }
+          });
+        });
+
     });
 
 </script>
