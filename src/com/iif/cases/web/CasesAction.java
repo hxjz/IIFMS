@@ -8,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -64,8 +65,14 @@ public class CasesAction extends BaseAction {
 		// 列表信息
 		List<Cases> casesList = iCasesService.findByPage(page,searchMap);
 		
-		// 勘察人是否是关联的
-		// 财物个数显示暂未实现 后续添加
+		// 财物个数显示
+		if(!CollectionUtils.isEmpty(casesList)) {
+			for(int i=0; i<casesList.size();i++) {
+				Cases tempCs = casesList.get(i);
+				tempCs.setEvidenceNum(CollectionUtils.isEmpty(tempCs.getPhysicalevidence())?"0":String.valueOf(tempCs.getPhysicalevidence().size()));
+				tempCs.setPhysicalevidence(null);// 
+			}
+		}
 		
 		return TemplateUtil.toDatagridMap(page, casesList);
 	}
