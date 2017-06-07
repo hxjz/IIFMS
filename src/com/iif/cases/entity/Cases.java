@@ -2,6 +2,10 @@ package com.iif.cases.entity;
 
 import java.util.List;
 
+import javax.persistence.Transient;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import com.hxjz.common.core.orm.BaseEntity;
 import com.iif.finances.entity.Finances;
 
@@ -50,9 +54,12 @@ public class Cases extends BaseEntity{
 	
 	private String jurisdiction; //管辖单位
 	
+	@Transient
 	private String evidenceNum; //财物数量(页面显示用)
 	
-	transient private List<Finances> physicalevidence;//案件与物证映射
+	@Transient
+	@JsonIgnore
+	private List<Finances> physicalevidence;//案件与物证映射
 
 	public String getEvidenceNum() {
 		return evidenceNum;
@@ -62,7 +69,7 @@ public class Cases extends BaseEntity{
 		this.evidenceNum = evidenceNum;
 	}
 	
-	public List<?> getPhysicalevidence() {
+	public List<Finances> getPhysicalevidence() {
 		return physicalevidence;
 	}
 

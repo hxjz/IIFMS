@@ -80,7 +80,7 @@
 			<column name="fupdatetime" length="14" />
 		</property>
 		
-		<bag name="physicalevidence" cascade="all-delete-orphan" lazy="false">
+		<bag name="physicalevidence" cascade="none" table="tfinances" lazy="false">
 			<key column="fcases" />
 			<one-to-many class="com.iif.finances.entity.Finances" not-found="ignore" />
 		</bag>

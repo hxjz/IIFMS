@@ -22,6 +22,7 @@ import com.iif.common.enums.CaseTypeEnum;
 import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
+import com.iif.finances.entity.Finances;
 
 /**
  * @author GaoG
@@ -70,7 +71,6 @@ public class CasesAction extends BaseAction {
 			for(int i=0; i<casesList.size();i++) {
 				Cases tempCs = casesList.get(i);
 				tempCs.setEvidenceNum(CollectionUtils.isEmpty(tempCs.getPhysicalevidence())?"0":String.valueOf(tempCs.getPhysicalevidence().size()));
-				tempCs.setPhysicalevidence(null);// 
 			}
 		}
 		
@@ -178,12 +178,19 @@ public class CasesAction extends BaseAction {
 		
 		String casesId=HttpTool.getParameter("casesId");
 		
-		//在有关联的财物时不能删除 后续添加
-		//boolean existEvidence = 
-		
 		try{
 			if(StringUtils.isNotEmpty(casesId)) {
 				Cases delCases = (Cases)iCasesService.findById(casesId);
+				//在有关联的财物时不能删除
+				if(null != delCases && !CollectionUtils.isEmpty(delCases.getPhysicalevidence())) {
+					for(int i=0; i<delCases.getPhysicalevidence().size(); i++) {
+						Finances finChk = delCases.getPhysicalevidence().get(i);
+						if(null != finChk && finChk.getIsDel()==0) {
+							return TemplateUtil.toSuccessMap("有关联的财物，该案件不能删除。");
+						}
+					}
+				}
+				
 				delCases.setIsDel(SysConstant.IS_DEL); //删除标示
 				delCases.setUpdater("admin");
 				delCases.setUpdateTime(new Date());
