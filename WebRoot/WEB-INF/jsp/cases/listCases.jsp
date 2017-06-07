@@ -6,7 +6,6 @@
 <title>涉案财物-案件列表页</title>
 <%@include file="/WEB-INF/jsp/common/common.jsp"%>
 </head>
-
 <body>
 	<div class="t_rightcontainer">
 		<div class="t_oneblock">
@@ -284,46 +283,6 @@
 			}
 		}
 		
-		/* //日期格式化
-		function formatCaseTimeStart(value, rowData, rowIndex) {
-			var vDate = new Date(rowData.caseTimeStart);
-			return vDate.format("yyyy-MM-dd");
-		}
-		function formatCaseTimeEnd(value, rowData, rowIndex) {
-			var vDate = new Date(rowData.caseTimeEnd);
-			return vDate.format("yyyy-MM-dd");
-		}
-		function formatInspectionTimeStart(value, rowData, rowIndex) {
-			var vDate = new Date(rowData.inspectionTimeStart);
-			return vDate.format("yyyy-MM-dd");
-		}
-		function formatInspectionTimeEnd(value, rowData, rowIndex) {
-			var vDate = new Date(rowData.inspectionTimeEnd);
-			return vDate.format("yyyy-MM-dd");
-		} 
-	    // 表格列表中的操作列
-		function format01(value, row, index) {
-			return "<a href='javascript:void(0);' onclick='toEditPage(\"" + row.id
-					+ "\")'> 修改</a><a href='javascript:void(0);' onclick='toDelete(\"" + row.id
-					+ "\")'> 删除</a><a href='javascript:void(0);' onclick='toEditPage(\"" + row.id 
-					+ "\")'> 添加财物</a>";
-		} */
-		
-		// 新增/修改案件信息跳转
-		/* function toEditPage(id) {
-			if ('' == id) {
-				// 添加iframeSrc
-				$("#frame_addInfo").attr("src", "${path}/cases/toEditCases.action");
-				// 打开弹出框
-				$("#addInfo").window('open');
-			} else {
-				// 添加iframeSrc
-				$("#frame_editInfo").attr("src", "${path}/cases/toEditCases.action?casesId=" + row.id);
-				// 打开弹出框
-				$("#editInfo").window('open');
-			}
-			adjustTanboxCenter(); // 弹窗位置居中
-		} */
 	</script>
 </body>
 </html>
