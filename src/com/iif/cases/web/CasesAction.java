@@ -87,6 +87,9 @@ public class CasesAction extends BaseAction {
 		String casesId = HttpTool.getParameter("casesId");
 		HttpTool.setAttribute("casesId", casesId);
 		
+		List<?> caseTypeList = InitSelect.getSelectList(CaseTypeEnum.class);
+		HttpTool.setAttribute("caseTypeList", caseTypeList);
+		
 		// 财物添加页面弹出用
 		String fromSource = HttpTool.getParameter("fromSource");
 		if(!StringUtils.isEmpty(fromSource)) {

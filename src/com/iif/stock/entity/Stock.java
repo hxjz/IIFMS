@@ -1,10 +1,7 @@
 package com.iif.stock.entity;
 
 import com.hxjz.common.core.orm.BaseEntity;
-import com.iif.cases.entity.Cases;
 import com.iif.finances.entity.Finances;
-
-import java.util.List;
 
 /**
  * @Author M
