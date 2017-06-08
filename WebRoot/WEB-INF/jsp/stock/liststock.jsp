@@ -27,19 +27,25 @@
 								<td>
 									<select name="filter_and_financeType_EQ_I" style="width: 120">
 										<option value="">请选择</option>
-										<option value="1">手迹痕迹</option>
-										<option value="2">足迹痕迹</option>
-										<option value="3">其他</option>
+										<%--<option value="1">手迹痕迹</option>--%>
+										<%--<option value="2">足迹痕迹</option>--%>
+										<%--<option value="3">其他</option>--%>
+										<c:forEach items="${financeTypeList}" var="object">
+											<option value="${object.key}">${object.value}</option>
+										</c:forEach>
 									</select>
 								</td>
 								<td class="tr" width="100"><span class="t_span01">财务状态：</span></td>
 								<td>
 									<select name="filter_and_financeState_EQ_I" style="width: 120">
 									<option value="">请选择</option>
-									<option value="1">登记</option>
-									<option value="2">在库</option>
-									<option value="3">出库</option>
-								</select>
+									<%--<option value="1">登记</option>--%>
+									<%--<option value="2">在库</option>--%>
+									<%--<option value="3">出库</option>--%>
+										<c:forEach items="${financeStateList}" var="object">
+											<option value="${object.key}">${object.value}</option>
+										</c:forEach>
+									</select>
 								</td>
 								<td class="tr" width="100"><span class="t_span01">财务识别：</span></td>
 								<td><input class="t_text w100" name="filter_and_financeCode_LIKE_S" type="text" id="financeCode" /></td>
@@ -189,10 +195,10 @@
 
 		// 财物状态
 		function formatFinanceState(value,row,index) {
-			if(""!=row.financeState && "2"==row.financeState) {
+			if(""!=row.financeState && "3"==row.financeState) {
 				return "出库";
-			}else if(""!=row.financeState && "1"==row.financeState){
-				return "在库";
+			}else if(""!=row.financeState && "2"==row.financeState){
+				return "入库";
 			}else {
 				return "登记";
 			}

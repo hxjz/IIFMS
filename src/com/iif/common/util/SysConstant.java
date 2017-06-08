@@ -172,7 +172,7 @@ public class SysConstant {
 	public static final String CURRENT_SESSION_USER = "currentUser"; // 当前用户在session中的KEY
 
 	// 出入库相关
-	public static final int STOCK_STATE_NONE = 0; // 登记
-	public static final int STOCK_STATE_IN = 1; // 入库  在库
-	public static final int STOCK_STATE_OUT = 2; // 出库  不在库
+	public static final int STOCK_STATE_NONE = 1; // 登记
+	public static final int STOCK_STATE_IN = 2; // 入库  在库
+	public static final int STOCK_STATE_OUT = 3; // 出库  不在库
 }

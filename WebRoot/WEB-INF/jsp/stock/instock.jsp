@@ -12,10 +12,10 @@
 		<input type="button" class="t_btnsty02" id="cancel" onclick="instockClose();" value="取消">
 		<input type="hidden" name="id" id="id" value="${finances.id}">
 		<input type="hidden" name="casesid" id="casesid" value="${cases.id}">
-		<%--  0登记  1在库  2不在库  --%>
+		<%--  1登记  2在库  3不在库  --%>
 		<input type="hidden" name="financeState" id="financeState" value="${finances.financeState}">
 		<br>
-    	<table border="0">
+    	<table id="tb1" border="0">
 			<tr>
 				<td><span class="t_span01 w140">财物名称：</span></td>
 				<td colspan="2">
@@ -49,18 +49,18 @@
 			<tr>
 				<td><span class="t_span01 w120">送物人：</span></td>
 				<td colspan="2">
-					<input class="easyui-validatebox t_text"  data-options="required:true,missingMessage:'请输入送物人'" name="deliverName" type="text" value="${stock.fetchMan}"/><span class="t_span02">*</span>
+					<input class="easyui-validatebox t_text"  data-options="required:true,missingMessage:'请输入送物人'" name="fetchMan" type="text" value="${stock.fetchMan}"/><span class="t_span02">*</span>
 				</td>
 	          	<td><span class="t_span01 w120">经办人：</span></td>
 				<td colspan="2">
-					<input class="easyui-validatebox t_text"  data-options="required:true,missingMessage:'请输入经办人'" name="financeNum" type="text" value="${stock.operator}"/><span class="t_span02">*</span>
+					<input class="easyui-validatebox t_text"  data-options="required:true,missingMessage:'请输入经办人'" name="operator" type="text" value="${stock.operator}"/><span class="t_span02">*</span>
 				</td>
 			</tr>			
 			<tr>
                 <td><span class="t_span01 w140">报送单位：</span></td>
                   	<td colspan="5">
-                      <input type="hidden" name="sourceOfficeHid" id="sourceOfficeHid" value="${stock.department}">
-                      <select name="sourceOffice" id="sourceOffice">
+                      <input type="hidden" name="departmentHid" id="departmentHid" value="${stock.department}">
+                      <select name="department" id="department">
                           <option value="0">请选择</option>
                           <option value="1">县局</option>
                           <option value="3">……</option>
@@ -72,7 +72,7 @@
                    <td colspan="4">
                        <input class="easyui-validatebox w280 t_text" data-options="" name="storeLocation" type="text" value="${finances.storeLocation}"/>
                    </td>
-                   <td><input type="submit" class="t_btnsty01" id="chooseLocation" onclick="toChoose();" value="选择"></td>
+                   <td><input type="button" class="t_btnsty01" id="chooseLocation" onclick="toChoose();" value="选择"></td>
                </tr>
                <tr>
                    <td><span class="t_span01 w100">备注：</span></td>
@@ -82,6 +82,13 @@
                </tr>
 		</table>
 	</form>
+	
+	
+	<!-- 入库弹窗 -->
+	<div id="chooseStorageInfo" class="easyui-window" title="选择存储" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 568px; height: 390px; padding: 20px;">
+		<iframe id="frame_storage" width="510" height="300" scrolling="no" src="" frameborder="0"> </iframe>
+	</div>
+	
 <script type="text/javascript">
 	$(document).ready(function(){
 	   //Temp Start
@@ -139,11 +146,37 @@
 	
 	//选择
 	function toChoose(){
-		parent.afterCloseInstock();
+		// 添加iframeSrc
+		$("#frame_storage").attr("src", "${path}/storage/toChooseStorage.action");
+		$('#chooseStorageInfo').window('open');
+		adjustTanboxCenter(); // 弹窗位置居中
 	}
 	
 	function instockPrint(){
-		parent.afterCloseInstock();
+		// 提交打印请求
+		$.ajax({
+			url : "${path}/stock/toPrintExcel.action",
+			data : {
+				'financeId' : $("input[name = id]").val(),
+				'financeNum' : $("input[name = financeNum]").val(),
+				'financeName' : $("input[name = financeName]").val(),					
+				'caseId' : $("input[name = casesid]").val(),				
+				'caseNum' : $("input[name = caseNum]").val(),
+				'caseName' : $("input[name = caseName]").val(),
+				'fetchMan' : $("input[name = fetchMan]").val(),
+				'operator' : $("input[name = operator]").val()
+			},
+			dataType : "json",
+			type : "post",
+			success : function(result) {
+				if (result.status == "success") {
+					alertInfo(result.data);
+					alertInfo("success");
+				} else {
+					alertInfo(result.data);
+				}
+			}
+		});
 	}
 	
 </script>

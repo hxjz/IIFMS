@@ -49,13 +49,13 @@
 			<tr>
 				<td><span class="t_span01 w120">取物人：</span></td>
 				<td colspan="2">
-					<input class="easyui-validatebox t_text"  data-options="required:true,missingMessage:'请输入送物人'" name="fetchMan" type="text" value="${stock.fetchMan}"/><span class="t_span02">*</span>
+					<input class="easyui-validatebox t_text"  data-options="required:true,missingMessage:'请输入取物人'" name="fetchMan" type="text" value="${stock.fetchMan}"/><span class="t_span02">*</span>
 				</td>
 	          	<td><span class="t_span01 w120">经办人：</span></td>
 				<td colspan="2">
 					<input class="easyui-validatebox t_text"  data-options="required:true,missingMessage:'请输入经办人'" name="operator" type="text" value="${stock.operator}"/><span class="t_span02">*</span>
 				</td>
-			</tr>			
+			</tr>
 			<tr>
                 <td><span class="t_span01 w140">取物单位：</span></td>
                	<td colspan="2">
@@ -125,7 +125,7 @@
 				data = JSON.parse(returnData); // 转换成json对象
 				if(data.status == "success"){
 					parent.alertInfo(data.data);
-					parent.afterCloseInstock();
+					parent.afterCloseOutstock();
 				} else if(data.status="fail"){
 					alertInfo(data.data);
 				} else {
@@ -133,6 +133,7 @@
 				}
 			}
 		});
+		
 		function setVal() {
 			if(true==$("#isMurder").is(':checked')) {
 				$("#isMurder").attr("value","1");

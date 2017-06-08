@@ -12,13 +12,9 @@ import java.util.LinkedHashMap;
  * @Version: V1.0
  */
 public class FinanceStateEnum {
-    static final public int TYPE1 = 1;// TEMP
-    static final public int TYPE2 = 2;// TEMP
-    static final public int TYPE3 = 3;// TEMP
-    static final public int TYPE4 = 4;// TEMP
-    static final public int TYPE5 = 5;// TEMP
-    static final public int TYPE6 = 6;// TEMP
-
+    static final public int TYPE1 = 1;// 登记
+    static final public int TYPE2 = 2;// 入库
+    static final public int TYPE3 = 3;// 出库
 
     // 此名固定，不可修改
     @SuppressWarnings("rawtypes")

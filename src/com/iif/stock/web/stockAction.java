@@ -6,6 +6,9 @@ import com.hxjz.common.utils.Page;
 import com.hxjz.common.utils.ReflectionUtil;
 import com.iif.cases.entity.Cases;
 import com.iif.cases.service.ICasesService;
+import com.iif.common.enums.FinanceStateEnum;
+import com.iif.common.enums.FinanceTypeEnum;
+import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
 import com.iif.finances.entity.Finances;
@@ -20,9 +23,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableCell;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 
 /**
  * @Author M
@@ -46,6 +56,12 @@ public class stockAction extends BaseAction {
      */
     @RequestMapping("listStock.action")
     public String listStock() {
+        // 财物状态下拉列表
+        List<?> financeStateList = InitSelect.getSelectList(FinanceStateEnum.class);
+        HttpTool.setAttribute("financeStateList", financeStateList);
+        // 财物类型下拉列表
+        List<?> financeTypeList = InitSelect.getSelectList(FinanceTypeEnum.class);
+        HttpTool.setAttribute("financeTypeList", financeTypeList);
         return "jsp/stock/liststock";
     }
 
@@ -105,6 +121,50 @@ public class stockAction extends BaseAction {
         return "jsp/stock/instock";
     }
 
+    /**
+     * 生成Excel
+     * @return
+     */
+    @RequestMapping("toPrintExcel.action")
+    public String toPrintExcel() throws Exception {
+        System.out.println("***************Excel  print**********");
+        String caseId = HttpTool.getParameter("caseId");
+        String caseNum = HttpTool.getParameter("caseNum");
+        String caseName = HttpTool.getParameter("caseName");
+        String financesId = HttpTool.getParameter("financeId");
+        String financesName = HttpTool.getParameter("financeName");
+        String financesNum = HttpTool.getParameter("financeNum");
+        String fetchMan = HttpTool.getParameter("fetchMan");
+        String operator = HttpTool.getParameter("operator");
+
+        System.out.println("caseId:" + caseId);
+        System.out.println("caseNum:" + caseNum);
+        System.out.println("caseName:" + caseName);
+        System.out.println("financesId:" + financesId);
+        System.out.println("financesName:" + financesName);
+        System.out.println("financesNum:" + financesNum);
+        System.out.println("fetchMan:" + fetchMan);
+        System.out.println("operator:" + operator);
+        System.out.println("***************Excel  print**********");
+		//创建只读的 Excel 工作薄的对象副本
+//		Workbook wb=Workbook.getWorkbook(new File("G:\\Works\\IIFMS\\财物出入库审批表.xls"));
+		Workbook wb=Workbook.getWorkbook(new File("F:\\SA项目\\workspace\\IIFMS\\WebRoot\\excel\\财物出入库审批表V1.xls"));
+		
+		// 创建真实写入的 Excel 工作薄对象
+		WritableWorkbook book= Workbook.createWorkbook(new File("F:\\SA项目\\workspace\\IIFMS\\WebRoot\\excel\\Target.xls"),wb);
+		//修改文本内容：例修改sheet2中cell B3的label内容
+		WritableSheet sheet = book.getSheet(0);
+		sheet.addCell(new Label(9,2,"modified cell"));
+		sheet.addCell(new Label(3,3,operator));
+		sheet.addCell(new Label(9,3,new Date().toString()));
+		sheet.addCell(new Label(3,5,caseName));
+		sheet.addCell(new Label(3,6,caseNum));
+		book.write();
+		book.close();
+		Runtime.getRuntime().exec("cmd  /c  start " + " F:\\SA项目\\workspace\\IIFMS\\WebRoot\\excel\\Target.xls");
+        return "jsp/stock/outstock";
+    }
+    
     @RequestMapping("saveStock.action")
     @ResponseBody
     public Map saveStock(Finances finance,Stock stock){
@@ -121,15 +181,20 @@ public class stockAction extends BaseAction {
         	//更新财物表出入库状态相关信息
             saveFinance = (Finances) iFinancesService.findById(financesId);
             ReflectionUtil.copyPropertiesForHasValueIgnoreSerialVersionUID(saveFinance, finance);
+            BeanUtils.copyProperties(stock, saveStock);
             saveFinance.setId(financesId);
             if (!"1".equals(financeState)) {
             	saveFinance.setFinanceState(SysConstant.STOCK_STATE_IN);   // 入库
+                saveFinance.setInstockMan(saveStock.getFetchMan());
+                saveFinance.setInstockTime(new Date().toString());
+                saveStock.setFlag(SysConstant.STOCK_STATE_IN);
             } else {
             	saveFinance.setFinanceState(SysConstant.STOCK_STATE_OUT);   // 出库
+                saveFinance.setOutstockMan(saveStock.getFetchMan());
+                saveFinance.setOutstockTime(new Date().toString());
+                saveStock.setFlag(SysConstant.STOCK_STATE_OUT);
             }
             
-            saveFinance.setInstockMan(saveStock.getFetchMan());
-            saveFinance.setInstockTime(new Date().toString());
             saveFinance.setUpdater("admin");// 更新人
             saveFinance.setUpdateTime(new Date()); // 更新时间
             saveFinance.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
@@ -139,7 +204,6 @@ public class stockAction extends BaseAction {
             saveFinance.setCases(cases);            
 
             //插入出入库表，记录出入库操作
-            BeanUtils.copyProperties(stock, saveStock);
             saveStock.setFinancesId(saveFinance);
             saveStock.setFlag(2);  // 出入库标志，默认为0登记状态，1入库，2出库
             saveStock.setCreateTime(new Date());// 创建时间
@@ -159,6 +223,7 @@ public class stockAction extends BaseAction {
             return TemplateUtil.toSuccessMap("操作失败！");
         }
     }
+
 }
 
 
