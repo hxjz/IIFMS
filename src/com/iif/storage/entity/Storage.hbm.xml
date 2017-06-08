@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.iif.storage.entity.Storage" table="tstorage">
+
+		<id name="id" column="fid" >
+			<generator class="uuid" />
+		</id>
+
+		<property name="showName" type="string">
+			<column name="fshowName" length="10"/>
+		</property>
+		
+		<property name="key" type="string">
+			<column name="fkey" length="10"/>
+		</property>
+
+		<property name="showImg" type="string">
+			<column name="fshowImg" length="100"/>
+		</property>
+		
+		<property name="index" type="integer">
+			<column name="findex" length="3"/>
+		</property>
+
+		<property name="isAvail" type="integer">
+			<column name="fisAvail" length="1"/>
+		</property>
+
+		<property name="storageStatus" type="integer">
+			<column name="fstorageStatus" length="1"/>
+		</property>
+		
+		<property name="parentId" type="string">
+			<column name="fparentid" length="50"/>
+		</property>
+
+		<property name="isDel" type="integer">
+			<column name="fisdel" length="1" />
+		</property>
+
+		<property name="creator" type="string">
+			<column name="fcreator" length="50" />
+		</property>
+
+		<property name="createTime" type="timestamp">
+			<column name="fcreatetime" length="14" />
+		</property>
+		
+		<property name="updater" type="string">
+			<column name="fupdater" length="20" />
+		</property>
+		
+		<property name="updateTime" type="timestamp">
+			<column name="fupdatetime" length="14" />
+		</property>
+
+	</class>
+</hibernate-mapping>
