@@ -10,7 +10,7 @@ import com.iif.stock.dao.IStockDao;
  * @Author GaoGang
  * @Date 2017年5月15日 下午10:31:07
  * @Version V0.1
- * @Desc 财务管理 daoImpl
+ * @Desc 财物管理 daoImpl
  */
 @Repository
 public class StockDaoImpl extends BaseDao implements IStockDao {

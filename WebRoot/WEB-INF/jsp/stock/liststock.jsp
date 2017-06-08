@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>涉案财物-财务列表页</title>
+<title>涉案财物-财物列表页</title>
 <%@include file="/WEB-INF/jsp/common/common.jsp"%>
 </head>
 
@@ -11,7 +11,7 @@
 	<div class="t_rightcontainer">
 		<div class="t_oneblock">
 			<div class="t_oneblock_h">
-				<h3>财务信息查询</h3>
+				<h3>财物信息查询</h3>
 			</div>
 			<!-- t_oneblock_h-->
 			<form>
@@ -19,11 +19,11 @@
 					<div class="nobortable pt10 pl10">
 						<table width="100%" border="0">
 							<tr>
-								<td class="tr" width="100"><span class="t_span01">财务编号：</span></td>
+								<td class="tr" width="100"><span class="t_span01">财物编号：</span></td>
 								<td><input class="t_text w100" name="filter_and_financeNum_LIKE_S" type="text" id="financeNum" /></td>
-								<td class="tr" width="100"><span class="t_span01">财务名称：</span></td>
+								<td class="tr" width="100"><span class="t_span01">财物名称：</span></td>
 								<td><input class="t_text w120" name="filter_and_financeName_LIKE_S" type="text" id="financeName" /></td>
-								<td class="tr" width="100"><span class="t_span01">财务类型：</span></td>
+								<td class="tr" width="100"><span class="t_span01">财物类型：</span></td>
 								<td>
 									<select name="filter_and_financeType_EQ_I" style="width: 120">
 										<option value="">请选择</option>
@@ -35,7 +35,7 @@
 										</c:forEach>
 									</select>
 								</td>
-								<td class="tr" width="100"><span class="t_span01">财务状态：</span></td>
+								<td class="tr" width="100"><span class="t_span01">财物状态：</span></td>
 								<td>
 									<select name="filter_and_financeState_EQ_I" style="width: 120">
 									<option value="">请选择</option>
@@ -47,7 +47,7 @@
 										</c:forEach>
 									</select>
 								</td>
-								<td class="tr" width="100"><span class="t_span01">财务识别：</span></td>
+								<td class="tr" width="100"><span class="t_span01">财物识别：</span></td>
 								<td><input class="t_text w100" name="filter_and_financeCode_LIKE_S" type="text" id="financeCode" /></td>
 							</tr>
 							<tr>
@@ -92,7 +92,7 @@
 									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_inspectionTimeEnd_LE_T" type="text" />
 								</td>
 								<td class="tr" width="120"><input type="checkbox" id="isDel" name="filter_and_isDel_LE_I" value="0" onclick="setVal()"/></td>
-								<td ><span class="t_span01">包含已删除财务</span></td>
+								<td ><span class="t_span01">包含已删除财物</span></td>
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
@@ -122,7 +122,7 @@
 	<div class="t_rightcontainer">
 		<div class="t_oneblock">
 			<div class="t_oneblock_h">
-				<h3>财务列表</h3>
+				<h3>财物列表</h3>
 			</div>
 			<!-- t_oneblock_h-->
 			<div class="t_oneblock_c pr">
@@ -168,15 +168,15 @@
 	</div>
 	<!--t_rightcontainer -->
 	<!-- 入库弹窗 -->
-	<div id="instockInfo" class="easyui-window" title="财务入库" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 568px; height: 390px; padding: 20px;">
+	<div id="instockInfo" class="easyui-window" title="财物入库" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 568px; height: 390px; padding: 20px;">
 		<iframe id="frame_instock" width="510" height="300" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	<!-- 出库弹窗 -->
-	<div id="outstockInfo" class="easyui-window" title="财务出库" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
+	<div id="outstockInfo" class="easyui-window" title="财物出库" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
 		<iframe id="frame_outstock" width="510" height="300" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	<!-- 详情弹窗 -->
-	<div id="detailInfo" class="easyui-window" title="财务信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 480px; padding: 20px;">
+	<div id="detailInfo" class="easyui-window" title="财物信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 480px; padding: 20px;">
 		<iframe id="frame_detailInfo" width="520" height="404" scrolling="no" src="" frameborder="0"></iframe>
 	</div>
 	
@@ -184,7 +184,7 @@
 		$(function() {
 			createTable('dg1');
 			
-			// 双击行显示财务详细信息
+			// 双击行显示财物详细信息
 			$('#dg1').datagrid({
 				onDblClickRow: function(rowIdex,rowData){
 					toDetailPage();
@@ -245,7 +245,7 @@
             }
         }
 
-		// 财务编号
+		// 财物编号
 //		function formatLink(value, row, index) {
 //			return "<a href='javascript:void(0);' onclick='toDetailPage(\"" + row.id + "\")'><u>" + row.financeNum + "</u></a>";
 //		}

@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 
 /**
  * @ClassName: FinanceSourceRnum
- * @Description: 财务来源下拉列表
+ * @Description: 财物来源下拉列表
  * @Author: GaoGang
  * @Date: 2017-05-21 23:19
  * @Version: V1.0

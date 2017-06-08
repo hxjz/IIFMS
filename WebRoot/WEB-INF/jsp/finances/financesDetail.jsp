@@ -34,7 +34,7 @@
 				<input class="easyui-validatebox t_text w140" data-options=""
 					   name="caseName" type="text" value="${finances.financeType}" readonly="readonly"/>
 			</td>
-			 <td><span class="t_span01">财务状态：</span></td>
+			 <td><span class="t_span01">财物状态：</span></td>
 			 <td><span class="t_span02">${finance.financeState} 状态</span></td>
 		</tr>
 		<tr>
@@ -193,7 +193,7 @@
 	<span class="t_span03">操作记录</span>
 	<table class="slim_table">
 		<tr>
-			<td><span class="t_span01">财务识别码</span></td>
+			<td><span class="t_span01">财物识别码</span></td>
 			<td><span class="t_span01">操作时间</span></td>
 			<td><span class="t_span01">操作类型</span></td>
 			<td><span class="t_span01">操作人</span></td>

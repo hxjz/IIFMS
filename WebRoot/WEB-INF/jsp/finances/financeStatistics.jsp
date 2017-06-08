@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-    <title>涉案财物-财务统计</title>
+    <title>涉案财物-财物统计</title>
     <%@include file="/WEB-INF/jsp/common/common.jsp" %>
 </head>
 
