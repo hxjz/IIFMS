@@ -27,7 +27,6 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableCell;
@@ -148,10 +147,15 @@ public class stockAction extends BaseAction {
         System.out.println("***************Excel  print**********");
 		//创建只读的 Excel 工作薄的对象副本
 //		Workbook wb=Workbook.getWorkbook(new File("G:\\Works\\IIFMS\\财物出入库审批表.xls"));
-		Workbook wb=Workbook.getWorkbook(new File("F:\\SA项目\\workspace\\IIFMS\\WebRoot\\excel\\财物出入库审批表V1.xls"));
+        System.out.println("***" + stockAction.class.getResource("/").getFile());
+        String excelPath = stockAction.class.getResource(SysConstant.STOCK_IN_EXCEL_NAME).getFile();
+        String excelPathPrint = stockAction.class.getResource(SysConstant.STOCK_IN_EXCEL_NAME).getFile();
+
+
+		Workbook wb=Workbook.getWorkbook(new File(excelPath));
 		
 		// 创建真实写入的 Excel 工作薄对象
-		WritableWorkbook book= Workbook.createWorkbook(new File("F:\\SA项目\\workspace\\IIFMS\\WebRoot\\excel\\Target.xls"),wb);
+		WritableWorkbook book= Workbook.createWorkbook(new File(excelPathPrint),wb);
 		//修改文本内容：例修改sheet2中cell B3的label内容
 		WritableSheet sheet = book.getSheet(0);
 		sheet.addCell(new Label(9,2,"modified cell"));
@@ -161,7 +165,7 @@ public class stockAction extends BaseAction {
 		sheet.addCell(new Label(3,6,caseNum));
 		book.write();
 		book.close();
-		Runtime.getRuntime().exec("cmd  /c  start " + " F:\\SA项目\\workspace\\IIFMS\\WebRoot\\excel\\Target.xls");
+		Runtime.getRuntime().exec("cmd  /c  start " + excelPathPrint);
         return "jsp/stock/outstock";
     }
     
@@ -183,7 +187,8 @@ public class stockAction extends BaseAction {
             ReflectionUtil.copyPropertiesForHasValueIgnoreSerialVersionUID(saveFinance, finance);
             BeanUtils.copyProperties(stock, saveStock);
             saveFinance.setId(financesId);
-            if (!"1".equals(financeState)) {
+            // 出入库标志，默认为1登记状态，2入库，3出库
+            if (new Integer(financeState) != SysConstant.STOCK_STATE_IN) {
             	saveFinance.setFinanceState(SysConstant.STOCK_STATE_IN);   // 入库
                 saveFinance.setInstockMan(saveStock.getFetchMan());
                 saveFinance.setInstockTime(new Date().toString());
@@ -205,7 +210,6 @@ public class stockAction extends BaseAction {
 
             //插入出入库表，记录出入库操作
             saveStock.setFinancesId(saveFinance);
-            saveStock.setFlag(2);  // 出入库标志，默认为0登记状态，1入库，2出库
             saveStock.setCreateTime(new Date());// 创建时间
             saveStock.setCreator("admin"); // 当前登录人
             saveStock.setIsDel(SysConstant.IS_NOT_DEL); //删除标示

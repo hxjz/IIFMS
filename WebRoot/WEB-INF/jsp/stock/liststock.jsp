@@ -257,7 +257,7 @@
 				alertInfo("请选择要入库的财物！");
 			} else if(1 == row.isDel){
 				alertInfo("该财物已删除！不能进行入库操作！");
-			} else if(1 == row.financeState) {   //0登记  1在库  2不在库
+			} else if(2 == row.financeState) {   //1登记  2在库  3不在库
 					alertInfo("该财物已在库！");
 			} else {
 				// 添加iframeSrc
@@ -275,7 +275,7 @@
 				alertInfo("请选择要出库的财物！");
 			} else if(1 == row.isDel){
 				alertInfo("该财物已删除！不能进行出库操作！");
-			} else if(1 != row.financeState) {  //0登记  1在库  2不在库
+			} else if(2 != row.financeState) {  //1登记  2在库  3不在库
 				alertInfo("该财物不在库！");
 			}  else {
 				// 添加iframeSrc
