@@ -29,9 +29,9 @@
 	          	    <input type="hidden" name="caseTypeHid" id="caseTypeHid" value="${cases.caseType}">
                  	<select class="w120" name="caseType" id="caseType">
                  		<option value="">请选择</option>
-                 		<option value="1">危害国家安全案</option>
-                 		<option value="2">危害公共安全案</option>
-                 		<option value="3">其他案件</option>
+						<c:forEach items="${caseTypeList}" var="obj">
+							<option value="${obj.key}">${obj.value}</option>
+						</c:forEach>
                  	</select>
                  	<span class="t_span02">*</span>
                  </td>
