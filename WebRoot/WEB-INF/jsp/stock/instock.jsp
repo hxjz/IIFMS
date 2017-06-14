@@ -61,9 +61,10 @@
                   	<td colspan="5">
                       <input type="hidden" name="departmentHid" id="departmentHid" value="${stock.department}">
                       <select name="department" id="department">
-                          <option value="0">请选择</option>
-                          <option value="1">县局</option>
-                          <option value="3">……</option>
+						<option value="">请选择</option>
+						<c:forEach items="${departmentTypeList}" var="object">
+							<option value="${object.key}">${object.value}</option>
+						</c:forEach>
                       </select>
                   	</td>
 			</tr>

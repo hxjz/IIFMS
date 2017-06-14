@@ -12,7 +12,7 @@
 		<input type="button" class="t_btnsty02" id="cancel" onclick="outstockClose();" value="取消">
 		<input type="hidden" name="id" id="id" value="${finances.id}">
 		<input type="hidden" name="casesid" id="casesid" value="${cases.id}">
-		<%--  0登记  1在库  2不在库 --%>
+		<%--  1登记  2在库  3不在库 --%>
 		<input type="hidden" name="financeState" id="financeState" value="${finances.financeState}">
 		<br>
     	<table border="0">
@@ -61,19 +61,20 @@
                	<td colspan="2">
                    <input type="hidden" name="departmentHid" id="departmentHid" value="${stock.department}">
                    <select name="department" id="department">
-                       <option value="0">请选择</option>
-                       <option value="1">县局</option>
-                       <option value="2">……</option>
+						<option value="">请选择</option>
+						<c:forEach items="${departmentTypeList}" var="object">
+							<option value="${object.key}">${object.value}</option>
+						</c:forEach>
                    </select>
                	</td>
                 <td><span class="t_span01 w140">出库原因：</span></td>
                	<td colspan="2">
                    <input type="hidden" name="reasonHid" id="reasonHid" value="${stock.reason}">
                    <select name="reason" id="reason">
-                       <option value="0">请选择</option>
-                       <option value="1">移交</option>
-                       <option value="2">销毁</option>
-                       <option value="3">……</option>
+						<option value="">请选择</option>
+						<c:forEach items="${outstockReasonTypeList}" var="object">
+							<option value="${object.key}">${object.value}</option>
+						</c:forEach>
                    </select>
                	</td>
 			</tr>

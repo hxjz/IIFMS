@@ -175,6 +175,6 @@ public class SysConstant {
 	public static final int STOCK_STATE_NONE = 1; // 登记
 	public static final int STOCK_STATE_IN = 2; // 入库  在库
 	public static final int STOCK_STATE_OUT = 3; // 出库  不在库
-	public static final String STOCK_IN_EXCEL_NAME = "财物出入库审批表V1.xls";
-	public static final String STOCK_IN_EXCEL_NAME2 = "财物出入库审批表print.xls";
+	public static final String STOCK_IN_EXCEL_NAME = "/财物出入库审批表V1.xls";
+	public static final String STOCK_IN_EXCEL_NAME2 = "/财物出入库审批表print.xls";
 }

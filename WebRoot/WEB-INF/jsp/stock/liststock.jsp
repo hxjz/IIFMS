@@ -27,9 +27,6 @@
 								<td>
 									<select name="filter_and_financeType_EQ_I" style="width: 120">
 										<option value="">请选择</option>
-										<%--<option value="1">手迹痕迹</option>--%>
-										<%--<option value="2">足迹痕迹</option>--%>
-										<%--<option value="3">其他</option>--%>
 										<c:forEach items="${financeTypeList}" var="object">
 											<option value="${object.key}">${object.value}</option>
 										</c:forEach>
@@ -39,9 +36,6 @@
 								<td>
 									<select name="filter_and_financeState_EQ_I" style="width: 120">
 									<option value="">请选择</option>
-									<%--<option value="1">登记</option>--%>
-									<%--<option value="2">在库</option>--%>
-									<%--<option value="3">出库</option>--%>
 										<c:forEach items="${financeStateList}" var="object">
 											<option value="${object.key}">${object.value}</option>
 										</c:forEach>

@@ -6,8 +6,11 @@ import com.hxjz.common.utils.Page;
 import com.hxjz.common.utils.ReflectionUtil;
 import com.iif.cases.entity.Cases;
 import com.iif.cases.service.ICasesService;
+import com.iif.common.enums.CaseTypeEnum;
+import com.iif.common.enums.DepartmentTypeEnum;
 import com.iif.common.enums.FinanceStateEnum;
 import com.iif.common.enums.FinanceTypeEnum;
+import com.iif.common.enums.OutstockReasonTypeEnum;
 import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
@@ -27,6 +30,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableCell;
@@ -86,6 +90,10 @@ public class stockAction extends BaseAction {
      */
     @RequestMapping("toOutstock.action")
     public String toOutstock() throws Exception {
+    	List<?> outstockReasonTypeList = InitSelect.getSelectList(OutstockReasonTypeEnum.class);
+		HttpTool.setAttribute("outstockReasonTypeList", outstockReasonTypeList);
+    	List<?> departmentTypeList = InitSelect.getSelectList(DepartmentTypeEnum.class);
+		HttpTool.setAttribute("departmentTypeList", departmentTypeList);
         String financesId = HttpTool.getParameter("financesId");
         HttpTool.setAttribute("financesId", financesId);
 
@@ -109,6 +117,8 @@ public class stockAction extends BaseAction {
     public String toInstock() throws Exception {
         String financesId = HttpTool.getParameter("financesId");
         HttpTool.setAttribute("financesId", financesId);
+    	List<?> departmentTypeList = InitSelect.getSelectList(DepartmentTypeEnum.class);
+		HttpTool.setAttribute("departmentTypeList", departmentTypeList);
 
         if (!StringUtils.isEmpty(financesId)) {
             Finances finances = (Finances) iFinancesService.findById(financesId);
@@ -147,9 +157,11 @@ public class stockAction extends BaseAction {
         System.out.println("***************Excel  print**********");
 		//创建只读的 Excel 工作薄的对象副本
 //		Workbook wb=Workbook.getWorkbook(new File("G:\\Works\\IIFMS\\财物出入库审批表.xls"));
-        System.out.println("***" + stockAction.class.getResource("/").getFile());
-        String excelPath = stockAction.class.getResource(SysConstant.STOCK_IN_EXCEL_NAME).getFile();
-        String excelPathPrint = stockAction.class.getResource(SysConstant.STOCK_IN_EXCEL_NAME).getFile();
+        //System.out.println("***" + stockAction.class.getResource("/").getFile()); 
+        String basePath = stockAction.class.getResource("/").getFile();
+        String excelPath = basePath + SysConstant.STOCK_IN_EXCEL_NAME;
+        String excelPathPrint = basePath + SysConstant.STOCK_IN_EXCEL_NAME2;
+        //String excelPathPrint = stockAction.class.getResource(SysConstant.STOCK_IN_EXCEL_NAME2).getFile();
 
 
 		Workbook wb=Workbook.getWorkbook(new File(excelPath));
