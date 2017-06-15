@@ -47,14 +47,13 @@ public class ExportUtil {
                 sheet.addMergedRegion(new CellRangeAddress(rowNum, rowNum, 1, 3));
 
                 row = sheet.getRow(5);  // 第6行
-                cell = row.getCell(2);
-                cell.setCellValue(datas.size());
+//                cell = row.getCell(2);
+//                cell.setCellValue(datas.size());
                 cell = row.getCell(5);
                 cell.setCellValue("admin");
                 cell = row.getCell(8);
                 cell.setCellValue(DateUtil.getDateTime(DateUtil.TIME_FORMAT, new Date()));
-
-
+                int totalSum=0;
                 rowNum = 7; // 第8行
                 if (datas.size() != 0) {
                     for (Object data : datas) {
@@ -71,7 +70,7 @@ public class ExportUtil {
                             cell = row.createCell(4);
                         cell.setCellStyle(style);
                         cell.setCellValue(Integer.parseInt(result.get("total").toString()));
-
+                        totalSum +=Integer.parseInt(result.get("total").toString());
                         // 合并单元格 处理
                         int []columns=new int[]{1,4,7};
                         for (int column : columns) {
@@ -83,7 +82,9 @@ public class ExportUtil {
                         rowNum++;
                     }
                 }
-
+                row = sheet.getRow(5);  // 第6行
+                cell = row.getCell(2);
+                cell.setCellValue(totalSum);
                 // 生成excel
                 File file = new File(targetPath);
                 if (!file.exists()) {
