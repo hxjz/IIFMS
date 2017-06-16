@@ -27,15 +27,15 @@
 								<td><input class="t_text w120" name="filter_and_operator_LIKE_S" type="text" id="operator" /></td>
 								<td class="tr" width="120"><span class="t_span01">经办时间：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeStart_GE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_createTime_GE_T" type="text" />
 									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeStart_LE_T" type="text" /></td>
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_createTime_LE_T" type="text" /></td>
 							</tr>
 							<tr>
 								<td class="tr" width="100"><span class="t_span01">操作人：</span></td>
-								<td><input class="t_text w120" name="filter_and_caseNum_LIKE_S" type="text" id="caseNum" /></td>
+								<td><input class="t_text w120" name="filter_and_creator_LIKE_S" type="text" id="creator" /></td>
 								<td class="tr" width="120"><span class="t_span01">送物/取物人：</span></td>
-								<td><input class="t_text w100" name="filter_and_caseNum_LIKE_S" type="text" id="caseNum" /></td>
+								<td><input class="t_text w100" name="filter_and_fetchMan_LIKE_S" type="text" id="fetchMan" /></td>
 								<td class="tr" width="120"><span class="t_span01">报送/取物单位：</span></td>
 								<td>
 									<select name="filter_and_department_EQ_I" style="width: 120">
@@ -47,7 +47,7 @@
 								</td>
 								<td class="tr" width="100"><span class="t_span01">出入库类型：</span></td>
 								<td>
-									<select name="filter_and_financeState_EQ_I" style="width: 120">
+									<select name="filter_and_flag_EQ_I" style="width: 120">
 									<option value="">请选择</option>
 										<c:forEach items="${financeStateList}" var="object">
 											<option value="${object.key}">${object.value}</option>
