@@ -150,6 +150,12 @@
 					<dl>
 						<dt>
 							<a href="javascript:void(0)" style="color: #648da2;"
+								onclick="loadUrl('content_operateLogs','${path}/stock/listOperateLogs.action','财物操作记录查询');" id='left_operateLogs' title="财物操作记录查询">财物操作记录查询</a>
+						</dt>
+					</dl>
+					<dl>
+						<dt>
+							<a href="javascript:void(0)" style="color: #648da2;"
 								onclick="loadUrl('content_storage','${path}/storage/tolistStorage.action','存储位置管理');" id='left_storage' title="存储位置管理">存储位置管理</a>
 						</dt>
 					</dl>
