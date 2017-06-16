@@ -8,7 +8,7 @@
             <generator class="uuid"/>
         </id>
 
-        <many-to-one name="financesId" update="false" column="ffinancesId"
+        <many-to-one name="finances" update="false" column="ffinancesId"
                      class="com.iif.finances.entity.Finances" cascade="none" not-found="ignore">
                      
         </many-to-one>

@@ -63,6 +63,7 @@ public class StorageAction extends BaseAction{
 		
 		// 查询数据
 		List<Storage> dic = storageService.findByPage(page, searchMap);
+		storageService.findByFilterMap(searchMap);
 		
 		return TemplateUtil.toDatagridMap(page, dic);
 	}	

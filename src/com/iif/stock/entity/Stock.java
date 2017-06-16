@@ -13,7 +13,7 @@ public class Stock extends BaseEntity {
     private static final long serialVersionUID = -6178522609856969604L;
     private String id; // 出入库Key    
 
-    private Finances financesId; // 财物Key
+    private Finances finances; // 财物Key
 
     private Integer flag; // 出入库标志，默认为0登记状态，1入库，2出库
 
@@ -36,12 +36,12 @@ public class Stock extends BaseEntity {
 		this.id = id;
 	}
 
-	public Finances getFinancesId() {
-		return financesId;
+	public Finances getFinances() {
+		return finances;
 	}
 
-	public void setFinancesId(Finances financesId) {
-		this.financesId = financesId;
+	public void setFinances(Finances finances) {
+		this.finances = finances;
 	}
 
 	public Integer getFlag() {

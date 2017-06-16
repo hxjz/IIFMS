@@ -221,7 +221,7 @@ public class stockAction extends BaseAction {
             saveFinance.setCases(cases);            
 
             //插入出入库表，记录出入库操作
-            saveStock.setFinancesId(saveFinance);
+            saveStock.setFinances(saveFinance);
             saveStock.setCreateTime(new Date());// 创建时间
             saveStock.setCreator("admin"); // 当前登录人
             saveStock.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
