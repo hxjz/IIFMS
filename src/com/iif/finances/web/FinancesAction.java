@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.iif.common.util.JsonUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -257,24 +258,32 @@ public class FinancesAction extends BaseAction {
 
     /**
      * 显示财物统计信息
-     * todo  80%
      * @return
      */
+    @SuppressWarnings("rawtypes")
     @RequestMapping("export.action")
     @ResponseBody
     public String exportFinancesStatistics(HttpServletRequest request) {
+        String filter_and_updateTime_GE_T=HttpTool.getParameter("filter_and_updateTime_GE_T");
+        String filter_and_updateTime_LE_T=HttpTool.getParameter("filter_and_updateTime_LE_T");
+
         page = new Page(1, 50);
         Map searchMap = super.buildSearch(); // 组装查询条件
+        if(StringUtils.isNotBlank(filter_and_updateTime_GE_T))
+            searchMap.put("filter_and_updateTime_GE_T",filter_and_updateTime_GE_T);
+        if(StringUtils.isNotBlank(filter_and_updateTime_LE_T))
+            searchMap.put("filter_and_updateTime_LE_T",filter_and_updateTime_LE_T);
+
         // 查询数据
         List<Map<String,Object>> statistics = new ArrayList<>();
         try {
             statistics = iFinancesService.showStatistics(page, searchMap);
             ExportUtil.exportStatistics(request,statistics);
-            return "ok";
+            return JsonUtil.jsonSuccess("");
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return "fail";
+        return JsonUtil.jsonFailure("");
     }
 }
 

@@ -44,9 +44,6 @@
                 <td>
                     <button class="t_btnsty03" id="play">播放</button>
                 </td>
-                <td>
-                    <button class="t_btnsty03" id="kuai">快进</button>
-                </td>
                 <td>&nbsp;</td>
             </tr>
 
@@ -70,11 +67,11 @@
         $('#play').click(function () {
             player.play();
         });
-        $('#kuai').click(function () {
-            var whereYouAt = player.duration();
-            console.log(whereYouAt);
-            player.setCurrentTime(whereYouAt + 10);
-        });
+//        $('#kuai').click(function () {
+//            var whereYouAt = player.duration();
+//            console.log(whereYouAt);
+//            player.setCurrentTime(whereYouAt + 10);
+//        });
     });
 </script>
 </body>

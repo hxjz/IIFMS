@@ -27,7 +27,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <input class="t_btnsty01" id="find" name="select" type="button" value="查询" />
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input class="t_btnsty04" id="export" name="select" type="button" value="导出财物统计表" />
+                    <input class="t_btnsty04" id="export" name="export" type="button" value="导出财物统计表" />
                 </div>
                 <!--nobortable -->
             </div>
@@ -75,38 +75,35 @@
 <script type="text/javascript">
     $(function () {
         createTable('dg1');
+    });
+    // 报表导出
+    $('#export').click(function () {
+        var startTime = $("input[name='filter_and_updateTime_GE_T']").val();
+        var endTime = $("input[name='filter_and_updateTime_LE_T']").val();
+        var data = {
+            filter_and_updateTime_GE_T:startTime,
+            filter_and_updateTime_LE_T:endTime
+        };
 
-        // 双击行显示财物详细信息
-//        $('#dg1').datagrid({
-//            onDblClickRow: function (rowIdex, rowData) {
-//                toDetailPage();
-//            }
-//        });
-
-
-
-        $('#export').click(function(){
-          $.ajax({
-              type: 'POST',
-              url: "${path}/finances/export.action",
-              success:function(returnData){
-                  alert(returnData);
-//                  data = JSON.parse(returnData); // 转换成json对象
-//                  if(data.status == "success"){
-//                      parent.alertInfo(data.data);
-//                      parent.afterCloseInstock();
-//                  } else if(data.status="fail"){
-//                      alertInfo(data.data);
-//                  } else {
-//                      alertInfo("未知错误");
-//                  }
-              },
-              error:function(){
-                  alert("失败");
-              }
-          });
+        $.ajax({
+            type: 'POST',
+            url: "${path}/finances/export.action",
+            data: data,
+            dataType:"json",
+            success: function (response) {
+                  data = JSON.parse(response); // 转换成json对象
+                  if(data.status === "success"){
+                      alertInfo(data.message);
+                  } else if(data.status==="fail"){
+                      alertInfo(data.data);
+                  } else {
+                      alertInfo("未知错误");
+                  }
+            },
+            error: function () {
+                alert("失败");
+            }
         });
-
     });
 
 </script>
