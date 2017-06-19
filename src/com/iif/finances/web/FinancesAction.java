@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.iif.common.util.JsonUtil;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
 import com.iif.finances.entity.Finances;
 import com.iif.finances.service.IFinancesService;
+import com.iif.stock.entity.Stock;
+import com.iif.stock.service.IStockService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,6 +45,9 @@ import javax.servlet.http.HttpServletRequest;
 public class FinancesAction extends BaseAction {
     @Autowired
     IFinancesService iFinancesService = null;
+    ////*****************Add By M ************////
+    @Autowired
+    IStockService iStockService = null;
     /**
      * 跳转到财物详情
      *
@@ -133,6 +139,9 @@ public class FinancesAction extends BaseAction {
         }
 
         Finances saveFinance=new Finances();
+        ////*****************Add By M start************////
+        Stock saveStock = new Stock();
+        ////****************Add By M End**************////
         // 更新时候的时间设置
         if(null!=finance&&StringUtils.isNotEmpty(finance.getSeizedTimeStart())){
             String []strTimeArr=finance.getSeizedTimeStart().split(",");
@@ -156,12 +165,25 @@ public class FinancesAction extends BaseAction {
             saveFinance.setCreator("admin"); // 当前登录人
             saveFinance.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
             saveFinance.setId(null);
+            ////*****************Add By M start************////
+            ////   update stock table for operateLogs      ////
+            ////*******************************************////
+            saveStock.setId(null);
+            saveStock.setFlag(SysConstant.STOCK_STATE_NONE);
+            saveStock.setFinances(saveFinance);
+            saveStock.setCreateTime(new Date());// 创建时间
+            saveStock.setCreator("admin"); // 当前登录人
+            saveStock.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
+            ////****************Add By M End**************////
         }
         saveFinance.setUpdateTime(new Date()); // 更新时间
         saveFinance.setUpdater("admin");// 当前登录人
 
         try{
             iFinancesService.save(saveFinance);
+            ////*****************Add By M start************////
+            if(StringUtils.isEmpty(financesId)) iStockService.save(saveStock);
+            ////****************Add By M End**************////
             return TemplateUtil.toSuccessMap("操作成功！");
         } catch(Exception e) {
             e.printStackTrace();

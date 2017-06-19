@@ -221,11 +221,13 @@ public class stockAction extends BaseAction {
             saveFinance.setCases(cases);            
 
             //插入出入库表，记录出入库操作
+            saveStock.setId(null);
             saveStock.setFinances(saveFinance);
             saveStock.setCreateTime(new Date());// 创建时间
             saveStock.setCreator("admin"); // 当前登录人
             saveStock.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
-            saveStock.setId(null);
+            saveStock.setUpdateTime(new Date()); // 更新时间
+            saveStock.setUpdater("admin");// 当前登录人
         } else {
             return TemplateUtil.toSuccessMap("没找到指定财物！");
         }
