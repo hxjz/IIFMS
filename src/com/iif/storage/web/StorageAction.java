@@ -99,7 +99,7 @@ public class StorageAction extends BaseAction{
 	    }
 	    // 为一级菜单设置子菜单，getChild是递归调用的
 	    for (Storage storage : storageList) {
-	        storage.setChild(getChild(storage.getKey(), rootStorage));
+	        //storage.setChild(getChild(storage.getKey(), rootStorage));
 	    }
 	    Map<String,Object> jsonMap = new HashMap();
 	    jsonMap.put("storage", storageList);
