@@ -5,7 +5,7 @@ import java.util.List;
 import com.hxjz.common.core.orm.BaseEntity;
 
 /**
- * 字典信息实体类
+ * 存储位置信息实体类
  * 
  * @author LiuM
  * @data 2017
@@ -17,7 +17,7 @@ public class Storage extends BaseEntity {
 	private String id;      // key
 	private String name;    // 显示名称 
 	private String level;   // 层级显示
-	private String AbSide;  // 密集柜AB面控制
+	private String abSide;  // 密集柜AB面控制
 	private String device;  // 设备信息
 	private String comment; // 备注
 	private Integer status; // 使用状态
@@ -46,11 +46,12 @@ public class Storage extends BaseEntity {
 	public void setLevel(String level) {
 		this.level = level;
 	}
+	
 	public String getAbSide() {
-		return AbSide;
+		return abSide;
 	}
 	public void setAbSide(String abSide) {
-		AbSide = abSide;
+		this.abSide = abSide;
 	}
 	public String getDevice() {
 		return device;

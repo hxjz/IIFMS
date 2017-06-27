@@ -8,32 +8,48 @@
 			<generator class="uuid" />
 		</id>
 
-		<property name="showName" type="string">
-			<column name="fshowName" length="10"/>
-		</property>
-		
-		<property name="key" type="string">
-			<column name="fkey" length="10"/>
+		<property name="name" type="string">
+			<column name="fname" length="100"/>
 		</property>
 
-		<property name="showImg" type="string">
-			<column name="fshowImg" length="100"/>
+		<property name="level" type="string">
+			<column name="flevel" length="10"/>
 		</property>
-		
+
+		<property name="abSide" type="string">
+			<column name="fabSide" length="1"/>
+		</property>
+
+		<property name="device" type="string">
+			<column name="fdevice" length="100"/>
+		</property>
+
+		<property name="comment" type="string">
+			<column name="fcomment" length="200"/>
+		</property>
+
+		<property name="status" type="integer">
+			<column name="fstatus" length="1"/>
+		</property>
+
 		<property name="index" type="integer">
-			<column name="findex" length="3"/>
+			<column name="findex" length="10"/>
 		</property>
 
-		<property name="isAvail" type="integer">
-			<column name="fisAvail" length="1"/>
+		<property name="isAvail" type="string">
+			<column name="fisAvail" length="50"/>
 		</property>
 
-		<property name="storageStatus" type="integer">
-			<column name="fstorageStatus" length="1"/>
-		</property>
-		
 		<property name="parentId" type="string">
 			<column name="fparentid" length="50"/>
+		</property>
+
+		<property name="type" type="string">
+			<column name="ftype" length="1"/>
+		</property>
+
+		<property name="conUrl" type="string">
+			<column name="fconUrl" length="200"/>
 		</property>
 
 		<property name="isDel" type="integer">
@@ -47,11 +63,11 @@
 		<property name="createTime" type="timestamp">
 			<column name="fcreatetime" length="14" />
 		</property>
-		
+
 		<property name="updater" type="string">
 			<column name="fupdater" length="20" />
 		</property>
-		
+
 		<property name="updateTime" type="timestamp">
 			<column name="fupdatetime" length="14" />
 		</property>
