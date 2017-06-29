@@ -165,6 +165,12 @@
 							   onclick="loadUrl('content_monitor','${path}/monitor/listMonitor.action','移动监控管理');" id='left_monitor' title="移动监控管理">移动监控管理</a>
 						</dt>
 					</dl>
+					<dl>
+						<dt>
+							<a href="javascript:void(0)" style="color: #648da2;"
+							   onclick="loadUrl('content_monitor','${path}/finances/listInventory.action','盘库');" id='left_inventory' title="盘库">盘库</a>
+						</dt>
+					</dl>
 					<!-- Temp -->
 				</div>
 			</div>
