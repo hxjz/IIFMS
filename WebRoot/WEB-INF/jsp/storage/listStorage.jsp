@@ -15,41 +15,27 @@
 			<div class="nobortable pt10 pl10">
 				<table width="100%" border="0">
 					<tr>
-						<td class="tr" width="100"><span class="t_span01">存储区/室：</span></td>
+						<td class="tr" width="100"><span class="t_span01">存储类型：</span></td>
 						<td>
 							<select name="room" style="width: 120">
 								<option value="">请选择</option>
-								<%--<option value="1">手迹痕迹</option>--%>
-								<%--<option value="2">足迹痕迹</option>--%>
-								<%--<option value="3">其他</option>--%>
+								<%--<option value="1">密集柜/区</option>--%>
+								<%--<option value="2">存储区</option>--%>
 								<c:forEach items="${financeTypeList}" var="object">
 									<option value="${object.key}">${object.value}</option>
 								</c:forEach>
 							</select>
 						</td>
-						<td class="tr" width="100"><span class="t_span01">排：</span></td>
+						<td class="tr" width="100"><span class="t_span01">存储名称：</span></td>
 						<td>
-							<select name="filter_and_financeState_EQ_I" style="width: 120">
-							<option value="">请选择</option>
-							<option value="1">登记</option>
-							<option value="2">在库</option>
-							<option value="3">出库</option>
-						</td>
-						<td class="tr" width="100"><span class="t_span01">列：</span></td>
-						<td>
-							<select name="filter_and_financeState_EQ_I" style="width: 120">
-							<option value="">请选择</option>
-							<option value="1">登记</option>
-							<option value="2">在库</option>
-							<option value="3">出库</option>
-						</td>
-						<td clazss="tr" width="100"><span class="t_span01">门：</span></td>
-						<td>
-							<select name="filter_and_financeState_EQ_I" style="width: 120">
-							<option value="">请选择</option>
-							<option value="1">登记</option>
-							<option value="2">在库</option>
-							<option value="3">出库</option>
+							<select name="room" style="width: 120">
+								<option value="">请选择</option>
+								<%--<option value="1">密集柜/区</option>--%>
+								<%--<option value="2">存储区</option>--%>
+								<c:forEach items="${financeTypeList}" var="object">
+									<option value="${object.key}">${object.value}</option>
+								</c:forEach>
+							</select>
 						</td>
 					</tr>
 					<tr>
@@ -65,7 +51,7 @@
 		</div>
 	</form>
 	
-		<table 	id="dg1"
+		<table id="dg1"
 			title="存储位置详细信息"
 			style="width:100%;height:350px"
 			fitColumns='true'
@@ -81,14 +67,15 @@
 			pageList:[10,30,50] ">
         <thead>
             <tr>
-                <th data-options="hidden:true" align="center">ID</th>
-                <th data-options="field:'key',width:120" align="center">显示名</th>
-                <th data-options="field:'showName',width:120" align="center">显示名</th>
-                <th data-options="field:'storageStatus',width:200" align="center">存储状态</th>
-                <th data-options="field:'isAvail',width:200" align="center">存储状态</th>
-                <th data-options="field:'isDel',width:100" align="center">删除标示</th>
-                <th data-options="field:'index',width:100" align="center">排序号</th>
-                <th data-options="field:'parentId',width:100" align="center">父级Id</th>
+                <th data-options="field:'id',hidden:true" align="center">Id</th>
+                <th data-options="field:'type',hidden:true" align="center">type</th>
+                <th data-options="width:160" align="center">操作</th>
+                <th data-options="field:'name',width:160" align="center">存储名称</th>
+                <th data-options="field:'level1',width:80" align="center">一级显示</th>
+                <th data-options="field:'level2',width:120" align="center">二级显示</th>
+                <th data-options="field:'level3',width:80" align="center">三级显示</th>
+                <th data-options="field:'status',width:60" align="center">存储状态</th>
+                <th data-options="field:'device',width:150" align="center">设备信息</th>
             </tr>
         </thead>
     </table>
