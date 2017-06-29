@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.testng.annotations.Test;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.hxjz.common.core.web.BaseAction;
 import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
@@ -66,14 +63,7 @@ public class StorageAction extends BaseAction{
 		storageService.findByFilterMap(searchMap);
 		
 		return TemplateUtil.toDatagridMap(page, dic);
-	}	
-	
-	///////////////////////////////////////
-	//
-	//
-	//
-	////////////////////////////////////////
-	private final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+	}
 
 	/**
 	 * 跳转列表页面
@@ -103,7 +93,6 @@ public class StorageAction extends BaseAction{
 	    }
 	    Map<String,Object> jsonMap = new HashMap();
 	    jsonMap.put("storage", storageList);
-	    System.out.println(gson.toJson(jsonMap));
 
         HttpTool.setAttribute("storageList", storageList);
 	    
