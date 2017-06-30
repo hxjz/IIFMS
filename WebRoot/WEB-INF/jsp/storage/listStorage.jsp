@@ -17,7 +17,7 @@
 					<tr>
 						<td class="tr" width="100"><span class="t_span01">存储类型：</span></td>
 						<td>
-							<select name="room" style="width: 120">
+							<select name="filter_and_type_EQ_I" style="width: 120">
 								<option value="">请选择</option>
 								<%--<option value="1">密集柜/区</option>--%>
 								<%--<option value="2">存储区</option>--%>
@@ -28,7 +28,7 @@
 						</td>
 						<td class="tr" width="100"><span class="t_span01">存储名称：</span></td>
 						<td>
-							<select name="room" style="width: 120">
+							<select name="filter_and_parentId_EQ_S" style="width: 120">
 								<option value="">请选择</option>
 								<%--<option value="1">密集柜/区</option>--%>
 								<%--<option value="2">存储区</option>--%>
@@ -40,7 +40,8 @@
 					</tr>
 					<tr>
 						<td colspan="8" align="right">
-							<input class="t_text w120" name="filter_and_isDel_EQ_I" type="hidden" value="0"/>
+							<input name="filter_and_isDel_EQ_I" type="hidden" value="0"/>
+							<input name="order_createTime_T" type="hidden" value="desc"/>
 							<input class="t_btnsty01" id="find" name="select" type="button" value="查询"/>
 							<input class="t_btnsty01" type="reset" value="重置"/>&nbsp;&nbsp;&nbsp;
 						</td>
@@ -69,7 +70,7 @@
             <tr>
                 <th data-options="field:'id',hidden:true" align="center">Id</th>
                 <th data-options="field:'type',hidden:true" align="center">type</th>
-                <th data-options="width:160" align="center">操作</th>
+                <th data-options="hidden:true" align="center">操作</th>
                 <th data-options="field:'name',width:160" align="center">存储名称</th>
                 <th data-options="field:'level1',width:80" align="center">一级显示</th>
                 <th data-options="field:'level2',width:120" align="center">二级显示</th>
