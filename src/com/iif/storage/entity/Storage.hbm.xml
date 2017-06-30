@@ -36,8 +36,8 @@
 			<column name="findex" length="10"/>
 		</property>
 
-		<property name="isAvail" type="string">
-			<column name="fisAvail" length="50"/>
+		<property name="isAvail" type="integer">
+			<column name="fisAvail" length="1"/>
 		</property>
 
 		<property name="parentId" type="string">
@@ -71,6 +71,12 @@
 		<property name="updateTime" type="timestamp">
 			<column name="fupdatetime" length="14" />
 		</property>
+		
+		<list name="child" table="tstorage" cascade="none" >
+			<key column="fparentid" />
+			<index column="[findex]"></index>
+			<one-to-many class="com.iif.storage.entity.Storage" not-found="ignore" />
+		</list>
 
 	</class>
 </hibernate-mapping>
