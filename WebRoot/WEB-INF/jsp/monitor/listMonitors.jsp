@@ -9,7 +9,7 @@
     <script src="${path }/js/video/ie8/videojs-ie8.js"></script>
     <script>
         videojs.options.flash.swf = "http://example.com/path/to/video-js.swf"
-    </script
+    </script>
 </head>
 <body>
 <div class="t_rightcontainer">
