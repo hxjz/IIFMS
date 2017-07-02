@@ -74,7 +74,7 @@
 		
 		<list name="child" table="tstorage" cascade="none" >
 			<key column="fparentid" />
-			<index column="[findex]"></index>
+			<index column="fid"></index>
 			<one-to-many class="com.iif.storage.entity.Storage" not-found="ignore" />
 		</list>
 

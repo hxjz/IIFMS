@@ -17,29 +17,56 @@
 					<tr>
 						<td class="tr" width="100"><span class="t_span01">存储类型：</span></td>
 						<td>
-							<select name="filter_and_type_EQ_I" style="width: 120">
+							<select name="filter_and_type_EQ_S" style="width: 120">
 								<option value="">请选择</option>
-								<%--<option value="1">密集柜/区</option>--%>
-								<%--<option value="2">存储区</option>--%>
-								<c:forEach items="${financeTypeList}" var="object">
+								<c:forEach items="${storageTypeList}" var="object">
 									<option value="${object.key}">${object.value}</option>
 								</c:forEach>
 							</select>
 						</td>
 						<td class="tr" width="100"><span class="t_span01">存储名称：</span></td>
 						<td>
-							<select name="filter_and_parentId_EQ_S" style="width: 120">
+							<select id="storageName" style="width: 120">
 								<option value="">请选择</option>
-								<%--<option value="1">密集柜/区</option>--%>
-								<%--<option value="2">存储区</option>--%>
-								<c:forEach items="${financeTypeList}" var="object">
+								<c:forEach items="${storageNameList}" var="object">
+									<option value="${object.key}">${object.value}</option>
+								</c:forEach>
+							</select>
+						</td>
+						<td class="tr" width="100"><span class="t_span01">一级显示：</span></td>
+						<td>
+							<select name="storageLevel1" style="width: 120">
+								<option value="">请选择</option>
+								<c:forEach items="${storageLevel1List}" var="object">
 									<option value="${object.key}">${object.value}</option>
 								</c:forEach>
 							</select>
 						</td>
 					</tr>
 					<tr>
+						<td class="tr" width="100"><span class="t_span01">二级显示：</span></td>
+						<td>
+							<select name="storageLevel2" style="width: 120">
+								<option value="">请选择</option>
+								<c:forEach items="${storageLevel2List}" var="object">
+									<option value="${object.key}">${object.value}</option>s
+								</c:forEach>
+							</select>
+						</td>
+						<td class="tr" width="100"><span class="t_span01">三级显示：</span></td>
+						<td>
+							<select name="storageLevel3" style="width: 120">
+								<option value="">请选择</option>
+								<c:forEach items="${storageLevel3List}" var="object">
+									<option value="${object.key}">${object.value}</option>
+								</c:forEach>
+							</select>
+						</td>
+						<td class="tr" width="100" colspan="2"></td>
+					</tr>
+					<tr>
 						<td colspan="8" align="right">
+							<input name="filter_and_parentId_EQ_S" type="hidden" value="0"/>
 							<input name="filter_and_isDel_EQ_I" type="hidden" value="0"/>
 							<input name="order_createTime_T" type="hidden" value="desc"/>
 							<input class="t_btnsty01" id="find" name="select" type="button" value="查询"/>
@@ -51,13 +78,8 @@
 			<!--nobortable -->
 		</div>
 	</form>
-	
-		<table id="dg1"
-			title="存储位置详细信息"
-			style="width:100%;height:350px"
-			fitColumns='true'
-			toolbar='#toolbar'
-            data-options="singleSelect:true,collapsible:false,
+	<table id="dg1" title="存储位置详细信息" style="width:100%;height:350px" fitColumns='true'
+		toolbar='#toolbar' data-options="singleSelect:true,collapsible:false,
             url:'${path }/storage/showStorage.action',
             method:'post',
             rownumbers:true,
@@ -66,26 +88,21 @@
 			pageNumber:1,
 			pageSize:50,
 			pageList:[10,30,50] ">
-        <thead>
-            <tr>
-                <th data-options="field:'id',hidden:true" align="center">Id</th>
-                <th data-options="field:'type',hidden:true" align="center">type</th>
-                <th data-options="hidden:true" align="center">操作</th>
-                <th data-options="field:'name',width:160" align="center">存储名称</th>
-                <th data-options="field:'level1',width:80" align="center">一级显示</th>
-                <th data-options="field:'level2',width:120" align="center">二级显示</th>
-                <th data-options="field:'level3',width:80" align="center">三级显示</th>
-                <th data-options="field:'status',width:60" align="center">存储状态</th>
-                <th data-options="field:'device',width:150" align="center">设备信息</th>
-            </tr>
-        </thead>
-    </table>
-    <!-- 按钮 -->
-    <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="$('#dicAdd').window('open');">新增</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="toDelete();">删除</a>
-    </div>
-    <script type="text/javascript">
+       <thead>
+           <tr>
+               <th data-options="field:'id',hidden:true" align="center">Id</th>
+               <!-- <th data-options="hidden:true" align="center">操作</th> -->
+               <th data-options="field:'type',width:160,formatter:formatType" align="center">存储类型</th>
+               <th data-options="field:'name',width:160" align="center">显示名称</th>
+               <th data-options="field:'status',width:60,formatter:formatStatus" align="center">存储状态</th>
+               <th data-options="field:'device',width:150" align="center">设备信息</th>
+               <th data-options="field:'comment',width:150" align="center">备注</th>
+           </tr>
+       </thead>
+   </table>
+   <!-- 按钮 -->
+    
+   <script type="text/javascript">
     	$(function(){
     		createTable('dg1');
     	});
@@ -102,6 +119,22 @@
 	        	reloadgrid('dg1');  // 重新加载datagrid
 	        }
 	    });
+    	
+    	function formatType(value, rowData,rowIndex) {
+    		if(rowData.type=='2') {
+    			return "密集柜/区";
+    		}else {
+    			return "存储区";
+    		}
+    	}
+    	
+    	function formatStatus(value, rowData,rowIndex) {
+    		if(rowData.status=='1') {
+				return "使用中";
+			}else {
+				return "未使用";
+			}
+		}
     	
 	 	// 删除处理
 		function toDelete() {
@@ -155,6 +188,6 @@
 				}
 			});
 		}
-    </script>
+   </script>
 </body>
 </html>

@@ -9,14 +9,14 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hxjz.common.core.web.BaseAction;
 import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
-import com.iif.common.util.SysConstant;
+import com.iif.common.enums.StorageTypeEnum;
+import com.iif.common.util.InitSelect;
 import com.iif.common.util.TemplateUtil;
 import com.iif.storage.entity.Storage;
 import com.iif.storage.service.IStorageService;
@@ -41,6 +41,9 @@ public class StorageAction extends BaseAction{
 	 */
 	@RequestMapping("tolistStorage.action")
 	public String tolistStorage() {
+		List<?> storageTypeList = InitSelect.getSelectList(StorageTypeEnum.class);
+		HttpTool.setAttribute("storageTypeList", storageTypeList);
+		
 		return "/jsp/storage/listStorage";
 	}
 	
@@ -48,7 +51,7 @@ public class StorageAction extends BaseAction{
 	 * 跳转列表页面
 	 * @return
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes"})
 	@RequestMapping("showStorage.action")
 	@ResponseBody
 	public Map showStorage(){
@@ -59,72 +62,7 @@ public class StorageAction extends BaseAction{
 		// searchMap
 		Map searchMap = super.buildSearch();
 		
-		List lstRtn = new ArrayList();
-		List lstNull = new ArrayList();
-		lstNull.add(null);
-		
-		// 存储数据查询
-		Map mapOne = new HashMap();
-		mapOne.put("filter_and_parentId_EQ_S", SysConstant.SYSTEM_CON_ZER); // 最上层数据标示
-		mapOne.put("filter_and_type_EQ_I", searchMap.get("filter_and_type_EQ_I"));// 存储类型（页面输入）
-		mapOne.put("filter_and_isDel_EQ_I", searchMap.get("filter_and_isDel_EQ_I"));// 删除标示
-		mapOne.put("order_createTime_T", searchMap.get("order_createTime_T"));// 排序
-		List lstLevel1 = storageService.findByFilterMap(mapOne);
-		lstLevel1.removeAll(lstNull);
-		
-		if(!CollectionUtils.isEmpty(lstLevel1)) {
-			for(int i=0; i<lstLevel1.size(); i++) {
-				Storage tempStorage1 = (Storage)lstLevel1.get(i);
-				
-				if(null != tempStorage1) {
-					List lstLevel2 = tempStorage1.getChild();
-					lstLevel2.removeAll(lstNull);
-					if(!CollectionUtils.isEmpty(lstLevel2)) {
-						for(int j=0; j<lstLevel2.size(); j++) {
-							Storage tempStorage2 = (Storage)lstLevel2.get(j);
-							
-							if(null != tempStorage2) {
-								List lstLevel3 = tempStorage2.getChild();
-								lstLevel3.removeAll(lstNull);
-								if(!CollectionUtils.isEmpty(lstLevel3)) {
-									for(int k=0; k<lstLevel3.size(); k++) {
-										Storage tempStorage3 = (Storage)lstLevel3.get(k);
-										
-										if(null != tempStorage3) {
-											List lstLevel4 = tempStorage3.getChild();
-											lstLevel4.removeAll(lstNull);
-											if(!CollectionUtils.isEmpty(lstLevel4)) {
-												for(int l=0; l<lstLevel4.size(); l++) {
-													Storage tempStorage4 = (Storage)lstLevel4.get(l);
-													Map mapShow = new HashMap();
-													if(null != tempStorage4) {
-														mapShow.put("name", tempStorage1.getName()); // 存储名称
-														mapShow.put("type", tempStorage1.getType()); // 存储类型
-														mapShow.put("device", tempStorage1.getDevice());// 设备信息
-														
-														mapShow.put("level1", "第"+tempStorage2.getName()+(tempStorage2.getType().equals("1")?"列":"排"));
-														
-														mapShow.put("level2", "第"+tempStorage3.getName()+"组");
-														mapShow.put("abSide", tempStorage3.getAbSide());
-													
-														mapShow.put("level3", "第"+tempStorage4.getName()+(tempStorage4.getType().equals("1")?"层":"门"));
-														mapShow.put("status", tempStorage4.getStatus());
-														mapShow.put("isAvail", tempStorage4.getIsAvail());
-														mapShow.put("conUrl", tempStorage4.getConUrl());
-													}
-													
-													lstRtn.add(mapShow);
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+		List lstRtn = storageService.findByPage(page, searchMap);
 		
 		// 返回页面显示
 		return TemplateUtil.toDatagridMap(page, lstRtn);
