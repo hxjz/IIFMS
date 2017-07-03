@@ -15,18 +15,9 @@
 			<div class="nobortable pt10 pl10">
 				<table width="100%" border="0">
 					<tr>
-						<td class="tr" width="100"><span class="t_span01">存储类型：</span></td>
-						<td>
-							<select name="filter_and_type_EQ_S" style="width: 120">
-								<option value="">请选择</option>
-								<c:forEach items="${storageTypeList}" var="object">
-									<option value="${object.key}">${object.value}</option>
-								</c:forEach>
-							</select>
-						</td>
 						<td class="tr" width="100"><span class="t_span01">存储名称：</span></td>
 						<td>
-							<select id="storageName" style="width: 120">
+							<select id="storageName" style="width: 120" onchange="storageNameChange(this.value)">
 								<option value="">请选择</option>
 								<c:forEach items="${storageNameList}" var="object">
 									<option value="${object.key}">${object.value}</option>
@@ -35,34 +26,22 @@
 						</td>
 						<td class="tr" width="100"><span class="t_span01">一级显示：</span></td>
 						<td>
-							<select name="storageLevel1" style="width: 120">
+							<select id="storageLevel1" style="width: 120" onchange="storageLevel1Change(this.value)">
 								<option value="">请选择</option>
-								<c:forEach items="${storageLevel1List}" var="object">
-									<option value="${object.key}">${object.value}</option>
-								</c:forEach>
 							</select>
 						</td>
-					</tr>
-					<tr>
 						<td class="tr" width="100"><span class="t_span01">二级显示：</span></td>
 						<td>
-							<select name="storageLevel2" style="width: 120">
+							<select id="storageLevel2" style="width: 120" onchange="storageLevel2Change(this.value)">
 								<option value="">请选择</option>
-								<c:forEach items="${storageLevel2List}" var="object">
-									<option value="${object.key}">${object.value}</option>s
-								</c:forEach>
 							</select>
 						</td>
 						<td class="tr" width="100"><span class="t_span01">三级显示：</span></td>
 						<td>
-							<select name="storageLevel3" style="width: 120">
+							<select id="storageLevel3" style="width: 120" onchange="storageLevel3Change(this.value)">
 								<option value="">请选择</option>
-								<c:forEach items="${storageLevel3List}" var="object">
-									<option value="${object.key}">${object.value}</option>
-								</c:forEach>
 							</select>
 						</td>
-						<td class="tr" width="100" colspan="2"></td>
 					</tr>
 					<tr>
 						<td colspan="8" align="right">
