@@ -35,10 +35,10 @@ import com.iif.stock.service.IStockService;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @Author GaoGang
- * @Date 2017年5月15日 下午10:24:07
+ * @Author M
+ * @Date 2017年7月3日 下午10:24:07
  * @Version V0.1
- * @Desc 财物管理 action
+ * @Desc 异常财物 action
  */
 @Controller
 @RequestMapping("/finances/*")
@@ -52,7 +52,7 @@ public class InventoryAction extends BaseAction {
      * @return
      */
     @RequestMapping("listInventory.action")
-    public String listFinances() {
+    public String listInventory() {
         // 财物状态下拉列表
         List<?> financeStateList = InitSelect.getSelectList(FinanceStateEnum.class);
         HttpTool.setAttribute("financeStateList", financeStateList);
@@ -60,6 +60,20 @@ public class InventoryAction extends BaseAction {
         List<?> financeTypeList = InitSelect.getSelectList(FinanceTypeEnum.class);
         HttpTool.setAttribute("financeTypeList", financeTypeList);
         return "jsp/finances/listInventory";
+    }
+    
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @RequestMapping("showInventory.action")
+    @ResponseBody
+    public Map showInventory() {
+        int pageNum = HttpTool.getIntegerParameter("page");
+        int pageSize = HttpTool.getIntegerParameter("rows");
+        page = new Page(pageNum, pageSize);
+        Map searchMap = super.buildSearch(); // 组装查询条件
+
+        List<Finances> financeList = iFinancesService.findByPage(page, searchMap);
+
+        return TemplateUtil.toDatagridMap(page, financeList);
     }
 
 }
