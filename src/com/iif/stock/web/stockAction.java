@@ -1,6 +1,7 @@
 package com.iif.stock.web;
 
 import com.hxjz.common.core.web.BaseAction;
+import com.hxjz.common.utils.DateUtil;
 import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
 import com.hxjz.common.utils.ReflectionUtil;
@@ -27,9 +28,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import jxl.Workbook;
 import jxl.write.Label;
@@ -135,8 +139,7 @@ public class stockAction extends BaseAction {
      * @return
      */
     @RequestMapping("toPrintExcel.action")
-    public String toPrintExcel() throws Exception {
-        System.out.println("***************Excel  print**********");
+    public String toPrintExcel(HttpServletRequest request) throws Exception {
         String caseId = HttpTool.getParameter("caseId");
         String caseNum = HttpTool.getParameter("caseNum");
         String caseName = HttpTool.getParameter("caseName");
@@ -146,38 +149,32 @@ public class stockAction extends BaseAction {
         String fetchMan = HttpTool.getParameter("fetchMan");
         String operator = HttpTool.getParameter("operator");
 
-        System.out.println("caseId:" + caseId);
-        System.out.println("caseNum:" + caseNum);
-        System.out.println("caseName:" + caseName);
-        System.out.println("financesId:" + financesId);
-        System.out.println("financesName:" + financesName);
-        System.out.println("financesNum:" + financesNum);
-        System.out.println("fetchMan:" + fetchMan);
-        System.out.println("operator:" + operator);
-        System.out.println("***************Excel  print**********");
-		//创建只读的 Excel 工作薄的对象副本
-//		Workbook wb=Workbook.getWorkbook(new File("G:\\Works\\IIFMS\\财物出入库审批表.xls"));
-        //System.out.println("***" + stockAction.class.getResource("/").getFile()); 
-        String basePath = stockAction.class.getResource("/").getFile();
-        String excelPath = basePath + SysConstant.STOCK_IN_EXCEL_NAME;
-        String excelPathPrint = basePath + SysConstant.STOCK_IN_EXCEL_NAME2;
-        //String excelPathPrint = stockAction.class.getResource(SysConstant.STOCK_IN_EXCEL_NAME2).getFile();
+        System.out.println("caseId:" + caseId + "caseNum:" + caseNum + "caseName:" + caseName+ "financesId:" + financesId);
+        System.out.println("financesName:" + financesName+ "financesNum:" + financesNum+ "fetchMan:" + fetchMan+ "operator:" + operator);
 
+        String date = DateUtil.getDateTime(DateUtil.DATE_FORMAT, new Date());
 
-		Workbook wb=Workbook.getWorkbook(new File(excelPath));
-		
-		// 创建真实写入的 Excel 工作薄对象
-		WritableWorkbook book= Workbook.createWorkbook(new File(excelPathPrint),wb);
-		//修改文本内容：例修改sheet2中cell B3的label内容
-		WritableSheet sheet = book.getSheet(0);
-		sheet.addCell(new Label(9,2,"modified cell"));
-		sheet.addCell(new Label(3,3,operator));
-		sheet.addCell(new Label(9,3,new Date().toString()));
-		sheet.addCell(new Label(3,5,caseName));
-		sheet.addCell(new Label(3,6,caseNum));
-		book.write();
-		book.close();
-		Runtime.getRuntime().exec("cmd  /c  start " + excelPathPrint);
+        try {
+			//创建只读的 Excel 工作薄的对象副本
+	        String templatePath = request.getSession().getServletContext().getRealPath("/template/财物出入库审批表V1.xls"); 
+	        String exportPath = request.getSession().getServletContext().getRealPath("/export/财物出入库审批表" + date + ".xls"); 
+	        Workbook wb=Workbook.getWorkbook(new File(templatePath));
+			
+			// 创建真实写入的 Excel 工作薄对象
+			WritableWorkbook book= Workbook.createWorkbook(new File(exportPath),wb);
+			//修改文本内容：例修改sheet2中cell B3的label内容
+			WritableSheet sheet = book.getSheet(0);
+			sheet.addCell(new Label(9,2,"modified cell"));
+			sheet.addCell(new Label(3,3,operator));
+			sheet.addCell(new Label(9,3,new Date().toString()));
+			sheet.addCell(new Label(3,5,caseName));
+			sheet.addCell(new Label(3,6,caseNum));
+			book.write();
+			book.close();
+			Runtime.getRuntime().exec("cmd  /c  start " + exportPath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "jsp/stock/outstock";
     }
     

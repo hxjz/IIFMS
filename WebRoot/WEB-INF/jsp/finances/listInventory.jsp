@@ -19,16 +19,15 @@
 					<div class="nobortable pt10 pl10">
 						<table width="100%" border="0">
 							<tr>
+								<td><input class="t_btnsty02" name="" type="button" value="导出" onclick="toAddPage();" /></td>
 								<td>
-									<input type="hidden" name="order_updateTime_T" value="desc"/>
-									<input class="t_btnsty01" id="find" name="select" type="button" value="导出" />
+									<input class="t_file01" name="fileName" type="file" id="fileName"/>
+									<input class="t_btnsty04" id="upload" name="upload" type="submit" value="上传文件" />
 								</td>
-								<td><input class="t_text w200" name="filter_and_financeNum_LIKE_S" type="text" id="financeNum" /></td>
-								<td><input class="t_btnsty01" id="chooseFile" name="select" type="button" value="选择文件" /></td>
-								<td><input class="t_btnsty01" id="upload" name="select" type="button" value="上传文件" /></td>
-								<td><input class="t_btnsty01" id="find" name="select" type="button" value="详细信息" /></td>
 							</tr>
 						</table>
+					</div>
+					<div class="nobortable pt10 pl10">
 					</div>
 					<!--nobortable -->
 				</div>
@@ -41,11 +40,10 @@
 	<div class="t_rightcontainer">
 		<div class="t_oneblock">
 			<div class="t_oneblock_h">
-				<h3>财物列表</h3>
+				<h3>异常财物列表</h3>
 			</div>
 			<!-- t_oneblock_h-->
 			<div class="t_oneblock_c pr">
-				<div class="hastable mt10">
 					<table id="dg1" style="width:100%; height:350px" data-options="singleSelect:true,collapsible:false,
 			            url:'${path}/finances/showInventory.action',
 			            method:'post',
@@ -73,8 +71,6 @@
 							</tr>
 						</thead>
 					</table>
-				</div>
-				<!--hastable -->
 			</div>
 			<!-- t_oneblock_c-->
 		</div>

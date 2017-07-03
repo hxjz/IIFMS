@@ -76,6 +76,14 @@ public class InventoryAction extends BaseAction {
         return TemplateUtil.toDatagridMap(page, financeList);
     }
 
+    @RequestMapping("upLoad.action")
+    @ResponseBody
+    public Map upLoad(HttpServletRequest request) {
+    	String savePath = request.getSession().getServletContext().getRealPath("/template/财物统计表.xls");
+    	return null;
+    }
+    
+
 }
 
 
