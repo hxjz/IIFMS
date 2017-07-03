@@ -6,17 +6,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hxjz.common.core.web.BaseAction;
 import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
-import com.iif.common.enums.StorageTypeEnum;
-import com.iif.common.util.InitSelect;
+import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
 import com.iif.storage.entity.Storage;
 import com.iif.storage.service.IStorageService;
@@ -39,10 +42,26 @@ public class StorageAction extends BaseAction{
 	 * 跳转列表页面
 	 * @return
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping("tolistStorage.action")
 	public String tolistStorage() {
-		List<?> storageTypeList = InitSelect.getSelectList(StorageTypeEnum.class);
-		HttpTool.setAttribute("storageTypeList", storageTypeList);
+		Map paramMap = new HashMap();
+		paramMap.put("filter_and_parentId_EQ_S", SysConstant.SYSTEM_CON_ZER);
+		paramMap.put("filter_and_isDel_EQ_I", SysConstant.SYSTEM_CON_ZER);
+		List<?> rtnList = storageService.findByFilterMap(paramMap);
+		List storageNameList = new ArrayList();
+		if(!CollectionUtils.isEmpty(rtnList)){
+			for(int i=0; i<rtnList.size(); i++) {
+				Storage tempStorage = new Storage();
+				tempStorage = (Storage)rtnList.get(i);
+				
+				Map addMap = new HashMap();
+				addMap.put(SysConstant.SELECT_OPTION_VALUE, tempStorage.getId());
+				addMap.put(SysConstant.SELECT_OPTION_TEXT, tempStorage.getName());
+				storageNameList.add(addMap);
+			}
+		}
+		HttpTool.setAttribute("storageNameList", storageNameList);
 		
 		return "/jsp/storage/listStorage";
 	}
@@ -51,7 +70,7 @@ public class StorageAction extends BaseAction{
 	 * 跳转列表页面
 	 * @return
 	 */
-	@SuppressWarnings({ "rawtypes"})
+	@SuppressWarnings({"rawtypes"})
 	@RequestMapping("showStorage.action")
 	@ResponseBody
 	public Map showStorage(){
@@ -155,5 +174,25 @@ public class StorageAction extends BaseAction{
 		dic.setUpdateTime(new Date());
 		dic.setIsDel(0);
 		storageService.save(dic);
+	}
+	
+	/**
+	 * 跳转列表页面
+	 * @return
+	 */
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	@RequestMapping("getLevelInfo.action")
+	@ResponseBody
+	public Map getLevelInfo(){
+		Map paramMap = new HashMap();
+		paramMap.put("filter_and_isDel_EQ_I", SysConstant.SYSTEM_CON_ZER);
+		List lstRtn = storageService.findByFilterMap(paramMap);
+		
+		JSONArray ja = new JSONArray();
+		
+		JSONObject jo = new JSONObject();
+		
+		// 返回页面显示
+		return TemplateUtil.toSuccessMap(ja);
 	}
 }
