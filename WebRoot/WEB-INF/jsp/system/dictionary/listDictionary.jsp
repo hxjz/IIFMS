@@ -10,15 +10,21 @@
 	<form method="post" id="searchForm">
 		<div class="t_oneblock_h">
 			<h3>数据字典查询</h3>
-		</div>
-		<div class="t_oneblock_c pr">
+		</div>		<div class="t_oneblock_c pr">
 			<div class="nobortable pt10 pl10">
 				<table width="100%" border="0">
 					<tr>
-						<td class="tr" width="100"><span class="t_span01">枚举名称：</span></td>
-						<td><input class="t_text w100" name="filter_and_enumName_LIKE_S" type="text"/></td>
+						<td class="tr" width="100"><span class="t_span01">下拉菜单类型：</span></td>
+						<td>
+							<select class="w140" name="filter_and_enumName_EQ_S" >
+								<option value="">请选择</option>
+								<c:forEach items="${systemTypeList}" var="system">
+									<option value="${system.key}">${system.value}</option>
+								</c:forEach>
+							</select>
+						</td>
 						<td class="tr" width="100"><span class="t_span01">下拉菜单值：</span></td>
-						<td><input class="t_text w120" name="filter_and_enumName_LIKE_S" type="text"/></td>
+						<td><input class="t_text w120" name="filter_and_value_LIKE_S" type="text"/></td>
 						<td clazss="tr" width="100"><span class="t_span01">创建时间：</span></td>
 						<td colspan="3" width="260">
 							<input class="easyui-datebox t_text w100" editable="false" name="filter_and_createTime_GE_T" type="text" /> 
@@ -28,6 +34,7 @@
 					<tr>
 						<td colspan="8" align="right">
 							<input class="t_text w120" name="filter_and_isDel_EQ_I" type="hidden" value="0"/>
+							<input class="t_text w120" name="filter_and_enumName_NEQ_S" type="hidden" value="SystemTypeEnum"/>
 							<input class="t_btnsty01" id="find" name="select" type="button" value="查询"/>
 							<input class="t_btnsty01" type="reset" value="重置"/>&nbsp;&nbsp;&nbsp;
 						</td>
@@ -57,7 +64,7 @@
                 <th data-options="hidden:true" align="center">ID</th>
                 <th data-options="field:'key',width:120" align="center">下拉菜单键</th>
                 <th data-options="field:'value',width:200" align="center">下拉菜单值</th>
-                <th data-options="field:'enumName',width:200" align="center">下拉菜枚举</th>
+                <th data-options="field:'enumName',formatter:formatEnumType,width:200" align="center">下拉菜单类型</th>
                 <th data-options="field:'isDel',width:100" align="center">删除标示</th>
                 <th data-options="field:'index',width:100" align="center">排序号</th>
                 <th data-options="field:'parentId',width:100" align="center">父级Id</th>

@@ -160,3 +160,56 @@ function formateHouseType(value, rowData, index){
 		return rowData.houseTypeId.housetypeName;
 	}
 }
+
+
+// 格式化 枚举类型
+function formatEnumType(value,row,index) {
+	if(row.enumName){
+		var enumEnglishName=row.enumName;
+		var enumChinsesName;
+		switch (enumEnglishName){
+			case 'CaseTypeEnum':
+				enumChinsesName='案件类型';
+				break;
+            case 'FinanceTypeEnum':
+                enumChinsesName='财物类型';
+                break;
+            case 'FinanceSourceEnum':
+                enumChinsesName='财物来源';
+                break;
+            case 'FinanceStateEnum':
+                enumChinsesName='财物状态';
+                break;
+            case 'OutstockReasonTypeEnum':
+                enumChinsesName='出库状态';
+                break;
+            case 'StorageTypeEnum':
+                enumChinsesName='存储类型';
+                break;
+            case 'DepartmentTypeEnum':
+                enumChinsesName='单位名称';
+                break;
+			default:
+				enumChinsesName='未知类型'
+		}
+		return enumChinsesName;
+	}else{
+		return '未知类型';
+	}
+}
+
+
+// 格式化财务状态
+function formatFinanceState(value,row,index) {  // TODO  0为false
+	if(row.financeState){
+        if(1===row.financeState) {
+            return "在库";
+        }else if(2===row.financeState){
+            return "出库";
+        }else {
+            return "登记";
+        }
+	}else{
+		return '异常';
+	}
+}

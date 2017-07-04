@@ -292,16 +292,6 @@
             <%--&lt;%&ndash;alert(json1);&ndash;%&gt;--%>
             <%--return values;--%>
         <%--}--%>
-        // 财物状态
-        function formatFinanceState(value,row,index) {
-            if(""!=row.financeState && "2"==row.financeState) {
-                return "出库";
-            }else if(""!=row.financeState && "1"==row.financeState){
-                return "在库";
-            }else {
-                return "登记";
-            }
-        }
 
         // 案件名称
         function formatCaseName(value,row,index){

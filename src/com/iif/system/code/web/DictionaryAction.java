@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.iif.common.enums.SystemTypeEnum;
+import com.iif.common.util.InitSelect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,8 @@ public class DictionaryAction extends BaseAction{
 	 */
 	@RequestMapping("tolistDictionary.action")
 	public String tolistDictionary() {
+		List<?> systemTypeList = InitSelect.getSelectList(SystemTypeEnum.class);
+		HttpTool.setAttribute("systemTypeList", systemTypeList);
 		return "/jsp/system/dictionary/listDictionary";
 	}
 	
