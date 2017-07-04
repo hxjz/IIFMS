@@ -184,13 +184,23 @@ public class StorageAction extends BaseAction{
 	@RequestMapping("getLevelInfo.action")
 	@ResponseBody
 	public Map getLevelInfo(){
+		String paramStr = HttpTool.getParameter("parentId");
 		Map paramMap = new HashMap();
+		paramMap.put("filter_and_parentId_EQ_S", paramStr);
 		paramMap.put("filter_and_isDel_EQ_I", SysConstant.SYSTEM_CON_ZER);
-		List lstRtn = storageService.findByFilterMap(paramMap);
+		List<?> lstRtn = storageService.findByFilterMap(paramMap);
 		
 		JSONArray ja = new JSONArray();
-		
-		JSONObject jo = new JSONObject();
+		if(!CollectionUtils.isEmpty(lstRtn)) {
+			for(int i=0; i<lstRtn.size(); i++) {
+				Storage temStorage = new Storage();
+				temStorage = (Storage)lstRtn.get(i);
+				JSONObject jo = new JSONObject();
+				jo.put(SysConstant.SELECT_OPTION_VALUE, temStorage.getId());
+				jo.put(SysConstant.SELECT_OPTION_TEXT, temStorage.getName());
+				ja.add(jo);
+			}
+		}
 		
 		// 返回页面显示
 		return TemplateUtil.toSuccessMap(ja);
