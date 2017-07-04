@@ -45,7 +45,7 @@
 					</tr>
 					<tr>
 						<td colspan="8" align="right">
-							<input name="filter_and_parentId_EQ_S" type="hidden" value="0"/>
+							<input id="parentId" name="filter_and_parentId_EQ_S" type="hidden" value="0"/>
 							<input name="filter_and_isDel_EQ_I" type="hidden" value="0"/>
 							<input name="order_createTime_T" type="hidden" value="desc"/>
 							<input class="t_btnsty01" id="find" name="select" type="button" value="查询"/>
@@ -114,6 +114,37 @@
 				return "未使用";
 			}
 		}
+    	
+    	function storageNameChange(value) {
+    		$("parentId").val=value;
+    		$("storageLevel1").empty();
+    		$("storageLevel2").empty();
+    		$("storageLevel3").empty();
+    		
+    		if(''!=value) {
+    			$.ajax({
+					url : "${path}/storage/getLevelInfo.action",
+					data : {
+						'parentId' : value
+					},
+					dataType : "json",
+					type : "post",
+					success : function(result) {
+						if (result.status == "success") {
+							var va= result.data;
+							for(var i=0; i<va.length; i++) {
+								var valine = eval(va[i]);
+								alert(valine.key);
+							}
+							reloadgrid('dg1');
+						} else {
+							alertInfo("请重新选择！");
+						}
+					}
+				});
+    		}
+    		
+    	}
     	
 	 	// 删除处理
 		function toDelete() {
