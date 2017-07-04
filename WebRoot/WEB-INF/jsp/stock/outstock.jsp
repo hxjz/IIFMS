@@ -149,7 +149,30 @@
 		}
 		//打印
 		function outstockPrint(){
-			parent.afterCloseOutstock();
+			// 提交打印请求
+			$.ajax({
+				url : "${path}/stock/outstockExcel.action",
+				data : {
+					'financeId' : $("input[name = id]").val(),
+					'financeNum' : $("input[name = financeNum]").val(),
+					'financeName' : $("input[name = financeName]").val(),					
+					'caseId' : $("input[name = casesid]").val(),
+					'caseNum' : $("input[name = caseNum]").val(),
+					'caseName' : $("input[name = caseName]").val(),
+					'fetchMan' : $("input[name = fetchMan]").val(),
+					'operator' : $("input[name = operator]").val()
+				},
+				dataType : "json",
+				type : "post",
+				success : function(result) {
+					if (result.status == "success") {
+						alertInfo(result.data);
+						alertInfo("success");
+					} else {
+						alertInfo(result.data);
+					}
+				}
+			});
 		}
 	</script>
 </body>

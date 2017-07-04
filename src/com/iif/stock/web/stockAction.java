@@ -137,9 +137,24 @@ public class stockAction extends BaseAction {
     /**
      * 生成Excel
      * @return
+     * @throws Exception 
      */
-    @RequestMapping("toPrintExcel.action")
-    public String toPrintExcel(HttpServletRequest request) throws Exception {
+    @RequestMapping("outstockExcel.action")
+    public String outstockExcel(HttpServletRequest request) throws Exception{
+    	toPrintExcel(request);
+    	return null;
+    }
+    /**
+     * 生成Excel
+     * @return
+     */
+    @RequestMapping("instockExcel.action")
+    public String instockExcel(HttpServletRequest request) throws Exception{
+    	toPrintExcel(request);
+    	return null;
+    }
+    
+    public void toPrintExcel(HttpServletRequest request) throws Exception {
         String caseId = HttpTool.getParameter("caseId");
         String caseNum = HttpTool.getParameter("caseNum");
         String caseName = HttpTool.getParameter("caseName");
@@ -149,8 +164,8 @@ public class stockAction extends BaseAction {
         String fetchMan = HttpTool.getParameter("fetchMan");
         String operator = HttpTool.getParameter("operator");
 
-        System.out.println("caseId:" + caseId + "caseNum:" + caseNum + "caseName:" + caseName+ "financesId:" + financesId);
-        System.out.println("financesName:" + financesName+ "financesNum:" + financesNum+ "fetchMan:" + fetchMan+ "operator:" + operator);
+//        System.out.println("caseId:" + caseId + "caseNum:" + caseNum + "caseName:" + caseName+ "financesId:" + financesId);
+//        System.out.println("financesName:" + financesName+ "financesNum:" + financesNum+ "fetchMan:" + fetchMan+ "operator:" + operator);
 
         String date = DateUtil.getDateTime(DateUtil.DATE_FORMAT, new Date());
 
@@ -164,18 +179,17 @@ public class stockAction extends BaseAction {
 			WritableWorkbook book= Workbook.createWorkbook(new File(exportPath),wb);
 			//修改文本内容：例修改sheet2中cell B3的label内容
 			WritableSheet sheet = book.getSheet(0);
-			sheet.addCell(new Label(9,2,"modified cell"));
-			sheet.addCell(new Label(3,3,operator));
-			sheet.addCell(new Label(9,3,new Date().toString()));
-			sheet.addCell(new Label(3,5,caseName));
-			sheet.addCell(new Label(3,6,caseNum));
+			sheet.addCell(new Label(9,2,"modified cell"));//操作记录编号
+			sheet.addCell(new Label(3,3,operator));//操作员
+			sheet.addCell(new Label(9,3,DateUtil.getDateTime(DateUtil.TIME_FORMAT, new Date())));//制表时间
+			sheet.addCell(new Label(3,5,caseName));//案件名称
+			sheet.addCell(new Label(3,6,caseNum));//案件标号
 			book.write();
 			book.close();
 			Runtime.getRuntime().exec("cmd  /c  start " + exportPath);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "jsp/stock/outstock";
     }
     
     @RequestMapping("saveStock.action")

@@ -156,7 +156,7 @@
 	function instockPrint(){
 		// 提交打印请求
 		$.ajax({
-			url : "${path}/stock/toPrintExcel.action",
+			url : "${path}/stock/instockExcel.action",
 			data : {
 				'financeId' : $("input[name = id]").val(),
 				'financeNum' : $("input[name = financeNum]").val(),
