@@ -1,22 +1,23 @@
 package com.iif.system.code.web;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
+import com.hxjz.common.core.web.BaseAction;
+import com.hxjz.common.utils.HttpTool;
+import com.hxjz.common.utils.Page;
 import com.iif.common.enums.SystemTypeEnum;
 import com.iif.common.util.InitSelect;
+import com.iif.common.util.SysConstant;
+import com.iif.common.util.TemplateUtil;
+import com.iif.system.code.entity.Dictionary;
+import com.iif.system.code.service.IDictionaryService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hxjz.common.core.web.BaseAction;
-import com.hxjz.common.utils.HttpTool;
-import com.hxjz.common.utils.Page;
-import com.iif.common.util.TemplateUtil;
-import com.iif.system.code.entity.Dictionary;
-import com.iif.system.code.service.IDictionaryService;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
   * 数据字典 Action
@@ -76,5 +77,28 @@ public class DictionaryAction extends BaseAction{
 		dic.setUpdateTime(new Date());
 		dic.setIsDel(0);
 		dictionaryService.save(dic);
+	}
+
+    /**
+     * 删除数据字典，逻辑删除
+     * @return
+     */
+	@ResponseBody
+	@RequestMapping("delDictionary.action")
+	public Map deleteDictionary(){
+		String dictionaryId=HttpTool.getParameter("id");
+		try{
+			if(StringUtils.isNotEmpty(dictionaryId)) {
+				Dictionary dictionary= (Dictionary) dictionaryService.findById(dictionaryId);
+				dictionary.setIsDel(SysConstant.IS_DEL); //删除标示
+				dictionary.setUpdater("admin");
+				dictionary.setUpdateTime(new Date());
+				dictionaryService.save(dictionary);
+			}
+			return TemplateUtil.toSuccessMap("操作成功！");
+		}catch(Exception e){
+			e.printStackTrace();
+			return TemplateUtil.toSuccessMap("操作失败！");
+		}
 	}
 }
