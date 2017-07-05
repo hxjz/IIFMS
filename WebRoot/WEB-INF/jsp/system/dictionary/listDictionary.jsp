@@ -46,7 +46,7 @@
 	</form>
 	
 		<table 	id="dg1"
-			title="枚举详细信息"
+			title="下拉菜单详细信息"
 			style="width:100%;height:350px"
 			fitColumns='true'
 			toolbar='#toolbar'
@@ -82,15 +82,23 @@
 	        <table border="0">
 	        	<tr>
 	        		<td>下拉菜单键</td>
-	        		<td><input type="text" class="easyui-validatebox textbox" name="key" data-options="required:true,missingMessage:'key不能为空'">*</td>
+	        		<td><input type="text" class="easyui-validatebox textbox" name="key" data-options="required:true,missingMessage:'key不能为空'"></td>
 	        	</tr>
 	        	<tr>
 	        		<td>下拉菜单值</td>
 	        		<td><input type="text" class="easyui-validatebox textbox" name="value" data-options="required:true"></td>
 	        	</tr>
 	        	<tr>
-	        		<td>下拉菜单枚举</td>
-	        		<td><input type="text" class="easyui-validatebox textbox" name="enumName" data-options="required:true"></td>
+	        		<td>下拉菜单类型</td>
+	        		<td>
+						<%--<input type="text" class="easyui-validatebox textbox" name="enumName" data-options="required:true">--%>
+						<select class="easyui-validatebox w170" name="enumName" data-options="required:true" >
+							<option value="">请选择</option>
+							<c:forEach items="${systemTypeList}" var="system">
+								<option value="${system.key}">${system.value}</option>
+							</c:forEach>
+						</select>
+					</td>
 	        	</tr>
 	        	<tr>
 	        		<td>删除标示</td>
@@ -105,8 +113,8 @@
 	        		<td><input type="text" class="easyui-validatebox textbox" name="parentId"></td>
 	        	</tr>
 	        	<tr>
-	        		<td><input type="submit" value="确认添加"></td>
-	        		<td><input type="reset" value="重置"></td>
+	        		<td><input class="t_btnsty02" type="submit" value="确认添加"></td>
+	        		<td><input class="t_btnsty01" type="reset" value="重置"></td>
 	        	</tr>
 	        </table>
         </form>
