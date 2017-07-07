@@ -27,19 +27,19 @@
 						<td class="tr" width="100"><span class="t_span01">一级显示：</span></td>
 						<td>
 							<select id="storageLevel1" style="width: 120" onchange="storageLevel1Change(this.value)">
-								<option value="">请选择</option>
+								<option value=''>请选择</option>
 							</select>
 						</td>
 						<td class="tr" width="100"><span class="t_span01">二级显示：</span></td>
 						<td>
 							<select id="storageLevel2" style="width: 120" onchange="storageLevel2Change(this.value)">
-								<option value="">请选择</option>
+								<option value=''>请选择</option>
 							</select>
 						</td>
 						<td class="tr" width="100"><span class="t_span01">三级显示：</span></td>
 						<td>
 							<select id="storageLevel3" style="width: 120" onchange="storageLevel3Change(this.value)">
-								<option value="">请选择</option>
+								<option value=''>请选择</option>
 							</select>
 						</td>
 					</tr>
@@ -116,10 +116,15 @@
 		}
     	
     	function storageNameChange(value) {
-    		$("parentId").val=value;
-    		$("storageLevel1").empty();
-    		$("storageLevel2").empty();
-    		$("storageLevel3").empty();
+    		$("#parentId").attr("value",value);
+    		
+    		var lineOption = "<option value=''>请选择</option>";
+    		$("#storageLevel1").empty();
+    		$("#storageLevel1").append(lineOption);
+    		$("#storageLevel2").empty();
+    		$("#storageLevel2").append(lineOption);
+    		$("#storageLevel3").empty();
+    		$("#storageLevel3").append(lineOption);
     		
     		if(''!=value) {
     			$.ajax({
@@ -134,9 +139,12 @@
 							var va= result.data;
 							for(var i=0; i<va.length; i++) {
 								var valine = eval(va[i]);
-								alert(valine.key);
+								var option = "<option value='"+valine.key+"'>"+valine.value+"</option>";
+								$("#storageLevel1").append(option);
+								
 							}
-							reloadgrid('dg1');
+							
+							$("#find").click();
 						} else {
 							alertInfo("请重新选择！");
 						}
