@@ -21,6 +21,9 @@ import com.iif.stock.entity.Stock;
 import com.iif.stock.service.IStockService;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Font;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -163,10 +166,6 @@ public class stockAction extends BaseAction {
         String financesNum = HttpTool.getParameter("financeNum");
         String fetchMan = HttpTool.getParameter("fetchMan");
         String operator = HttpTool.getParameter("operator");
-
-//        System.out.println("caseId:" + caseId + "caseNum:" + caseNum + "caseName:" + caseName+ "financesId:" + financesId);
-//        System.out.println("financesName:" + financesName+ "financesNum:" + financesNum+ "fetchMan:" + fetchMan+ "operator:" + operator);
-
         String date = DateUtil.getDateTime(DateUtil.DATE_FORMAT, new Date());
 
         try {
@@ -190,6 +189,17 @@ public class stockAction extends BaseAction {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static HSSFCellStyle setCellStyle(HSSFWorkbook workbook) {
+        HSSFCellStyle style = workbook.createCellStyle(); // 样式对象
+        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);// 垂直
+        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 水平
+        Font font = workbook.createFont();
+        font.setFontName("黑体");//字体类型
+        font.setFontHeightInPoints((short) 10);
+        style.setFont(font);
+        return style;
     }
     
     @RequestMapping("saveStock.action")

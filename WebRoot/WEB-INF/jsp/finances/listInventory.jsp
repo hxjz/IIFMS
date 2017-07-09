@@ -14,16 +14,17 @@
 				<h3>异常财物信息</h3>
 			</div>
 			<!-- t_oneblock_h-->
-			<form>
+			<form id="upload" name="uploadForm" enctype="multipart/form-data" method="post">
 				<div class="t_oneblock_c pr">
 					<div class="nobortable pt10 pl10">
 						<table width="100%" border="0">
 							<tr>
-								<td><input class="t_btnsty02" name="" type="button" value="导出" onclick="toAddPage();" /></td>
+								<td><input class="t_btnsty02" name="" type="button" value="导出" onclick="exportList();" /></td>
 								<td>
-									<input class="t_file01" name="fileName" type="file" id="fileName"/>
-									<input class="t_btnsty04" id="upload" name="upload" type="submit" value="上传文件" />
+									<input class="t_file01" name="uploadFile" type="file" id="uploadFile" value="${uploadFile}"/>
+									<input class="t_btnsty04" id="upload" name="upload" type="submit" value="上传文件"/>
 								</td>
+								<td><span><input class="t_btnsty02" name="" type="button" value="详细信息" onclick="toDetailPage();" /></span></td>
 							</tr>
 						</table>
 					</div>
@@ -77,29 +78,40 @@
 		<!--t_oneblock -->
 	</div>
 	<!--t_rightcontainer -->
-	<!-- 添加弹窗 -->
-	<div id="addInfo" class="easyui-window" title="新增财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
-		<iframe id="frame_addInfo" width="520" height="430" scrolling="no" src="" frameborder="0"> </iframe>
-	</div>
-	<!-- 修改弹窗 -->
-	<div id="editInfo" class="easyui-window" title="修改财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
-		<iframe id="frame_editInfo" width="520" height="430" scrolling="no" src="" frameborder="0"> </iframe>
-	</div>
 	<!-- 详情弹窗 -->
 	<div id="detailInfo" class="easyui-window" title="财物信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 1000px; height: 500px; padding: 20px;">
 		<iframe id="frame_detailInfo" width="1000" height="500" scrolling="no" src="" frameborder="0"></iframe>
 	</div>
 
-	<script type="text/javascript">
+	<script type="text/javascript">		
 		$(function() {
 			createTable('dg1');
-
+	
 			// 双击行显示财物详细信息
 			$('#dg1').datagrid({
 				onDblClickRow: function(rowIdex,rowData){
 					toDetailPage();
 				}
 			});
+		});
+
+		//表单提交
+		$('#upload').form({
+			url:'${path}/finances/doInventory.action',
+			onSubmit:function(){
+				return $(this).form('validate');
+			},
+			success:function(returnData){
+				data = JSON.parse(returnData); // 转换成json对象
+				if(data.status == "success"){
+					parent.alertInfo(data.data);
+					parent.afterCloseInstock();
+				} else if(data.status="fail"){
+					alertInfo(data.data);
+				} else {
+					alertInfo("未知错误");
+				}
+			}
 		});
 
 		// 财物信息详情
