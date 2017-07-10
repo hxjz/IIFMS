@@ -77,19 +77,35 @@ public class InventoryAction extends BaseAction {
     @RequestMapping("doInventory.action")
     @ResponseBody
     public Map doInventory(HttpServletRequest request) throws Exception{
+    	//查询财物列表所有的数据
+        List<Finances> financeList = iFinancesService.findAll(); 
+        //将文件上传至服务器
     	String uploadedFile = uploadFile2Server(request);
-    	Map<String, String> readTxtList = readTxtFile(uploadedFile);
-
-        Map searchMap = super.buildSearch(); // 组装查询条件
-        List<Finances> financeList = iFinancesService.findByPage(page, searchMap);
-//        List<Finances> financeListAfter = null;
-        Iterator iterator = financeList.iterator();
-        while(iterator.hasNext()){
-        	Finances f = (Finances)iterator.next();
-        	if(readTxtList.containsKey(f.getFinanceCode())){
-        		iterator.remove();
-        	}
-        }
+    	// 上传文件后处理    	
+    	if(!"".equals(uploadedFile)){	
+        	Map<String, String> readTxtList = readTxtFile(uploadedFile);
+        	//用于存放比对后的数据。
+            List<Finances> financeListAfter = null;
+            Iterator iterator = financeList.iterator();
+            //finance迭代器
+            Finances itFinance = null;
+            //epc编码
+            String code = "";
+            while(iterator.hasNext()){            	
+            	itFinance = (Finances)iterator.next();
+            	code = itFinance.getFinanceCode();
+            	if(readTxtList.containsKey(code)){
+            		//若数据库该条记录的epc在txt中存在
+            		//则同时删除readTxtList和financeList中的相应记录
+            		readTxtList.remove(code);
+            		iterator.remove();
+            	}
+            }
+    	} else {
+    		//上传文件出错
+    		return null;
+    	}
+    	
         return TemplateUtil.toDatagridMap(page, financeList);     
     }    
     
@@ -97,6 +113,7 @@ public class InventoryAction extends BaseAction {
     public String uploadFile2Server(HttpServletRequest request) throws Exception{
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 //        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
+        String fileName = "";
         /** 构建文件保存的目录 **/
         String logoPathDir = "/upload/";// + dateformat.format(new Date());
         /** 得到文件保存目录的真实路径 **/
@@ -108,20 +125,22 @@ public class InventoryAction extends BaseAction {
             logoSaveFile.mkdirs();
         /** 页面控件的文件流 **/
         MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
-        /** 获取文件的后缀 **/
-        String suffix = multipartFile.getOriginalFilename().substring(
-                multipartFile.getOriginalFilename().lastIndexOf("."));
-        /** 使用UUID生成文件名称 **/
-        String logImageName = UUID.randomUUID().toString() + suffix;// 构建文件名称
-        /** 拼成完整的文件保存路径加文件 **/
-        String fileName = logoRealPathDir + File.separator + logImageName;
-        File file = new File(fileName);
-        try {
-            multipartFile.transferTo(file);
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (multipartFile != null) {
+            /** 获取文件的后缀 **/
+            String suffix = multipartFile.getOriginalFilename().substring(
+                    multipartFile.getOriginalFilename().lastIndexOf("."));
+            /** 使用UUID生成文件名称 **/
+            String logImageName = UUID.randomUUID().toString() + suffix;// 构建文件名称
+            /** 拼成完整的文件保存路径加文件 **/
+            fileName = logoRealPathDir + File.separator + logImageName;
+            File file = new File(fileName);
+            try {
+                multipartFile.transferTo(file);
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         /** 打印出上传到服务器的文件的绝对路径 **/
         System.out.println("****************"+fileName+"**************");
@@ -131,7 +150,7 @@ public class InventoryAction extends BaseAction {
 
     public static Map<String, String> readTxtFile(String filePath){
     	Map<String, String> txtMap = new HashMap<String, String>();
-        try {            	
+        try {
         	String encoding="GBK";
             File file=new File(filePath);
             if(file.isFile() && file.exists()){ //判断文件是否存在
