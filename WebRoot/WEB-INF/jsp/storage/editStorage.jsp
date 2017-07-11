@@ -18,7 +18,7 @@
 	          <tr>
 	    		   <td><span class="t_span01">存储类型：</span></td>
 				   <td>
-				   		<select class="w120" name="type" id="type">
+				   		<select class="w100" name="type" id="type" onchange="storageTypeChange(this.value)">
 					   		<option value="">请选择</option>
 							<c:forEach items="${storageTypeList}" var="obj">
 								<option value="${obj.key}">${obj.value}</option>
@@ -33,7 +33,7 @@
 	          <tr>
 	          	<td><span class="t_span01">一级显示：</span></td>
 	          	<td>
-                 	<select class="w120" name="caseType" id="caseType">
+                 	<select class="w120" name="storageLevel1" id="storageLevel1" onchange="storageLevel1Change(this.value)">
                  		<option value="">请选择</option>
 						<c:forEach items="${storageLevelList}" var="obj">
 							<option value="${obj.key}">${obj.value}</option>
@@ -42,9 +42,9 @@
                  </td>
                  <td><span class="t_span01">二级显示：</span></td>
 	          	<td>
-                 	<select class="w120" name="caseType" id="caseType">
+                 	<select class="w120" name="storageLevel2" id="storageLevel2" onchange="storageLevel2Change(this.value)">
                  		<option value="">请选择</option>
-						<c:forEach items="${storageLeve2List}" var="obj">
+						<c:forEach items="${storageLevel2List}" var="obj">
 							<option value="${obj.key}">${obj.value}</option>
 						</c:forEach>
                  	</select>
@@ -53,32 +53,32 @@
 	          <tr>
 	               <td><span class="t_span01">三级显示：</span></td>
 		           <td>
-	                   <select class="w120" name="caseType" id="caseType">
+	                   <select class="w120" name="storageLevel3" id="storageLevel3">
 	                 		<option value="">请选择</option>
-							<c:forEach items="${storageLeve3List}" var="obj">
+							<c:forEach items="${storageLevel3List}" var="obj">
 								<option value="${obj.key}">${obj.value}</option>
 							</c:forEach>
 	                 	</select>
 	                </td>
 	                <td><span class="t_span01">备注：</span></td>
 	               <td>
-	               	<input class="easyui-validatebox t_text w310" name="casePlace" type="text" value="${storage.comment}"/>
+	               	  <input class="easyui-validatebox t_text w120" name="comment" type="text" value="${storage.comment}"/>
 	               </td>
 			  </tr>
 			  <tr>
 	              <td><span class="t_span01">设备信息：</span></td>
 	               <td>
-	               	<input class="easyui-validatebox t_text w310" name="casePlace" type="text" value="${storage.device}"/>
+	               	  <input class="easyui-validatebox t_text w100" name="device" type="text" value="${storage.device}"/>
 	               </td>
 	               <td><span class="t_span01">关联设备：</span></td>
 	               <td>
-	               	<input class="easyui-validatebox t_text w310" name="casePlace" type="text" value="${storage.device}"/>
+	               	  <input class="easyui-validatebox t_text w140" name="url" type="text" value="${storage.url}"/>
 	               </td>
 			  </tr>
 			  <tr>
 	              <td><span class="t_span01">AB面控制：</span></td>
 	               <td colspan="3">
-	               	<input class="easyui-validatebox t_text w310" name="casePlace" type="text" value="${storage.abSide}"/>
+	               	  <input type="checkbox" name="abSide" id="abSide" value="0"/>
 	               </td>
 			  </tr>
 		</table>
@@ -104,6 +104,63 @@
 			}
 		}
 	});
+	
+	function storageTypeChange(value) {
+		var lineOption = "<option value=''>请选择</option>";
+		$("#storageLevel1").empty();
+		$("#storageLevel1").append(lineOption);
+		$("#storageLevel2").empty();
+		$("#storageLevel2").append(lineOption);
+		$("#storageLevel3").empty();
+		$("#storageLevel3").append(lineOption);
+		
+		if(''!=value) {
+			if('1'==value) {
+				for(var i=1; i<100; i++){
+					var lineOption1 = "<option value='"+i+"'>"+i+"排"; + "</option>";
+					$("#storageLevel1").append(lineOption1);
+				}
+			}else {
+				for(var i=1; i<100; i++){
+					var lineOption1 = "<option value='"+i+"'>"+i+"列"; + "</option>";
+					$("#storageLevel1").append(lineOption1);
+				}
+			}
+		}
+	}
+	
+	function storageLevel1Change(value) {
+		var lineOption = "<option value=''>请选择</option>";
+		$("#storageLevel2").empty();
+		$("#storageLevel2").append(lineOption);
+		$("#storageLevel3").empty();
+		$("#storageLevel3").append(lineOption);
+		
+		for(var i=1; i<100; i++){
+			var lineOption2 = "<option value='"+i+"'>"+i+"组"; + "</option>";
+			$("#storageLevel2").append(lineOption2);
+		}
+	}
+	
+	function storageLevel2Change(value) {
+		var lineOption = "<option value=''>请选择</option>";
+		$("#storageLevel3").empty();
+		$("#storageLevel3").append(lineOption);
+		
+		if(''!=value) {
+			if('1'==value) {
+				for(var i=1; i<100; i++){
+					var lineOption3 = "<option value='"+i+"'>"+i+"门"; + "</option>";
+					$("#storageLevel3").append(lineOption3);
+				}
+			}else {
+				for(var i=1; i<100; i++){
+					var lineOption3 = "<option value='"+i+"'>"+i+"层"; + "</option>";
+					$("#storageLevel3").append(lineOption3);
+				}
+			}
+		}
+	}
 	
 	//取消新增或修改操作
 	function closeStorage(){

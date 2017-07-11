@@ -81,9 +81,10 @@
 						<thead>
 							<tr>
 								<th data-options="field:'id',hidden:true" align="center">Id</th>
+								<th data-options="field:'level',hidden:true" align="center">level</th>
 								<!-- <th data-options="hidden:true" align="center">操作</th> -->
 								<th data-options="field:'type',width:160,formatter:formatType" align="center">存储类型</th>
-								<th data-options="field:'name',width:160" align="center">显示名称</th>
+								<th data-options="field:'name',width:160,formatter:formatName" align="center">显示名称</th>
 								<th data-options="field:'status',width:60,formatter:formatStatus" align="center">存储状态</th>
 								<th data-options="field:'device',width:150" align="center">设备信息</th>
 								<th data-options="field:'comment',width:150" align="center">备注</th>
@@ -117,6 +118,28 @@
 				return "密集柜/区";
 			} else {
 				return "存储区";
+			}
+		}
+		
+		function formatName(value, rowData, rowIndex) {
+			if(rowData.level == '1') {
+				if( rowData.type == '1') {
+					return "第"+rowData.name+"排";
+				}else {
+					return "第"+rowData.name+"列";
+				}
+			}
+			if(rowData.level == '2') {
+				return "第"+rowData.name+"组";
+			}
+			if(rowData.level == '3') {
+				if( rowData.type == '1') {
+					return "第"+rowData.name+"门";
+				}else {
+					return "第"+rowData.name+"层";
+				}
+			}else {
+				return rowData.name;
 			}
 		}
 
@@ -271,15 +294,38 @@
 		}
 		
 		// 添加之后返回
-		function afterCloseAddCases() {
+		function afterCloseAddStorage() {
 			$("#addInfo").window('close');
 			reloadgrid('dg1');
 		}
 
 		// 修改之后返回
-		function afterCloseEditCases() {
+		function afterCloseEditStorage() {
 			$("#editInfo").window('close');
 			reloadgrid('dg1');
+		}
+		
+		// 新增存储信息跳转
+		function toAddPage() {
+			// 添加iframeSrc
+			$("#frame_addInfo").attr("src", "${path}/storage/toEditStorage.action");
+			// 打开弹出框
+			$("#addInfo").window('open');
+			adjustTanboxCenter(); // 弹窗位置居中
+		}
+		
+		// 修改存储信息跳转
+		function toEditPage() {
+			var row = $('#dg1').datagrid('getSelected');
+			if (null == row) {
+				alertInfo("请选择要修改的案件！");
+			} else {
+				// 添加iframeSrc
+				$("#frame_editInfo").attr("src", "${path}/storage/toEditStorage?id=" + row.id);
+				// 打开弹出框
+				$("#editInfo").window('open');
+			}
+			adjustTanboxCenter(); // 弹窗位置居中
 		}
 
 		// 删除处理
@@ -293,7 +339,7 @@
 				if (r) {
 					// 提交删除请求
 					$.ajax({
-						url : "${path}/system/delStorage.action",
+						url : "${path}/storage/delStorage.action",
 						data : {
 							'id' : row.id
 						},
