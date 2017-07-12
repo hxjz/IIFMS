@@ -63,7 +63,7 @@
 			<div class="t_oneblock_c pr">
 				<div class="pl20 pt10">
 					<span><input class="t_btnsty02" name="" type="button" value="新增" onclick="toAddPage();" /></span> 
-					<span><input class="t_btnsty02" name="" type="button" value="修改" onclick="toEditPage();" /></span> 
+					<!-- <span><input class="t_btnsty02" name="" type="button" value="修改" onclick="toEditPage();" /></span>  -->
 					<span><input class="t_btnsty02" name="" type="button" value="删除" onclick="toDelete();" /></span> 
 				</div>
 				<div class="hastable mt10">
