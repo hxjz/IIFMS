@@ -1,7 +1,5 @@
 package com.iif.storage.entity;
 
-import java.util.List;
-
 import com.hxjz.common.core.orm.BaseEntity;
 
 /**
@@ -26,7 +24,6 @@ public class Storage extends BaseEntity {
 	private String parentId;// 父节点Id
 	private String type;    // 储存类型(密集柜/储存区)
 	private String conUrl;  // 控制URL地址
-    private List<Storage> child;
     
 	public String getId() {
 		return id;
@@ -100,12 +97,6 @@ public class Storage extends BaseEntity {
 	}
 	public void setConUrl(String conUrl) {
 		this.conUrl = conUrl;
-	}
-	public List<Storage> getChild() {
-		return child;
-	}
-	public void setChild(List<Storage> child) {
-		this.child = child;
 	}
   
 }

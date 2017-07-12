@@ -72,11 +72,5 @@
 			<column name="fupdatetime" length="14" />
 		</property>
 		
-		<list name="child" table="tstorage" cascade="none" >
-			<key column="fparentid" />
-			<index column="fid"></index>
-			<one-to-many class="com.iif.storage.entity.Storage" not-found="ignore" />
-		</list>
-
 	</class>
 </hibernate-mapping>
