@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -113,6 +114,7 @@ public class StorageAction extends BaseAction{
 	 */
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("saveStorage.action")
+	@ResponseBody
 	public Map saveStorage(Storage storage){
 		// 新增或修改判断
 		if(StringUtils.isNotBlank(storage.getId())) {
@@ -216,7 +218,28 @@ public class StorageAction extends BaseAction{
 	}
 	
 	/**
-	 * 跳转列表页面
+	 * 存储位置删除功能
+	 */
+	@SuppressWarnings("rawtypes")
+	@RequestMapping("delStorage.action")
+	@ResponseBody
+	public Map delStorage() {
+		String strId = HttpTool.getParameter("id");
+		
+		if(StringUtils.isNotEmpty(strId)) {
+			try{
+				storageService.deleteIds(strId);
+				return TemplateUtil.toSuccessMap("操作成功！");
+			}catch(Exception e) {
+				return TemplateUtil.toSuccessMap("操作失败！");
+			}
+		}
+		
+		return TemplateUtil.toSuccessMap("操作成功！");
+	}
+	
+	/**
+	 * 下拉列表联动获取
 	 * @return
 	 */
 	@SuppressWarnings({"rawtypes", "unchecked"})
