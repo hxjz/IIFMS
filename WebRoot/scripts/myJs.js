@@ -189,9 +189,6 @@ function formatEnumType(value,row,index) {
             case 'DepartmentTypeEnum':
                 enumChinsesName='单位名称';
                 break;
-            case 'StorageTypeEnum':
-                enumChinsesName='存储类型';
-                break;
 			default:
 				enumChinsesName='未知类型'
 		}
