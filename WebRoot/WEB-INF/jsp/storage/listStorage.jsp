@@ -257,8 +257,7 @@
 							var va = result.data;
 							for (var i = 0; i < va.length; i++) {
 								var valine = eval(va[i]);
-								var option = "<option value='"+valine.key+"'>"
-										+ valine.value + "</option>";
+								var option = "<option value='"+valine.key+"'>" + valine.value + "</option>";
 								$("#storageLevel3").append(option);
 
 							}
@@ -296,7 +295,8 @@
 		// 添加之后返回
 		function afterCloseAddStorage() {
 			$("#addInfo").window('close');
-			reloadgrid('dg1');
+			
+			window.location.reload();
 		}
 
 		// 修改之后返回

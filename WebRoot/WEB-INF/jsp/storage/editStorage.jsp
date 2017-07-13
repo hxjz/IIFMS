@@ -70,20 +70,16 @@
 	               <td>
 	               	  <input class="easyui-validatebox t_text w100" name="device" type="text" value="${storage.device}"/>
 	               </td>
-	               <td><span class="t_span01">关联设备：</span></td>
+	               <td><span class="t_span01">AB面控制：</span></td>
 	               <td>
-	               	  <input class="easyui-validatebox t_text w140" id="device" name="device" type="text" value="${storage.device}"/>
+	               	  <input type="checkbox" name="abSide" id="abSide" value="1" disabled="disabled"/>
 	               </td>
 			  </tr>
 			  <tr>
 			  	  <td><span class="t_span01">控制URL：</span></td>
-	              <td>
+	              <td colspan="3">
 	               	 <input class="easyui-validatebox t_text w140" id="conUrl" name="conUrl" type="text" value="${storage.conUrl}" disabled="disabled" />
 	              </td>
-	              <td><span class="t_span01">AB面控制：</span></td>
-	               <td>
-	               	  <input type="checkbox" name="abSide" id="abSide" value="1" disabled="disabled"/>
-	               </td>
 			  </tr>
 		</table>
 	</form>
