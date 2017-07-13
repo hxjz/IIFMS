@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.iif.inventory.entity.FinancesCopy" table="TFinances_Copy">
+
+        <id name="id" column="fid">
+            <generator class="uuid"/>
+        </id>
+
+        <many-to-one name="cases" update="true" column="fcases"
+                     class="com.iif.cases.entity.Cases" cascade="none" not-found="ignore">
+        </many-to-one>
+
+        <property name="financeName" type="string">
+            <column name="ffinanceName" length="50"/>
+        </property>
+
+        <property name="financeType" type="integer">
+            <column name="ffinanceType" length="3"/>
+        </property>
+
+        <property name="financeNum" type="string">
+            <column name="ffinanceNum" length="100"/>
+        </property>
+
+        <property name="financeState" type="integer">
+            <column name="ffinanceState" length="3"/>
+        </property>
+        <property name="financeSource" type="integer">
+            <column name="ffinanceSource" length="50"/>
+        </property>
+
+        <property name="sourceOffice" type="integer">
+            <column name="fsourceOffice" length="3"/>
+        </property>
+
+        <property name="storeOffice" type="integer">
+            <column name="fstoreOffice" length="3"/>
+        </property>
+
+        <property name="seizedMan" type="string">
+            <column name="fseizedMan" length="50"/>
+        </property>
+
+        <property name="seizedTimeStart" type="string">
+            <column name="fseizedTimeStart" length="20"/>
+        </property>
+
+        <property name="seizedTimeEnd" type="string">
+            <column name="fseizedTimeEnd" length="20"/>
+        </property>
+
+        <property name="financeDesc" type="string">
+            <column name="ffinanceDesc" length="255"/>
+        </property>
+
+        <property name="financeMemo" type="string">
+            <column name="ffinanceMemo" length="255"/>
+        </property>
+
+        <!--<bag name="FinanceImages" cascade="all-delete-orphan" lazy="false">-->
+            <!--<key column="ffinancesImages"/>-->
+            <!--<one-to-many class="com.iif.finances.entity.FinancesImages" not-found="ignore"/>-->
+        <!--</bag>-->
+
+        <property name="storeLocation" type="string">
+            <column name="fstoreLocation" length="100"/>
+        </property>
+
+        <property name="imageSign" type="integer">
+            <column name="fimageSign" length="2"/>
+        </property>
+
+        <property name="financeCode" type="string">
+            <column name="ffinanceCode" length="100"/>
+        </property>
+
+        <property name="digitalCode" type="string">
+            <column name="fdigitalCode" length="100"/>
+        </property>
+
+        <property name="entryTime" type="string">
+            <column name="fentryTime" length="100"/>
+        </property>
+
+        <property name="entryMan" type="string">
+            <column name="fentryMan" length="100"/>
+        </property>
+
+        <property name="instockTime" type="string">
+            <column name="finstockTime" length="100"/>
+        </property>
+
+        <property name="instockMan" type="string">
+            <column name="finstockMan" length="100"/>
+        </property>
+
+        <property name="outstockTime" type="string">
+            <column name="foutstockTime" length="100"/>
+        </property>
+
+        <property name="outstockMan" type="string">
+            <column name="foutstockMan" length="100"/>
+        </property>
+
+        <property name="isDel" type="integer">
+            <column name="fisdel" length="1"/>
+        </property>
+
+        <property name="creator" type="string">
+            <column name="fcreator" length="50"/>
+        </property>
+
+        <property name="createTime" type="timestamp">
+            <column name="fcreatetime" length="14"/>
+        </property>
+
+        <property name="updater" type="string">
+            <column name="fupdater" length="20"/>
+        </property>
+
+        <property name="updateTime" type="timestamp">
+            <column name="fupdatetime" length="14"/>
+        </property>
+
+    </class>
+</hibernate-mapping>

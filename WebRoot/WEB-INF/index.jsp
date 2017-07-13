@@ -168,7 +168,7 @@
 					<dl>
 						<dt>
 							<a href="javascript:void(0)" style="color: #648da2;"
-							   onclick="loadUrl('content_inventory','${path}/finances/listInventory.action','盘库');" id='left_inventory' title="盘库">盘库</a>
+							   onclick="loadUrl('content_inventory','${path}/inventory/listInventory.action','盘库');" id='left_inventory' title="盘库">盘库</a>
 						</dt>
 					</dl>
 					<!-- Temp -->

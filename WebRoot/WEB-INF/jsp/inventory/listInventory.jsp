@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>涉案财物-财物列表页</title>
+<title>异常财物列表页</title>
 <%@include file="/WEB-INF/jsp/common/common.jsp"%>
 </head>
 
@@ -46,7 +46,7 @@
 			<!-- t_oneblock_h-->
 			<div class="t_oneblock_c pr">
 					<table id="dg1" style="width:100%; height:350px" data-options="singleSelect:true,collapsible:false,
-			            url:'${path}/finances/showInventory.action',
+			            url:'${path}/inventory/showInventory.action',
 			            method:'post',
 			            fitColumns:true,
 			            rownumbers:true,
@@ -97,7 +97,7 @@
 
 		//表单提交
 		$('#upload').form({
-			url:'${path}/finances/doInventory.action',
+			url:'${path}/inventory/doInventory.action',
 			onSubmit:function(){
 				return $(this).form('validate');
 			},

@@ -1,18 +1,27 @@
-package com.iif.finances.web;
+package com.iif.inventory.web;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +32,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.hxjz.common.core.web.BaseAction;
 import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
+import com.iif.cases.entity.Cases;
 import com.iif.common.util.TemplateUtil;
 import com.iif.finances.entity.Finances;
+import com.iif.finances.entity.FinancesImages;
 import com.iif.finances.service.IFinancesService;
+import com.iif.inventory.entity.FinancesCopy;
+import com.iif.inventory.service.IFinancesCopyService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author M
@@ -34,10 +49,12 @@ import com.iif.finances.service.IFinancesService;
  * @Desc 异常财物 action
  */
 @Controller
-@RequestMapping("/finances/*")
+@RequestMapping("/inventory/*")
 public class InventoryAction extends BaseAction {
     @Autowired
     IFinancesService iFinancesService = null;
+    @Autowired
+    IFinancesCopyService iFinancesCopyService = null;
     /**
      * 跳转到财物详情
      *
@@ -45,7 +62,7 @@ public class InventoryAction extends BaseAction {
      */
     @RequestMapping("listInventory.action")
     public String listInventory() {
-        return "jsp/finances/listInventory";
+        return "jsp/inventory/listInventory";
     }
     
     @SuppressWarnings({"rawtypes", "unchecked"})
@@ -57,9 +74,9 @@ public class InventoryAction extends BaseAction {
         page = new Page(pageNum, pageSize);
         Map searchMap = super.buildSearch(); // 组装查询条件
 
-        List<Finances> financeList = iFinancesService.findByPage(page, searchMap);
+        List<FinancesCopy> financeCopyList = iFinancesCopyService.findByPage(page, searchMap);
 
-        return TemplateUtil.toDatagridMap(page, financeList);
+        return TemplateUtil.toDatagridMap(page, financeCopyList);
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
@@ -90,12 +107,26 @@ public class InventoryAction extends BaseAction {
             		iterator.remove();
             	}
             }
+            try{
+	            //清空FinancesCopy表中的数据
+	            iFinancesCopyService.deleteAll();
+	            //将异常财物数据存入数据库
+	            Iterator iteratorAfter = financeList.iterator();
+	            FinancesCopy itFinanceCopy = null;
+	            while(iteratorAfter.hasNext()){
+	            	//将itFinance转成FinancesCopy类型
+	            	Finances2FinancesCopy((Finances)iteratorAfter.next(), itFinanceCopy);
+                    iFinancesCopyService.save(itFinanceCopy);
+	            }
+            } catch(Exception e) {
+                e.printStackTrace();
+            }  
     	} else {
     		//上传文件出错
     		return null;
     	}
     	
-        return TemplateUtil.toDatagridMap(page, financeList);     
+        return TemplateUtil.toDatagridMap(page, financeList);
     }    
     
     
@@ -142,7 +173,7 @@ public class InventoryAction extends BaseAction {
         try {
         	String encoding="GBK";
             File file=new File(filePath);
-            if(file.isFile() && file.exists()){ //判断文件是否存在
+            if(file.isFile() && file.exists()){//判断文件是否存在
             	int i = 0;
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file),encoding);//考虑到编码格式
                 BufferedReader bufferedReader = new BufferedReader(read);
@@ -164,6 +195,33 @@ public class InventoryAction extends BaseAction {
         return txtMap;
     }
 
+    public void Finances2FinancesCopy(Finances c1, FinancesCopy c2){
+    	c2.setId(c1.getId()); // 财物编码 Key
+    	c2.setCases(c1.getCases()); // 相关案件
+    	c2.setFinanceName(c1.getFinanceName()); // 财物名称
+    	c2.setFinanceType(c1.getFinanceType()); // 财物类型
+    	c2.setFinanceNum(c1.getFinanceNum()); // 财物编号
+    	c2.setFinanceState(c1.getFinanceState()); // 财物状态
+    	c2.setFinanceSource(c1.getFinanceSource()); // 财物来源
+    	c2.setSourceOffice(c1.getSourceOffice()); // 财物来源单位
+    	c2.setStoreOffice(c1.getStoreOffice());  // 财物保管单位
+    	c2.setSeizedMan(c1.getSeizedMan()); // 查获人
+    	c2.setSeizedTimeStart(c1.getSeizedTimeStart()); // 查获时间段（起）
+    	c2.setSeizedTimeEnd(c1.getSeizedTimeEnd()); // 查获时间段（止）
+        c2.setFinanceDesc(c1.getFinanceDesc()); // 财物说明
+        c2.setFinanceMemo(c1.getFinanceMemo()); // 财物备注
+//        transient private List<FinancesImages> FinanceImages; // 财物照片
+        c2.setImageSign(c1.getImageSign()); // 是否有财物照片
+        c2.setStoreLocation(c1.getStoreLocation()); // 存放位置
+        c2.setFinanceCode(c1.getFinanceCode()); // 财物识别码
+        c2.setDigitalCode(c1.getDigitalCode()); // 电子识别码
+        c2.setEntryTime(c1.getEntryTime()); // 登记时间
+        c2.setEntryMan(c1.getEntryMan()); // 登记人
+        c2.setInstockTime(c1.getInstockTime()); // 入库时间
+        c2.setInstockMan(c1.getInstockMan()); // 入库人
+        c2.setOutstockTime(c1.getOutstockTime()); // 出库时间
+        c2.setOutstockMan(c1.getOutstockMan()); // 出库人
+    }
 }
 
 
