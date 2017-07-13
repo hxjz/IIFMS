@@ -147,7 +147,7 @@
 								<th data-options="field:'id',hidden:true"></th>
 								<th data-options="field:'financeNum',width:80" align="center">财物编号</th>
 								<th data-options="field:'financeName',width:130" align="center">财物名称</th>
-								<th data-options="field:'financeType',width:150" align=" center">财物类型</th>
+								<th data-options="field:'financeType',width:150,formatter:formatFinanceType" align=" center">财物类型</th>
 								<th data-options="field:'financeState',width:100,formatter:formatFinanceState" align="center">财物状态</th>
 								<th data-options="field:'row.cases.caseNum',width:100,formatter:formatCaseNum" align="center">案件编号</th>
 								<th data-options="field:'row.cases.caseName',width:80,formatter:formatCaseName" align="center">案件名称</th>

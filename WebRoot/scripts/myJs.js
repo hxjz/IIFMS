@@ -199,7 +199,7 @@ function formatEnumType(value,row,index) {
 }
 
 
-// 格式化财务状态
+// 格式化财物状态
 function formatFinanceState(value,row,index) {  // TODO  0为false
 	if(row.financeState){
         if(1===row.financeState) {
@@ -211,5 +211,68 @@ function formatFinanceState(value,row,index) {  // TODO  0为false
         }
 	}else{
 		return '异常';
+	}
+}
+
+// TODO 若后期类型在其他地方用到为 String 则需要将 switch 换位 if(type==1)
+// 格式化财物类型
+function formatFinanceType(value,row,index) {
+	var financeType=row.financeType;
+	var typeName;
+    if(row.financeType){
+    	switch (financeType){
+			case 1:
+				typeName='手印痕迹';
+				break;
+            case 2:
+                typeName='足迹痕迹';
+                break;
+            case 3:
+                typeName='工具痕迹';
+                break;
+            case 4:
+                typeName='文件痕迹';
+                break;
+            case 5:
+                typeName='枪弹痕迹';
+                break;
+            case 6:
+                typeName='特殊痕迹';
+                break;
+            case 7:
+                typeName='理化物证';
+                break;
+            case 8:
+                typeName='电子物证';
+                break;
+            case 9:
+                typeName='电子物证';
+                break;
+            case 10:
+                typeName='视听物证';
+                break;
+            case 11:
+                typeName='毒化物证';
+                break;
+			default:
+				typeName='普通物证';
+				break;
+		}
+		return typeName;
+    }else{
+    	return '无';
+	}
+
+
+	function formateSingelDate(value,row,index){
+			if(value.indexOf(':')>0){  // 字符串
+				if(value.length>10){
+					value.substr(0,10);
+				}
+			}else{  // 时间戳格式
+					var date=new Date(value);
+               	     value= date.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+			}
+			return value;
 	}
 }
