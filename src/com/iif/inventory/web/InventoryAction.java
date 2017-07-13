@@ -112,10 +112,12 @@ public class InventoryAction extends BaseAction {
 	            iFinancesCopyService.deleteAll();
 	            //将异常财物数据存入数据库
 	            Iterator iteratorAfter = financeList.iterator();
-	            FinancesCopy itFinanceCopy = null;
+	            FinancesCopy itFinanceCopy = new FinancesCopy();
 	            while(iteratorAfter.hasNext()){
+	            	
+	            	itFinance = (Finances)iteratorAfter.next();
 	            	//将itFinance转成FinancesCopy类型
-	            	Finances2FinancesCopy((Finances)iteratorAfter.next(), itFinanceCopy);
+	            	Finances2FinancesCopy(itFinance, itFinanceCopy);
                     iFinancesCopyService.save(itFinanceCopy);
 	            }
             } catch(Exception e) {

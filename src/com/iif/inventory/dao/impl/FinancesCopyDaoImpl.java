@@ -2,7 +2,6 @@ package com.iif.inventory.dao.impl;
 
 import com.hxjz.common.core.SpringTool;
 import com.hxjz.common.core.orm.BaseDao;
-import com.iif.finances.dao.impl.FinancesDaoImpl;
 import com.iif.inventory.dao.IFinancesCopyDao;
 
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
