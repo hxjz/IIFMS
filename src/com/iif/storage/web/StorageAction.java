@@ -13,14 +13,12 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hxjz.common.core.web.BaseAction;
 import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
-import com.hxjz.common.utils.SystemConstant;
 import com.iif.common.enums.StorageTypeEnum;
 import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
@@ -200,7 +198,7 @@ public class StorageAction extends BaseAction{
 									storage3.setUpdateTime(new Date());
 									storage3.setType(storage.getType());
 									storage3.setIsDel(SysConstant.IS_NOT_DEL); // 删除标示
-									storage3.setLevel(SysConstant.SYSTEM_CON_ONE);// 存储层级
+									storage3.setLevel(SysConstant.SYSTEM_CON_THR);// 存储层级
 									storage3.setConUrl(storage.getConUrl());
 									storage3.setIndex(3); // 排序
 									storage3.setIsAvail(1); // 默认启用
@@ -227,8 +225,10 @@ public class StorageAction extends BaseAction{
 		String strId = HttpTool.getParameter("id");
 		
 		if(StringUtils.isNotEmpty(strId)) {
+			Storage storage = (Storage)storageService.findById(strId);
+			storage.setIsDel(SysConstant.IS_DEL);
 			try{
-				storageService.deleteIds(strId);
+				storageService.update(storage);
 				return TemplateUtil.toSuccessMap("操作成功！");
 			}catch(Exception e) {
 				return TemplateUtil.toSuccessMap("操作失败！");
