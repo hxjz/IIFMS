@@ -4,9 +4,13 @@
 <hibernate-mapping>
     <class name="com.iif.inventory.entity.FinancesCopy" table="TFinances_Copy">
 
-        <id name="id" column="fid">
+        <id name="id_copy" column="fid_copy">
             <generator class="uuid"/>
         </id>
+        
+        <property name="id" type="string">
+            <column name="fId" length="50"/>
+        </property>
 
         <many-to-one name="cases" update="true" column="fcases"
                      class="com.iif.cases.entity.Cases" cascade="none" not-found="ignore">

@@ -7,16 +7,26 @@ import com.iif.finances.entity.FinancesImages;
 import java.util.List;
 
 /**
- * @Author GaoGang
- * @Date 2017年5月14日 下午 00点12分12秒
+ * @Author M
+ * @Date 2017年7月14日 下午 00点12分12秒
  * @Version V0.1
  */
 public class FinancesCopy extends BaseEntity {
 
     private static final long serialVersionUID = -6178522609856969604L;
-    private String id; // 财物编码 Key
+    private String id_copy; //主键
 
-    private Cases cases; // 相关案件
+    public String getId_copy() {
+		return id_copy;
+	}
+
+	public void setId_copy(String id_copy) {
+		this.id_copy = id_copy;
+	}
+    
+    private String id; // 财物编码 Key
+    
+	private Cases cases; // 相关案件
 
     private String financeName; // 财物名称
 

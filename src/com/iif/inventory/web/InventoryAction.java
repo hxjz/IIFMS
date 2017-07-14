@@ -115,9 +115,9 @@ public class InventoryAction extends BaseAction {
 	            FinancesCopy itFinanceCopy = new FinancesCopy();
 	            while(iteratorAfter.hasNext()){
 	            	
-	            	itFinance = (Finances)iteratorAfter.next();
+//	            	itFinance = ;
 	            	//将itFinance转成FinancesCopy类型
-	            	Finances2FinancesCopy(itFinance, itFinanceCopy);
+	            	Finances2FinancesCopy((Finances)iteratorAfter.next(), itFinanceCopy);
                     iFinancesCopyService.save(itFinanceCopy);
 	            }
             } catch(Exception e) {
