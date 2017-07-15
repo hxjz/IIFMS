@@ -65,14 +65,14 @@
 							<tr>
 								<td class="tr" width="120"><span class="t_span01">案发时间(起)：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeStart_GE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeStart_GE_S" type="text" />
 									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeStart_LE_T" type="text" /></td>
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeStart_LE_S" type="text" /></td>
 								<td class="tr" width="120"><span class="t_span01">案发时间(止)：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeEnd_GE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeEnd_GE_S" type="text" />
 									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeEnd_LE_T" type="text" /></td>
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeEnd_LE_S" type="text" /></td>
 								<td class="tr" width="120"><span class="t_span01">电子识别码：</span></td>
 								<td>
 									<input class="t_text w100" name="filter_and_digitalCode_LIKE_S" type="text" id="digitalCodeNew" />
@@ -81,14 +81,14 @@
 							</tr>
 							<tr>
 								<td class="tr"><span class="t_span01">勘验时间(起)：</span></td>
-								<td colspan="3"><input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_GE_T" type="text" />
+								<td colspan="3"><input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_GE_S" type="text" />
 								<span class="t_span01">至</span>
-								<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_LE_T" type="text" /></td>
+								<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_LE_S" type="text" /></td>
 								<td class="tr"><span class="t_span01">勘验时间(止)：</span></td>
 								<td colspan="3">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_GE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_GE_S" type="text" />
 									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_LE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_LE_S" type="text" />
 								</td>
 								<td class="tr" width="120"><input type="checkbox" id="isDel" name="filter_and_isDel_LE_I" value="0" onclick="setVal()"/></td>
 								<td ><span class="t_span01">包含已删除财物</span></td>

@@ -35,7 +35,7 @@
 					   name="caseName" type="text" value="${finances.financeType}" readonly="readonly"/>
 			</td>
 			 <td><span class="t_span01">财物状态：</span></td>
-			 <td><span class="t_span02">${finance.financeState} 状态</span></td>
+			 <td><span class="t_span02">${finances.financeState}</span></td>
 		</tr>
 		<tr>
 			<td><span class="t_span01">案件名称：</span></td>
@@ -62,7 +62,12 @@
 				</c:if>
 				<span class="t_span01">命案</span>
 			</td>
-			<td><span class="t_span01">是否出库：根据什么字段判断？</span></td>
+			<td>
+				<span class="t_span01">是否出库：
+				<c:if test="${finances.financeState!='1'}">是</c:if>
+				<c:if test="${finances.financeState=='1'}">否</c:if>
+				</span>
+			</td>
 		</tr>
 		<tr>
 			<td><span class="t_span01">案发时间：</span></td>
@@ -172,21 +177,21 @@
 			<td><span class="t_span01">财物说明：</span></td>
 			<td colspan="5">
 				<input class="easyui-validatebox t_text w650" data-options="" name="financeDesc" type="text"
-					   value="${finances.financeDesc}"/>
+					   value="${finances.financeDesc}" readonly="readonly"/>
 			</td>
 		</tr>
 		<tr>
 			<td><span class="t_span01">备注：</span></td>
 			<td colspan="5">
 				<input class="easyui-validatebox t_text w650" data-options="" name="financeMemo" type="text"
-					   value="${finances.financeMemo}"/>
+					   value="${finances.financeMemo}" readonly="readonly"/>
 			</td>
 		</tr>
 		<tr>
 			<td><span class="t_span01">财物照片：</span></td>
 			<td colspan="5">
 				<textarea id="imageSign" name="caseDesc"
-						  style="width:650px;height:100px">${finances.imageSign}</textarea>
+						  style="width:650px;height:100px" readonly="readonly">${finances.imageSign}</textarea>
 			</td>
 		</tr>
 	</table>
