@@ -3,8 +3,11 @@ package com.iif.inventory.web;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -28,7 +31,9 @@ import com.iif.inventory.entity.FinancesCopy;
 import com.iif.inventory.service.IFinancesCopyService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
 
+import com.iif.common.util.ExportExcelUtil;
 /**
  * @Author M
  * @Date 2017年7月3日 下午10:24:07
@@ -42,6 +47,8 @@ public class InventoryAction extends BaseAction {
     IFinancesService iFinancesService = null;
     @Autowired
     IFinancesCopyService iFinancesCopyService = null;
+
+    ExportExcelUtil<FinancesCopy> exportExcelUtil = new ExportExcelUtil<FinancesCopy>();
     /**
      * 跳转到财物详情
      *
@@ -118,9 +125,8 @@ public class InventoryAction extends BaseAction {
     		//上传文件出错
 			return TemplateUtil.toSuccessMap("上传文件出错！");
     	}
-    }    
-    
-    
+    }
+        
     public String uploadFile2Server(HttpServletRequest request) throws Exception{
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 //        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd/HH");
@@ -154,25 +160,22 @@ public class InventoryAction extends BaseAction {
             }
         }
         /** 打印出上传到服务器的文件的绝对路径 **/
-        System.out.println("****************"+fileName+"**************");
+        //System.out.println("****************"+fileName+"**************");
         return fileName;      
-    }    
+    }
     
-
     public static Map<String, String> readTxtFile(String filePath){
     	Map<String, String> txtMap = new HashMap<String, String>();
         try {
         	String encoding="GBK";
             File file=new File(filePath);
             if(file.isFile() && file.exists()){//判断文件是否存在
-            	int i = 0;
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file),encoding);//考虑到编码格式
                 BufferedReader bufferedReader = new BufferedReader(read);
                 String lineTxt = null;
                 while((lineTxt = bufferedReader.readLine()) != null){
                     System.out.println(lineTxt);
                     txtMap.put(lineTxt,"");
-//                    txtMap.contains(lineTxt);
                 }
                 read.close();
 	        }else{
@@ -201,7 +204,7 @@ public class InventoryAction extends BaseAction {
     	c2.setSeizedTimeEnd(c1.getSeizedTimeEnd()); // 查获时间段（止）
         c2.setFinanceDesc(c1.getFinanceDesc()); // 财物说明
         c2.setFinanceMemo(c1.getFinanceMemo()); // 财物备注
-//        transient private List<FinancesImages> FinanceImages; // 财物照片
+        //transient private List<FinancesImages> FinanceImages; // 财物照片
         c2.setImageSign(c1.getImageSign()); // 是否有财物照片
         c2.setStoreLocation(c1.getStoreLocation()); // 存放位置
         c2.setFinanceCode(c1.getFinanceCode()); // 财物识别码
@@ -212,6 +215,43 @@ public class InventoryAction extends BaseAction {
         c2.setInstockMan(c1.getInstockMan()); // 入库人
         c2.setOutstockTime(c1.getOutstockTime()); // 出库时间
         c2.setOutstockMan(c1.getOutstockMan()); // 出库人
+    }
+    
+	@SuppressWarnings({ "rawtypes", "unchecked"})
+    @RequestMapping("doExportList.action")
+    @ResponseBody
+    public Map exportList(HttpServletRequest request) throws Exception{
+    	//查询财物copy列表所有的数据
+        List<FinancesCopy> financeCopyList = iFinancesCopyService.findAll();
+		try {
+	        String fileName = "";
+	        /** 构建文件保存的目录 **/
+	        String logoPathDir = "/exportExcel/";// + dateformat.format(new Date());
+	        /** 得到文件保存目录的真实路径 **/
+	        String logoRealPathDir = request.getSession().getServletContext()
+	                .getRealPath(logoPathDir);
+	        /** 根据真实路径创建目录 **/
+	        File logoSaveFile = new File(logoRealPathDir);
+	        if (!logoSaveFile.exists())
+	            logoSaveFile.mkdirs();
+			String title = UUID.randomUUID().toString() + ".xls";// 构建文件名称;
+	        /** 拼成完整的文件保存路径加文件 **/
+	        fileName = logoRealPathDir + File.separator + title;
+	        String[] headers = {"serialVersionUID","key","财物编码","相关案件","财物名称","财物类型","财物编号","财物状态","财物来源","财物来源单位","财物保管单位","查获人","查获时间段（起）",
+	        		 "查获时间段（止）","财物说明","财物备注","照片","是否有财物照片","存放位置","财物识别码","电子识别码","登记时间","登记人","入库时间","入库人","出库时间","出库人"};
+			OutputStream out = new FileOutputStream(fileName);
+			exportExcelUtil.exportExcel(title, headers, financeCopyList, out);
+			out.close();
+			Runtime.getRuntime().exec("cmd  /c  start " + fileName);
+			System.out.println("excel导出成功！");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			TemplateUtil.toSuccessMap("操作失败！");
+		} catch (IOException e) {
+			e.printStackTrace();
+			TemplateUtil.toSuccessMap("操作失败！");
+		}
+        return TemplateUtil.toSuccessMap("操作成功！");
     }
 }
 

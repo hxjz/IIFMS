@@ -13,8 +13,13 @@ import java.util.List;
  */
 public class FinancesCopy extends BaseEntity {
 
-    private static final long serialVersionUID = -6178522609856969604L;
-    private String id_copy; //主键
+	private static final long serialVersionUID = 1L;
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	private String id_copy; //主键
 
     public String getId_copy() {
 		return id_copy;

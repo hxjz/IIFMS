@@ -19,7 +19,7 @@
 					<div class="nobortable pt10 pl10">
 						<table width="100%" border="0">
 							<tr>
-								<td><input class="t_btnsty02" name="" type="button" value="导出" onclick="exportList();" /></td>
+								<td><input class="t_btnsty02" name="" type="button" value="导出" onclick="exportList2Excel();" /></td>
 								<td>
 									<input class="t_file01" name="uploadFile" type="file" id="uploadFile" value="${uploadFile}"/>
 									<input class="t_btnsty04" id="upload" name="upload" type="submit" value="上传文件"/>
@@ -121,10 +121,21 @@
 			adjustTanboxCenter(); // 弹窗位置居中
 		}
 
-
-		// 添加之后返回
-		function exportList() {
-
+		// 导出
+		function exportList2Excel() {
+			$.ajax({
+				url : "${path}/inventory/doExportList.action",
+				dataType : "json",
+				type : "post",
+				success : function(result) {
+					if (result.status == "success") {
+						alertInfo(result.data);
+						alertInfo("success");
+					} else {
+						alertInfo(result.data);
+					}
+				}
+			});
 		}
 		
 		// 添加之后返回
