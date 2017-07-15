@@ -175,11 +175,11 @@
         }
 
         //案发时间(起-止)
-        function formatCaseTime(value,row,index){
-            if(row.cases.id){
-                return row.cases.caseTimeStart +' - '+ row.cases.caseTimeEnd;
-            }
-        }
+//        function formatCaseTime(value,row,index){
+//            if(row.cases.id){
+//                return row.cases.caseTimeStart +' - '+ row.cases.caseTimeEnd;
+//            }
+//        }
 
         //现场勘验号
         function formatSiteNum(value,row,index){
@@ -188,11 +188,11 @@
             }
         }
         //勘验时间(起-止)
-        function formatInspectionTime(value,row,index){
-            if(row.cases.id){
-                return row.cases.inspectionTimeStart +' - '+  row.cases.inspectionTimeEnd;
-            }
-        }
+//        function formatInspectionTime(value,row,index){
+//            if(row.cases.id){
+//                return row.cases.inspectionTimeStart +' - '+  row.cases.inspectionTimeEnd;
+//            }
+//        }
 		//查看详情后返回
 		function afterCloseDetailWindow() {
 			$("#detailInfo").window('close');

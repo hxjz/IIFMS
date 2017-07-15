@@ -1,11 +1,11 @@
 //项目同时联动查询楼栋+户型
 function linkBuilding(){
-	
+
 	// 选中元素的value
 	var id=$("#projectId").val();
-	
+
 	//alert(contextPath);
-	
+
 	if(id=='' || id==undefined){
 		$("#bildingId").empty();
 		$("<option value=''>请选择</option>").appendTo("#bildingId");
@@ -27,9 +27,9 @@ function linkBuilding(){
 				$("#housetypeId").empty();
 				$("<option value=''>请选择</option>").appendTo("#housetypeId");
 				if(buildMap.data != null){
-					var buildingJson = eval(buildMap.data); //数组         
-		             $.each(buildingJson, function (index, item) {  
-		                 //循环获取数据    
+					var buildingJson = eval(buildMap.data); //数组
+		             $.each(buildingJson, function (index, item) {
+		                 //循环获取数据
 		                 $("<option value="+buildingJson[index].id+">"+buildingJson[index].buildingName+"</option>").appendTo("#bildingId");
 		             });
 				}
@@ -71,12 +71,12 @@ function linkFloorNo(){
 				alert(floorMap.data);
 			}
 		}
-	}); 
+	});
 }
 
 //联动查询房间号
 function linkRoomNumber(){
-	
+
 	// 选中元素的value
 	var projectId = $("#projectId").val();
 	var buildingId=$("#bildingId").val();
@@ -98,7 +98,7 @@ function linkRoomNumber(){
 				$("<option value=''>请选择</option>").appendTo("#roomNumber");
 				$("select[name='currentState'] option[value='']").attr("selected","selected");
 				if(result.data != null){
-					var resultArr = result.data; //数组    
+					var resultArr = result.data; //数组
 		             for(var i=0; i<resultArr.length; i++){
 		            	 $("<option value="+resultArr[i].roomId+">"+resultArr[i].roomNumber+"</option>").appendTo("#roomNumber");
 		             }
@@ -114,7 +114,7 @@ function linkRoomNumber(){
 function linkHouseType(){
 	// 选中元素的value
 	var id=$("#projectId").val();
-	
+
 	if(id=='' || id==undefined){
 		$("#houseTypeId").empty();
 		$("<option value=''>请选择</option>").appendTo("#houseTypeId");
@@ -129,9 +129,9 @@ function linkHouseType(){
 			if (buildMap.status == "success") {
 				$("#houseTypeId").empty();
 				$("<option value=''>请选择</option>").appendTo("#houseTypeId");
-				var json = eval(buildMap.data); //数组         
-	             $.each(json, function (index, item) {  
-	                 //循环获取数据    
+				var json = eval(buildMap.data); //数组
+	             $.each(json, function (index, item) {
+	                 //循环获取数据
 	                 $("<option value="+json[index].id+">"+json[index].houseName+"</option>").appendTo("#houseTypeId");
 	             });
 			}else{
@@ -139,7 +139,7 @@ function linkHouseType(){
 			}
 		}
 	});
-	
+
 }
 
 /*************************格式化******************************/
@@ -262,17 +262,37 @@ function formatFinanceType(value,row,index) {
     }else{
     	return '无';
 	}
+}
 
-
-	function formateSingelDate(value,row,index){
-			if(value.indexOf(':')>0){  // 字符串
-				if(value.length>10){
-					value.substr(0,10);
-				}
-			}else{  // 时间戳格式
-					var date=new Date(value);
-               	     value= date.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-			}
-			return value;
+// 格式化时间
+function formateSingelDate(value){
+	if(value.length>10){
+        if(value.indexOf(':')>-1){  // 2017-07-15 01:12:13 切割
+                value=value.substr(0,10);
+        }else{  // getTime() 格式的
+            var date=new Date(value);
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            value= date.getFullYear()+"-"+month+"-"+day;
+        }
 	}
+    return value;
+}
+
+//勘验时间(起-止)
+function formatInspectionTime(value,row,index){
+    if(row.cases.id){
+        var inspectionTimeStart=row.cases.inspectionTimeStart;
+        var inspectionTimeEnd=row.cases.inspectionTimeEnd;
+        return formateSingelDate(inspectionTimeStart) +' - '+ formateSingelDate(inspectionTimeEnd);
+    }
+}
+
+//案发时间(起-止)
+function formatCaseTime(value,row,index){
+    if(row.cases.id){
+        var caseTimeStart=row.cases.caseTimeStart;
+        var caseTimeEnd=row.cases.caseTimeEnd;
+        return  formateSingelDate(caseTimeStart)+' - '+formateSingelDate(caseTimeEnd);
+    }
 }
