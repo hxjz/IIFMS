@@ -101,16 +101,9 @@
 			onSubmit:function(){
 				return $(this).form('validate');
 			},
-			success:function(returnData){
-				data = JSON.parse(returnData); // 转换成json对象
-				if(data.status == "success"){
-					parent.alertInfo(data.data);
-					parent.afterCloseInstock();
-				} else if(data.status="fail"){
-					alertInfo(data.data);
-				} else {
-					alertInfo("未知错误");
-				}
+			success:function(result){
+				alertInfo(result.status);
+				reloadgrid('dg1');
 			}
 		});
 
@@ -129,6 +122,11 @@
 		}
 
 
+		// 添加之后返回
+		function exportList() {
+
+		}
+		
 		// 添加之后返回
 		function afterCloseAddWindow() {
 			$("#addInfo").window('close');

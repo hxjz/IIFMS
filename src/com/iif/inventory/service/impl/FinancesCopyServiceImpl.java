@@ -29,6 +29,7 @@ public class FinancesCopyServiceImpl extends BaseService implements IFinancesCop
     @Override
     public boolean deleteAll() throws ParseException  // 删除所有数据
     {
-    	return true;
+    	boolean rtnBool = iFinancesCopyDao.deleteAll();
+    	return rtnBool;
     }
 }

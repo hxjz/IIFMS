@@ -5,23 +5,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,10 +21,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.hxjz.common.core.web.BaseAction;
 import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
-import com.iif.cases.entity.Cases;
 import com.iif.common.util.TemplateUtil;
 import com.iif.finances.entity.Finances;
-import com.iif.finances.entity.FinancesImages;
 import com.iif.finances.service.IFinancesService;
 import com.iif.inventory.entity.FinancesCopy;
 import com.iif.inventory.service.IFinancesCopyService;
@@ -109,26 +96,28 @@ public class InventoryAction extends BaseAction {
             }
             try{
 	            //清空FinancesCopy表中的数据
-	            iFinancesCopyService.deleteAll();
-	            //将异常财物数据存入数据库
-	            Iterator iteratorAfter = financeList.iterator();
-	            FinancesCopy itFinanceCopy = new FinancesCopy();
-	            while(iteratorAfter.hasNext()){
-	            	
-//	            	itFinance = ;
-	            	//将itFinance转成FinancesCopy类型
-	            	Finances2FinancesCopy((Finances)iteratorAfter.next(), itFinanceCopy);
-                    iFinancesCopyService.save(itFinanceCopy);
+	            if (iFinancesCopyService.deleteAll()) {
+		            //将异常财物数据存入数据库
+		            Iterator iteratorAfter = financeList.iterator();
+		            FinancesCopy itFinanceCopy;
+		            while(iteratorAfter.hasNext()){
+		            	itFinanceCopy = new FinancesCopy();
+		            	//将itFinance转成FinancesCopy类型
+		            	Finances2FinancesCopy((Finances)iteratorAfter.next(), itFinanceCopy);
+	                    iFinancesCopyService.save(itFinanceCopy);
+		            }
+	            } else {
+					return TemplateUtil.toSuccessMap("清空copy表失败");
 	            }
+				return TemplateUtil.toSuccessMap("操作成功！");
             } catch(Exception e) {
                 e.printStackTrace();
+    			return TemplateUtil.toSuccessMap("操作失败！");
             }  
     	} else {
     		//上传文件出错
-    		return null;
+			return TemplateUtil.toSuccessMap("上传文件出错！");
     	}
-    	
-        return TemplateUtil.toDatagridMap(page, financeList);
     }    
     
     

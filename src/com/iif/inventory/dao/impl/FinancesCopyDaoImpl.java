@@ -24,9 +24,9 @@ public class FinancesCopyDaoImpl extends BaseDao implements IFinancesCopyDao {
         sqlBuilder.append("delete ");
         sqlBuilder.append(" from tfinances_copy ");
         sqlBuilder.append(" where 1=1");
-        
+        System.out.println(sqlBuilder.toString());
         JdbcDaoSupport dao = (JdbcDaoSupport) SpringTool.getBean("JdbcDaoSupport");
-        dao.getJdbcTemplate().update(sqlBuilder.toString());
+        dao.getJdbcTemplate().execute(sqlBuilder.toString());
         return true;
     }
 }
