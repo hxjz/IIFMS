@@ -82,7 +82,7 @@
 							<tr>
 								<th data-options="field:'id',hidden:true" align="center">Id</th>
 								<th data-options="field:'level',hidden:true" align="center">level</th>
-								<!-- <th data-options="hidden:true" align="center">操作</th> -->
+								<th data-options="field:'handle',width:100,formatter:formatHandle" align="center">操作</th>
 								<th data-options="field:'type',width:160,formatter:formatType" align="center">存储类型</th>
 								<th data-options="field:'name',width:160,formatter:formatName" align="center">显示名称</th>
 								<th data-options="field:'status',width:60,formatter:formatStatus" align="center">存储状态</th>
@@ -112,6 +112,12 @@
 		$(function() {
 			createTable('dg1');
 		});
+		
+		function formatHandle(value, rowData, rowIndex) {
+			var str = '<a href="javascript:void(0)"   onclick="XX(\'' + rowData.id + '\')">开启</a>&nbsp;'
+			str += '<a href="javascript:void(0)"   onclick="XX(\''+rowData.id+'\')">关闭</a>';
+			return str;
+		};
 
 		function formatType(value, rowData, rowIndex) {
 			if (rowData.type == '2') {
