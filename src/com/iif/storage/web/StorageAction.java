@@ -166,9 +166,9 @@ public class StorageAction extends BaseAction{
 								storage2.setParentId(storage1.getId()); // 父节点Id
 								if(cnt==2) {
 									if(k==1) {
-										storage2.setName("A"+i);
+										storage2.setName("A"+j);
 									}else {
-										storage2.setName("B"+i);
+										storage2.setName("B"+j);
 									}
 								}else {
 									storage2.setName(j+"");
@@ -188,22 +188,24 @@ public class StorageAction extends BaseAction{
 								storageService.save(storage2);// 二级存储保存
 								
 								if(StringUtils.isNotEmpty(strLevel3)) {
-									Storage storage3 = new Storage();
-									storage3.setId(null);
-									storage3.setParentId(storage2.getId()); // 父节点Id
-									storage3.setName(i+"");
-									storage3.setComment(storage.getComment());
-									storage3.setDevice(storage.getDevice()+(storage.getType().equals(SysConstant.SYSTEM_CON_ONE)?"门":"层"));
-									storage3.setCreateTime(new Date());
-									storage3.setUpdateTime(new Date());
-									storage3.setType(storage.getType());
-									storage3.setIsDel(SysConstant.IS_NOT_DEL); // 删除标示
-									storage3.setLevel(SysConstant.SYSTEM_CON_THR);// 存储层级
-									storage3.setConUrl(storage.getConUrl());
-									storage3.setIndex(3); // 排序
-									storage3.setIsAvail(1); // 默认启用
-									storage3.setStatus(0); //使用状态
-									storageService.save(storage3);// 三级存储保存
+									for(int l=1; l<=Integer.parseInt(strLevel3); l++) {
+										Storage storage3 = new Storage();
+										storage3.setId(null);
+										storage3.setParentId(storage2.getId()); // 父节点Id
+										storage3.setName(l+"");
+										storage3.setComment(storage.getComment());
+										storage3.setDevice(storage.getDevice()+(storage.getType().equals(SysConstant.SYSTEM_CON_ONE)?"门":"层"));
+										storage3.setCreateTime(new Date());
+										storage3.setUpdateTime(new Date());
+										storage3.setType(storage.getType());
+										storage3.setIsDel(SysConstant.IS_NOT_DEL); // 删除标示
+										storage3.setLevel(SysConstant.SYSTEM_CON_THR);// 存储层级
+										storage3.setConUrl(storage.getConUrl());
+										storage3.setIndex(3); // 排序
+										storage3.setIsAvail(1); // 默认启用
+										storage3.setStatus(0); //使用状态
+										storageService.save(storage3);// 三级存储保存
+									}
 								}
 							}
 						}
