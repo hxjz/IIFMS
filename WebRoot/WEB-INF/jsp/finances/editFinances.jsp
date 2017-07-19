@@ -120,7 +120,7 @@
             </td>
             <td>
                 <input type="submit" class="t_btnsty01" id="capturePicture" value="拍照">
-                <input type="file" class="t_btnsty01" id="importPicture"    accept="image/*" multiple="multiple" value="导入">
+                <input type="file" class="t_btnsty01" id="importPicture"    accept="image/*" multiple="multiple" onchange="uploadImage()" value="导入">
                 <input type="submit" class="t_btnsty01" id="removePicture" value="移除">
             </td>
         </tr>
@@ -294,6 +294,41 @@
         $("#addStorage").window('open');
         adjustTanboxCenter(); // 弹窗位置居中
     }
+
+
+    function uploadImage(){
+        var imagePath=$('#importPicture').val();
+        if(!imagePath){
+            alert('请上传文件！');
+            return;
+        }
+        //判断上传文件的后缀名
+        var strExtension = imagePath.substr(imagePath.lastIndexOf('.') + 1);
+        if (strExtension != 'jpg' && strExtension != 'gif'
+            && strExtension != 'png' && strExtension != 'bmp') {
+            alert("请选择图片文件");
+            return;
+        }
+        debugger;
+        alert(imagePath);
+        $.ajax({
+            type: "POST",
+            url: "${path}/finances/upload.action",
+            data: { imgPath: $("#uploadFile").val() },
+            cache: false,
+            success: function(data) {
+                alert("上传成功");
+                $("#imgDiv").empty();
+                $("#imgDiv").html(data);
+                $("#imgDiv").show();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("上传失败，请检查网络后重试");
+            }
+        });
+    }
+
+
 </script>
 </body>
 </html>

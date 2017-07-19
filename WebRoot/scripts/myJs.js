@@ -203,14 +203,16 @@ function formatEnumType(value,row,index) {
 function formatFinanceState(value,row,index) {  // TODO  0为false
 	if(row.financeState){
         if(1===row.financeState) {
-            return "在库";
+            return "登记";
         }else if(2===row.financeState){
-            return "出库";
-        }else {
+            return "入库";
+        }else if(3===row.financeState){
+        	return  '出库';
+		}else {
             return "登记";
         }
 	}else{
-		return '异常';
+		return '登记';
 	}
 }
 
@@ -219,7 +221,7 @@ function formatFinanceState(value,row,index) {  // TODO  0为false
 function formatFinanceType(value,row,index) {
 	var financeType=row.financeType;
 	var typeName;
-    if(row.financeType){
+    if(financeType){
     	switch (financeType){
 			case 1:
 				typeName='手印痕迹';
@@ -264,9 +266,114 @@ function formatFinanceType(value,row,index) {
 	}
 }
 
+// 格式化案件类型
+function formateCaseType(value){
+	if(value){
+		var  valueName;
+		switch (value){
+			case 1:
+				valueName='危害国家安全罪';
+				break;
+            case 2:
+                valueName='危害公共安全罪';
+                break;
+            case 3:
+                valueName='放火案';
+                break;
+            case 4:
+                valueName='决水案';
+                break;
+            case 5:
+                valueName='爆炸案';
+                break;
+            case 6:
+                valueName='投毒案';
+                break;
+            case 7:
+                valueName='以其他方法危害公共安全案';
+                break;
+            case 8:
+                valueName='失火案';
+                break;
+            case 9:
+                valueName='过失决水案';
+                break;
+            case 10:
+                valueName='过失爆炸案';
+                break;
+            case 11:
+                valueName='过失投毒案';
+                break;
+            case 12:
+                valueName='过失以其他方法危害公共安全案';
+                break;
+            case 13:
+                valueName='破坏社会主义市场经济秩序案';
+                break;
+            case 14:
+                valueName='侵害公民人身权利、民主权利案';
+                break;
+            case 15:
+                valueName='故意杀人案';
+                break;
+			case 16:
+            	valueName='过失致人死亡案';
+            	break;
+			case 17:
+            	valueName='故意伤害案';
+            	break;
+            case 18:
+                valueName='过失致人重伤案';
+                break;
+            case 19:
+                valueName='强奸案';
+                break;
+            case 20:
+                valueName='绑架案';
+                break;
+            case 21:
+                valueName='侵犯财产案';
+                break;
+            case 22:
+                valueName='抢劫案';
+                break;
+            case 23:
+                valueName='盗窃案';
+                break;
+            case 24:
+                valueName='诈骗案';
+                break;
+            case 25:
+                valueName='抢夺案';
+                break;
+            case 26:
+                valueName='妨碍社会管理秩序案';
+                break;
+            case 27:
+                valueName='危害国防利益案';
+                break;
+            case 28:
+                valueName='贪污贿赂案';
+                break;
+            case 29:
+                valueName='渎职案';
+                break;
+            case 30:
+                valueName='军人违反职责案';
+                break;
+            case 31:
+                valueName='其他案件';
+                break;
+        }
+		return valueName;
+
+	}
+}
+
+
 // 格式化时间
 function formateSingelDate(value){
-	if(value.length>10){
+	if(value&&value.length>10){
         if(value.indexOf(':')>-1){  // 2017-07-15 01:12:13 切割
                 value=value.substr(0,10);
         }else{  // getTime() 格式的
@@ -281,7 +388,7 @@ function formateSingelDate(value){
 
 //勘验时间(起-止)
 function formatInspectionTime(value,row,index){
-    if(row.cases.id){
+    if(row.cases&&row.cases.id){
         var inspectionTimeStart=row.cases.inspectionTimeStart;
         var inspectionTimeEnd=row.cases.inspectionTimeEnd;
         return formateSingelDate(inspectionTimeStart) +' - '+ formateSingelDate(inspectionTimeEnd);
@@ -290,7 +397,7 @@ function formatInspectionTime(value,row,index){
 
 //案发时间(起-止)
 function formatCaseTime(value,row,index){
-    if(row.cases.id){
+    if(row.cases&&row.cases.id){
         var caseTimeStart=row.cases.caseTimeStart;
         var caseTimeEnd=row.cases.caseTimeEnd;
         return  formateSingelDate(caseTimeStart)+' - '+formateSingelDate(caseTimeEnd);

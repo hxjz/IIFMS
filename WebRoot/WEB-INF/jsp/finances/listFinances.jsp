@@ -277,21 +277,21 @@
 
         // 案件名称
         function formatCaseName(value,row,index){
-            if(row.cases.id){
+            if(row.cases&&row.cases.id){
                 return row.cases.caseName;
             }
         }
 
        // 案件编号
         function formatCaseNum(value,row,index){
-            if(row.cases.id){
+            if(row.cases&&row.cases.id){
                 return row.cases.caseNum;
             }
         }
 
         //案件类型
         function formatCaseType(value,row,index){
-            if(row.cases.id){
+            if(row.cases&&row.cases.id){
                 return row.cases.caseType;
             }
         }
@@ -300,7 +300,7 @@
 
         //现场勘验号
         function formatSiteNum(value,row,index){
-            if(row.cases.id){
+            if(row.cases&&row.cases.id){
                 return row.cases.siteNum;
             }
         }

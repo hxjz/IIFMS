@@ -1,5 +1,6 @@
 package com.iif.finances.web;
 
+import java.io.File;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +32,8 @@ import com.iif.finances.entity.Finances;
 import com.iif.finances.service.IFinancesService;
 import com.iif.stock.entity.Stock;
 import com.iif.stock.service.IStockService;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -193,7 +196,7 @@ public class FinancesAction extends BaseAction {
 
 
     /**
-     * 跳转到财物新增或修改页
+     * 跳转到财物详情页
      * @return
      * @throws Exception
      */
@@ -306,6 +309,22 @@ public class FinancesAction extends BaseAction {
             e.printStackTrace();
         }
         return JsonUtil.jsonFailure("");
+    }
+    @RequestMapping("upload.action")
+    @ResponseBody
+    public String uploadImage(HttpServletRequest request) { // todo 未完成
+        String fileName = "";
+        String logoPathDir = "/upload/images/";
+        String logoRealPathDir = request.getSession().getServletContext()
+                .getRealPath(logoPathDir);
+        File logoSaveFile = new File(logoRealPathDir);
+        if (!logoSaveFile.exists())
+            logoSaveFile.mkdirs();
+        MultipartHttpServletRequest  multipartRequest = (MultipartHttpServletRequest) request;
+        MultipartFile multipartFile = multipartRequest.getFile("imagePath");
+        String file=HttpTool.getParameter("imgPath");
+        System.out.print(file);
+        return "";
     }
 }
 
