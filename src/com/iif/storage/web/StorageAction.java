@@ -252,6 +252,7 @@ public class StorageAction extends BaseAction{
 		Map paramMap = new HashMap();
 		paramMap.put("filter_and_parentId_EQ_S", paramStr);
 		paramMap.put("filter_and_isDel_EQ_I", SysConstant.SYSTEM_CON_ZER);
+		paramMap.put("order_createTime_T", "desc");
 		List<?> lstRtn = storageService.findByFilterMap(paramMap);
 		
 		JSONArray ja = new JSONArray();
@@ -287,5 +288,33 @@ public class StorageAction extends BaseAction{
 		
 		// 返回页面显示
 		return TemplateUtil.toSuccessMap(ja);
+	}
+	
+	/**
+	 * 跳转选择页面
+	 * @return
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@RequestMapping("toSelectStorage.action")
+	public String toSelectStorage() {
+		Map paramMap = new HashMap();
+		paramMap.put("filter_and_parentId_EQ_S", SysConstant.SYSTEM_CON_ZER);
+		paramMap.put("filter_and_isDel_EQ_I", SysConstant.SYSTEM_CON_ZER);
+		List<?> rtnList = storageService.findByFilterMap(paramMap);
+		List storageNameList = new ArrayList();
+		if(!CollectionUtils.isEmpty(rtnList)){
+			for(int i=0; i<rtnList.size(); i++) {
+				Storage tempStorage = new Storage();
+				tempStorage = (Storage)rtnList.get(i);
+				
+				Map addMap = new HashMap();
+				addMap.put(SysConstant.SELECT_OPTION_VALUE, tempStorage.getId());
+				addMap.put(SysConstant.SELECT_OPTION_TEXT, tempStorage.getName());
+				storageNameList.add(addMap);
+			}
+		}
+		HttpTool.setAttribute("storageNameList", storageNameList);
+		
+		return "/jsp/prompt/storageSelect";
 	}
 }

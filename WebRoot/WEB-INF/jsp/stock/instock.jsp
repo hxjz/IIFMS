@@ -71,7 +71,8 @@
                <tr>
                    <td><span class="t_span01 w140">存储位置：</span></td>
                    <td colspan="4">
-                       <input class="easyui-validatebox w280 t_text" data-options="" name="storeLocation" type="text" value="${finances.storeLocation}"/>
+                       <input class="easyui-validatebox w280 t_text" data-options="" name="storeLocation" type="text" value=""/>
+                       <input class="easyui-validatebox w280 t_text" data-options="" name="storeId" type="hidden" value=""/>
                    </td>
                    <td><input type="button" class="t_btnsty01" id="chooseLocation" onclick="toChoose();" value="选择"></td>
                </tr>
@@ -86,8 +87,8 @@
 	
 	
 	<!-- 入库弹窗 -->
-	<div id="chooseStorageInfo" class="easyui-window" title="选择存储" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 568px; height: 390px; padding: 20px;">
-		<iframe id="frame_storage" width="510" height="300" scrolling="no" src="" frameborder="0"> </iframe>
+	<div id="chooseStorageInfo" class="easyui-window" title="选择存储" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 668px; height: 490px; padding: 20px;">
+		<iframe id="frame_storage" width="660" height="400" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	
 <script type="text/javascript">
@@ -132,6 +133,19 @@
 			}
 		}
 	});
+	
+	function handleSelectStorage(data) {
+		$("input[name='storeLocation']").attr("value", data.name);
+		$("input[name='storeId']").attr("value", data.id);
+
+		afterCloseSelectWindow();
+	}
+	
+	// 选择之后返回
+	function afterCloseSelectWindow() {
+		$("#chooseStorageInfo").window('close');
+	}
+	
 	function setVal() {
 		if(true==$("#isMurder").is(':checked')) {
 			$("#isMurder").attr("value","1");
@@ -148,7 +162,7 @@
 	//选择
 	function toChoose(){
 		// 添加iframeSrc
-		$("#frame_storage").attr("src", "${path}/storage/toChooseStorage.action");
+		$("#frame_storage").attr("src", "${path}/storage/toSelectStorage.action");
 		$('#chooseStorageInfo').window('open');
 		adjustTanboxCenter(); // 弹窗位置居中
 	}
