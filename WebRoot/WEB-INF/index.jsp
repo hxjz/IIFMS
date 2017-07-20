@@ -3,6 +3,11 @@
 <%
 	String path = request.getContextPath();
 	request.setAttribute("path", path);
+	
+	String userName = "";
+	if(null!=request.getAttribute("userName")) {
+		userName = (String)request.getAttribute("userName");
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,7 +36,7 @@
 	<div class="t_topbox">
 		<div class="t_topbox_posilogo"></div>
 		<!--t_topbox_posilogo -->
-		<div class="t_topbox_posia"></div>
+		<div class="t_topbox_posia"><font color="white" size="4">北京市公安局</font>&nbsp;<font color="white" size="2">[ <%=userName %> ]</font>&nbsp;<font color="white" size="6">欢迎您</font></div>
 		<!--t_topbox_posia -->
 		<div class="t_topbox_posib">
 			<div class="t_topbox_b ">

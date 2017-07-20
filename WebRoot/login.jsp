@@ -1,7 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8"%>
 <%
 	String path = request.getContextPath();
 	request.setAttribute("path", path);
+	String error = "";
+	if(null!=request.getParameter("error")) {
+		error = (String)request.getParameter("error");
+	}
 %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -26,6 +30,7 @@
 		<div class="box">
 		  <div class="logo"></div>
 		  <div class="login">
+		  	<label style="color:red;font-size:18px;text-align:right" id="error"><%=error %></label>
 		    <div class="loginbg"></div>
 		    <div class="logintext">
 		      <h1>涉案财物管理系统</h1>

@@ -52,7 +52,6 @@ public class SecurityFilter implements Filter {
 		
 		if(loginUrl.contains(currentUrl)) {
 			filterChain.doFilter(servletRequest , servletResponse) ;
-			request.getSession().setAttribute("currentUser", new UserAccount());
 			return;
 		}
 
