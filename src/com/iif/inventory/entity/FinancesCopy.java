@@ -15,7 +15,7 @@ public class FinancesCopy extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
-	public static long getSerialversionuid() {
+	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
 

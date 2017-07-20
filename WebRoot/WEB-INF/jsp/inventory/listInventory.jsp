@@ -128,10 +128,7 @@
 				dataType : "json",
 				type : "post",
 				success : function(result) {
-					if (result.status == "success") {
-						alertInfo(result.data);
-						alertInfo("success");
-					} else {
+					if (result.status != "success") {
 						alertInfo(result.data);
 					}
 				}

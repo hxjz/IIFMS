@@ -234,7 +234,7 @@ public class InventoryAction extends BaseAction {
 	        File logoSaveFile = new File(logoRealPathDir);
 	        if (!logoSaveFile.exists())
 	            logoSaveFile.mkdirs();
-			String title = UUID.randomUUID().toString() + ".xls";// 构建文件名称;
+			String title = "盘库" + UUID.randomUUID().toString() + ".xls";// 构建文件名称;
 	        /** 拼成完整的文件保存路径加文件 **/
 	        fileName = logoRealPathDir + File.separator + title;
 	        String[] headers = {"serialVersionUID","key","财物编码","相关案件","财物名称","财物类型","财物编号","财物状态","财物来源","财物来源单位","财物保管单位","查获人","查获时间段（起）",
