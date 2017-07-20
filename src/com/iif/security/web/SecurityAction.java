@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.StrUtil;
+import com.iif.common.util.SysConstant;
+import com.iif.common.util.SysPropUtil;
 import com.iif.common.util.UserUtil;
 import com.iif.orgMgt.entity.UserAccount;
 import com.iif.orgMgt.service.IRoleResourceService;
@@ -45,13 +47,18 @@ public class SecurityAction{
 		
 		String username = HttpTool.getParameter("j_username", "").trim();
 		String password = HttpTool.getParameter("j_password", "").trim();
+		String strUserName = SysPropUtil.getSystemConstant(SysConstant.INIT_USER);
+		String strPassowrd = SysPropUtil.getSystemConstant(SysConstant.INIT_PASSWORD);
+		String[] arrUn = strUserName.split(",");
+		String[] arrPs = strPassowrd.split(",");
+		
 		// 检验用户名和密码是否为空
-		if (!(username.equals("admin") || username.equals("user"))) {
+		if (!(username.equals(arrUn[0]) || username.equals(arrUn[1]))) {
 			HttpTool.setAttribute("error", "不存在此用户!");
 			return "redirect:/login.jsp?error="+"No User!";
 		}
 		
-		if (!((username.equals("admin")&&password.equals("admin")) || (username.equals("user")&&password.equals("user")))) {
+		if (!((username.equals(arrUn[0])&&password.equals(arrPs[0])) || (username.equals(arrUn[1])&&password.equals(arrPs[1])))) {
 			HttpTool.setAttribute("error", "密码错误!");
 			return "redirect:/login.jsp?error="+"Password Error!";
 		}
@@ -80,7 +87,8 @@ public class SecurityAction{
 			tempUser.setId(strUid);
 		}
 		
-		HttpTool.setAttribute("userName", tempUser.getUserAccount());
+		HttpTool.setAttribute("userName", tempUser.getUserAccount()); //页面显示登录者名称
+		HttpTool.setAttribute("sectionName", SysPropUtil.getSystemConstant(SysConstant.INIT_ROOT_ORG_NAME));//页面显示使用单位名称
 		
 		return "index";
 	}
