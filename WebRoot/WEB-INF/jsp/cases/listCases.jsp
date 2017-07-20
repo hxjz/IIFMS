@@ -113,11 +113,11 @@
 								<th data-options="field:'caseNum',width:80" align="center">案件编号</th>
 								<th data-options="field:'caseName',width:130" align="center">案件名称</th>
 								<th data-options="field:'casePlace',width:150" align="center">案发地点</th>
-								<th data-options="field:'caseTimeStart',width:100,formatter:formateSingelDate" align="center">案发时间(起)</th>
-								<th data-options="field:'caseTimeEnd',width:100,formatter:formateSingelDate" align="center">案发时间(止)</th>
+								<th data-options="field:'caseTimeStart',width:100,formatter:formatSingelDate" align="center">案发时间(起)</th>
+								<th data-options="field:'caseTimeEnd',width:100,formatter:formatSingelDate" align="center">案发时间(止)</th>
 								<th data-options="field:'siteNum',width:80" align="center">现场勘验号</th>
-								<th data-options="field:'inspectionTimeStart',width:100,formatter:formateSingelDate" align="center">勘验时间(起)</th>
-								<th data-options="field:'inspectionTimeEnd',width:100,formatter:formateSingelDate" align="center">勘验时间(止)</th>
+								<th data-options="field:'inspectionTimeStart',width:100,formatter:formatSingelDate" align="center">勘验时间(起)</th>
+								<th data-options="field:'inspectionTimeEnd',width:100,formatter:formatSingelDate" align="center">勘验时间(止)</th>
 								<th data-options="field:'inspectionPerson',width:80" align="center">勘验人</th>
 								<th data-options="field:'evidenceNum',width:60" align="center">财物个数</th>
 								<th data-options="field:'jurisdiction',width:120" align="center">管辖单位</th>

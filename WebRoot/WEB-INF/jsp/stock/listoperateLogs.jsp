@@ -28,9 +28,9 @@
 								<td><input class="t_text w120" name="filter_and_operator_LIKE_S" type="text" id="operator" /></td>
 								<td class="tr" width="120"><span class="t_span01">经办时间：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_createTime_GE_S" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_createTime_GE_T" type="text" />
 									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_createTime_LE_SS" type="text" /></td>
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_createTime_LE_T" type="text" /></td>
 							</tr>
 							<tr>
 								<td class="tr" width="100"><span class="t_span01">操作人：</span></td>
@@ -115,7 +115,7 @@
 								<th data-options="field:'row.finances.financeName',width:130,formatter:formatFinanceName" align="center">财物名称</th>
 								<th data-options="field:'row.finances.financeNum',width:80,formatter:formatFinanceNum" align="center">财物编号</th>
 								<th data-options="field:'operator',width:80" align="center">经办人</th>
-								<th data-options="field:'createTime',width:130" format="yyyy-MM-dd hh:mm:ss" align="center">经办时间</th>
+								<th data-options="field:'createTime',width:130,formatter:formatCreateTime" align="center">经办时间</th>
 								<th data-options="field:'creator',width:80" align="center">操作人</th>
 								<th data-options="field:'fetchMan',width:80" align="center">送物/取物人</th>
 								<th data-options="field:'department',width:130" align="center">报送/取物单位</th>
@@ -136,13 +136,6 @@
 	
 		$(function() {
 			createTable('dg1');
-			
-			// 双击行显示财物详细信息
-			$('#dg1').datagrid({
-				onDblClickRow: function(rowIdex,rowData){
-					toDetailPage();
-				}
-			});
 		});
 
 
@@ -185,8 +178,15 @@
 		
 		//经办时间
 		function formatCreateTime(value,row,index){
-           return row.createTime;
-        }
+			if(row.createTime==null || row.createTime=='') {
+				return "";
+			}
+			var date = new Date(row.createTime);
+			var y = date.getFullYear();
+			var m = date.getMonth()+1;
+			var d = date.getDate();
+			return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+		}
 		
 		//现场勘验号
 		function formatSiteNum(value,row,index){

@@ -144,7 +144,7 @@ function linkHouseType(){
 
 /*************************格式化******************************/
 //查询列表中项目名称
-function formateProject(value, rowData, index){
+function formatProject(value, rowData, index){
 	if(rowData.projectId == null||rowData.projectId == ""){
 		return rowData.projectId;
 	}else{
@@ -153,7 +153,7 @@ function formateProject(value, rowData, index){
 }
 
 // 查询列表中户型
-function formateHouseType(value, rowData, index){
+function formatHouseType(value, rowData, index){
 	if(rowData.houseTypeId == null||rowData.houseTypeId == ""){
 		return rowData.houseTypeId;
 	}else{
@@ -267,7 +267,7 @@ function formatFinanceType(value,row,index) {
 }
 
 // 格式化案件类型
-function formateCaseType(value){
+function formatCaseType(value){
 	if(value){
 		var  valueName;
 		switch (value){
@@ -372,7 +372,7 @@ function formateCaseType(value){
 
 
 // 格式化时间
-function formateSingelDate(value){
+function formatSingelDate(value){
 	if(value&&value.length>10){
         if(value.indexOf(':')>-1){  // 2017-07-15 01:12:13 切割
                 value=value.substr(0,10);
@@ -391,7 +391,7 @@ function formatInspectionTime(value,row,index){
     if(row.cases&&row.cases.id){
         var inspectionTimeStart=row.cases.inspectionTimeStart;
         var inspectionTimeEnd=row.cases.inspectionTimeEnd;
-        return formateSingelDate(inspectionTimeStart) +' - '+ formateSingelDate(inspectionTimeEnd);
+        return formatSingelDate(inspectionTimeStart) +' - '+ formatSingelDate(inspectionTimeEnd);
     }
 }
 
@@ -400,6 +400,6 @@ function formatCaseTime(value,row,index){
     if(row.cases&&row.cases.id){
         var caseTimeStart=row.cases.caseTimeStart;
         var caseTimeEnd=row.cases.caseTimeEnd;
-        return  formateSingelDate(caseTimeStart)+' - '+formateSingelDate(caseTimeEnd);
+        return  formatSingelDate(caseTimeStart)+' - '+formatSingelDate(caseTimeEnd);
     }
 }
