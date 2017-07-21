@@ -37,14 +37,14 @@
 							<tr>
 								<td class="tr" width="120"><span class="t_span01">案发时间(起)：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeStart_GE_T" type="text" /> 
+									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeStart_GE_S" type="text" /> 
 									<span class="t_span01">至</span> 
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeStart_LE_T" type="text" /></td>
+									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeStart_LE_S" type="text" /></td>
 								<td class="tr" width="120"><span class="t_span01">案发时间(止)：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeEnd_GE_T" type="text" /> 
+									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeEnd_GE_S" type="text" /> 
 									<span class="t_span01">至</span> 
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeEnd_LE_T" type="text" /></td>
+									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeEnd_LE_S" type="text" /></td>
 								<td colspan="2" width="300" align="left">
 									&nbsp;<input type="checkbox" id="isDel" name="filter_and_isDel_LE_I" value="0" onclick="setVal()"/> 
 									<span class="t_span01">包含已删除案件</span>
@@ -52,14 +52,14 @@
 							</tr>
 							<tr>
 								<td class="tr"><span class="t_span01">勘验时间(起)：</span></td>
-								<td colspan="3"><input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeStart_GE_T" type="text" /> 
+								<td colspan="3"><input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeStart_GE_S" type="text" /> 
 								<span class="t_span01">至</span> 
-								<input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeStart_LE_T" type="text" /></td>
+								<input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeStart_LE_S" type="text" /></td>
 								<td class="tr"><span class="t_span01">勘验时间(止)：</span></td>
 								<td colspan="3">
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeEnd_GE_T" type="text" /> 
+									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeEnd_GE_S" type="text" /> 
 									<span class="t_span01">至</span> 
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeEnd_LE_T" type="text" />
+									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeEnd_LE_S" type="text" />
 								</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
@@ -68,7 +68,7 @@
 								<td colspan="10" align="right">
 									<input type="hidden" name="order_updateTime_T" value="desc"/>
 									<input class="t_btnsty01" id="find" name="select" type="button" value="查询"/>
-									<input class="t_btnsty01" type="reset" value="重置"/>&nbsp;&nbsp;&nbsp;
+									<input class="t_btnsty01" type="reset" onclick="resetClick()" value="重置"/>&nbsp;&nbsp;&nbsp;
 									
 								</td>
 							</tr>
@@ -278,6 +278,17 @@
 			}else {
 				$("#isDel").attr("value",0);
 			}
+		}
+		
+		function resetClick() {
+			$("input[name='filter_and_caseTimeStart_GE_S']").attr("value","");
+			$("input[name='filter_and_caseTimeStart_LE_S']").attr("value","");
+			$("input[name='filter_and_caseTimeEnd_GE_S']").attr("value","");
+			$("input[name='filter_and_caseTimeEnd_LE_S']").attr("value","");
+			$("input[name='filter_and_inspectionTimeStart_GE_S']").attr("value","");
+			$("input[name='filter_and_inspectionTimeStart_LE_S']").attr("value","");
+			$("input[name='filter_and_inspectionTimeEnd_GE_S']").attr("value","");
+			$("input[name='filter_and_inspectionTimeEnd_LE_S']").attr("value","");
 		}
 		
 	</script>
