@@ -22,6 +22,7 @@ import com.iif.common.enums.CaseTypeEnum;
 import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
+import com.iif.common.util.UserUtil;
 import com.iif.finances.entity.Finances;
 
 /**
@@ -135,13 +136,13 @@ public class CasesAction extends BaseAction {
 		}else {
 			BeanUtils.copyProperties(cases, saveCases);
 			saveCases.setCreateTime(new Date());// 创建时间
-			saveCases.setCreator("admin"); // 当前登录人
+			saveCases.setCreator(UserUtil.getCurrentUser().getUserAccount()); // 当前登录人
 			saveCases.setIsDel(SysConstant.IS_NOT_DEL); //删除标示 
 			saveCases.setId(null);
 		}
 		saveCases.setIsMurder(cases.getIsMurder()==null?Integer.valueOf(SysConstant.SYSTEM_CON_ZER):Integer.valueOf(SysConstant.SYSTEM_CON_ONE));//Murder标示
 		saveCases.setUpdateTime(new Date()); // 更新时间
-		saveCases.setUpdater("admin");// 当前登录人
+		saveCases.setUpdater(UserUtil.getCurrentUser().getUserAccount());// 当前登录人
 		
 		try{
 			iCasesService.save(saveCases);

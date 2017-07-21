@@ -3,6 +3,16 @@
 <%
 	String path = request.getContextPath();
 	request.setAttribute("path", path);
+	
+	String userName="";
+	if(null!=request.getAttribute("userName")) {
+		userName = (String)request.getAttribute("userName");
+	}
+	
+	String sectionName="";
+	if(null!=request.getAttribute("sectionName")) {
+		sectionName = (String)request.getAttribute("sectionName");
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,7 +41,7 @@
 	<div class="t_topbox">
 		<div class="t_topbox_posilogo"></div>
 		<!--t_topbox_posilogo -->
-		<div class="t_topbox_posia"></div>
+		<div class="t_topbox_posia"><font color="white" size="4"><%=sectionName %></font>&nbsp;<font color="white" size="2">[ <%=userName %> ]</font>&nbsp;<font color="white" size="6">欢迎您</font></div>
 		<!--t_topbox_posia -->
 		<div class="t_topbox_posib">
 			<div class="t_topbox_b ">
@@ -53,70 +63,10 @@
 		<div class="t_leftbox">
 			<div class="t_lefttitle">
 				<h3>功能菜单</h3>
-				<!-- <div class="set">设置</div> -->
 			</div>
 			<!-- -->
 			<div class="leftBox">
 				<div class="slideNav">
-					<c:forEach items="${userRoleList}" var="obj2">
-						<c:if test="${obj2.resource.isButton != 1 }">
-							<dl>
-								<c:choose>
-									<c:when test="${obj2.resource.url==null}">
-										<dt>${obj2.resource.name}</dt>
-										<c:if test="${obj2.children.size()>0}">
-											<dd>
-												<c:forEach items="${obj2.children}" var="obj3">
-													<c:if
-														test="${obj3.resource.isButton!=1 && obj3.resource.isEnable==1}">
-														<dl class="sec">
-															<c:choose>
-																<c:when test="${obj3.resource.url==null }">
-																	<dt>${obj3.resource.name}</dt>
-																	<c:if test="${bj3.children.size()>0}">
-																		<dd>
-																			<c:forEach items="${obj3.children}" var="obj4">
-																				<c:if
-																					test="${obj4.resource.isButton!=1 && obj4.resource.isEnable==1}">
-																					<p style='white-space: nowrap;'>
-																						<a href="javascript:void(0)"
-																							onclick="loadUrl('content_${obj4.resource.id}','${path}/${obj4.resource.url }','${obj4.resource.name }');"
-																							id='left_${obj4.resource.id}'
-																							title="${obj4.resource.name }">${obj4.resource.name }</a>
-																					</p>
-																				</c:if>
-																			</c:forEach>
-																		</dd>
-																	</c:if>
-																</c:when>
-																<c:otherwise>
-																	<dt>
-																		<a href="javascript:void(0)"
-																			onclick="loadUrl('content_${obj3.resource.id}','${path}/${obj3.resource.url }','${obj3.resource.name }');"
-																			id='left_${obj3.resource.id}'
-																			title="${obj3.resource.name }">${obj3.resource.name }</a>
-																	</dt>
-																</c:otherwise>
-															</c:choose>
-														</dl>
-													</c:if>
-												</c:forEach>
-											</dd>
-										</c:if>
-									</c:when>
-									<c:otherwise>
-										<dt>
-											<a href="javascript:void(0)" style="color: #648da2;"
-												onclick="loadUrl('content_${obj2.resource.id}','${path}/${obj2.resource.url }','${obj2.resource.name }');"
-												id='left_${obj2.resource.id}' title="${obj2.resource.name }">${obj2.resource.name }</a>
-										</dt>
-									</c:otherwise>
-								</c:choose>
-							</dl>
-						</c:if>
-					</c:forEach>
-					
-					<!-- Temp -->
 					<dl>
 						<dt>
 							<a href="javascript:void(0)" style="color: #648da2;"
@@ -171,7 +121,6 @@
 							   onclick="loadUrl('content_inventory','${path}/inventory/listInventory.action','盘库');" id='left_inventory' title="盘库">盘库</a>
 						</dt>
 					</dl>
-					<!-- Temp -->
 				</div>
 			</div>
 		</div>
@@ -194,13 +143,6 @@
 			<!-- t_rightboxin-->
 		</div>
 		<!-- t_rightbox-->
-	</div>
-	<!-- t_mainbox-->
-	<div id="mm" class="easyui-menu" data-options="">
-		<div data-options="name:'closeThis'" onclick="closeThis()">关闭当前标签</div>
-		<div class="menu-sep"></div>
-		<div data-options="name:'closeOthers'" onclick="closeOthers()">关闭其他标签</div>
-		<div data-options="name:'closeAll'" onclick="closeAll()">关闭全部标签</div>
 	</div>
 </body>
 </html>

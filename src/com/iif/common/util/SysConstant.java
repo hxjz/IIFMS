@@ -22,11 +22,15 @@ public class SysConstant {
 	public static final String RESOURCE_ROOT_ID = "1";
 	/////////////////////////
 	
+	public final static String INIT_USER = "init_user"; // 系统默认分配用户名
+	
+	public final static String INIT_PASSWORD = "init_password"; // 系统默认分配密码
+	
+	public final static String INIT_ROOT_ORG_NAME = "init_root_org_name"; // 系统默认使用单位
+	
 	public final static String admin_name = "admin"; // 管理员名称
 
 	public final static String administrator_name = "administrator"; // 管理员名称
-	
-	public final static String iifadmin_name = "IIFadmin" ; // 管理员名称
 
 	public final static String SYSTEM_CON_ZER = "0";// 0
 	public final static String SYSTEM_CON_ONE = "1";// 1
