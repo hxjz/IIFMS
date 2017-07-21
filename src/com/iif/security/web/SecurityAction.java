@@ -4,16 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hxjz.common.utils.HttpTool;
-import com.hxjz.common.utils.StrUtil;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.SysPropUtil;
-import com.iif.common.util.UserUtil;
 import com.iif.orgMgt.entity.UserAccount;
 import com.iif.orgMgt.service.IRoleResourceService;
 import com.iif.orgMgt.service.IUserAccountService;
@@ -79,13 +76,9 @@ public class SecurityAction{
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("style","default");
-		//获取权限配置
+		
 		//////////////////////////////////////////
 		UserAccount tempUser = (UserAccount)request.getSession().getAttribute("currentUser");
-		String strUid = HttpTool.getParameter("userId");
-		if(StringUtils.isNotEmpty(strUid)) {
-			tempUser.setId(strUid);
-		}
 		
 		HttpTool.setAttribute("userName", tempUser.getUserAccount()); //页面显示登录者名称
 		HttpTool.setAttribute("sectionName", SysPropUtil.getSystemConstant(SysConstant.INIT_ROOT_ORG_NAME));//页面显示使用单位名称
