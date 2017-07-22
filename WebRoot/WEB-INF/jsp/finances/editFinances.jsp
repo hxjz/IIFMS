@@ -161,9 +161,10 @@
     <iframe id="frame_addCase" width="520" height="404" scrolling="no" src="" frameborder="0"> </iframe>
 </div>
 
-<div id="addStorage" class="easyui-window" title="选择存储位置" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 700px; height: 500px; padding: 20px;">
-    <iframe id="frame_addStorage" width="520" height="404" scrolling="no" src="" frameborder="0"> </iframe>
+<div id="chooseStorageInfo" class="easyui-window" title="选择存储位置" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 700px; height: 500px; padding: 20px;">
+    <iframe id="frame_addStorage" width="670" height="450" scrolling="no" src="" frameborder="0"> </iframe>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function () {
         // 财物来源
@@ -328,6 +329,16 @@
         });
     }
 
+    function handleSelectStorage(data) {
+		$("input[name='storeLocation']").attr("value", data.name);
+
+		afterCloseSelectWindow();
+	}
+	
+	// 选择之后返回
+	function afterCloseSelectWindow() {
+		$("#chooseStorageInfo").window('close');
+	}
 
 </script>
 </body>
