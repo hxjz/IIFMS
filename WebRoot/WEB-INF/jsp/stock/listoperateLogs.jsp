@@ -78,7 +78,7 @@
 									<input type="hidden" name="order_updateTime_T" value="desc"/>
 									<input class="t_btnsty01" id="find" name="select" type="button" value="查询" />
 								</td>
-								<td><input class="t_btnsty01" type="reset" value="重置" /></td>
+								<td><input class="t_btnsty01" type="reset" onclick="resetClick()" value="重置" /></td>
 							</tr>
 						</table>
 					</div>
@@ -119,7 +119,7 @@
 								<th data-options="field:'creator',width:80" align="center">操作人</th>
 								<th data-options="field:'fetchMan',width:80" align="center">送物/取物人</th>
 								<th data-options="field:'department',width:130" align="center">报送/取物单位</th>
-								<th data-options="field:'flag',width:80" align="center">出入库类型</th>
+								<th data-options="field:'flag',width:60,formatter:formatFlag" align="center">出入库类型</th>
 								<th data-options="field:'reason',width:100" align="center">出库原因</th>								
 							</tr>
 						</thead>
@@ -137,17 +137,11 @@
 		$(function() {
 			createTable('dg1');
 		});
-
-
-		// 财物状态
+		
+		// 出入库操作
 		function formatFlag(value,row,index) {
-			if(""!=flag && "3"==flag) {
-				return "出库";
-			}else if(""!=flag && "2"==flag){
-				return "入库";
-			}else {
-				return "登记";
-			}
+			row.financeState = row.flag;
+			return formatFinanceState(value,row,index);
 		}
 
 		// 电子识别码
@@ -200,11 +194,11 @@
                 return row.cases.inspectionTimeStart + row.cases.inspectionTimeEnd;
             }
         }
-
-		// 财物编号
-//		function formatLink(value, row, index) {
-//			return "<a href='javascript:void(0);' onclick='toDetailPage(\"" + row.id + "\")'><u>" + row.financeNum + "</u></a>";
-//		}
+		
+		function resetClick() {
+			$("input[name='filter_and_createTime_GE_T']").attr("value","");
+			$("input[name='filter_and_createTime_LE_T']").attr("value","");
+		}
 		
 	</script>
 </body>

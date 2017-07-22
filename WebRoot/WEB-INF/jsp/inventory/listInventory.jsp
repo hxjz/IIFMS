@@ -60,11 +60,11 @@
 								<th data-options="field:'id',hidden:true"></th>
 								<th data-options="field:'financeNum',width:80" align="center">财物编号</th>
 								<th data-options="field:'financeName',width:130" align="center">财物名称</th>
-								<th data-options="field:'financeType',width:150" align=" center">财物类型</th>
+								<th data-options="field:'financeType',width:80,formatter:formatFinanceType" align=" center">财物类型</th>
 								<th data-options="field:'financeState',width:100,formatter:formatFinanceState" align="center">财物状态</th>
 								<th data-options="field:'row.cases.caseNum',width:100,formatter:formatCaseNum" align="center">案件编号</th>
 								<th data-options="field:'row.cases.caseName',width:80,formatter:formatCaseName" align="center">案件名称</th>
-								<th data-options="field:'row.cases.caseType',width:100,formatter:formatCaseType" align="center">案件类型</th>
+								<th data-options="field:'row.cases.caseType',width:100,formatter:formateCaseType" align="center">案件类型</th>
 								<th data-options="field:'row.cases.caseTime',width:100,formatter:formatCaseTime" align="center">案发时间(起-止)</th>
 								<th data-options="field:'row.cases.siteNum',width:80,formatter:formatSiteNum" align="center">现场勘验号</th>
 								<th data-options="field:'row.cases.inspectionTime',width:60,formatter:formatInspectionTime" align="center">勘验时间(起-止)</th>
@@ -147,18 +147,6 @@
 			reloadgrid('dg1');
 		}
 
-
-        // 财物状态
-        function formatFinanceState(value,row,index) {
-            if(""!=row.financeState && "2"==row.financeState) {
-                return "出库";
-            }else if(""!=row.financeState && "1"==row.financeState){
-                return "在库";
-            }else {
-                return "登记";
-            }
-        }
-
         // 案件名称
         function formatCaseName(value,row,index){
             if(row.cases.id){
@@ -174,18 +162,11 @@
         }
 
         //案件类型
-        function formatCaseType(value,row,index){
+        function formateCaseType(value,row,index){
             if(row.cases.id){
-                return row.cases.caseType;
+                return formatCaseType(row.cases.caseType);
             }
         }
-
-        //案发时间(起-止)
-//        function formatCaseTime(value,row,index){
-//            if(row.cases.id){
-//                return row.cases.caseTimeStart +' - '+ row.cases.caseTimeEnd;
-//            }
-//        }
 
         //现场勘验号
         function formatSiteNum(value,row,index){
@@ -193,12 +174,7 @@
                 return row.cases.siteNum;
             }
         }
-        //勘验时间(起-止)
-//        function formatInspectionTime(value,row,index){
-//            if(row.cases.id){
-//                return row.cases.inspectionTimeStart +' - '+  row.cases.inspectionTimeEnd;
-//            }
-//        }
+
 		//查看详情后返回
 		function afterCloseDetailWindow() {
 			$("#detailInfo").window('close');
