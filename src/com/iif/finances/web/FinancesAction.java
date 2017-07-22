@@ -28,10 +28,12 @@ import com.iif.common.enums.FinanceTypeEnum;
 import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
+import com.iif.common.util.UserUtil;
 import com.iif.finances.entity.Finances;
 import com.iif.finances.service.IFinancesService;
 import com.iif.stock.entity.Stock;
 import com.iif.stock.service.IStockService;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -165,7 +167,7 @@ public class FinancesAction extends BaseAction {
             BeanUtils.copyProperties(finance, saveFinance);
             saveFinance.setFinanceState(0); // 财物默认状态
             saveFinance.setCreateTime(new Date());// 创建时间
-            saveFinance.setCreator("admin"); // 当前登录人
+            saveFinance.setCreator(UserUtil.getCurrentUser().getUserAccount()); // 当前登录人
             saveFinance.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
             saveFinance.setId(null);
             ////*****************Add By M start************////
@@ -175,12 +177,12 @@ public class FinancesAction extends BaseAction {
             saveStock.setFlag(SysConstant.STOCK_STATE_NONE);
             saveStock.setFinances(saveFinance);
             saveStock.setCreateTime(new Date());// 创建时间
-            saveStock.setCreator("admin"); // 当前登录人
+            saveStock.setCreator(UserUtil.getCurrentUser().getUserAccount()); // 当前登录人
             saveStock.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
             ////****************Add By M End**************////
         }
         saveFinance.setUpdateTime(new Date()); // 更新时间
-        saveFinance.setUpdater("admin");// 当前登录人
+        saveFinance.setUpdater(UserUtil.getCurrentUser().getUserAccount());// 当前登录人
 
         try{
             iFinancesService.save(saveFinance);
@@ -228,7 +230,7 @@ public class FinancesAction extends BaseAction {
             if(StringUtils.isNotEmpty(financesId)) {
                 Finances finances= (Finances) iFinancesService.findById(financesId);
                 finances.setIsDel(SysConstant.IS_DEL); //删除标示
-                finances.setUpdater("admin");
+                finances.setUpdater(UserUtil.getCurrentUser().getUserAccount());
                 finances.setUpdateTime(new Date());
                 iFinancesService.save(finances);
             }
