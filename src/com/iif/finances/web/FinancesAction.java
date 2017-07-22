@@ -10,6 +10,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.iif.common.enums.*;
+import com.iif.common.util.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +26,6 @@ import com.hxjz.common.utils.HttpTool;
 import com.hxjz.common.utils.Page;
 import com.hxjz.common.utils.ReflectionUtil;
 import com.iif.cases.entity.Cases;
-import com.iif.common.enums.FinanceSourceEnum;
-import com.iif.common.enums.FinanceStateEnum;
-import com.iif.common.enums.FinanceTypeEnum;
-import com.iif.common.util.InitSelect;
-import com.iif.common.util.JsonUtil;
-import com.iif.common.util.SysConstant;
-import com.iif.common.util.TemplateUtil;
-import com.iif.common.util.UserUtil;
 import com.iif.finances.entity.Finances;
 import com.iif.finances.service.IFinancesService;
 import com.iif.stock.entity.Stock;
@@ -116,9 +110,12 @@ public class FinancesAction extends BaseAction {
         // 财物类型下拉列表
         List<?> financeTypeList = InitSelect.getSelectList(FinanceTypeEnum.class);
         HttpTool.setAttribute("financeTypeList", financeTypeList);
-
+        // 财物来源下拉列表
         List<?> financeSourceList = InitSelect.getSelectList(FinanceSourceEnum.class);
         HttpTool.setAttribute("financeSourceList", financeSourceList);
+        // 来源单位下拉列表
+        List<?> sourceOfficeList = InitSelect.getSelectList(SourceOfficeEnum.class);
+        HttpTool.setAttribute("sourceOfficeList", sourceOfficeList);
         return "jsp/finances/editFinances";
     }
 
@@ -164,7 +161,7 @@ public class FinancesAction extends BaseAction {
             ReflectionUtil.copyPropertiesForHasValueIgnoreSerialVersionUID(saveFinance, finance);
         }else {
             BeanUtils.copyProperties(finance, saveFinance);
-            saveFinance.setFinanceState(0); // 财物默认状态
+            saveFinance.setFinanceState(1); // 财物默认状态git
             saveFinance.setCreateTime(new Date());// 创建时间
             saveFinance.setCreator(UserUtil.getCurrentUser().getUserAccount()); // 当前登录人
             saveFinance.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
@@ -207,7 +204,29 @@ public class FinancesAction extends BaseAction {
 
         if(StringUtils.isNotEmpty(financesId)) {
             Finances finances= (Finances) iFinancesService.findById(financesId);
+            String storeOffice=	SysPropUtil.getSystemConstant(SysConstant.INIT_ROOT_ORG_NAME);
+            finances.setStoreOffice(storeOffice);
             HttpTool.setAttribute("finances", finances);
+
+            // 财物类型
+            List<?> financeTypeList = InitSelect.getSelectList(FinanceTypeEnum.class);
+            HttpTool.setAttribute("financeTypeList", financeTypeList);
+
+            // 财物状态
+            List<?> financeStateList = InitSelect.getSelectList(FinanceStateEnum.class);
+            HttpTool.setAttribute("financeStateList", financeStateList);
+
+            // 案件类型
+            List<?> caseTypeList = InitSelect.getSelectList(CaseTypeEnum.class);
+            HttpTool.setAttribute("caseTypeList", caseTypeList);
+
+            // 财物来源
+            List<?> financeSourceList = InitSelect.getSelectList(FinanceSourceEnum.class);
+            HttpTool.setAttribute("financeSourceList", financeSourceList);
+
+           // 来源单位
+            List<?> sourceOfficeList = InitSelect.getSelectList(SourceOfficeEnum.class);
+            HttpTool.setAttribute("sourceOfficeList", sourceOfficeList);
         }
         return "jsp/finances/financesDetail";
     }
@@ -261,14 +280,17 @@ public class FinancesAction extends BaseAction {
         int pageNum = HttpTool.getIntegerParameter("page");
         int size = HttpTool.getIntegerParameter("rows");
         page = new Page(pageNum, size);
+        int totalCount=0;
+        int total=0;
         Map searchMap = super.buildSearch(); // 组装查询条件
         // 查询数据
         List<Map<String,Object>> statistics = new ArrayList<>();
         try {
             statistics = iFinancesService.showStatistics(page, searchMap);
-            int  total=0;
-            for(Map statistic:statistics){
-                total+=Integer.valueOf(statistic.get("total").toString());
+            totalCount=statistics.size()>0?statistics.size()-1:0;
+            if(statistics.size()>0){
+                for(Map statistic:statistics)
+                    total+=Integer.valueOf(statistic.get("total").toString());
             }
             Map<String,Object> financeTotal=new HashMap<>();
             financeTotal.put("typeName","合计");
@@ -278,7 +300,7 @@ public class FinancesAction extends BaseAction {
             e.printStackTrace();
         }
 
-        page.setTotalCount((long) (statistics.size()-1));
+        page.setTotalCount((long) totalCount);
         return TemplateUtil.toDatagridMap(page, statistics);
     }
 

@@ -100,7 +100,7 @@
 									<input type="hidden" name="order_updateTime_T" value="desc"/>
 									<input class="t_btnsty01" id="find" name="select" type="button" value="查询" />
 								</td>
-								<td><input class="t_btnsty01" type="reset" value="重置" /></td>
+								<td><input class="t_btnsty01" type="reset" onclick="resetClick()" value="重置" /></td>
 							</tr>
 						</table>
 					</div>
@@ -313,6 +313,16 @@
 			}
 		}
 
+        function resetClick() {
+            $("input[name='filter_and_cases__caseTimeStart_GE_S']").attr("value","");
+            $("input[name='filter_and_cases__caseTimeStart_LE_S']").attr("value","");
+            $("input[name='filter_and_cases__caseTimeEnd_GE_S']").attr("value","");
+            $("input[name='filter_and_cases__caseTimeEnd_LE_S']").attr("value","");
+            $("input[name='filter_and_cases__inspectionTimeStart_GE_S']").attr("value","");
+            $("input[name='filter_and_cases__inspectionTimeStart_LE_S']").attr("value","");
+            $("input[name='filter_and_cases__inspectionTimeEnd_GE_S']").attr("value","");
+            $("input[name='filter_and_cases__inspectionTimeEnd_LE_S']").attr("value","");
+        }
 	</script>
 </body>
 </html>

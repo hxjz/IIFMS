@@ -31,11 +31,24 @@
 			</td>
 			<td><span class="t_span01">财物类型：</span></td>
 			<td>
-				<input class="easyui-validatebox t_text w140" data-options=""
-					   name="caseName" type="text" value="${finances.financeType}" readonly="readonly"/>
+				<input type="hidden" name="financeTypeHid" id="financeTypeHid" value="${finances.financeType}">
+				<select class="w140" name="financeType" id="financeType" disabled="disabled">
+					<option value="">无</option>
+					<c:forEach items="${financeTypeList}" var="object">
+						<option value="${object.key}">${object.value}</option>
+					</c:forEach>
+				</select>
 			</td>
 			 <td><span class="t_span01">财物状态：</span></td>
-			 <td><span class="t_span02">${finances.financeState}</span></td>
+			 <td>
+				 <input type="hidden" name="financeStateHid" id="financeStateHid" value="${finances.financeState}">
+				 <select class="w140" name="financeState" id="financeState" disabled="disabled">
+					 <option value="">无</option>
+					 <c:forEach items="${financeStateList}" var="object">
+						 <option value="${object.key}">${object.value}</option>
+					 </c:forEach>
+				 </select>
+			 </td>
 		</tr>
 		<tr>
 			<td><span class="t_span01">案件名称：</span></td>
@@ -50,8 +63,13 @@
 			</td>
 			<td><span class="t_span01">案件类型：</span></td>
 			<td>
-				<input class="easyui-validatebox t_text w140" data-options=""
-					   name="caseName" type="text" value="${finances.cases.caseType}" readonly="readonly"/>
+				<input type="hidden" name="caseTypeHid" id="caseTypeHid" value="${finances.cases.caseType}">
+				<select class="w140" name="caseType" id="caseType" disabled="disabled"- >
+					<option value="">无</option>
+					<c:forEach items="${caseTypeList}" var="object">
+						<option value="${object.key}">${object.value}</option>
+					</c:forEach>
+				</select>
 			</td>
 			<td>
 				<c:if test="${finance.cases.isMurder == 1}">
@@ -64,8 +82,8 @@
 			</td>
 			<td>
 				<span class="t_span01">是否出库：
-				<c:if test="${finances.financeState!='1'}">是</c:if>
-				<c:if test="${finances.financeState=='1'}">否</c:if>
+				<c:if test="${finances.financeState!='3'}">否</c:if>
+				<c:if test="${finances.financeState=='3'}">是</c:if>
 				</span>
 			</td>
 		</tr>
@@ -86,39 +104,33 @@
 					   name="caseName" type="text" value="${finances.cases.casePlace}" readonly="readonly"/>
 			</td>
 			<td><span class="t_span01">当前时间：</span></td>
-			<td><input class="easyui-validatebox t_text w140" data-options=""
-					   name="caseName" type="text" value="${finances.cases.casePlace}" readonly="readonly"/></td>
+			<td><input class="easyui-datetimebox w150" data-options="" name="currentTime" id="currentTime"
+					   type="text"   value="${finances}" readonly="readonly"/>
 		</tr>
 		<tr>
 			<td><span class="t_span01">财物来源：</span></td>
 			<td>
 				<input type="hidden" name="financeSourceHid" id="financeSourceHid" value="${finances.financeSource}">
 				<select class="w140" name="financeSource" id="financeSource" disabled="disabled">
-					<option value="0">请选择</option>
-					<option value="1">现场勘验</option>
-					<option value="2">移交</option>
-					<option value="3">……</option>
+						<c:forEach items="${financeSourceList}" var="object">
+							<option value="${object.key}">${object.value}</option>
+						</c:forEach>
 				</select>
 			</td>
 			<td><span class="t_span01">来源单位：</span></td>
 			<td>
 				<input type="hidden" name="sourceOfficeHid" id="sourceOfficeHid" value="${finances.sourceOffice}">
 				<select class="w140" name="sourceOffice" id="sourceOffice" disabled="disabled">
-					<option value="0">请选择</option>
-					<option value="1">来源单位1</option>
-					<option value="2">来源单位2</option>
-					<option value="3">……</option>
+					<option value="">无</option>
+					<c:forEach items="${sourceOfficeList}" var="object">
+						<option value="${object.key}">${object.value}</option>
+					</c:forEach>
 				</select>
 			</td>
 			<td><span class="t_span01">保管单位：</span></td>
 			<td>
-				<input type="hidden" name="storeOfficeHid" id="storeOfficeHid" value="${finances.storeOffice}">
-				<select class="w140" name="storeOffice" id="storeOffice" disabled="disabled">
-					<option value="0">请选择</option>
-					<option value="1">现场勘验</option>
-					<option value="2">移交</option>
-					<option value="3">……</option>
-				</select>
+				<input class="easyui-validatebox w150" data-options="" name="storeOffice" id="storeOffice"
+					   type="text" value="${finances.storeOffice}" readonly="readonly"/>
 			</td>
 			<td><span class="t_span01">存放位置：</span></td>
 			<td>
@@ -218,15 +230,28 @@
 	</table>
 <script type="text/javascript">
 	$(document).ready(function () {
+		// 财物类型
+		var financeTypeValue = $("#financeTypeHid").val();
+		$("#financeType").val(financeTypeValue);
+
+        // 财物状态
+
+        var financeStateValue = $("#financeStateHid").val();
+        $("#financeState").val(financeStateValue);
+
+        //  案件类型
+        var caseTypeValue = $("#caseTypeHid").val();
+        $("#caseType").val(caseTypeValue);
+
 		// 财物来源
 		var financeSourceValue = $("#financeSourceHid").val();
 		$("#financeSource").val(financeSourceValue);
-		// 来源单位
-		var sourceOfficeValue = $("#sourceOfficeHid").val();
-		$("#sourceOffice").val(sourceOfficeValue);
-        // 保管单位
-		var storeOfficeValue = $("#storeOfficeHid").val();
-		$("#storeOffice").val(storeOfficeValue);
+
+        // 来源单位
+        var sourceOfficeValue = $("#sourceOfficeHid").val();
+        $("#sourceOffice").val(sourceOfficeValue);
+
+
 
 	});
 </script>
