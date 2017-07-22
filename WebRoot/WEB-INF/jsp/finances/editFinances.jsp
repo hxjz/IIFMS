@@ -130,7 +130,7 @@
                 <input class="easyui-validatebox t_text w370" data-options="" name="storeLocation" type="text"
                        value="${finances.storeLocation}"/>
             </td>
-            <td><input type="submit" class="t_btnsty01" id="chooseLocation" value="选择" onclick="chooseStorage()"></td>
+            <td><input type="button" class="t_btnsty01" id="chooseLocation" value="选择" onclick="chooseStorage()"></td>
         </tr>
         <tr>
             <td><span class="t_span01">财物识别码：</span></td>
@@ -161,7 +161,7 @@
     <iframe id="frame_addCase" width="520" height="404" scrolling="no" src="" frameborder="0"> </iframe>
 </div>
 
-<div id="chooseStorageInfo" class="easyui-window" title="选择存储位置" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 700px; height: 500px; padding: 20px;">
+<div id="addStorage" class="easyui-window" title="选择存储位置" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 700px; height: 500px; padding: 20px;">
     <iframe id="frame_addStorage" width="670" height="450" scrolling="no" src="" frameborder="0"> </iframe>
 </div>
 
@@ -290,7 +290,7 @@
 	// 选择存储位置
     function chooseStorage(){
         // 添加iframeSrc
-        $("#frame_addStorage").attr("src", "${path}/storage/tolistStorage.action");
+        $("#frame_addStorage").attr("src", "${path}/storage/toSelectStorage.action");
         // 打开弹出框
         $("#addStorage").window('open');
         adjustTanboxCenter(); // 弹窗位置居中
@@ -337,7 +337,7 @@
 	
 	// 选择之后返回
 	function afterCloseSelectWindow() {
-		$("#chooseStorageInfo").window('close');
+		$("#addStorage").window('close');
 	}
 
 </script>

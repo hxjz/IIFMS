@@ -71,8 +71,7 @@
                <tr>
                    <td><span class="t_span01 w140">存储位置：</span></td>
                    <td colspan="4">
-                       <input class="easyui-validatebox w280 t_text" data-options="" name="storeLocation" type="text" value=""/>
-                       <input class="easyui-validatebox w280 t_text" data-options="" name="storeId" type="hidden" value=""/>
+                       <input class="easyui-validatebox w280 t_text" data-options="" name="storeLocation" type="text" value="${finances.storeLocation}"/>
                    </td>
                    <td><input type="button" class="t_btnsty01" id="chooseLocation" onclick="toChoose();" value="选择"></td>
                </tr>
@@ -136,7 +135,6 @@
 	
 	function handleSelectStorage(data) {
 		$("input[name='storeLocation']").attr("value", data.name);
-		$("input[name='storeId']").attr("value", data.id);
 
 		afterCloseSelectWindow();
 	}

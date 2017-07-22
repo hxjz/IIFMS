@@ -1,46 +1,6 @@
 package com.iif.stock.web;
 
-import com.hxjz.common.core.web.BaseAction;
-import com.hxjz.common.utils.DateUtil;
-import com.hxjz.common.utils.HttpTool;
-import com.hxjz.common.utils.Page;
-import com.hxjz.common.utils.ReflectionUtil;
-import com.iif.cases.entity.Cases;
-import com.iif.cases.service.ICasesService;
-import com.iif.common.enums.CaseTypeEnum;
-import com.iif.common.enums.DepartmentTypeEnum;
-import com.iif.common.enums.FinanceStateEnum;
-import com.iif.common.enums.FinanceTypeEnum;
-import com.iif.common.enums.OutstockReasonTypeEnum;
-import com.iif.common.util.ExportExcelUtil;
-import com.iif.common.util.InitSelect;
-import com.iif.common.util.SysConstant;
-import com.iif.common.util.TemplateUtil;
-import com.iif.finances.entity.Finances;
-import com.iif.finances.service.IFinancesService;
-import com.iif.inventory.entity.FinancesCopy;
-import com.iif.stock.entity.Stock;
-import com.iif.stock.service.IStockService;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.usermodel.Font;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -54,12 +14,39 @@ import jxl.format.BorderLineStyle;
 import jxl.format.Colour;
 import jxl.format.UnderlineStyle;
 import jxl.write.Label;
-import jxl.write.WritableCell;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.hxjz.common.core.web.BaseAction;
+import com.hxjz.common.utils.DateUtil;
+import com.hxjz.common.utils.HttpTool;
+import com.hxjz.common.utils.Page;
+import com.hxjz.common.utils.ReflectionUtil;
+import com.iif.cases.entity.Cases;
+import com.iif.cases.service.ICasesService;
+import com.iif.common.enums.DepartmentTypeEnum;
+import com.iif.common.enums.FinanceStateEnum;
+import com.iif.common.enums.FinanceTypeEnum;
+import com.iif.common.enums.OutstockReasonTypeEnum;
+import com.iif.common.util.ExportExcelUtil;
+import com.iif.common.util.InitSelect;
+import com.iif.common.util.SysConstant;
+import com.iif.common.util.TemplateUtil;
+import com.iif.common.util.UserUtil;
+import com.iif.finances.entity.Finances;
+import com.iif.finances.service.IFinancesService;
+import com.iif.stock.entity.Stock;
+import com.iif.stock.service.IStockService;
 
 /**
  * @Author M
@@ -255,7 +242,8 @@ public class stockAction extends BaseAction {
         return bodyFormat;  
     }  
     
-    @RequestMapping("saveStock.action")
+    @SuppressWarnings("rawtypes")
+	@RequestMapping("saveStock.action")
     @ResponseBody
     public Map saveStock(Finances finance,Stock stock){
         String financesId = HttpTool.getParameter("id");
@@ -286,10 +274,9 @@ public class stockAction extends BaseAction {
                 saveStock.setFlag(SysConstant.STOCK_STATE_OUT);
             }
             
-            saveFinance.setUpdater("admin");// 更新人
+            saveFinance.setUpdater(UserUtil.getCurrentUser().getUserAccount());// 更新人
             saveFinance.setUpdateTime(new Date()); // 更新时间
             saveFinance.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
-            // just for test TODO
             Cases cases=new Cases();
             cases.setId(casesId);
             saveFinance.setCases(cases);            
@@ -298,10 +285,10 @@ public class stockAction extends BaseAction {
             saveStock.setId(null);
             saveStock.setFinances(saveFinance);
             saveStock.setCreateTime(new Date());// 创建时间
-            saveStock.setCreator("admin"); // 当前登录人
+            saveStock.setCreator(UserUtil.getCurrentUser().getUserAccount()); // 当前登录人
             saveStock.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
             saveStock.setUpdateTime(new Date()); // 更新时间
-            saveStock.setUpdater("admin");// 当前登录人
+            saveStock.setUpdater(UserUtil.getCurrentUser().getUserAccount());// 当前登录人
         } else {
             return TemplateUtil.toSuccessMap("没找到指定财物！");
         }

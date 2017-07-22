@@ -23,6 +23,7 @@ import com.iif.common.enums.StorageTypeEnum;
 import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
+import com.iif.common.util.UserUtil;
 import com.iif.storage.entity.Storage;
 import com.iif.storage.service.IStorageService;
 
@@ -121,6 +122,8 @@ public class StorageAction extends BaseAction{
 			storage.setId(null);
 			storage.setCreateTime(new Date());
 			storage.setUpdateTime(new Date());
+			storage.setCreator(UserUtil.getCurrentUser().getUserAccount());
+			storage.setUpdater(UserUtil.getCurrentUser().getUserAccount());
 			storage.setIsDel(SysConstant.IS_NOT_DEL); // 删除标示
 			storage.setLevel(SysConstant.SYSTEM_CON_ZER);// 存储层级
 			storage.setIndex(0); // 排序
@@ -143,6 +146,8 @@ public class StorageAction extends BaseAction{
 					storage1.setConUrl(null);
 					storage1.setCreateTime(new Date());
 					storage1.setUpdateTime(new Date());
+					storage1.setCreator(UserUtil.getCurrentUser().getUserAccount());
+					storage1.setUpdater(UserUtil.getCurrentUser().getUserAccount());
 					storage1.setType(storage.getType());
 					storage1.setIsDel(SysConstant.IS_NOT_DEL); // 删除标示
 					storage1.setLevel(SysConstant.SYSTEM_CON_ONE);// 存储层级
@@ -178,6 +183,8 @@ public class StorageAction extends BaseAction{
 								storage2.setConUrl(null);
 								storage2.setCreateTime(new Date());
 								storage2.setUpdateTime(new Date());
+								storage2.setCreator(UserUtil.getCurrentUser().getUserAccount());
+								storage2.setUpdater(UserUtil.getCurrentUser().getUserAccount());
 								storage2.setType(storage.getType());
 								storage2.setIsDel(SysConstant.IS_NOT_DEL); // 删除标示
 								storage2.setLevel(SysConstant.SYSTEM_CON_TWO);// 存储层级
@@ -197,6 +204,8 @@ public class StorageAction extends BaseAction{
 										storage3.setDevice(storage.getDevice()+(storage.getType().equals(SysConstant.SYSTEM_CON_ONE)?"门":"层"));
 										storage3.setCreateTime(new Date());
 										storage3.setUpdateTime(new Date());
+										storage3.setCreator(UserUtil.getCurrentUser().getUserAccount());
+										storage3.setUpdater(UserUtil.getCurrentUser().getUserAccount());
 										storage3.setType(storage.getType());
 										storage3.setIsDel(SysConstant.IS_NOT_DEL); // 删除标示
 										storage3.setLevel(SysConstant.SYSTEM_CON_THR);// 存储层级
