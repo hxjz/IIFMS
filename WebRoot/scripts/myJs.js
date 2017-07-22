@@ -181,13 +181,16 @@ function formatEnumType(value,row,index) {
                 enumChinsesName='财物状态';
                 break;
             case 'OutstockReasonTypeEnum':
-                enumChinsesName='出库状态';
+                enumChinsesName='出库原因';
                 break;
             case 'StorageTypeEnum':
                 enumChinsesName='存储类型';
                 break;
             case 'DepartmentTypeEnum':
                 enumChinsesName='单位名称';
+                break;
+            case 'JurisdictionSectionEnum':
+                enumChinsesName='管辖单位';
                 break;
 			default:
 				enumChinsesName='未知类型'
@@ -264,6 +267,17 @@ function formatFinanceType(value,row,index) {
     }else{
     	return '无';
 	}
+}
+
+//格式化财物类型
+function formatJurisdiction(value,row,index) {
+    if('1'==row.jurisdiction){
+    		return '县局';
+		}else if('2'==row.jurisdiction) {
+			return '市局';
+		}else {
+			return '其他';
+		}
 }
 
 // 格式化案件类型
