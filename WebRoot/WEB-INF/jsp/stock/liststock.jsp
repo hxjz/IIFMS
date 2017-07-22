@@ -59,15 +59,15 @@
 							<tr>
 								<td class="tr" width="120"><span class="t_span01">案发时间(起)：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeStart_GE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeStart_GE_S" type="text" />
 									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeStart_LE_T" type="text" /></td>
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeStart_LE_S" type="text" /></td>
 								<td class="tr" width="120"><span class="t_span01">案发时间(止)：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeEnd_GE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeEnd_GE_S" type="text" />
 									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_financeTimeEnd_LE_T" type="text" /></td>
-								<td class="tr" width="120"><span class="t_span01">电子识别：</span></td>
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeEnd_LE_S" type="text" /></td>
+								<td class="tr" width="120"><span class="t_span01">电子识别码：</span></td>
 								<td>
 									<input class="t_text w100" name="filter_and_digitalCode_LIKE_S" type="text" id="digitalCodeNew" />
 									<input type="submit" class="t_btnsty01" id="selectBtn" value="识别">
@@ -75,15 +75,14 @@
 							</tr>
 							<tr>
 								<td class="tr"><span class="t_span01">勘验时间(起)：</span></td>
-								<td colspan="3">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_inspectionTimeStart_GE_T" type="text" />
-									<span class="t_span01">至</span> 
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_inspectionTimeStart_LE_T" type="text" /></td>
+								<td colspan="3"><input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_GE_S" type="text" />
+								<span class="t_span01">至</span>
+								<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_LE_S" type="text" /></td>
 								<td class="tr"><span class="t_span01">勘验时间(止)：</span></td>
 								<td colspan="3">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_inspectionTimeEnd_GE_T" type="text" />
-									<span class="t_span01">至</span> 
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_inspectionTimeEnd_LE_T" type="text" />
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_GE_S" type="text" />
+									<span class="t_span01">至</span>
+									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_LE_S" type="text" />
 								</td>
 								<td class="tr" width="120"><input type="checkbox" id="isDel" name="filter_and_isDel_LE_I" value="0" onclick="setVal()"/></td>
 								<td ><span class="t_span01">包含已删除财物</span></td>
@@ -101,7 +100,7 @@
 									<input type="hidden" name="order_updateTime_T" value="desc"/>
 									<input class="t_btnsty01" id="find" name="select" type="button" value="查询" />
 								</td>
-								<td><input class="t_btnsty01" type="reset" value="重置" /></td>
+								<td><input class="t_btnsty01" type="reset" onclick="resetClick()"  value="重置" /></td>
 							</tr>
 						</table>
 					</div>
@@ -141,7 +140,7 @@
 								<th data-options="field:'financeNum',width:80" align="center">财物编号</th>
 								<th data-options="field:'financeName',width:130" align="center">财物名称</th>
 								<th data-options="field:'financeType',width:80" align=" center">财物类型</th>
-								<th data-options="field:'financeState',width:100,formatter:formatFinanceState" align="center">财物状态</th>
+								<th data-options="field:'financeState',width:80,formatter:formatFinanceState" align="center">财物状态</th>
 								<th data-options="field:'row.cases.caseNum',width:100,formatter:formatCaseNum" align="center">案件编号</th>
 								<th data-options="field:'row.cases.caseName',width:80,formatter:formatCaseName" align="center">案件名称</th>
 								<th data-options="field:'row.cases.caseType',width:100,formatter:formatCaseType" align="center">案件类型</th>
@@ -185,18 +184,6 @@
 				}
 			});
 		});
-
-
-		// 财物状态
-		function formatFinanceState(value,row,index) {
-			if(""!=row.financeState && "3"==row.financeState) {
-				return "出库";
-			}else if(""!=row.financeState && "2"==row.financeState){
-				return "入库";
-			}else {
-				return "登记";
-			}
-		}
 
 		// 案件编号
 		function formatCaseNum(value,row,index){
@@ -302,6 +289,16 @@
 			}
 		}
 
+		function resetClick() {
+			$("input[name='filter_and_cases__caseTimeStart_GE_S']").attr("value","");
+			$("input[name='filter_and_cases__caseTimeStart_LE_S']").attr("value","");
+			$("input[name='filter_and_cases__caseTimeEnd_GE_S']").attr("value","");
+			$("input[name='filter_and_cases__caseTimeEnd_LE_S']").attr("value","");
+			$("input[name='filter_and_cases__inspectionTimeStart_GE_S']").attr("value","");
+			$("input[name='filter_and_cases__inspectionTimeStart_LE_S']").attr("value","");
+			$("input[name='filter_and_cases__inspectionTimeEnd_GE_S']").attr("value","");
+			$("input[name='filter_and_cases__inspectionTimeEnd_LE_S']").attr("value","");
+		}
 	</script>
 </body>
 </html>

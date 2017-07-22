@@ -12,17 +12,23 @@ import com.iif.common.enums.DepartmentTypeEnum;
 import com.iif.common.enums.FinanceStateEnum;
 import com.iif.common.enums.FinanceTypeEnum;
 import com.iif.common.enums.OutstockReasonTypeEnum;
+import com.iif.common.util.ExportExcelUtil;
 import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
 import com.iif.finances.entity.Finances;
 import com.iif.finances.service.IFinancesService;
+import com.iif.inventory.entity.FinancesCopy;
 import com.iif.stock.entity.Stock;
 import com.iif.stock.service.IStockService;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Font;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,18 +37,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import jxl.Workbook;
+import jxl.format.Border;
+import jxl.format.BorderLineStyle;
+import jxl.format.Colour;
+import jxl.format.UnderlineStyle;
 import jxl.write.Label;
 import jxl.write.WritableCell;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 
 /**
  * @Author M
@@ -59,6 +76,8 @@ public class stockAction extends BaseAction {
     ICasesService iCasesService = null;
     @Autowired
     IStockService iStockService = null;
+
+    ExportExcelUtil<Stock> exportExcelUtil = new ExportExcelUtil<Stock>();
     /**
      * 跳转到财物详情
      *
@@ -158,31 +177,45 @@ public class stockAction extends BaseAction {
     }
     
     public void toPrintExcel(HttpServletRequest request) throws Exception {
-        String caseId = HttpTool.getParameter("caseId");
-        String caseNum = HttpTool.getParameter("caseNum");
-        String caseName = HttpTool.getParameter("caseName");
-        String financesId = HttpTool.getParameter("financeId");
-        String financesName = HttpTool.getParameter("financeName");
-        String financesNum = HttpTool.getParameter("financeNum");
-        String fetchMan = HttpTool.getParameter("fetchMan");
-        String operator = HttpTool.getParameter("operator");
-        String date = DateUtil.getDateTime(DateUtil.DATE_FORMAT, new Date());
-
         try {
 			//创建只读的 Excel 工作薄的对象副本
-	        String templatePath = request.getSession().getServletContext().getRealPath("/template/财物出入库审批表V1.xls"); 
-	        String exportPath = request.getSession().getServletContext().getRealPath("/export/财物出入库审批表" + date + ".xls"); 
+	        String templatePath = request.getSession().getServletContext().getRealPath("/template/财物出入库审批表.xls"); 
+	        String exportPath = request.getSession().getServletContext().getRealPath("/export/财物出入库审批表" + UUID.randomUUID().toString() + ".xls"); 
 	        Workbook wb=Workbook.getWorkbook(new File(templatePath));
 			
 			// 创建真实写入的 Excel 工作薄对象
 			WritableWorkbook book= Workbook.createWorkbook(new File(exportPath),wb);
 			//修改文本内容：例修改sheet2中cell B3的label内容
 			WritableSheet sheet = book.getSheet(0);
-			sheet.addCell(new Label(9,2,"modified cell"));//操作记录编号
-			sheet.addCell(new Label(3,3,operator));//操作员
-			sheet.addCell(new Label(9,3,DateUtil.getDateTime(DateUtil.TIME_FORMAT, new Date())));//制表时间
-			sheet.addCell(new Label(3,5,caseName));//案件名称
-			sheet.addCell(new Label(3,6,caseNum));//案件标号
+			
+			//
+			WritableCellFormat tempCellFormat = null;  
+            tempCellFormat = getBodyCellStyle();  
+            
+            /**  将数据写入Excel  **/
+			//单位：XXXXXX
+			sheet.addCell(new Label(1,0,"单位：北京市公安局"));
+			//操作记录编号
+			sheet.addCell(new Label(9,2,""));
+			//操作员             //制表时间
+			sheet.addCell(new Label(3,3, HttpTool.getParameter("operator"),tempCellFormat));
+			sheet.addCell(new Label(9,3, DateUtil.getDateTime(DateUtil.DATE_FORMAT, new Date()),tempCellFormat));
+			//案件名称       //案件编号
+			sheet.addCell(new Label(3,5, HttpTool.getParameter("caseName"),tempCellFormat));
+			sheet.addCell(new Label(8,5, HttpTool.getParameter("caseNum"),tempCellFormat));
+			//财物名称      财物种类
+			sheet.addCell(new Label(3,6, HttpTool.getParameter("financeName"),tempCellFormat));
+			sheet.addCell(new Label(8,6, HttpTool.getParameter("financeNum"),tempCellFormat));
+			//财物识别码    电子识别码
+			sheet.addCell(new Label(3,7,"财物识别码",tempCellFormat));
+			sheet.addCell(new Label(8,7," 电子识别码",tempCellFormat));
+			//取物人    出库原因
+			sheet.addCell(new Label(3,8, HttpTool.getParameter("fetchMan"),tempCellFormat));
+			sheet.addCell(new Label(8,8,"出库原因",tempCellFormat));
+			//存放位置
+			sheet.addCell(new Label(3,9,"存放位置",tempCellFormat));
+			//财物初步分析意见/备注
+			sheet.addCell(new Label(3,10,"备注",tempCellFormat));
 			book.write();
 			book.close();
 			Runtime.getRuntime().exec("cmd  /c  start " + exportPath);
@@ -190,17 +223,37 @@ public class stockAction extends BaseAction {
             e.printStackTrace();
         }
     }
-
-    private static HSSFCellStyle setCellStyle(HSSFWorkbook workbook) {
-        HSSFCellStyle style = workbook.createCellStyle(); // 样式对象
-        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);// 垂直
-        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 水平
-        Font font = workbook.createFont();
-        font.setFontName("黑体");//字体类型
-        font.setFontHeightInPoints((short) 10);
-        style.setFont(font);
-        return style;
-    }
+    /** 
+     * 表头单元格样式的设定 
+     */  
+    public WritableCellFormat getBodyCellStyle(){  
+          
+        /* 
+         * WritableFont.createFont("宋体")：设置字体为宋体 
+         * 11：设置字体大小 
+         * WritableFont.NO_BOLD:设置字体非加粗（BOLD：加粗     NO_BOLD：不加粗） 
+         * false：设置非斜体 
+         * UnderlineStyle.NO_UNDERLINE：没有下划线 
+         */  
+        WritableFont font = new WritableFont(WritableFont.createFont("宋体"),  
+                                             11,   
+                                             WritableFont.NO_BOLD,   
+                                             false,  
+                                             UnderlineStyle.NO_UNDERLINE);  
+          
+        WritableCellFormat bodyFormat = new WritableCellFormat(font);  
+        try {  
+            //设置单元格背景色：表体为白色  
+            bodyFormat.setBackground(Colour.WHITE);  
+            //设置表头表格边框样式  
+            //整个表格线为细线、黑色  
+            bodyFormat.setBorder(Border.ALL, BorderLineStyle.THIN, Colour.BLACK);  
+              
+        } catch (WriteException e) {  
+            System.out.println("表体单元格样式设置失败！");  
+        }  
+        return bodyFormat;  
+    }  
     
     @RequestMapping("saveStock.action")
     @ResponseBody

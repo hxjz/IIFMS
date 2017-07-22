@@ -27,9 +27,6 @@
 								<td>
 									<select name="filter_and_financeType_EQ_I" style="width: 120">
 										<option value="">请选择</option>
-										<%--<option value="1">手迹痕迹</option>--%>
-										<%--<option value="2">足迹痕迹</option>--%>
-										<%--<option value="3">其他</option>--%>
 										<c:forEach items="${financeTypeList}" var="object">
 											<option value="${object.key}">${object.value}</option>
 										</c:forEach>
@@ -39,27 +36,24 @@
 								<td>
 									<select name="filter_and_financeState_EQ_I" style="width: 120">
 									<option value="">请选择</option>
-									<%--<option value="1">登记</option>--%>
-									<%--<option value="2">在库</option>--%>
-									<%--<option value="3">出库</option>--%>
 										<c:forEach items="${financeStateList}" var="object">
 											<option value="${object.key}">${object.value}</option>
 										</c:forEach>
-								</select>
+									</select>
 								</td>
 								<td class="tr" width="100"><span class="t_span01">财物识别：</span></td>
 								<td><input class="t_text w100" name="filter_and_financeCode_LIKE_S" type="text" id="financeCode" /></td>
 							</tr>
 							<tr>
 								<td class="tr" width="100"><span class="t_span01">案件编号：</span></td>
-								<td><input class="t_text w100" name="filter_and_cases__caseNum_LIKE_S" type="text" id="caseNum" /></td>
+								<td><input class="t_text w100" name="filter_and_caseNum_LIKE_S" type="text" id="caseNum" /></td>
 								<td class="tr" width="100"><span class="t_span01">案件名称：</span></td>
-								<td><input class="t_text w120" name="filter_and_cases__caseName_LIKE_S" type="text" id="caseName" /></td>
+								<td><input class="t_text w120" name="filter_and_caseName_LIKE_S" type="text" id="caseName" /></td>
 								<td class="tr" width="100"><span class="t_span01">案发地点：</span></td>
-								<td><input class="t_text w180" name="filter_and_cases__casePlace_LIKE_S" type="text" id="casePlace" /></td>
+								<td><input class="t_text w180" name="filter_and_casePlace_LIKE_S" type="text" id="casePlace" /></td>
 								<td class="tr" width="100"><span class="t_span01">现场勘验号：</span></td>
-								<td><input class="t_text w100" name="filter_and_cases__siteNum_LIKE_S" type="text" id="siteNum" /></td>
-								<td class="tr" width="100"><span class="t_span01">电子识别码：</span></td>
+								<td><input class="t_text w100" name="filter_and_siteNum_LIKE_S" type="text" id="siteNum" /></td>
+								<td class="tr" width="100"><span class="t_span01">电子识别：</span></td>
 								<td><input class="t_text w100" name="filter_and_digitalCode_LIKE_S" type="text" id="digitalCode" /></td>
 							</tr>
 							<tr>
