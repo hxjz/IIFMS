@@ -7,7 +7,7 @@
 </head>
 <body>
 <form id="edit" name="editForm" method="post">
-    <input type="submit" class="t_btnsty02" id="saveBtn" value="添加">
+    <input type="submit" class="t_btnsty02" id="saveBtn" value="保存">
     <input type="button" id="cancel" class="t_btnsty02" onclick="cancelAddOrEdit();" value="取消">
     <input type="hidden" name="id" id="id" value="${finances.id}">
     <input type="hidden" name="fromSource" id="fromSource" value="${fromSource}"/>
@@ -75,9 +75,9 @@
                 <input type="hidden" name="sourceOfficeHid" id="sourceOfficeHid" value="${finances.sourceOffice}">
                 <select class="w140" name="sourceOffice" id="sourceOffice">
                     <option value="">请选择</option>
-                    <option value="1">单位1</option>
-                    <option value="2">单位2</option>
-                    <option value="3">……</option>
+                    <c:forEach items="${sourceOfficeList}" var="object">
+                        <option value="${object.key}">${object.value}</option>
+                    </c:forEach>
                 </select>
             </td>
         </tr>
