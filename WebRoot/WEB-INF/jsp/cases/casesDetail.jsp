@@ -27,10 +27,10 @@
                <td>
 	          	    <input type="hidden" name="caseTypeHid" id="caseTypeHid" value="${cases.caseType}">
                  	<select class="w120" name="caseType" id="caseType" disabled="disabled">
-                 		<option value="">请选择</option>
-                 		<option value="1">危害国家安全案</option>
-                 		<option value="2">危害公共安全案</option>
-                 		<option value="3">其他案件</option>
+                 		<option value="">无</option>
+						<c:forEach items="${caseTypeList}" var="obj">
+							<option value="${obj.key}" <c:if test="${cases.caseType==obj.key}">selected="true"</c:if>>${obj.value}</option>
+						</c:forEach>
                  	</select>
                  	<span class="t_span02">*</span>
                  </td>
@@ -83,7 +83,12 @@
 		  <tr>
 		  	   <td><span class="t_span01">管辖单位：</span></td>
                <td colspan="3">
-               	  <input class="easyui-validatebox t_text w140" data-options="" name="jurisdiction" type="text" value="${cases.jurisdiction}" readonly="readonly" /> 
+               	  <select class="w120" name="jurisdiction" disabled="disabled">
+                 		 <option value="">无</option>
+						 <c:forEach items="${jurisdictionList}" var="obj">
+							<option value="${obj.key}" <c:if test="${cases.jurisdiction==obj.key}">selected="true"</c:if>>${obj.value}</option>
+						 </c:forEach>
+                 	  </select>
                </td>
 		  </tr>
 		  <tr>

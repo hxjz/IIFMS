@@ -120,7 +120,7 @@
 								<th data-options="field:'inspectionTimeEnd',width:100,formatter:formatSingelDate" align="center">勘验时间(止)</th>
 								<th data-options="field:'inspectionPerson',width:80" align="center">勘验人</th>
 								<th data-options="field:'evidenceNum',width:60" align="center">财物个数</th>
-								<th data-options="field:'jurisdiction',width:120" align="center">管辖单位</th>
+								<th data-options="field:'jurisdiction',width:120, formatter:formatJurisdiction" align="center">管辖单位</th>
 								<th data-options="field:'updater',width:50" align="center">更新者</th>
 							</tr>
 						</thead>

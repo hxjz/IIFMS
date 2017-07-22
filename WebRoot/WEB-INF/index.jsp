@@ -70,11 +70,11 @@
 					<dl>
 						<dt>
 							<a href="javascript:void(0)" style="color: #648da2;"
-								onclick="loadUrl('content_case','${path}/cases/listCases.action','案件维护');" id='left_case' title="案件维护">案件管理</a>
+								onclick="loadUrl('content_case','${path}/cases/listCases.action','案件维护');" id='left_case' title="案件管理">案件管理</a>
 						</dt>
 					</dl>
 					<dl>
-						<dt>
+						<dt> 
 							<a href="javascript:void(0)" style="color: #648da2;"
 						   	onclick="loadUrl('content_finance','${path}/finances/listFinances.action','财物管理');" id='left_finance' title="财物管理">财物管理</a>
 						</dt>
@@ -146,3 +146,4 @@
 	</div>
 </body>
 </html>
+

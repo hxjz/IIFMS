@@ -19,6 +19,7 @@ import com.hxjz.common.utils.ReflectionUtil;
 import com.iif.cases.entity.Cases;
 import com.iif.cases.service.ICasesService;
 import com.iif.common.enums.CaseTypeEnum;
+import com.iif.common.enums.JurisdictionSectionEnum;
 import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
 import com.iif.common.util.TemplateUtil;
@@ -26,7 +27,7 @@ import com.iif.common.util.UserUtil;
 import com.iif.finances.entity.Finances;
 
 /**
- * @author GaoG
+ * @author LiuM 
  * @date 2017
  * @version V0.1
  * @Desc 案件维护
@@ -90,6 +91,9 @@ public class CasesAction extends BaseAction {
 		
 		List<?> caseTypeList = InitSelect.getSelectList(CaseTypeEnum.class);
 		HttpTool.setAttribute("caseTypeList", caseTypeList);
+		
+		List<?> jurisdictionList = InitSelect.getSelectList(JurisdictionSectionEnum.class);
+		HttpTool.setAttribute("jurisdictionList", jurisdictionList);
 		
 		// 财物添加页面弹出用
 		String fromSource = HttpTool.getParameter("fromSource");
@@ -160,6 +164,12 @@ public class CasesAction extends BaseAction {
 	 */
 	@RequestMapping("toDetailCases.action")
 	public String toDetailCases() throws Exception {
+		List<?> caseTypeList = InitSelect.getSelectList(CaseTypeEnum.class);
+		HttpTool.setAttribute("caseTypeList", caseTypeList);
+		
+		List<?> jurisdictionList = InitSelect.getSelectList(JurisdictionSectionEnum.class);
+		HttpTool.setAttribute("jurisdictionList", jurisdictionList);
+		
 		String casesId = HttpTool.getParameter("casesId");
 		
 		if(StringUtils.isNotEmpty(casesId)) {
