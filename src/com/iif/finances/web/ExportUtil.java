@@ -1,12 +1,17 @@
 package com.iif.finances.web;
 
 import com.hxjz.common.utils.DateUtil;
+import com.iif.common.util.SysConstant;
+import com.iif.common.util.SysPropUtil;
+import com.iif.common.util.UserUtil;
+
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.RegionUtil;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -39,7 +44,8 @@ public class ExportUtil {
                 int rowNum = 3; //添加的起始行
                 row = sheet.getRow(1);  // 从第二行开始写数据
                 cell = row.getCell(1);
-                cell.setCellValue("单位：北京市公安局");
+                String officeName=SysPropUtil.getSystemConstant(SysConstant.INIT_ROOT_ORG_NAME);
+                cell.setCellValue(officeName);
 
                 row = sheet.getRow(4);  // 第5行
                 cell = row.getCell(1);
@@ -50,7 +56,7 @@ public class ExportUtil {
 //                cell = row.getCell(2);
 //                cell.setCellValue(datas.size());
                 cell = row.getCell(5);
-                cell.setCellValue("admin");
+                cell.setCellValue(UserUtil.getCurrentUser().getUserAccount());
                 cell = row.getCell(8);
                 cell.setCellValue(DateUtil.getDateTime(DateUtil.TIME_FORMAT, new Date()));
                 int totalSum=0;
@@ -65,20 +71,28 @@ public class ExportUtil {
                         cell.setCellStyle(style);
                         cell.setCellValue(result.get("typeName").toString());
 
-                        cell = row.getCell(4);//财物统计
+                        cell = row.getCell(6);//财物统计
                         if (cell == null)
-                            cell = row.createCell(4);
+                            cell = row.createCell(6);
                         cell.setCellStyle(style);
                         cell.setCellValue(Integer.parseInt(result.get("total").toString()));
                         totalSum +=Integer.parseInt(result.get("total").toString());
                         // 合并单元格 处理
-                        int []columns=new int[]{1,4,7};
+//                        int []columns=new int[]{1,4,7};
+//                        for (int column : columns) {
+//                            CellRangeAddress cra = new CellRangeAddress(rowNum, rowNum, column, column+2); // 起始行, 终止行, 起始列, 终止列
+//                            sheet.addMergedRegion(cra);
+//                            setMergedRegionStyle(cra,sheet,workbook);
+//                        }
+                        int []columns=new int[]{1,6};
                         for (int column : columns) {
-                            CellRangeAddress cra = new CellRangeAddress(rowNum, rowNum, column, column+2); // 起始行, 终止行, 起始列, 终止列
+                        	int columnNum=4;
+                        	if(column==6) 
+                        		columnNum=3;
+                            CellRangeAddress cra = new CellRangeAddress(rowNum, rowNum, column, column+columnNum); // 起始行, 终止行, 起始列, 终止列
                             sheet.addMergedRegion(cra);
                             setMergedRegionStyle(cra,sheet,workbook);
                         }
-
                         rowNum++;
                     }
                 }

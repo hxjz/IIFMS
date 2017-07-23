@@ -48,8 +48,8 @@ public class FinancesDaoImpl extends BaseDao implements IFinancesDao {
             }
         }
         sqlBuilder.append(" and tf.ffinanceType = td.fkey");
-        sqlBuilder.append(" and tf.ffinanceState = " + SysConstant.SYSTEM_CON_ZER);
-//        sqlBuilder.append(" and tf.fisdel = "+ SysConstant.SYSTEM_CON_ZER);
+        sqlBuilder.append(" and tf.ffinanceState = 2");      
+        sqlBuilder.append(" and tf.fisdel = "+ SysConstant.SYSTEM_CON_ZER);
         sqlBuilder.append(" and td.fenumname = 'FinanceTypeEnum'");
         sqlBuilder.append(" group by tf.ffinanceType");
         System.out.println(sqlBuilder.toString());
