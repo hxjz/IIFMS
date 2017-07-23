@@ -149,6 +149,9 @@ public class CasesAction extends BaseAction {
 		saveCases.setUpdater(UserUtil.getCurrentUser().getUserAccount());// 当前登录人
 		
 		try{
+			if(saveCases.getCaseTimeStart()!=null && ",".equals(saveCases.getCaseTimeStart())) {
+				saveCases.setCaseTimeStart(null);
+			}
 			iCasesService.save(saveCases);
 			return TemplateUtil.toSuccessMap("操作成功！" + "," + saveCases.getId());
 		} catch(Exception e) {
