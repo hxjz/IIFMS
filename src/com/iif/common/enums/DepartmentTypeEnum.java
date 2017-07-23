@@ -5,15 +5,14 @@ import java.util.LinkedHashMap;
 import com.iif.common.util.RedisUtil;
 
 /**
- * 
- * 出库原因类型枚举
+ * 报送/取物单位类型枚举
  * @author M
  * @version V0.1
  * @date 2017
  */
 public class DepartmentTypeEnum {
 	static final public int TYPE1 = 1;// 县局
-	static final public int TYPE2 = 2;// 。。。
+	static final public int TYPE2 = 2;// 市局
 	static final public int TYPE3 = 3;// 
 	static final public int TYPE4 = 4;// 
 	static final public int TYPE5 = 5;// 

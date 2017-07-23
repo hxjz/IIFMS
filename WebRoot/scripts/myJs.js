@@ -280,6 +280,32 @@ function formatJurisdiction(value,row,index) {
 		}
 }
 
+//格式化报送/取物单位
+function formatDepartmentType(value,row,index) {
+    if(!row.department){
+    		return '';
+		}else if('1'==row.department) {
+			return '县局';
+		}else if('2'==row.department){
+			return '市局';
+		}else{
+			return '其他';
+		}
+}
+
+//格式化出入库原因
+function formatReason(value,row,index) {
+  if(!row.reason){
+  		return '';
+		}else if('1'==row.reason) {
+			return '移交';
+		}else if('2'==row.reason){
+			return '销毁';
+		}else{
+			return '其他';
+		}
+}
+
 // 格式化案件类型
 function formatCaseType(value){
 	if(value){

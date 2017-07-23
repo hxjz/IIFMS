@@ -118,9 +118,9 @@
 								<th data-options="field:'createTime',width:130,formatter:formatCreateTime" align="center">经办时间</th>
 								<th data-options="field:'creator',width:80" align="center">操作人</th>
 								<th data-options="field:'fetchMan',width:80" align="center">送物/取物人</th>
-								<th data-options="field:'department',width:130" align="center">报送/取物单位</th>
+								<th data-options="field:'department',width:130,formatter:formatDepartmentType" align="center">报送/取物单位</th>
 								<th data-options="field:'flag',width:60,formatter:formatFlag" align="center">出入库类型</th>
-								<th data-options="field:'reason',width:100" align="center">出库原因</th>								
+								<th data-options="field:'reason',width:100,formatter:formatReason" align="center">出库原因</th>								
 							</tr>
 						</thead>
 					</table>

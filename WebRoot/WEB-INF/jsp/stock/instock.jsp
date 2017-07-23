@@ -171,23 +171,16 @@
 			url : "${path}/stock/instockExcel.action",
 			data : {
 				'financeId' : $("input[name = id]").val(),
-				'financeNum' : $("input[name = financeNum]").val(),
-				'financeName' : $("input[name = financeName]").val(),					
-				'caseId' : $("input[name = casesid]").val(),				
-				'caseNum' : $("input[name = caseNum]").val(),
-				'caseName' : $("input[name = caseName]").val(),
-				'fetchMan' : $("input[name = fetchMan]").val(),
-				'operator' : $("input[name = operator]").val()
+				'fetchMan' : $("input[name = fetchMan]").val(), //送物人
+				'operator' : $("input[name = operator]").val(), //经办人
+				'departmentHid' : $("input[name = departmentHid]").val(), //报送单位
+				'storeLocation' : $("input[name = storeLocation]").val(), //存储位置
+				'financeMemo' : $("input[name = financeMemo]").val()  //备注
 			},
 			dataType : "json",
 			type : "post",
 			success : function(result) {
-				if (result.status == "success") {
-					alertInfo(result.data);
-					alertInfo("success");
-				} else {
-					alertInfo(result.data);
-				}
+				alertInfo(result.data);
 			}
 		});
 	}

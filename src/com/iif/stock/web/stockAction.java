@@ -41,6 +41,7 @@ import com.iif.common.enums.OutstockReasonTypeEnum;
 import com.iif.common.util.ExportExcelUtil;
 import com.iif.common.util.InitSelect;
 import com.iif.common.util.SysConstant;
+import com.iif.common.util.SysPropUtil;
 import com.iif.common.util.TemplateUtil;
 import com.iif.common.util.UserUtil;
 import com.iif.finances.entity.Finances;
@@ -150,7 +151,7 @@ public class stockAction extends BaseAction {
      */
     @RequestMapping("outstockExcel.action")
     public String outstockExcel(HttpServletRequest request) throws Exception{
-    	toPrintExcel(request);
+    	toPrintExcel(request,"财物出库审批表.xls","出库");
     	return null;
     }
     /**
@@ -159,16 +160,34 @@ public class stockAction extends BaseAction {
      */
     @RequestMapping("instockExcel.action")
     public String instockExcel(HttpServletRequest request) throws Exception{
-    	toPrintExcel(request);
+    	toPrintExcel(request,"财物入库审批表.xls","入库");
     	return null;
     }
     
-    public void toPrintExcel(HttpServletRequest request) throws Exception {
+    public void toPrintExcel(HttpServletRequest request, String templateFileName, String opType) throws Exception {
+    	String financeId = HttpTool.getParameter("financeId");
+    	Finances finances = (Finances) iFinancesService.findById(financeId);
+    	String templatePath = request.getSession().getServletContext().getRealPath("/template/" + templateFileName); 
+        /** 构建文件保存的目录 **/
+        String logoPathDir = "/upload/";
+        /** 得到文件保存目录的真实路径 **/
+        String logoRealPathDir = request.getSession().getServletContext()
+                .getRealPath(logoPathDir);
+        /** 根据真实路径创建目录 **/
+        File logoSaveFile = new File(logoRealPathDir);
+        if (!logoSaveFile.exists())
+            logoSaveFile.mkdirs();
+        /** 获取文件的后缀 **/
+        String templateName = templateFileName.substring(0,templateFileName.lastIndexOf("."));
+        String suffix = templateFileName.substring(templateFileName.lastIndexOf("."));
+        /** 使用UUID生成文件名称 **/
+        String exportFileName = templateName + UUID.randomUUID().toString() + suffix;// 构建文件名称
+        /** 拼成完整的文件保存路径加文件 **/
+        String exportPath = logoRealPathDir + File.separator + exportFileName;
+
         try {
 			//创建只读的 Excel 工作薄的对象副本
-	        String templatePath = request.getSession().getServletContext().getRealPath("/template/财物出入库审批表.xls"); 
-	        String exportPath = request.getSession().getServletContext().getRealPath("/export/财物出入库审批表" + UUID.randomUUID().toString() + ".xls"); 
-	        Workbook wb=Workbook.getWorkbook(new File(templatePath));
+        	Workbook wb=Workbook.getWorkbook(new File(templatePath));
 			
 			// 创建真实写入的 Excel 工作薄对象
 			WritableWorkbook book= Workbook.createWorkbook(new File(exportPath),wb);
@@ -181,28 +200,41 @@ public class stockAction extends BaseAction {
             
             /**  将数据写入Excel  **/
 			//单位：XXXXXX
-			sheet.addCell(new Label(1,0,"单位：北京市公安局"));
+			sheet.addCell(new Label(1,0,"单位："+SysPropUtil.getSystemConstant(SysConstant.INIT_ROOT_ORG_NAME)));
 			//操作记录编号
 			sheet.addCell(new Label(9,2,""));
-			//操作员             //制表时间
-			sheet.addCell(new Label(3,3, HttpTool.getParameter("operator"),tempCellFormat));
-			sheet.addCell(new Label(9,3, DateUtil.getDateTime(DateUtil.DATE_FORMAT, new Date()),tempCellFormat));
-			//案件名称       //案件编号
-			sheet.addCell(new Label(3,5, HttpTool.getParameter("caseName"),tempCellFormat));
-			sheet.addCell(new Label(8,5, HttpTool.getParameter("caseNum"),tempCellFormat));
+			//操作员，制表时间
+			sheet.addCell(new Label(3,3, HttpTool.getParameter("operator")));
+			sheet.addCell(new Label(9,3, DateUtil.getDateTime(DateUtil.TIME_FORMAT, new Date())));
+			//案件名称 ，案件号
+			sheet.addCell(new Label(3,5, finances.getCases().getCaseName(),tempCellFormat));
+			sheet.addCell(new Label(8,5, finances.getCases().getId(),tempCellFormat));
+			//案件编号，现场勘验号
+			sheet.addCell(new Label(3,6, finances.getCases().getCaseNum(),tempCellFormat));
+			sheet.addCell(new Label(8,6, finances.getCases().getSiteNum(),tempCellFormat));
 			//财物名称      财物种类
-			sheet.addCell(new Label(3,6, HttpTool.getParameter("financeName"),tempCellFormat));
-			sheet.addCell(new Label(8,6, HttpTool.getParameter("financeNum"),tempCellFormat));
-			//财物识别码    电子识别码
-			sheet.addCell(new Label(3,7,"财物识别码",tempCellFormat));
-			sheet.addCell(new Label(8,7," 电子识别码",tempCellFormat));
-			//取物人    出库原因
-			sheet.addCell(new Label(3,8, HttpTool.getParameter("fetchMan"),tempCellFormat));
-			sheet.addCell(new Label(8,8,"出库原因",tempCellFormat));
-			//存放位置
-			sheet.addCell(new Label(3,9,"存放位置",tempCellFormat));
+			sheet.addCell(new Label(3,7, finances.getFinanceName(),tempCellFormat));
+			sheet.addCell(new Label(8,7, finances.getFinanceType().toString(),tempCellFormat));
+			//财物号，财物识别码
+			sheet.addCell(new Label(3,8,finances.getId(),tempCellFormat));
+			sheet.addCell(new Label(8,8,finances.getFinanceCode(),tempCellFormat));
+			//提取人，提取数量
+			sheet.addCell(new Label(3,9, HttpTool.getParameter("fetchMan"),tempCellFormat));
+			sheet.addCell(new Label(8,9,"",tempCellFormat));
+			if("出库".equals(opType)){
+				//提取地点，提取部位-----出库填
+				sheet.addCell(new Label(3,10, SysPropUtil.getSystemConstant(SysConstant.INIT_ROOT_ORG_NAME),tempCellFormat));
+				sheet.addCell(new Label(8,10, HttpTool.getParameter("storeLocation"),tempCellFormat));				
+			} else {
+				//存放位置，保管单位
+				sheet.addCell(new Label(3,10, HttpTool.getParameter("storeLocation"),tempCellFormat));
+				sheet.addCell(new Label(8,10, SysPropUtil.getSystemConstant(SysConstant.INIT_ROOT_ORG_NAME),tempCellFormat));
+			}
 			//财物初步分析意见/备注
-			sheet.addCell(new Label(3,10,"备注",tempCellFormat));
+			sheet.addCell(new Label(3,12, HttpTool.getParameter("financeMemo"),tempCellFormat));
+			//操作类型
+			sheet.addCell(new Label(8,14, opType,tempCellFormat));
+			
 			book.write();
 			book.close();
 			Runtime.getRuntime().exec("cmd  /c  start " + exportPath);
@@ -223,7 +255,7 @@ public class stockAction extends BaseAction {
          * UnderlineStyle.NO_UNDERLINE：没有下划线 
          */  
         WritableFont font = new WritableFont(WritableFont.createFont("宋体"),  
-                                             11,   
+                                             11,
                                              WritableFont.NO_BOLD,   
                                              false,  
                                              UnderlineStyle.NO_UNDERLINE);  
