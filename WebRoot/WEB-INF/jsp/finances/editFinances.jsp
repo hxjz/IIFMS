@@ -331,12 +331,11 @@
 
     function handleSelectStorage(data) {
 		$("input[name='storeLocation']").attr("value", data.name);
-
-		afterCloseSelectWindow();
+		afterCloseSelectStorageWindow();
 	}
 	
 	// 选择之后返回
-	function afterCloseSelectWindow() {
+	function afterCloseSelectStorageWindow() {
 		$("#addStorage").window('close');
 	}
 

@@ -322,6 +322,7 @@
             $("input[name='filter_and_cases__inspectionTimeStart_LE_S']").attr("value","");
             $("input[name='filter_and_cases__inspectionTimeEnd_GE_S']").attr("value","");
             $("input[name='filter_and_cases__inspectionTimeEnd_LE_S']").attr("value","");
+            $("#isDel").attr("value",0);
         }
 	</script>
 </body>
