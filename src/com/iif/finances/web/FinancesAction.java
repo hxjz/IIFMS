@@ -280,14 +280,12 @@ public class FinancesAction extends BaseAction {
         int pageNum = HttpTool.getIntegerParameter("page");
         int size = HttpTool.getIntegerParameter("rows");
         page = new Page(pageNum, size);
-        int totalCount=0;
         int total=0;
         Map searchMap = super.buildSearch(); // 组装查询条件
         // 查询数据
         List<Map<String,Object>> statistics = new ArrayList<>();
         try {
             statistics = iFinancesService.showStatistics(page, searchMap);
-            totalCount=statistics.size()>0?statistics.size()-1:0;
             if(statistics.size()>0){
                 for(Map statistic:statistics)
                     total+=Integer.valueOf(statistic.get("total").toString());
@@ -299,8 +297,8 @@ public class FinancesAction extends BaseAction {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        page.setTotalCount((long) totalCount);
+        // 默认 count 为1 否则前台处理会有 -49
+        page.setTotalCount((long) statistics.size());
         return TemplateUtil.toDatagridMap(page, statistics);
     }
 
