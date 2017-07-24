@@ -297,12 +297,14 @@ public class stockAction extends BaseAction {
             if (new Integer(financeState) != SysConstant.STOCK_STATE_IN) {
             	saveFinance.setFinanceState(SysConstant.STOCK_STATE_IN);   // 入库
                 saveFinance.setInstockMan(saveStock.getFetchMan());
-                saveFinance.setInstockTime(new Date().toString());
+                if(new Integer(financeState) == SysConstant.STOCK_STATE_NONE) {
+                	saveFinance.setInstockTime(DateUtil.DateToStr(new Date(), DateUtil.TIME_FORMAT));
+                }
                 saveStock.setFlag(SysConstant.STOCK_STATE_IN);
             } else {
             	saveFinance.setFinanceState(SysConstant.STOCK_STATE_OUT);   // 出库
                 saveFinance.setOutstockMan(saveStock.getFetchMan());
-                saveFinance.setOutstockTime(new Date().toString());
+                saveFinance.setOutstockTime(DateUtil.DateToStr(new Date(), DateUtil.TIME_FORMAT));
                 saveStock.setFlag(SysConstant.STOCK_STATE_OUT);
             }
             

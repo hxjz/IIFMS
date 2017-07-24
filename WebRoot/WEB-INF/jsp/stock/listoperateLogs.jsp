@@ -146,26 +146,26 @@
 
 		// 电子识别码
 		function formatFinanceCode(value,row,index){
-            if(row.finances.id){
+            if(row.finances&&row.finances.id){
                 return row.finances.financeCode;
             }
         }
 		// 财务名称
 		function formatFinanceName(value,row,index){
-            if(row.finances.id){
+            if(row.finances&&row.finances.id){
                 return row.finances.financeName;
             }
         }
 		// 财务编号	
 		function formatFinanceNum(value,row,index){
-            if(row.finances.id){
+            if(row.finances&&row.finances.id){
                 return row.finances.financeNum;
             }
         }
 		
 		//案件类型
 		function formatDepartment(value,row,index){
-            if(row.cases.id){
+            if(row.cases&&row.cases.id){
                 return row.cases.caseType;
             }
         }
@@ -179,18 +179,21 @@
 			var y = date.getFullYear();
 			var m = date.getMonth()+1;
 			var d = date.getDate();
-			return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+			var h = date.getHours();
+			var mm = date.getMinutes();
+			var s = date.getSeconds();
+			return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d)+' '+(h<10?('0'+h):h)+':'+(mm<10?('0'+mm):mm)+':'+(s<10?('0'+s):s);
 		}
 		
 		//现场勘验号
 		function formatSiteNum(value,row,index){
-            if(row.cases.id){
+            if(row.cases&&row.cases.id){
                 return row.cases.siteNum;
             }
         }
 		//勘验时间(起-止)
 		function formatInspectionTime(value,row,index){
-            if(row.cases.id){
+            if(row.cases&&row.cases.id){
                 return row.cases.inspectionTimeStart + row.cases.inspectionTimeEnd;
             }
         }

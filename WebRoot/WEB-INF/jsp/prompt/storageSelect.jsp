@@ -90,6 +90,9 @@
 		//选择后确认返回
 		function selectBack(){
 			var rows = $('#dg').datagrid('getSelections');
+			if(null==rows[0]) {
+				alertInfo("请选择要存储的位置！");
+			}
 			if(rows[0].level!='3') {
 				alertInfo("请重新选择最底层能存储的位置！");
 				return;
