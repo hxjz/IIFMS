@@ -4,6 +4,11 @@
 <head>
 	<title>新增/修改案件页</title>
 	<%@include file="/WEB-INF/jsp/common/common.jsp"%>
+	<style type="text/css">
+	*{
+		margin-bottom:5px;
+	}
+	</style>
 </head>
 <body>
 	<form id="edit" name="editForm" method="post">
@@ -27,7 +32,7 @@
 	          	<td><span class="t_span01">案件类型：</span></td>
 	          	<td>
 	          	    <input type="hidden" name="caseTypeHid" id="caseTypeHid" value="${cases.caseType}">
-                 	<select class="w120" name="caseType" id="caseType">
+                 	<select class="w140" name="caseType" id="caseType">
                  		<option value="">请选择</option>
 						<c:forEach items="${caseTypeList}" var="obj">
 							<option value="${obj.key}">${obj.value}</option>
@@ -35,7 +40,7 @@
                  	</select>
                  	<span class="t_span02">*</span>
                  </td>
-                 <td><span class="t_span01">命案：</span></td>
+                 <td><span class="t_span01" style="margin-left:25px;">命案：</span></td>
 	          	<td>
                 	<c:if test="${cases.isMurder == 1}">
                 		<input type="checkbox" name="isMurder" id="isMurder" checked="checked" value="1" onclick="setVal()"/>
@@ -50,15 +55,15 @@
 	               <td>
 	               	  <input type="hidden" name="oldCaseTimeStart" value="${cases.caseTimeStart}">
 	               	  <div id="test1">
-	               	  	<input class="easyui-datetimebox w150" data-options="" name="caseTimeStart" id="caseTimeStart" type="text" value="${cases.caseTimeStart}"/><span class="t_span01">起</span><input type="button" class="t_btnsty01" id="changeTimeStart1" value="模糊"/>
+	               	  	<input class="easyui-datetimebox w140" data-options="" name="caseTimeStart" id="caseTimeStart" type="text" value="${cases.caseTimeStart}"/><span class="t_span01">起</span><input type="button" class="t_btnsty01" id="changeTimeStart1" value="模糊"/>
 	               	  </div>
 	               	  <div id="test2" hidden="true">
-	               	  	<input class="easyui-datebox w130" data-options="" name="caseTimeStart" id="caseTimeStart" type="text" value="${cases.caseTimeStart}"/><span class="t_span01">起</span><input  type="button" class="t_btnsty01" id="changeTimeStart2" value="精确"/>
+	               	  	<input class="easyui-datebox w140" data-options="" name="caseTimeStart" id="caseTimeStart" type="text" value="${cases.caseTimeStart}"/><span class="t_span01">起</span><input  type="button" class="t_btnsty01" id="changeTimeStart2" value="精确"/>
 	               	  </div>
 	               </td>
 	               <td>&nbsp;</td>
 	               <td>
-	               	  <input class="easyui-datetimebox w150" data-options="" name="caseTimeEnd" id="caseTimeEnd" type="text" value="${cases.caseTimeEnd}"/><span class="t_span01">止</span>
+	               	  <input class="easyui-datetimebox w140" data-options="" name="caseTimeEnd" id="caseTimeEnd" type="text" value="${cases.caseTimeEnd}"/><span class="t_span01">止</span>
 	               </td>
 			  </tr>
 	          <tr>
@@ -72,7 +77,7 @@
 	               <td>
 	               	  <input class="easyui-validatebox t_text w140" data-options="" name="siteNum" type="text" value="${cases.siteNum}" />
 	               </td>
-	               <td><span class="t_span01">勘验人：</span></td>
+	               <td><span class="t_span01" style="margin-left:15px;">勘验人：</span></td>
 	               <td>
 	               	  <input class="easyui-validatebox t_text w140" data-options="" name="inspectionPerson" type="text" value="${cases.inspectionPerson}" />
 	               </td>
@@ -80,17 +85,17 @@
 	          <tr>
 	          	   <td><span class="t_span01">勘验时间：</span></td>
 	               <td>
-	               	  <input class="easyui-datetimebox w150" data-options="" name="inspectionTimeStart" id="inspectionTimeStart" type="text" value="${cases.inspectionTimeStart}"/><span class="t_span01">起</span>
+	               	  <input class="easyui-datetimebox w140" data-options="" name="inspectionTimeStart" id="inspectionTimeStart" type="text" value="${cases.inspectionTimeStart}"/><span class="t_span01">起</span>
 	               </td>
 	               <td>&nbsp;</td>
 	               <td>
-	               	  <input class="easyui-datetimebox w150" data-options="" name="inspectionTimeEnd" id="inspectionTimeEnd" type="text" value="${cases.inspectionTimeEnd}"/><span class="t_span01">止</span>
+	               	  <input class="easyui-datetimebox w140" data-options="" name="inspectionTimeEnd" id="inspectionTimeEnd" type="text" value="${cases.inspectionTimeEnd}"/><span class="t_span01">止</span>
 	               </td>
 			  </tr>
 			  <tr>
 			  	   <td><span class="t_span01">管辖单位：</span></td>
 	               <td colspan="3">
-	               	  <select class="w120" name="jurisdiction">
+	               	  <select class="w140" name="jurisdiction">
                  		 <option value="">请选择</option>
 						 <c:forEach items="${jurisdictionList}" var="obj">
 							<option value="${obj.key}" <c:if test="${cases.jurisdiction==obj.key}">selected="true"</c:if>>${obj.value}</option>
@@ -101,7 +106,7 @@
 			  <tr>
 			  	   <td><span class="t_span01">案件描述：</span></td>
 	               <td colspan="3">
-	               	  <textarea id="caseDesc" name="caseDesc" style="width:400;height:200">${cases.caseDesc}</textarea>
+	               	  <textarea id="caseDesc" name="caseDesc" style="width:400;height:180">${cases.caseDesc}</textarea>
 	               </td>
 			  </tr>
 	</table>

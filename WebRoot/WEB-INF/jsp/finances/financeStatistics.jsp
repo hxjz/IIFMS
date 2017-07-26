@@ -5,6 +5,11 @@
 <head>
     <title>涉案财物-财物统计</title>
     <%@include file="/WEB-INF/jsp/common/common.jsp" %>
+    <style type="text/css">
+	*{
+		margin-bottom:5px;
+	}
+	</style>
 </head>
 
 <body>

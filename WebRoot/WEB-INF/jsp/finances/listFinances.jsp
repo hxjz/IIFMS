@@ -5,6 +5,11 @@
 <head>
 <title>涉案财物-财物列表页</title>
 <%@include file="/WEB-INF/jsp/common/common.jsp"%>
+<style type="text/css">
+	*{
+		margin-bottom:3px;
+	}
+</style>
 </head>
 
 <body>
@@ -20,12 +25,12 @@
 						<table width="100%" border="0">
 							<tr>
 								<td class="tr" width="100"><span class="t_span01">财物编号：</span></td>
-								<td><input class="t_text w100" name="filter_and_financeNum_LIKE_S" type="text" id="financeNum" /></td>
+								<td><input class="t_text w160" name="filter_and_financeNum_LIKE_S" type="text" id="financeNum" /></td>
 								<td class="tr" width="100"><span class="t_span01">财物名称：</span></td>
-								<td><input class="t_text w120" name="filter_and_financeName_LIKE_S" type="text" id="financeName" /></td>
+								<td><input class="t_text w160" name="filter_and_financeName_LIKE_S" type="text" id="financeName" /></td>
 								<td class="tr" width="100"><span class="t_span01">财物类型：</span></td>
 								<td>
-									<select name="filter_and_financeType_EQ_I" style="width: 120">
+									<select name="filter_and_financeType_EQ_I" style="width: 160">
 										<option value="">请选择</option>
 										<c:forEach items="${financeTypeList}" var="object">
 											<option value="${object.key}">${object.value}</option>
@@ -34,39 +39,29 @@
 								</td>
 								<td class="tr" width="100"><span class="t_span01">财物状态：</span></td>
 								<td>
-									<select name="filter_and_financeState_EQ_I" style="width: 120">
+									<select name="filter_and_financeState_EQ_I" style="width: 160">
 									<option value="">请选择</option>
 										<c:forEach items="${financeStateList}" var="object">
 											<option value="${object.key}">${object.value}</option>
 										</c:forEach>
 									</select>
 								</td>
+							</tr>
+							<tr>
 								<td class="tr" width="100"><span class="t_span01">财物识别：</span></td>
-								<td><input class="t_text w100" name="filter_and_financeCode_LIKE_S" type="text" id="financeCode" /></td>
-							</tr>
-							<tr>
+								<td><input class="t_text w160" name="filter_and_financeCode_LIKE_S" type="text" id="financeCode" /></td>
 								<td class="tr" width="100"><span class="t_span01">案件编号：</span></td>
-								<td><input class="t_text w100" name="filter_and_cases__caseNum_LIKE_S" type="text" id="caseNum" /></td>
+								<td><input class="t_text w160" name="filter_and_cases__caseNum_LIKE_S" type="text" id="caseNum" /></td>
 								<td class="tr" width="100"><span class="t_span01">案件名称：</span></td>
-								<td><input class="t_text w120" name="filter_and_cases__caseName_LIKE_S" type="text" id="caseName" /></td>
+								<td><input class="t_text w160" name="filter_and_cases__caseName_LIKE_S" type="text" id="caseName" /></td>
 								<td class="tr" width="100"><span class="t_span01">案发地点：</span></td>
-								<td><input class="t_text w180" name="filter_and_cases__casePlace_LIKE_S" type="text" id="casePlace" /></td>
-								<td class="tr" width="100"><span class="t_span01">现场勘验号：</span></td>
-								<td><input class="t_text w100" name="filter_and_cases__siteNum_LIKE_S" type="text" id="siteNum" /></td>
-								<td class="tr" width="100"><span class="t_span01">电子识别：</span></td>
-								<td><input class="t_text w100" name="filter_and_digitalCode_LIKE_S" type="text" id="digitalCode" /></td>
+								<td><input class="t_text w160" name="filter_and_cases__casePlace_LIKE_S" type="text" id="casePlace" /></td>
 							</tr>
 							<tr>
-								<td class="tr" width="120"><span class="t_span01">案发时间(起)：</span></td>
-								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeStart_GE_S" type="text" />
-									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeStart_LE_S" type="text" /></td>
-								<td class="tr" width="120"><span class="t_span01">案发时间(止)：</span></td>
-								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeEnd_GE_S" type="text" />
-									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__caseTimeEnd_LE_S" type="text" /></td>
+								<td class="tr" width="100"><span class="t_span01">现场勘验号：</span></td>
+								<td><input class="t_text w160" name="filter_and_cases__siteNum_LIKE_S" type="text" id="siteNum" /></td>
+								<td class="tr" width="100"><span class="t_span01">电子识别：</span></td>
+								<td><input class="t_text w160" name="filter_and_digitalCode_LIKE_S" type="text" id="digitalCode" /></td>
 								<td class="tr" width="120"><span class="t_span01">电子识别码：</span></td>
 								<td>
 									<input class="t_text w100" name="filter_and_digitalCode_LIKE_S" type="text" id="digitalCodeNew" />
@@ -74,33 +69,42 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="tr"><span class="t_span01">勘验时间(起)：</span></td>
-								<td colspan="3"><input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_GE_S" type="text" />
-								<span class="t_span01">至</span>
-								<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeStart_LE_S" type="text" /></td>
-								<td class="tr"><span class="t_span01">勘验时间(止)：</span></td>
-								<td colspan="3">
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_GE_S" type="text" />
-									<span class="t_span01">至</span>
-									<input class="easyui-datebox t_text w150" editable="false" name="filter_and_cases__inspectionTimeEnd_LE_S" type="text" />
+								<td class="tr" width="120"><span class="t_span01">案发时间(起)：</span></td>
+								<td colspan="3" width="260">
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_caseTimeStart_GE_S" type="text" /> 
+									<span class="t_span01">至</span> 
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_caseTimeStart_LE_S" type="text" /></td>
+								<td class="tr" width="120"><span class="t_span01">案发时间(止)：</span></td>
+								<td colspan="3" width="260">
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_caseTimeEnd_GE_S" type="text" /> 
+									<span class="t_span01">至</span> 
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_caseTimeEnd_LE_S" type="text" /></td>
+								<td colspan="2" width="300" align="left" style="position:absolute;margin-left:-110px;">
+									&nbsp;<input type="checkbox" id="isDel" name="filter_and_isDel_LE_I" value="0" onclick="setVal()"/> 
+									<span class="t_span01">包含已删除案件</span>
 								</td>
-								<td class="tr" width="120"><input type="checkbox" id="isDel" name="filter_and_isDel_LE_I" value="0" onclick="setVal()"/></td>
-								<td ><span class="t_span01">包含已删除财物</span></td>
 							</tr>
 							<tr>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>
-									<input type="hidden" name="order_updateTime_T" value="desc"/>
-									<input class="t_btnsty01" id="find" name="select" type="button" value="查询" />
+								<td class="tr"><span class="t_span01">勘验时间(起)：</span></td>
+								<td colspan="3"><input class="easyui-datebox t_text w140" editable="false" name="filter_and_inspectionTimeStart_GE_S" type="text" /> 
+								<span class="t_span01">至</span> 
+								<input class="easyui-datebox t_text w140" editable="false" name="filter_and_inspectionTimeStart_LE_S" type="text" /></td>
+								<td class="tr"><span class="t_span01">勘验时间(止)：</span></td>
+								<td colspan="3">
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_inspectionTimeEnd_GE_S" type="text" /> 
+									<span class="t_span01">至</span> 
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_inspectionTimeEnd_LE_S" type="text" />
 								</td>
-								<td><input class="t_btnsty01" type="reset" onclick="resetClick()" value="重置" /></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td colspan="10" align="right">
+									<input type="hidden" name="order_updateTime_T" value="desc"/>
+									<input class="t_btnsty01" id="find" name="select" type="button" value="查询"/>
+									<input class="t_btnsty01" type="reset" onclick="resetClick()" value="重置"/>&nbsp;&nbsp;&nbsp;
+									
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -162,15 +166,15 @@
 	</div>
 	<!--t_rightcontainer -->
 	<!-- 添加弹窗 -->
-	<div id="addInfo" class="easyui-window" title="新增财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
+	<div id="addInfo" class="easyui-window" title="新增财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 644px; height: 500px; padding: 20px;">
 		<iframe id="frame_addInfo" width="520" height="430" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	<!-- 修改弹窗 -->
-	<div id="editInfo" class="easyui-window" title="修改财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
+	<div id="editInfo" class="easyui-window" title="修改财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 644px; height: 500px; padding: 20px;">
 		<iframe id="frame_editInfo" width="520" height="430" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	<!-- 详情弹窗 -->
-	<div id="detailInfo" class="easyui-window" title="财物信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 1000px; height: 500px; padding: 20px;">
+	<div id="detailInfo" class="easyui-window" title="财物信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 1090px; height: 520px; padding: 20px;overflow-x:hidden">
 		<iframe id="frame_detailInfo" width="1000" height="500" scrolling="no" src="" frameborder="0"></iframe>
 	</div>
 

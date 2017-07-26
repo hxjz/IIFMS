@@ -5,6 +5,11 @@
 <head>
 <title>存储位置管理</title>
 <%@include file="/WEB-INF/jsp/common/common.jsp"%>
+<style>
+*{
+	margin-bottom:3px;
+}
+</style>
 </head>
 
 <body>

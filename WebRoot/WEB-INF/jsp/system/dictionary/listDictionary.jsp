@@ -4,6 +4,11 @@
 <head>
 <title>数据字典管理</title>
 <%@include file="/WEB-INF/jsp/common/common.jsp"%>
+<style type="text/css">
+	*{
+		margin-bottom:5px;
+	}
+	</style>
 </head>
 
 <body>
@@ -25,11 +30,11 @@
 						</td>
 						<td class="tr" width="100"><span class="t_span01">下拉菜单值：</span></td>
 						<td><input class="t_text w120" name="filter_and_value_LIKE_S" type="text"/></td>
-						<td clazss="tr" width="100"><span class="t_span01">创建时间：</span></td>
+						<td clazss="tr" width="80"><span class="t_span01">创建时间：</span></td>
 						<td colspan="3" width="260">
-							<input class="easyui-datebox t_text w100" editable="false" name="filter_and_createTime_GE_T" type="text" /> 
+							<input class="easyui-datebox t_text w140" editable="false" name="filter_and_createTime_GE_T" type="text" /> 
 							<span class="t_span01">至</span> 
-							<input class="easyui-datebox t_text w100" editable="false" name="filter_and_createTime_LT_T" type="text" /></td>
+							<input class="easyui-datebox t_text w140" editable="false" name="filter_and_createTime_LT_T" type="text" /></td>
 					</tr>
 					<tr>
 						<td colspan="8" align="right">

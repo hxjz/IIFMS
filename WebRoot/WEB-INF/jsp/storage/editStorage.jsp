@@ -4,6 +4,11 @@
 <head>
 	<title>>新增/修改存储页</title>
 	<%@include file="/WEB-INF/jsp/common/common.jsp"%>
+	<style>
+	*{
+		margin-bottom:3px;
+	}
+	</style>					
 </head>
 <body>
 	<form id="chooseStorage" name="chooseStorageForm" method="post">
@@ -16,22 +21,22 @@
 		
 		<table border="0">
 	          <tr>
-	    		   <td><span class="t_span01">存储类型：</span></td>
+	    		   <td class="tr" width="100"><span class="t_span01">存储类型：</span></td>
 				   <td>
-				   		<select class="w100" name="type" id="type" onchange="storageTypeChange(this.value)">
+				   		<select class="w120" name="type" id="type" onchange="storageTypeChange(this.value)">
 					   		<option value="">请选择</option>
 							<c:forEach items="${storageTypeList}" var="obj">
 								<option value="${obj.key}">${obj.value}</option>
 							</c:forEach>
                  		</select>
 	               </td>
-	               <td><span class="t_span01">存储名称：</span></td>
+	               <td class="tr" width="100"><span class="t_span01">存储名称：</span></td>
 	               <td>
-	               	  <input class="easyui-validatebox t_text w140" data-options="required:true,missingMessage:'请输入存储名称'" name="name" type="text" value="${storage.name}" /><span class="t_span02">*</span>
+	               	  <input class="easyui-validatebox t_text w120" data-options="required:true,missingMessage:'请输入存储名称'" name="name" type="text" value="${storage.name}" /><span class="t_span02">*</span>
 	               </td>
 	          </tr>
 	          <tr>
-	          	<td><span class="t_span01">一级显示：</span></td>
+	          	<td class="tr" width="100"><span class="t_span01">一级显示：</span></td>
 	          	<td>
                  	<select class="w120" name="storageLevel1" id="storageLevel1" onchange="storageLevel1Change(this.value)">
                  		<option value="">请选择</option>
@@ -40,7 +45,7 @@
 						</c:forEach>
                  	</select>
                  </td>
-                 <td><span class="t_span01">二级显示：</span></td>
+                 <td class="tr" width="100"><span class="t_span01">二级显示：</span></td>
 	          	<td>
                  	<select class="w120" name="storageLevel2" id="storageLevel2" onchange="storageLevel2Change(this.value)">
                  		<option value="">请选择</option>
@@ -51,7 +56,7 @@
                  </td>
 	          </tr>
 	          <tr>
-	               <td><span class="t_span01">三级显示：</span></td>
+	               <td class="tr" width="100"><span class="t_span01">三级显示：</span></td>
 		           <td>
 	                   <select class="w120" name="storageLevel3" id="storageLevel3" onchange="storageLevel3Change(this.value)">
 	                 		<option value="">请选择</option>
@@ -60,25 +65,25 @@
 							</c:forEach>
 	                 	</select>
 	                </td>
-	                <td><span class="t_span01">备注：</span></td>
+	                <td class="tr" width="100"><span class="t_span01">备注：</span></td>
 	               <td>
 	               	  <input class="easyui-validatebox t_text w120" name="comment" type="text" value="${storage.comment}"/>
 	               </td>
 			  </tr>
 			  <tr>
-	              <td><span class="t_span01">设备信息：</span></td>
+	              <td class="tr" width="100"><span class="t_span01">设备信息：</span></td>
 	               <td>
-	               	  <input class="easyui-validatebox t_text w100" name="device" type="text" value="${storage.device}"/>
+	               	  <input class="easyui-validatebox t_text w120" name="device" type="text" value="${storage.device}"/>
 	               </td>
-	               <td><span class="t_span01">AB面控制：</span></td>
+	               <td class="tr" width="100"><span class="t_span01">AB面控制：</span></td>
 	               <td>
 	               	  <input type="checkbox" name="abSide" id="abSide" value="1" disabled="disabled"/>
 	               </td>
 			  </tr>
 			  <tr>
-			  	  <td><span class="t_span01">控制URL：</span></td>
+			  	  <td class="tr" width="100"><span class="t_span01">控制URL：</span></td>
 	              <td colspan="3">
-	               	 <input class="easyui-validatebox t_text w140" id="conUrl" name="conUrl" type="text" value="${storage.conUrl}" disabled="disabled" />
+	               	 <input class="easyui-validatebox t_text" style="width:345px;" id="conUrl" name="conUrl" type="text" value="${storage.conUrl}" disabled="disabled" />
 	              </td>
 			  </tr>
 		</table>

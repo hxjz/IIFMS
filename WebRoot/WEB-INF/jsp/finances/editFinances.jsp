@@ -4,6 +4,11 @@
 <head>
     <title>新增/修改财物</title>
     <%@include file="/WEB-INF/jsp/common/common.jsp" %>
+    <style type="text/css">
+	*{
+		margin-bottom:5px;
+	}
+</style>
 </head>
 <body>
 <form id="edit" name="editForm" method="post">

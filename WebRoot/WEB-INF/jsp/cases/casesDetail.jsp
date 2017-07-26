@@ -4,6 +4,11 @@
 <head>
 	<title>案件详情页</title>
 	<%@include file="/WEB-INF/jsp/common/common.jsp"%>
+	<style type="text/css">
+	*{
+		margin-bottom:5px;
+	}
+	</style>
 </head>
 <body>
 	
@@ -21,12 +26,11 @@
                	  <input class="easyui-validatebox t_text w140" data-options="" name="caseName" type="text" value="${cases.caseName}" readonly="readonly" /> 
                </td>
           </tr>
-          <tr></tr>
           <tr>
                <td><span class="t_span01">案件类型：</span></td>
                <td>
 	          	    <input type="hidden" name="caseTypeHid" id="caseTypeHid" value="${cases.caseType}">
-                 	<select class="w120" name="caseType" id="caseType" disabled="disabled">
+                 	<select class="w140" name="caseType" id="caseType" disabled="disabled">
                  		<option value="">无</option>
 						<c:forEach items="${caseTypeList}" var="obj">
 							<option value="${obj.key}" <c:if test="${cases.caseType==obj.key}">selected="true"</c:if>>${obj.value}</option>
@@ -34,7 +38,7 @@
                  	</select>
                  	<span class="t_span02">*</span>
                  </td>
-               <td><span class="t_span01">命案：</span></td>
+               <td><span class="t_span01" style="margin-left:25px;">命案：</span></td>
                <td>
                 	<c:if test="${cases.isMurder == 1}">
                 		<input type="checkbox" name="isMurder" id="isMurder" checked="checked" disabled="disabled"/>
@@ -57,17 +61,17 @@
           <tr>
           	   <td><span class="t_span01">案发地点：</span></td>
                <td colspan="3">
-               	  <input class="easyui-validatebox t_text w140" data-options="" name="casePlace" type="text" value="${cases.casePlace}" readonly="readonly" /> 
+               	  <input class="easyui-validatebox t_text w310" data-options="" name="casePlace" type="text" value="${cases.casePlace}" readonly="readonly" /> 
                </td>
 		  </tr>
           <tr>
           	   <td><span class="t_span01">现场勘验号：</span></td>
                <td>
-               	  <input class="easyui-validatebox t_text w180" data-options="" name="siteNum" type="text" value="${cases.siteNum }" readonly="readonly" />
+               	  <input class="easyui-validatebox t_text w140" data-options="" name="siteNum" type="text" value="${cases.siteNum }" readonly="readonly" />
                </td>
-              <td><span class="t_span01">勘验人：</span></td>
+              <td><span class="t_span01" style="margin-left:15px;">勘验人：</span></td>
                <td>
-               	  <input class="easyui-validatebox t_text w80" data-options="" name="inspectionPerson" type="text" value="${cases.inspectionPerson }" readonly="readonly" /> 
+               	  <input class="easyui-validatebox t_text w140" data-options="" name="inspectionPerson" type="text" value="${cases.inspectionPerson }" readonly="readonly" /> 
                </td>
 		  </tr>
 		  <tr>
@@ -83,7 +87,7 @@
 		  <tr>
 		  	   <td><span class="t_span01">管辖单位：</span></td>
                <td colspan="3">
-               	  <select class="w120" name="jurisdiction" disabled="disabled">
+               	  <select class="w140" name="jurisdiction" disabled="disabled">
                  		 <option value="">无</option>
 						 <c:forEach items="${jurisdictionList}" var="obj">
 							<option value="${obj.key}" <c:if test="${cases.jurisdiction==obj.key}">selected="true"</c:if>>${obj.value}</option>

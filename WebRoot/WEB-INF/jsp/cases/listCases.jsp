@@ -4,6 +4,11 @@
 <head>
 <title>涉案财物-案件列表页</title>
 <%@include file="/WEB-INF/jsp/common/common.jsp"%>
+<style type="text/css">
+	*{
+		margin-bottom:3px;
+	}
+</style>
 </head>
 <body>
 	<div class="t_rightcontainer">
@@ -18,15 +23,17 @@
 						<table width="100%" border="0">
 							<tr>
 								<td class="tr" width="100"><span class="t_span01">案件编号：</span></td>
-								<td><input class="t_text w100" name="filter_and_caseNum_LIKE_S" type="text" id="caseNum" /></td>
+								<td><input class="t_text w140" name="filter_and_caseNum_LIKE_S" type="text" id="caseNum" /></td>
 								<td class="tr" width="100"><span class="t_span01">案件名称：</span></td>
-								<td><input class="t_text w120" name="filter_and_caseName_LIKE_S" type="text" id="caseName" /></td>
+								<td><input class="t_text w140" name="filter_and_caseName_LIKE_S" type="text" id="caseName" /></td>
 								<td class="tr" width="100"><span class="t_span01">案发地点：</span></td>
-								<td><input class="t_text w180" name="filter_and_casePlace_LIKE_S" type="text" id="casePlace" /></td>
+								<td><input class="t_text w220" name="filter_and_casePlace_LIKE_S" type="text" id="casePlace" /></td>
+							</tr>
+							<tr>
 								<td class="tr" width="100"><span class="t_span01">现场勘验号：</span></td>
-								<td><input class="t_text w100" name="filter_and_siteNum_LIKE_S" type="text" id="siteNum" /></td>
+								<td><input class="t_text w140" name="filter_and_siteNum_LIKE_S" type="text" id="siteNum" /></td>
 								<td class="tr" width="100"><span class="t_span01">案件类型：</span></td>
-								<td><select name="filter_and_caseType_EQ_I" style="width: 120">
+								<td><select name="filter_and_caseType_EQ_I" style="width: 140">
 										<option value="">请选择</option>
 										<c:forEach items="${caseTypeList}" var="obj">
 											<option value="${obj.key}">${obj.value}</option>
@@ -36,29 +43,29 @@
 							<tr>
 								<td class="tr" width="120"><span class="t_span01">案发时间(起)：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeStart_GE_S" type="text" /> 
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_caseTimeStart_GE_S" type="text" /> 
 									<span class="t_span01">至</span> 
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeStart_LE_S" type="text" /></td>
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_caseTimeStart_LE_S" type="text" /></td>
 								<td class="tr" width="120"><span class="t_span01">案发时间(止)：</span></td>
 								<td colspan="3" width="260">
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeEnd_GE_S" type="text" /> 
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_caseTimeEnd_GE_S" type="text" /> 
 									<span class="t_span01">至</span> 
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_caseTimeEnd_LE_S" type="text" /></td>
-								<td colspan="2" width="300" align="left">
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_caseTimeEnd_LE_S" type="text" /></td>
+								<td colspan="2" width="" align="center" style="margin-left:-10px;">
 									&nbsp;<input type="checkbox" id="isDel" name="filter_and_isDel_LE_I" value="0" onclick="setVal()"/> 
 									<span class="t_span01">包含已删除案件</span>
 								</td>
 							</tr>
 							<tr>
 								<td class="tr"><span class="t_span01">勘验时间(起)：</span></td>
-								<td colspan="3"><input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeStart_GE_S" type="text" /> 
+								<td colspan="3"><input class="easyui-datebox t_text w140" editable="false" name="filter_and_inspectionTimeStart_GE_S" type="text" /> 
 								<span class="t_span01">至</span> 
-								<input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeStart_LE_S" type="text" /></td>
+								<input class="easyui-datebox t_text w140" editable="false" name="filter_and_inspectionTimeStart_LE_S" type="text" /></td>
 								<td class="tr"><span class="t_span01">勘验时间(止)：</span></td>
 								<td colspan="3">
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeEnd_GE_S" type="text" /> 
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_inspectionTimeEnd_GE_S" type="text" /> 
 									<span class="t_span01">至</span> 
-									<input class="easyui-datebox t_text w100" editable="false" name="filter_and_inspectionTimeEnd_LE_S" type="text" />
+									<input class="easyui-datebox t_text w140" editable="false" name="filter_and_inspectionTimeEnd_LE_S" type="text" />
 								</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
