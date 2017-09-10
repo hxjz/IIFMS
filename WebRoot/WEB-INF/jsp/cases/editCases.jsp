@@ -21,18 +21,18 @@
 	          <tr>
 	    		   <td><span class="t_span01">案件编号：</span></td>
 				   <td>
-	               	  <input class="easyui-validatebox t_text w140" data-options="" name="caseNum" type="text" value="${cases.caseNum}"/>
+ 				 	  <input class="easyui-validatebox t_text w140" data-options="" name="caseNum" type="text" value="${cases.caseNum}"/>
 	               </td>
 	               <td><span class="t_span01">案件名称：</span></td>
 	               <td>
-	               	  <input class="easyui-validatebox t_text w140" data-options="required:true,missingMessage:'请输入案件名称'" name="caseName" type="text" value="${cases.caseName}" /><span class="t_span02">*</span>
+				  	  <input class="easyui-validatebox t_text w140" data-options="required:true,missingMessage:'请输入案件名称'" name="caseName" type="text" value="${cases.caseName}" /><span class="t_span02">*</span>
 	               </td>
 	          </tr>
 	          <tr>
 	          	<td><span class="t_span01">案件类型：</span></td>
 	          	<td>
 	          	    <input type="hidden" name="caseTypeHid" id="caseTypeHid" value="${cases.caseType}">
-                 	<select class="w140" name="caseType" id="caseType">
+                 	<select class="w140" name="caseType" id="caseType" required="true">
                  		<option value="">请选择</option>
 						<c:forEach items="${caseTypeList}" var="obj">
 							<option value="${obj.key}">${obj.value}</option>
@@ -55,7 +55,8 @@
 	               <td>
 	               	  <input type="hidden" name="oldCaseTimeStart" value="${cases.caseTimeStart}">
 	               	  <div id="test1">
-	               	  	<input class="easyui-datetimebox w140" data-options="" name="caseTimeStart" id="caseTimeStart" type="text" value="${cases.caseTimeStart}"/><span class="t_span01">起</span><input type="button" class="t_btnsty01" id="changeTimeStart1" value="模糊"/>
+	               	  	<input class="easyui-datetimebox w140" data-options="" name="caseTimeStart" id="caseTimeStart" type="text" value="${cases.caseTimeStart}"/><span class="t_span01">起</span>
+	               	  	<!-- <input type="button" class="t_btnsty01" id="changeTimeStart1" value="模糊"/> -->
 	               	  </div>
 	               	  <div id="test2" hidden="true">
 	               	  	<input class="easyui-datebox w140" data-options="" name="caseTimeStart" id="caseTimeStart" type="text" value="${cases.caseTimeStart}"/><span class="t_span01">起</span><input  type="button" class="t_btnsty01" id="changeTimeStart2" value="精确"/>
@@ -139,6 +140,18 @@
 		$('#edit').form({
 		    url:'${path}/cases/saveCases.action',
 		    onSubmit:function(){
+		    	var startCaseDate = $("input[name='caseTimeStart']").val();
+		        var endCaseDate = $("input[name='caseTimeEnd']").val();
+		        if(startCaseDate>endCaseDate) {
+		        	alert("案发开始时间不能早于案发结束时间");
+		        	return false;
+		        }
+		        var startInspectionDate = $("input[name='inspectionTimeStart']").val();
+		        var endInspectionDate = $("input[name='inspectionTimeEnd']").val();
+		        if(startInspectionDate>endInspectionDate) {
+		        	alert("勘验开始时间不能早于勘验结束时间");
+		        	return false;
+		        }
 		        return $(this).form('validate');
 		    },
 		    success:function(returnData){
