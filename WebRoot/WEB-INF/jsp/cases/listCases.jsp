@@ -140,20 +140,20 @@
 	</div>
 	<!--t_rightcontainer -->
 	<!-- 添加弹窗 -->
-	<div id="addInfo" class="easyui-window" title="新增案件信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 480px; padding: 20px;">
+	<div id="addInfo" class="easyui-window" title="新增案件信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 594px; height: 480px; padding: 20px;">
 		<iframe id="frame_addInfo" width="520" height="404" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	<!-- 修改弹窗 -->
-	<div id="editInfo" class="easyui-window" title="修改案件信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 480px; padding: 20px;">
+	<div id="editInfo" class="easyui-window" title="修改案件信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 594px; height: 480px; padding: 20px;">
 		<iframe id="frame_editInfo" width="520" height="404" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	<!-- 详情弹窗 -->
-	<div id="detailInfo" class="easyui-window" title="案件信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 480px; padding: 20px;">
+	<div id="detailInfo" class="easyui-window" title="案件信息详情" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 594px; height: 480px; padding: 20px;">
 		<iframe id="frame_detailInfo" width="520" height="404" scrolling="no" src="" frameborder="0"></iframe>
 	</div>
 	<!-- 添加财物弹窗 -->
-	<div id="addFinInfo" class="easyui-window" title="新增财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 574px; height: 500px; padding: 20px;">
-		<iframe id="frame_addFinInfo" width="520" height="430" scrolling="no" src="" frameborder="0"> </iframe>
+	<div id="addFinInfo" class="easyui-window" title="新增财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 794px; height: 500px; padding: 20px;">
+		<iframe id="frame_addFinInfo" width="740" height="430" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	
 	<script type="text/javascript">
