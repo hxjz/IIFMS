@@ -44,7 +44,8 @@
     </context:component-scan>
     
     <!-- 允许对静态资源文件的访问 -->   
-    <mvc:default-servlet-handler />   
+    <mvc:default-servlet-handler />
+    <mvc:resources mapping="/html/**" location="/resources/html/"/>
     
     <!--配置视图 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
