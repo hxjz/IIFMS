@@ -63,6 +63,11 @@
             <!--<key column="ffinancesImages"/>-->
             <!--<one-to-many class="com.iif.finances.entity.FinancesImages" not-found="ignore"/>-->
         <!--</bag>-->
+        <list name="FinanceImages" cascade="all-delete-orphan" lazy="false">
+            <key  column="id" />
+            <index column="position" />
+            <one-to-many class="com.iif.finances.entity.FinancesImages" not-found="ignore"/>
+        </list>
 
         <property name="storeLocation" type="string">
             <column name="fstoreLocation" length="100"/>

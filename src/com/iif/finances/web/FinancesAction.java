@@ -1,22 +1,21 @@
 package com.iif.finances.web;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.iif.common.enums.*;
 import com.iif.common.util.*;
+import com.iif.finances.entity.FinancesImages;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -122,7 +121,8 @@ public class FinancesAction extends BaseAction {
     @SuppressWarnings("rawtypes")
 	@RequestMapping("saveFinances.action")
     @ResponseBody
-    public Map saveFinances(Finances finance){
+    public Map saveFinances(Finances finance,@RequestParam(value="propertyImage"
+            ,required=false) MultipartFile[] files,HttpServletRequest request) throws IOException {
         String financesId = HttpTool.getParameter("id");
         HttpTool.setAttribute("financesId", financesId);
 
@@ -138,6 +138,28 @@ public class FinancesAction extends BaseAction {
             relateCase.setCaseNum(caseNum);
             finance.setCases(relateCase);
         }
+        // 图片处理
+        String pathRoot = request.getSession().getServletContext().getRealPath("");
+        String path="";
+        List<FinancesImages> imageList=new ArrayList<FinancesImages>();
+        for (MultipartFile mf : files) {
+            if(!mf.isEmpty()){
+                //生成uuid作为文件名称
+                String uuid = UUID.randomUUID().toString().replaceAll("-","");
+                String contentType=mf.getContentType();
+                //获得文件后缀名称
+                String imageName=contentType.substring(contentType.indexOf("/")+1);
+                path="/static/images/"+uuid+"."+imageName;
+                mf.transferTo(new File(pathRoot+path));
+                FinancesImages fi=new FinancesImages();
+                fi.setImageUrl(path);
+                fi.setImageName(mf.getName());
+                fi.setId(uuid);
+//                fi.setFinanceId(financesId);
+                imageList.add(fi);
+            }
+        }
+        finance.setFinanceImages(imageList);
 
         Finances saveFinance=new Finances();
         ////*****************Add By M start************////

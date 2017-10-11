@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-<form id="edit" name="editForm" method="post">
+<form id="edit" name="editForm" method="post" enctype="multipart/form-data">
     <input type="submit" class="t_btnsty02" id="saveBtn" value="保存">
     <input type="button" id="cancel" class="t_btnsty02" onclick="cancelAddOrEdit();" value="取消">
     <input type="hidden" name="id" id="id" value="${finances.id}">
@@ -123,8 +123,10 @@
                           style="width:520px;height:100px">${finances.imageSign}</textarea>
             </td>
             <td>
-                <input type="submit" class="t_btnsty01" id="capturePicture" onclick="takePhoto()" value="拍照"><br>
-                <input type="file" class="t_btnsty01" id="importPicture"    accept="image/*" multiple="multiple" onchange="uploadImage()" value="导入"  style="width:70px"><br>
+                <%--<input type="submit" class="t_btnsty01" id="capturePicture" onclick="takePhoto()" value="拍照"><br>--%>
+                <input type = "file" class="t_btnsty01" name="propertyImage"/><br/>
+                <input type = "file" class="t_btnsty01" name="propertyImage"/>
+                <%--<input type="file" class="t_btnsty01" id="importPicture"    accept="image/*" multiple="multiple" onchange="uploadImage()" value="导入"  style="width:70px"><br>--%>
                 <input type="submit" class="t_btnsty01" id="removePicture" value="移除">
             </td>
         </tr>
