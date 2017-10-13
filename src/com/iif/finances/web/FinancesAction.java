@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.iif.common.enums.*;
 import com.iif.common.util.*;
 import com.iif.finances.entity.FinancesImages;
+import com.iif.finances.service.IFinancesImagesService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,9 @@ public class FinancesAction extends BaseAction {
     ////*****************Add By M ************////
     @Autowired
     IStockService iStockService = null;
+    @Autowired
+    IFinancesImagesService iFinancesImagesService = null;
+
     /**
      * 跳转到财物详情
      *
@@ -125,9 +129,10 @@ public class FinancesAction extends BaseAction {
             ,required=false) MultipartFile[] files,HttpServletRequest request) throws IOException {
         String financesId = HttpTool.getParameter("id");
         HttpTool.setAttribute("financesId", financesId);
-
+        finance.setId(UUID.randomUUID().toString());  // TODO
         // 财物关联的案件
-        String caseId = HttpTool.getParameter("caseId");
+//        String caseId = HttpTool.getParameter("caseId"); //todo
+        String caseId ="297e70085f0c48ec015f0c4b73f22001"; //todo
         if(StringUtils.isNotBlank(caseId)){
             String caseName=HttpTool.getParameter("caseName");
             String caseNum=HttpTool.getParameter("caseNum");
@@ -149,13 +154,17 @@ public class FinancesAction extends BaseAction {
                 String contentType=mf.getContentType();
                 //获得文件后缀名称
                 String imageName=contentType.substring(contentType.indexOf("/")+1);
+                File file = new File(pathRoot+"/static/images");
+                if (!file.exists()) {
+                    file.mkdirs();
+                }
                 path="/static/images/"+uuid+"."+imageName;
                 mf.transferTo(new File(pathRoot+path));
                 FinancesImages fi=new FinancesImages();
                 fi.setImageUrl(path);
                 fi.setImageName(mf.getName());
-                fi.setId(uuid);
-//                fi.setFinanceId(financesId);
+                fi.setFinance(finance); // todo
+                iFinancesImagesService.save(fi);
                 imageList.add(fi);
             }
         }

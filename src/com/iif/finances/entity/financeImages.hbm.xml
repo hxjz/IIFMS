@@ -24,9 +24,12 @@
             <column name="fimageUrl" length="50"/>
         </property>
 
-        <property name="financeId" type="string">
-            <column name="ffinanceId" length="255"/>
-        </property>
+        <!--<property name="finance" type="string">-->
+            <!--<column name="ffinanceId" length="255"/>-->
+        <!--</property>-->
+        <many-to-one name="finance" class="com.iif.finances.entity.Finances">
+            <column name="ffinanceId"/>
+        </many-to-one>
 
         <property name="isDel" type="integer">
             <column name="fisdel" length="1"/>
@@ -47,6 +50,5 @@
         <property name="updateTime" type="timestamp">
             <column name="fupdatetime" length="14"/>
         </property>
-
     </class>
 </hibernate-mapping>

@@ -166,8 +166,8 @@
 	</div>
 	<!--t_rightcontainer -->
 	<!-- 添加弹窗 -->
-	<div id="addInfo" class="easyui-window" title="新增财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 644px; height: 500px; padding: 20px;">
-		<iframe id="frame_addInfo" width="520" height="430" scrolling="no" src="" frameborder="0"> </iframe>
+	<div id="addInfo" class="easyui-window" title="新增财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 800px; height: 500px; padding: 20px;">
+		<iframe id="frame_addInfo" width="600" height="430" scrolling="no" src="" frameborder="0"> </iframe>
 	</div>
 	<!-- 修改弹窗 -->
 	<div id="editInfo" class="easyui-window" title="修改财物信息" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width: 644px; height: 500px; padding: 20px;">

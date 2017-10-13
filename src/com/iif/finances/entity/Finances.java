@@ -3,6 +3,7 @@ package com.iif.finances.entity;
 import com.hxjz.common.core.orm.BaseEntity;
 import com.iif.cases.entity.Cases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public class Finances extends BaseEntity {
 
     private String financeMemo; // 财物备注
 
-    transient private List<FinancesImages> FinanceImages; // 财物照片
+    transient private List<FinancesImages> FinanceImages =new ArrayList<>(); // 财物照片
 
     private Integer imageSign; // 是否有财物照片
 

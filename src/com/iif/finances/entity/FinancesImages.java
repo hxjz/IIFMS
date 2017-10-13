@@ -13,11 +13,11 @@ public class FinancesImages extends BaseEntity {
 
     private String id;  // 图片编号
 
-    private String financeId;   // 关联的财物id
+    private Finances finance;   // 关联的财物
 
     private String imageName;  //  图片名称
 
-    private String imageType;  //  图片类型 eg：1 正面图 2 侧面图 3 俯视图等等
+    private Integer imageType;  //  图片类型 eg：1 正面图 2 侧面图 3 俯视图等等
 
     private String imageDesc;  //  图片描述
 
@@ -40,11 +40,12 @@ public class FinancesImages extends BaseEntity {
         this.imageName = imageName;
     }
 
-    public String getImageType() {
+
+    public Integer getImageType() {
         return imageType;
     }
 
-    public void setImageType(String imageType) {
+    public void setImageType(Integer imageType) {
         this.imageType = imageType;
     }
 
@@ -64,11 +65,11 @@ public class FinancesImages extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-    public String getFinanceId() {
-        return financeId;
+    public Finances getFinance() {
+        return finance;
     }
 
-    public void setFinanceId(String financeId) {
-        this.financeId = financeId;
+    public void setFinance(Finances finance) {
+        this.finance = finance;
     }
 }

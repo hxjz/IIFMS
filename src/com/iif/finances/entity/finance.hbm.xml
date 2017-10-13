@@ -63,9 +63,9 @@
             <!--<key column="ffinancesImages"/>-->
             <!--<one-to-many class="com.iif.finances.entity.FinancesImages" not-found="ignore"/>-->
         <!--</bag>-->
-        <list name="FinanceImages" cascade="all-delete-orphan" lazy="false">
-            <key  column="id" />
-            <index column="position" />
+        <list name="financeImages" table="tFinanceImages" >
+            <key  column="fid" />
+            <index column="fidx" /><!-- 注意index是数据库中的关键字要避免与其冲突，此处index_对应元素在List中的索引 -->
             <one-to-many class="com.iif.finances.entity.FinancesImages" not-found="ignore"/>
         </list>
 
