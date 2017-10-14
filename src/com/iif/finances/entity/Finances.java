@@ -42,7 +42,7 @@ public class Finances extends BaseEntity {
 
     private String financeMemo; // 财物备注
 
-    transient private List<FinancesImages> FinanceImages =new ArrayList<>(); // 财物照片
+    transient private List<FinancesImages> financeImages; // 财物照片
 
     private Integer imageSign; // 是否有财物照片
 
@@ -184,11 +184,11 @@ public class Finances extends BaseEntity {
     }
 
     public List<FinancesImages> getFinanceImages() {
-        return FinanceImages;
+        return financeImages;
     }
 
     public void setFinanceImages(List<FinancesImages> financeImages) {
-        FinanceImages = financeImages;
+        this.financeImages = financeImages;
     }
 
     public Integer getImageSign() {

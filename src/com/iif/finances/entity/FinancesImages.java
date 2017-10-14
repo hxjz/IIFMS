@@ -11,7 +11,7 @@ import com.hxjz.common.core.orm.BaseEntity;
  */
 public class FinancesImages extends BaseEntity {
 
-    private String id;  // 图片编号
+    private String imageId;  // 图片编号
 
     private Finances finance;   // 关联的财物
 
@@ -24,12 +24,12 @@ public class FinancesImages extends BaseEntity {
     private String imageUrl;  //  图片位置,url
 
 
-    public String getId() {
-        return id;
+    public String getImageId() {
+        return imageId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 
     public String getImageName() {

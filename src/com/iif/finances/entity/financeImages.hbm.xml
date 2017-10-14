@@ -4,7 +4,7 @@
 <hibernate-mapping>
     <class name="com.iif.finances.entity.FinancesImages" table="TFinancesImages">
 
-        <id name="id" column="fid">
+        <id name="imageId" column="fimageId">
             <generator class="uuid"/>
         </id>
 

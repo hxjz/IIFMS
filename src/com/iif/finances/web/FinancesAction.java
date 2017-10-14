@@ -145,7 +145,7 @@ public class FinancesAction extends BaseAction {
         }
         // 图片处理
         String pathRoot = request.getSession().getServletContext().getRealPath("");
-        String path="";
+        String path;
         List<FinancesImages> imageList=new ArrayList<FinancesImages>();
         for (MultipartFile mf : files) {
             if(!mf.isEmpty()){
@@ -162,8 +162,9 @@ public class FinancesAction extends BaseAction {
                 mf.transferTo(new File(pathRoot+path));
                 FinancesImages fi=new FinancesImages();
                 fi.setImageUrl(path);
-                fi.setImageName(mf.getName());
-                fi.setFinance(finance); // todo
+                fi.setImageName(mf.getOriginalFilename());
+                fi.setFinance(finance);
+                fi.setCreateTime(new Date());
                 iFinancesImagesService.save(fi);
                 imageList.add(fi);
             }
@@ -196,7 +197,7 @@ public class FinancesAction extends BaseAction {
             saveFinance.setCreateTime(new Date());// 创建时间
             saveFinance.setCreator(UserUtil.getCurrentUser().getUserAccount()); // 当前登录人
             saveFinance.setIsDel(SysConstant.IS_NOT_DEL); //删除标示
-            saveFinance.setId(null);
+//            saveFinance.setId(null);
             ////*****************Add By M start************////
             ////   update stock table for operateLogs      ////
             ////*******************************************////
